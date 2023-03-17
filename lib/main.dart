@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:jusitfi_admin/presentation/screens/onboardingscreen.dart';
 import 'package:jusitfi_admin/presentation/screens/signup_screen.dart';
 
 void main() {

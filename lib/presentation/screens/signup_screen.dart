@@ -166,13 +166,13 @@ class _SignupScreenState extends State<SignupScreen> {
                     ),
                   ],
                 ),
-                InkWell(
-                  onTap: () {
-                    Navigator.of(context).push(MaterialPageRoute(
-                        builder: (context) => OnBoardingScreen()));
-                  },
-                  child: Padding(
-                    padding: const EdgeInsets.fromLTRB(0, 6, 0, 38),
+                Padding(
+                  padding: const EdgeInsets.fromLTRB(0, 6, 0, 38),
+                  child: InkWell(
+                    onTap: () {
+                      Navigator.of(context).push(MaterialPageRoute(
+                          builder: (context) => OnBoardingScreen()));
+                    },
                     child: Container(
                       height: 50,
                       width: double.infinity,
