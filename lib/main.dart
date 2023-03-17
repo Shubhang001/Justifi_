@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:jusitfi_admin/presentation/screens/login_screen.dart';
+import 'package:jusitfi_admin/presentation/screens/onboardingscreen.dart';
 import 'package:jusitfi_admin/presentation/screens/signup_screen.dart';
 
 void main() {
@@ -8,13 +8,14 @@ void main() {
 
 class MyApp extends StatelessWidget {
   const MyApp({super.key});
-
-  // This widget is the root of your application.
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
+      debugShowCheckedModeBanner: false,
       title: 'Flutter Demo',
       theme: ThemeData(
+        bottomSheetTheme: BottomSheetThemeData(backgroundColor: Colors.black54),
+        scaffoldBackgroundColor: Colors.transparent,
         primarySwatch: Colors.blue,
       ),
       home: SignupScreen(),

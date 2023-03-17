@@ -19,7 +19,17 @@ class MobileInputTextField extends StatelessWidget {
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            ImportantText(text: title),
+            RichText(
+              text:
+                  TextSpan(text: title, style: ktextFieldMainTitle, children: [
+                TextSpan(
+                    text: ' *',
+                    style: TextStyle(
+                        color: Colors.red,
+                        fontWeight: ktextFieldTitle.fontWeight,
+                        fontSize: ktextFieldTitle.fontSize))
+              ]),
+            ),
             const SizedBox(
               height: 16,
             ),
@@ -30,8 +40,10 @@ class MobileInputTextField extends StatelessWidget {
                 controller: txtController,
                 style: kTextFieldValue,
                 decoration: InputDecoration(
+                    isDense: true,
+                    contentPadding: EdgeInsets.all(10),
                     prefixIcon: Padding(
-                      padding: const EdgeInsets.symmetric(vertical: 1),
+                      padding: const EdgeInsets.only(top: 2.5),
                       child: Text(
                         '+91',
                         style: kTextFieldValue,

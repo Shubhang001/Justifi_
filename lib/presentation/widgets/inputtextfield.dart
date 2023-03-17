@@ -24,18 +24,17 @@ class InputTextField extends StatelessWidget {
             const SizedBox(
               height: 6,
             ),
-            SizedBox(
-              height: 70,
-              child: TextField(
-                controller: txtController,
-                style: kTextFieldValue,
-                decoration: InputDecoration(
-                    suffixIcon: icon,
-                    border: OutlineInputBorder(
-                        borderRadius: BorderRadius.circular(10)),
-                    fillColor: Colors.white,
-                    filled: true),
-              ),
+            TextField(
+              controller: txtController,
+              style: kTextFieldValue,
+              decoration: InputDecoration(
+                  isDense: true,
+                  contentPadding: EdgeInsets.all(10),
+                  suffixIcon: icon,
+                  border: OutlineInputBorder(
+                      borderRadius: BorderRadius.circular(10)),
+                  fillColor: Colors.white,
+                  filled: true),
             ),
           ],
         ),

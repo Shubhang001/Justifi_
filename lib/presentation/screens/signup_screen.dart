@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:jusitfi_admin/presentation/screens/onboardingscreen.dart';
 import 'package:jusitfi_admin/utils/constants/colors.dart';
 
 import '../../utils/constants/textstyles.dart';
@@ -47,7 +48,7 @@ class _SignupScreenState extends State<SignupScreen> {
                         style: kpageTitle,
                       ),
                     ),
-                    Icon(
+                    const Icon(
                       Icons.person_2_outlined,
                       color: Colors.white,
                     )
@@ -92,7 +93,7 @@ class _SignupScreenState extends State<SignupScreen> {
                         child: Column(
                           crossAxisAlignment: CrossAxisAlignment.start,
                           children: [
-                            ImportantText(text: 'Gender'),
+                            const ImportantText(text: 'Gender'),
                             const SizedBox(
                               height: 3,
                             ),
@@ -117,14 +118,14 @@ class _SignupScreenState extends State<SignupScreen> {
                         child: Column(
                           crossAxisAlignment: CrossAxisAlignment.start,
                           children: [
-                            ImportantText(
+                            const ImportantText(
                               text: 'Date Of Birth',
                             ),
                             const SizedBox(
                               height: 3,
                             ),
                             AppDropdownInput(
-                              options: ["Male", "Female"],
+                              options: const ["Male", "Female"],
                               value: gender,
                               onChanged: (value) {
                                 setState(() {
@@ -159,25 +160,31 @@ class _SignupScreenState extends State<SignupScreen> {
                           });
                           print(value);
                         }),
-                    Text(
+                    const Text(
                       'I Accept Terms And Conditions',
                       style: TextStyle(color: Colors.white),
                     ),
                   ],
                 ),
-                Padding(
-                  padding: const EdgeInsets.fromLTRB(0, 6, 0, 38),
-                  child: Container(
-                    height: 50,
-                    width: double.infinity,
-                    decoration: BoxDecoration(
-                        color: kbuttonColor,
-                        borderRadius: BorderRadius.circular(10)),
-                    child: Center(
-                        child: Text(
-                      'Confirm',
-                      style: kpageTitle,
-                    )),
+                InkWell(
+                  onTap: () {
+                    Navigator.of(context).push(MaterialPageRoute(
+                        builder: (context) => OnBoardingScreen()));
+                  },
+                  child: Padding(
+                    padding: const EdgeInsets.fromLTRB(0, 6, 0, 38),
+                    child: Container(
+                      height: 50,
+                      width: double.infinity,
+                      decoration: BoxDecoration(
+                          color: kbuttonColor,
+                          borderRadius: BorderRadius.circular(10)),
+                      child: Center(
+                          child: Text(
+                        'Confirm',
+                        style: kpageTitle,
+                      )),
+                    ),
                   ),
                 )
               ],
