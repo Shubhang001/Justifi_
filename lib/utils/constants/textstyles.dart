@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:jusitfi_admin/utils/constants/colors.dart';
 import 'package:google_fonts/google_fonts.dart';
 
+
 TextStyle ktextFieldTitle = GoogleFonts.poppins(
   color: kprimaryTextColor,
   fontStyle: FontStyle.normal,
@@ -19,12 +20,19 @@ TextStyle ktextFieldMainTitle = GoogleFonts.poppins(
 TextStyle kobButton = GoogleFonts.poppins(
   color: kobbuttonColor,
   fontStyle: FontStyle.normal,
-  fontSize: 14,
+  fontSize:14,
   fontWeight: FontWeight.w600,
 );
 
 TextStyle kpageTitle = GoogleFonts.outfit(
   color: Colors.white,
+  fontStyle: FontStyle.normal,
+  fontSize: 18,
+  fontWeight: FontWeight.w700,
+);
+
+TextStyle kpageTitleBlack = GoogleFonts.outfit(
+  color: Colors.black,
   fontStyle: FontStyle.normal,
   fontSize: 18,
   fontWeight: FontWeight.w700,
@@ -59,6 +67,12 @@ TextStyle konboardingSubtitleTitle = GoogleFonts.openSans(
 
 TextStyle kTextFieldValue = GoogleFonts.poppins(
   color: Colors.black,
+  fontWeight: FontWeight.w400,
+  fontSize: 18,
+);
+
+TextStyle kotp = GoogleFonts.poppins(
+  color: Colors.white,
   fontWeight: FontWeight.w400,
   fontSize: 18,
 );

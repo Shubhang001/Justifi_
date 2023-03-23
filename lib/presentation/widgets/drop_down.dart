@@ -6,7 +6,7 @@ class AppDropdownInput<T> extends StatelessWidget {
   final String Function(T) getLabel;
   final void Function(T?) onChanged;
 
-  AppDropdownInput({
+  const AppDropdownInput({super.key, 
     this.options = const [],
     required this.getLabel,
     required this.value,
@@ -22,7 +22,7 @@ class AppDropdownInput<T> extends StatelessWidget {
             filled: true,
             fillColor: Colors.white,
             contentPadding:
-                EdgeInsets.symmetric(horizontal: 20.0, vertical: 15.0),
+                const EdgeInsets.symmetric(horizontal: 20.0, vertical: 15.0),
             border:
                 OutlineInputBorder(borderRadius: BorderRadius.circular(10.0)),
           ),

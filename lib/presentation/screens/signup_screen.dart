@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:jusitfi_admin/presentation/screens/onboardingscreen.dart';
+import 'package:jusitfi_admin/presentation/widgets/big_button.dart';
 import 'package:jusitfi_admin/utils/constants/colors.dart';
-
 import '../../utils/constants/textstyles.dart';
 import '../widgets/drop_down.dart';
 import '../widgets/importanttext.dart';
@@ -9,13 +9,31 @@ import '../widgets/inputtextfield.dart';
 import '../widgets/mobilenumberfield.dart';
 
 class SignupScreen extends StatefulWidget {
-  SignupScreen({super.key});
+  const SignupScreen({super.key});
 
   @override
   State<SignupScreen> createState() => _SignupScreenState();
 }
 
 class _SignupScreenState extends State<SignupScreen> {
+  bool validate = false;
+  
+
+  bool checkValidation() {
+    print(mobileNumberController.text.length);
+    List values = [
+      mobileNumberController.text.isEmpty || mobileNumberController.text.length!=10,
+      firstNameController.text.isEmpty,
+      lastNameController.text.isEmpty,
+      emailController.text.isEmpty,
+      addressController.text.isEmpty
+    ];
+    setState(() {
+      values.contains(true) ? validate = true : validate = false;
+    });
+    return validate;
+  }
+
   TextEditingController firstNameController = TextEditingController();
 
   TextEditingController lastNameController = TextEditingController();
@@ -44,7 +62,7 @@ class _SignupScreenState extends State<SignupScreen> {
                     Padding(
                       padding: const EdgeInsets.symmetric(vertical: 8.0),
                       child: Text(
-                        'Sign Up',
+                        'Sign Up  ',
                         style: kpageTitle,
                       ),
                     ),
@@ -55,7 +73,7 @@ class _SignupScreenState extends State<SignupScreen> {
                   ],
                 ),
                 Padding(
-                  padding: const EdgeInsets.symmetric(vertical: 8.0),
+                  padding: const EdgeInsets.symmetric(vertical: 10.0),
                   child: Text(
                     'Complete Your Profile',
                     style: ktextFieldMainTitle,
@@ -70,14 +88,20 @@ class _SignupScreenState extends State<SignupScreen> {
                   ),
                 ),
                 InputTextField(
+                  errorText: 'First Name Should Be Filled',
+                  validate: validate,
                   title: 'First Name',
                   txtController: firstNameController,
                 ),
                 InputTextField(
+                  errorText: 'Second Name Should Be Filled',
+                  validate: validate,
                   title: 'Last Name',
                   txtController: lastNameController,
                 ),
                 InputTextField(
+                  errorText: 'Email is mandatory',
+                  validate: validate,
                   title: 'Email',
                   txtController: emailController,
                   icon: const Icon(
@@ -142,10 +166,13 @@ class _SignupScreenState extends State<SignupScreen> {
                   ),
                 ),
                 InputTextField(
+                  errorText: 'Address must be entered',
+                  validate: validate,
                   title: 'Address',
                   txtController: addressController,
                 ),
                 MobileInputTextField(
+                    validate: validate,
                     title: 'Enter Your Mobile Number',
                     txtController: mobileNumberController),
                 Row(
@@ -167,26 +194,13 @@ class _SignupScreenState extends State<SignupScreen> {
                   ],
                 ),
                 Padding(
-                  padding: const EdgeInsets.fromLTRB(0, 6, 0, 38),
-                  child: InkWell(
-                    onTap: () {
-                      Navigator.of(context).push(MaterialPageRoute(
-                          builder: (context) => OnBoardingScreen()));
-                    },
-                    child: Container(
-                      height: 50,
-                      width: double.infinity,
-                      decoration: BoxDecoration(
-                          color: kbuttonColor,
-                          borderRadius: BorderRadius.circular(10)),
-                      child: Center(
-                          child: Text(
-                        'Confirm',
-                        style: kpageTitle,
-                      )),
-                    ),
-                  ),
-                )
+                    padding: const EdgeInsets.fromLTRB(0, 6, 0, 38),
+                    child: CustomButton(
+                        function: checkValidation,
+                        removescreens: true,
+                        nextPage: const OnBoardingScreen(),
+                        buttonColor: kbuttonColor,
+                        text: 'Next'))
               ],
             ),
           ),

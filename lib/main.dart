@@ -1,8 +1,18 @@
 import 'package:flutter/material.dart';
-import 'package:jusitfi_admin/presentation/screens/signup_screen.dart';
+import 'package:jusitfi_admin/presentation/screens/login_screen.dart';
+
 
 void main() {
-  runApp(const MyApp());
+  runApp(
+      // DevicePreview(
+      //   enabled: true,
+      //   tools: [
+      //     ...DevicePreview.defaultTools,
+
+      //   ],
+      //   builder: (context) => const MyApp(),
+      // ),
+      const MyApp());
 }
 
 class MyApp extends StatelessWidget {
@@ -11,13 +21,13 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return MaterialApp(
       debugShowCheckedModeBanner: false,
-      title: 'Flutter Demo',
+      title: 'Justifi Admin',
       theme: ThemeData(
-        bottomSheetTheme: BottomSheetThemeData(backgroundColor: Colors.black54),
-        scaffoldBackgroundColor: Colors.transparent,
+        bottomSheetTheme:
+            const BottomSheetThemeData(backgroundColor: Colors.transparent),
         primarySwatch: Colors.blue,
       ),
-      home: SignupScreen(),
+      home: const LoginScreen(),
     );
   }
 }

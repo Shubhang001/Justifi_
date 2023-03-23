@@ -1,5 +1,8 @@
 import 'package:flutter/material.dart';
+import 'package:jusitfi_admin/presentation/screens/main_page.dart';
 import 'package:jusitfi_admin/utils/constants/textstyles.dart';
+
+import '../widgets/nav_indicator.dart';
 
 class OnBoardingScreen extends StatefulWidget {
   const OnBoardingScreen({super.key});
@@ -28,6 +31,7 @@ class _OnBoardingScreenState extends State<OnBoardingScreen> {
   Widget build(BuildContext context) {
     return SafeArea(
       child: Scaffold(
+        backgroundColor: Colors.black,
         body: SingleChildScrollView(
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
@@ -92,20 +96,32 @@ class _OnBoardingScreenState extends State<OnBoardingScreen> {
                 children: [
                   TextButton(
                       onPressed: () {
-                        print('next page');
+                        Navigator.of(context).pushAndRemoveUntil(
+                            MaterialPageRoute(builder: (context) => const MainPage()),
+                            (Route<dynamic> route) => false);
                       },
-                      child:Text('Skip',style: kobButton,)),
+                      child: Text(
+                        'Skip',
+                        style: kobButton,
+                      )),
+                  NavIndicator(currentintro: currentintro),
                   TextButton(
                       onPressed: () {
                         setState(() {
                           if (currentintro < 2) {
                             currentintro++;
                           } else {
-                            print('Next page');
+                            Navigator.of(context).pushAndRemoveUntil(
+                                MaterialPageRoute(
+                                    builder: (context) => const MainPage()),
+                                (Route<dynamic> route) => false);
                           }
                         });
                       },
-                      child:  Text('Next',style: kobButton,))
+                      child: Text(
+                        'Next',
+                        style: kobButton,
+                      ))
                 ],
               )
             ],
@@ -115,3 +131,4 @@ class _OnBoardingScreenState extends State<OnBoardingScreen> {
     );
   }
 }
+

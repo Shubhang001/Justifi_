@@ -5,11 +5,18 @@ import '../../utils/constants/textstyles.dart';
 
 class InputTextField extends StatelessWidget {
   const InputTextField(
-      {super.key, required this.title, required this.txtController, this.icon});
+      {super.key,
+      required this.title,
+      required this.txtController,
+      this.icon,
+      required this.validate,
+      required this.errorText});
 
   final Icon? icon;
   final String title;
   final TextEditingController txtController;
+  final bool validate;
+  final String errorText;
 
   @override
   Widget build(BuildContext context) {
@@ -24,12 +31,15 @@ class InputTextField extends StatelessWidget {
             const SizedBox(
               height: 6,
             ),
-            TextField(
+            TextFormField(
               controller: txtController,
               style: kTextFieldValue,
               decoration: InputDecoration(
+                  errorText: validate && txtController.text.isEmpty
+                      ? errorText
+                      : null,
                   isDense: true,
-                  contentPadding: EdgeInsets.all(10),
+                  contentPadding: const EdgeInsets.all(10),
                   suffixIcon: icon,
                   border: OutlineInputBorder(
                       borderRadius: BorderRadius.circular(10)),
