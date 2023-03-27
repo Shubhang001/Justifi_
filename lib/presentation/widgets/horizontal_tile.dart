@@ -33,15 +33,15 @@ class HorizontalTiles extends StatelessWidget {
                   education:
                       'LL.B - Delhi University\nCyber Law - Indian Law Institue',
                   distance: 10,
-                  rating: 3.5,
+                  rating: 4.5,
                 ),
                 AdvocateCard(
                   name: 'Priya Sharma',
                   image: 'assets/images/advocate_img.png',
                   education:
                       'LL.B - Delhi University\nCyber Law - Indian Law Institue',
-                  distance: 10,
-                  rating: 3.5,
+                  distance: 8,
+                  rating: 4.5,
                 ),
               ],
             ),

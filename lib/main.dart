@@ -30,7 +30,7 @@ class MyApp extends StatelessWidget {
             const BottomSheetThemeData(backgroundColor: Colors.transparent),
         primarySwatch: Colors.blue,
       ),
-      home: LoginScreen(),
+      home: const LoginScreen(),
     );
   }
 }

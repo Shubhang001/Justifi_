@@ -126,7 +126,7 @@ TextStyle kCategoryName = GoogleFonts.openSans(
 
 TextStyle kAdvocateCardName = GoogleFonts.openSans(
   color: Colors.black,
-  fontSize: 8,
+  fontSize: 12,
   fontWeight: FontWeight.w600,
 );
 

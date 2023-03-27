@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:jusitfi_admin/presentation/widgets/starrating.dart';
+import 'package:smooth_star_rating_null_safety/smooth_star_rating_null_safety.dart';
 
 import '../../utils/constants/textstyles.dart';
 
@@ -60,23 +62,13 @@ class AdvocateCard extends StatelessWidget {
                   ],
                 ),
                 Column(
+                  mainAxisAlignment: MainAxisAlignment.spaceAround,
                   children: [
                     Text(
                       rating.toString(),
                       style: kAdvocateCardRating,
                     ),
-                    //                 SmoothStarRating(
-                    //   allowHalfRating: true,
-
-                    //   starCount: 5,
-                    //   rating: rating,
-                    //   size: 40.0,
-                    //   filledIconData: Icons.blur_off,
-                    //   halfFilledIconData: Icons.blur_on,
-                    //   color: Colors.green,
-                    //   borderColor: Colors.green,
-                    //   spacing:0.0
-                    // )
+                    StarRating(rating: rating)
                   ],
                 )
               ],
