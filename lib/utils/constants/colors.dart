@@ -18,3 +18,4 @@ Color kobdescriptionColor = HexColor('#323232');
 Color kobbuttonColor = HexColor('#3E3E3E');
 Color kmainButtonColor = HexColor('#9C9C9C');
 Color kinactive = HexColor('#3E3E3E75');
+Color ksearchColor = HexColor('#6D6D6D');

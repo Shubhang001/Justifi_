@@ -2,7 +2,6 @@ import 'package:flutter/material.dart';
 import 'package:jusitfi_admin/utils/constants/colors.dart';
 import 'package:google_fonts/google_fonts.dart';
 
-
 TextStyle ktextFieldTitle = GoogleFonts.poppins(
   color: kprimaryTextColor,
   fontStyle: FontStyle.normal,
@@ -20,8 +19,50 @@ TextStyle ktextFieldMainTitle = GoogleFonts.poppins(
 TextStyle kobButton = GoogleFonts.poppins(
   color: kobbuttonColor,
   fontStyle: FontStyle.normal,
-  fontSize:14,
+  fontSize: 14,
   fontWeight: FontWeight.w600,
+);
+
+TextStyle kTextFieldValue = GoogleFonts.poppins(
+  color: Colors.black,
+  fontWeight: FontWeight.w400,
+  fontSize: 18,
+);
+
+TextStyle kAdvocateCardSubTitle = GoogleFonts.poppins(
+  color: kobbuttonColor,
+  fontWeight: FontWeight.w300,
+  fontSize: 4,
+);
+
+TextStyle kAdvocateCardRating = GoogleFonts.poppins(
+  color: Colors.black,
+  fontWeight: FontWeight.w300,
+  fontSize: 16,
+);
+
+TextStyle kMainCategory = GoogleFonts.poppins(
+  color: Colors.black,
+  fontWeight: FontWeight.w500,
+  fontSize: 16,
+);
+
+TextStyle kotp = GoogleFonts.poppins(
+  color: Colors.white,
+  fontWeight: FontWeight.w400,
+  fontSize: 18,
+);
+
+TextStyle kHomePageTitle = GoogleFonts.poppins(
+  color: Colors.white,
+  fontWeight: FontWeight.w500,
+  fontSize: 20,
+);
+
+TextStyle ksearch = GoogleFonts.poppins(
+  color: ksearchColor,
+  fontWeight: FontWeight.w300,
+  fontSize: 16,
 );
 
 TextStyle kpageTitle = GoogleFonts.outfit(
@@ -52,6 +93,18 @@ TextStyle kobTitle = GoogleFonts.outfit(
   fontWeight: FontWeight.w700,
 );
 
+TextStyle klocation = GoogleFonts.inter(
+  color: Colors.black,
+  fontWeight: FontWeight.w400,
+  fontSize: 24,
+);
+
+TextStyle kNavLabel = GoogleFonts.inter(
+  color: Colors.white,
+  fontWeight: FontWeight.w400,
+  fontSize: 12,
+);
+
 TextStyle konboardingTitle = GoogleFonts.openSans(
   color: Colors.white,
   // fontStyle: FontStyle.normal,
@@ -65,14 +118,26 @@ TextStyle konboardingSubtitleTitle = GoogleFonts.openSans(
   fontWeight: FontWeight.w600,
 );
 
-TextStyle kTextFieldValue = GoogleFonts.poppins(
+TextStyle kCategoryName = GoogleFonts.openSans(
   color: Colors.black,
-  fontWeight: FontWeight.w400,
-  fontSize: 18,
+  fontSize: 8,
+  fontWeight: FontWeight.w500,
 );
 
-TextStyle kotp = GoogleFonts.poppins(
-  color: Colors.white,
+TextStyle kAdvocateCardName = GoogleFonts.openSans(
+  color: Colors.black,
+  fontSize: 8,
+  fontWeight: FontWeight.w600,
+);
+
+TextStyle kAdvocateCardLocation = GoogleFonts.openSans(
+  color: Colors.black,
+  fontSize: 4,
   fontWeight: FontWeight.w400,
-  fontSize: 18,
+);
+
+TextStyle kViewAll = GoogleFonts.openSans(
+  color: Colors.white,
+  fontSize: 12,
+  fontWeight: FontWeight.w400,
 );

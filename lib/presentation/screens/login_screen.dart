@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:jusitfi_admin/presentation/screens/main_page.dart';
+import 'package:jusitfi_admin/presentation/screens/homepage.dart';
+import 'package:jusitfi_admin/presentation/screens/mianpage.dart';
 import 'package:jusitfi_admin/presentation/screens/signup_screen.dart';
 import 'package:jusitfi_admin/presentation/widgets/mobilenumberfield.dart';
 import 'package:jusitfi_admin/presentation/widgets/text_with_line.dart';
@@ -16,20 +17,28 @@ class LoginScreen extends StatefulWidget {
 }
 
 class _LoginScreenState extends State<LoginScreen> {
+  bool isNumeric(String s) {
+    if (s == null) {
+      return false;
+    }
+    return double.tryParse(s) != null;
+  }
+
   bool validate = false;
   TextEditingController mobileNumber = TextEditingController();
-   bool checkValidation(){
-        setState(() {
-      mobileNumber.text.isEmpty || mobileNumber.text.length != 10 ? validate = true : validate = false;
+  bool checkValidation() {
+    setState(() {
+      mobileNumber.text.isEmpty ||
+              !isNumeric(mobileNumber.text) ||
+              mobileNumber.text.length != 10
+          ? validate = true
+          : validate = false;
     });
     return validate;
-   }
-
+  }
 
   @override
   Widget build(BuildContext context) {
-    
-
     return Scaffold(
       backgroundColor: Colors.white,
       body: SafeArea(
@@ -69,7 +78,7 @@ class _LoginScreenState extends State<LoginScreen> {
                     Padding(
                       padding: const EdgeInsets.fromLTRB(60, 80, 60, 0),
                       child: MobileInputTextField(
-                        validate: validate ,
+                          validate: validate,
                           title: 'Enter Your Mobile Number',
                           txtController: mobileNumber),
                     ),
@@ -109,9 +118,15 @@ class _LoginScreenState extends State<LoginScreen> {
                     ),
                     const TextWithLine(label: 'New User', height: 1),
                     Padding(
-                      padding: const EdgeInsets.fromLTRB(60, 20, 60, 20),
-                      child: CustomButton(removescreens: false, nextPage: SignupScreen(), buttonColor: kbuttonColor, text: 'Sign Up',width: 150,height: 40,)
-                    ),
+                        padding: const EdgeInsets.fromLTRB(60, 20, 60, 20),
+                        child: CustomButton(
+                          removescreens: false,
+                          nextPage: const SignupScreen(),
+                          buttonColor: kbuttonColor,
+                          text: 'Sign Up',
+                          width: 150,
+                          height: 40,
+                        )),
                   ],
                 ),
               ),

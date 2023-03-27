@@ -17,12 +17,20 @@ class SignupScreen extends StatefulWidget {
 
 class _SignupScreenState extends State<SignupScreen> {
   bool validate = false;
-  
+
+  bool isNumeric(String s) {
+    if (s == null) {
+      return false;
+    }
+    return double.tryParse(s) != null;
+  }
 
   bool checkValidation() {
     print(mobileNumberController.text.length);
     List values = [
-      mobileNumberController.text.isEmpty || mobileNumberController.text.length!=10,
+      mobileNumberController.text.isEmpty ||
+          mobileNumberController.text.length != 10 ||
+          !isNumeric(mobileNumberController.text),
       firstNameController.text.isEmpty,
       lastNameController.text.isEmpty,
       emailController.text.isEmpty,

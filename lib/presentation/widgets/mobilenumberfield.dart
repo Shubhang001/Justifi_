@@ -9,6 +9,13 @@ class MobileInputTextField extends StatelessWidget {
       required this.txtController,
       required this.validate});
 
+    bool isNumeric(String s) {
+    if (s == null) {
+      return false;
+    }
+    return double.tryParse(s) != null;
+  }
+
   final String title;
   final TextEditingController txtController;
   final bool validate;
@@ -43,7 +50,7 @@ class MobileInputTextField extends StatelessWidget {
                 controller: txtController,
                 style: kTextFieldValue,
                 decoration: InputDecoration(
-                    errorText: validate && txtController.text.length < 10
+                    errorText: validate && (txtController.text.length < 10 || !isNumeric(txtController.text) ) 
                         ? 'Enter a Valid Mobile Number'
                         : null,
                     isDense: true,
