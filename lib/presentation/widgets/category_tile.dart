@@ -1,17 +1,20 @@
 import 'package:flutter/material.dart';
+import 'package:google_fonts/google_fonts.dart';
 
 import '../../utils/constants/textstyles.dart';
-
 
 class CategoryTile extends StatelessWidget {
   const CategoryTile(
       {super.key,
       required this.image,
       required this.name,
+      this.isDark = false,
       this.isTransparentBackground = true});
   final String image;
   final String name;
   final bool isTransparentBackground;
+  final bool isDark;
+
   @override
   Widget build(BuildContext context) {
     return Column(
@@ -31,7 +34,11 @@ class CategoryTile extends StatelessWidget {
         ),
         Text(
           name,
-          style: kCategoryName,
+          style: GoogleFonts.openSans(
+            color: isDark ? Colors.white : Colors.black,
+            fontSize: 12,
+            fontWeight: FontWeight.w500,
+          ),
         )
       ],
     );

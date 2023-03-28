@@ -14,7 +14,7 @@ class _MainPageState extends State<MainPage> {
   int _selectedIndex = 0;
 
   final List<Widget> _widgetOptions = <Widget>[
-    const HomePage(),
+    HomePage(),
     const Text('Page 2'),
     const Text('Page 3'),
     const Text('Page 4'),

@@ -42,6 +42,7 @@ TextStyle kAdvocateCardRating = GoogleFonts.poppins(
 );
 
 TextStyle kMainCategory = GoogleFonts.poppins(
+  
   color: Colors.black,
   fontWeight: FontWeight.w500,
   fontSize: 16,
@@ -124,6 +125,12 @@ TextStyle kCategoryName = GoogleFonts.openSans(
   fontWeight: FontWeight.w500,
 );
 
+TextStyle kCategoryNameDark = GoogleFonts.openSans(
+  color: Colors.white,
+  fontSize: 8,
+  fontWeight: FontWeight.w500,
+);
+
 TextStyle kAdvocateCardName = GoogleFonts.openSans(
   color: Colors.black,
   fontSize: 12,
@@ -141,3 +148,22 @@ TextStyle kViewAll = GoogleFonts.openSans(
   fontSize: 12,
   fontWeight: FontWeight.w400,
 );
+
+TextStyle kAdvocateCardCount = GoogleFonts.openSans(
+  color: Colors.black,
+  fontSize: 8,
+  fontWeight: FontWeight.w700,
+);
+
+TextStyle kAdvocateCardCountTitle = GoogleFonts.poppins(
+  color: Colors.black,
+  fontSize: 6,
+  fontWeight: FontWeight.w400,
+);
+
+TextStyle kProfileButtonText = GoogleFonts.poppins(
+  color: Colors.white,
+  fontSize: 6,
+  fontWeight: FontWeight.w300,
+);
+
