@@ -149,6 +149,12 @@ TextStyle kViewAll = GoogleFonts.openSans(
   fontWeight: FontWeight.w400,
 );
 
+TextStyle kSort = GoogleFonts.openSans(
+  color: Colors.black,
+  fontSize: 18,
+  fontWeight: FontWeight.w400,
+);
+
 TextStyle kAdvocateCardCount = GoogleFonts.openSans(
   color: Colors.black,
   fontSize: 8,
@@ -159,6 +165,18 @@ TextStyle kAdvocateCardCountTitle = GoogleFonts.poppins(
   color: Colors.black,
   fontSize: 6,
   fontWeight: FontWeight.w400,
+);
+
+TextStyle kFilterTitle = GoogleFonts.poppins(
+  color: Colors.black,
+  fontSize: 20,
+  fontWeight: FontWeight.w500,
+);
+
+TextStyle kFilterValue = GoogleFonts.poppins(
+  color: Colors.black,
+  fontSize: 14,
+  fontWeight: FontWeight.w500,
 );
 
 TextStyle kProfileButtonText = GoogleFonts.poppins(
