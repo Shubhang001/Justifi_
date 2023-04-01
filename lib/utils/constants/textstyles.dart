@@ -42,10 +42,15 @@ TextStyle kAdvocateCardRating = GoogleFonts.poppins(
 );
 
 TextStyle kMainCategory = GoogleFonts.poppins(
-  
   color: Colors.black,
   fontWeight: FontWeight.w500,
   fontSize: 16,
+);
+
+TextStyle kAssignText = GoogleFonts.poppins(
+  color: Colors.black,
+  fontWeight: FontWeight.w500,
+  fontSize: 22,
 );
 
 TextStyle kotp = GoogleFonts.poppins(
@@ -54,10 +59,40 @@ TextStyle kotp = GoogleFonts.poppins(
   fontSize: 18,
 );
 
+TextStyle kdesignButtonText = GoogleFonts.poppins(
+  color: Colors.white,
+  fontWeight: FontWeight.w400,
+  fontSize: 15,
+);
+
 TextStyle kHomePageTitle = GoogleFonts.poppins(
   color: Colors.white,
   fontWeight: FontWeight.w500,
   fontSize: 20,
+);
+
+TextStyle kCallTitle = GoogleFonts.poppins(
+  color: Colors.white,
+  fontWeight: FontWeight.w500,
+  fontSize: 20,
+);
+
+TextStyle kCallName = GoogleFonts.poppins(
+  color: Colors.white,
+  fontWeight: FontWeight.w500,
+  fontSize: 18,
+);
+
+TextStyle kCallQn = GoogleFonts.poppins(
+  color: kprimaryTextColor,
+  fontWeight: FontWeight.w400,
+  fontSize: 12,
+);
+
+TextStyle kCallAns = GoogleFonts.poppins(
+  color: Colors.white,
+  fontWeight: FontWeight.w400,
+  fontSize: 12,
 );
 
 TextStyle ksearch = GoogleFonts.poppins(
@@ -98,6 +133,12 @@ TextStyle klocation = GoogleFonts.inter(
   color: Colors.black,
   fontWeight: FontWeight.w400,
   fontSize: 24,
+);
+
+TextStyle ksubCatText = GoogleFonts.inter(
+  color: Colors.black,
+  fontWeight: FontWeight.w400,
+  fontSize: 12,
 );
 
 TextStyle kNavLabel = GoogleFonts.inter(
@@ -184,4 +225,3 @@ TextStyle kProfileButtonText = GoogleFonts.poppins(
   fontSize: 6,
   fontWeight: FontWeight.w300,
 );
-
