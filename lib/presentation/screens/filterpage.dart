@@ -5,6 +5,8 @@ import 'package:jusitfi_admin/utils/constants/colors.dart';
 import 'package:jusitfi_admin/utils/constants/textstyles.dart';
 
 class FilterPage extends StatefulWidget {
+  const FilterPage({super.key});
+
   @override
   _FilterPageState createState() => _FilterPageState();
 }
