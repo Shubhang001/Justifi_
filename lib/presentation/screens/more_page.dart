@@ -1,13 +1,19 @@
+import 'dart:ui';
+
 import 'package:flutter/material.dart';
 import 'package:jusitfi_admin/data/models/category_model.dart';
+import 'package:jusitfi_admin/presentation/screens/assign_work.dart';
 import 'package:jusitfi_admin/presentation/widgets/filter_sort.dart';
 import 'package:jusitfi_admin/presentation/widgets/searchbar.dart';
+import 'package:jusitfi_admin/presentation/widgets/show_call_details.dart';
+import 'package:jusitfi_admin/presentation/widgets/show_review.dart';
+import 'package:jusitfi_admin/presentation/widgets/show_sub_cat.dart';
 import 'package:jusitfi_admin/utils/constants/colors.dart';
 import 'package:jusitfi_admin/utils/constants/textstyles.dart';
 
 class MorePage extends StatelessWidget {
   MorePage({super.key});
-  final List<Category> items = [
+  final List<Category> catItems = [
     Category(name: 'Criminal', image: 'assets/category_icons/criminal.png'),
     Category(
         name: 'Cyber crime', image: 'assets/category_icons/cybercrime.png'),
@@ -36,6 +42,18 @@ class MorePage extends StatelessWidget {
     Category(name: 'Cyber crime', image: 'assets/category_icons/criminal.png'),
   ];
 
+  final List<String> subCatItems = [
+    'Family and Adoption',
+    'Marriage dissolution',
+    'Paternity and child custody',
+    'Domestic Violence',
+    'Name Changes',
+    'Guardianship',
+    'Termination of Parental Rights and Adoptions',
+    'Juvenile matters',
+    'Other'
+  ];
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -47,49 +65,59 @@ class MorePage extends StatelessWidget {
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
               Row(
-                children: [
-                  SearchBar(backgroundColor: kSearchBarColor),
+                children: const [
+                  SearchBar(),
                   SizedBox(
                     width: 10,
                   ),
                   FilterSort()
                 ],
               ),
-              SizedBox(
+              const SizedBox(
                 height: 20,
               ),
               Text(
                 'Category',
                 style: kMainCategory,
               ),
-              SizedBox(
+              const SizedBox(
                 height: 30,
               ),
               Expanded(
                 child: GridView.builder(
-                  itemCount: items.length,
-                  gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
+                  itemCount: catItems.length,
+                  gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
                     childAspectRatio: (100 / 150),
                     crossAxisCount: 3,
                     mainAxisSpacing: 16,
                     crossAxisSpacing: 16,
                   ),
                   itemBuilder: (context, index) {
-                    return Column(
-                      crossAxisAlignment: CrossAxisAlignment.center,
-                      children: [
-                        Image.asset(
-                          items[index].image,
-                          height: 100,
-                          width: 100,
-                          fit: BoxFit.fill,
-                        ),
-                        Text(
-                          items[index].name,
-                          style: kMainCategory,
-                          textAlign: TextAlign.center,
-                        )
-                      ],
+                    return InkWell(
+                      onTap: () {
+                        ShowSubCat(context, subCatItems);
+                        // Navigator.push(context,
+                        //     MaterialPageRoute(builder: (_) => AssignWork()));
+                        // showCallDetails(context);
+                        // showDialog(
+                        //     context: context, builder: (_) => RatingDialog());
+                      },
+                      child: Column(
+                        crossAxisAlignment: CrossAxisAlignment.center,
+                        children: [
+                          Image.asset(
+                            catItems[index].image,
+                            height: 100,
+                            width: 100,
+                            fit: BoxFit.fill,
+                          ),
+                          Text(
+                            catItems[index].name,
+                            style: kMainCategory,
+                            textAlign: TextAlign.center,
+                          )
+                        ],
+                      ),
                     );
                   },
                 ),
