@@ -64,7 +64,9 @@ class _HomePageState extends State<HomePage> {
               child: Row(
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
-                  SearchBar(),
+                  SearchBar(
+                    backgroundColor: Colors.black,
+                  ),
                   const SizedBox(
                     width: 10,
                   ),
@@ -131,9 +133,10 @@ class _HomePageState extends State<HomePage> {
                   right: 10,
                   child: TextButton(
                       onPressed: () {
-                        Navigator.of(context).push(MaterialPageRoute(builder: (_) {
-                      return ViewAllPage();
-                    }));
+                        Navigator.of(context)
+                            .push(MaterialPageRoute(builder: (_) {
+                          return ViewAllPage();
+                        }));
                       },
                       child: Text(
                         'View All',
@@ -150,9 +153,10 @@ class _HomePageState extends State<HomePage> {
                   right: 10,
                   child: TextButton(
                       onPressed: () {
-                        Navigator.of(context).push(MaterialPageRoute(builder: (_) {
-                      return ViewAllPage();
-                    }));
+                        Navigator.of(context)
+                            .push(MaterialPageRoute(builder: (_) {
+                          return ViewAllPage();
+                        }));
                       },
                       child: Text(
                         'View All',

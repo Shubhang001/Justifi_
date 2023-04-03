@@ -2,15 +2,14 @@ import 'package:flutter/material.dart';
 import '../../utils/constants/colors.dart';
 import '../../utils/constants/textstyles.dart';
 
-class SearchBar extends StatelessWidget {
-  SearchBar({super.key, required this.backgroundColor});
-  final Color backgroundColor;
+class StatusPageSearchBar extends StatelessWidget {
+  const StatusPageSearchBar({super.key});
 
   @override
   Widget build(BuildContext context) {
     return Container(
       decoration: BoxDecoration(
-          color: backgroundColor, borderRadius: BorderRadius.circular(8)),
+          color: kprimaryTextColor, borderRadius: BorderRadius.circular(8)),
       width: MediaQuery.of(context).size.width / 1.6,
       height: 50,
       child: Row(
@@ -18,24 +17,30 @@ class SearchBar extends StatelessWidget {
           const SizedBox(
             width: 10,
           ),
-          Icon(
-            Icons.search,
-            size: 30,
-            color: kmainButtonColor,
-          ),
-          const SizedBox(
-            width: 10,
-          ),
+          // Icon(
+          //   Icons.search,
+          //   size: 30,
+          //   color: Colors.black,
+          // ),
+          // const SizedBox(
+          //   width: 10,
+          // ),
           Expanded(
             child: TextField(
               style: kotp,
               decoration: InputDecoration(
                 border: InputBorder.none,
-                hintText: 'Search....',
-                hintStyle: ksearch,
               ),
             ),
-          )
+          ),
+          Icon(
+            Icons.search,
+            size: 30,
+            color: Colors.black,
+          ),
+          const SizedBox(
+            width: 10,
+          ),
         ],
       ),
     );

@@ -31,10 +31,11 @@ class MyApp extends StatelessWidget {
       debugShowCheckedModeBanner: false,
       title: 'Justifi Admin',
       theme: ThemeData(
-          bottomSheetTheme:
-              const BottomSheetThemeData(backgroundColor: Colors.transparent),
-          primarySwatch: createMaterialColor(kobbuttonColor)),
-      home: LoginScreen(),
+        bottomSheetTheme:
+            const BottomSheetThemeData(backgroundColor: Colors.transparent),
+        primarySwatch: Colors.blue,
+      ),
+      home: MainPage(),
     );
   }
 }
