@@ -6,6 +6,7 @@ import 'package:jusitfi_admin/presentation/screens/login_screen.dart';
 import 'package:jusitfi_admin/presentation/screens/more_page.dart';
 import 'package:jusitfi_admin/presentation/screens/onboardingscreen.dart';
 import 'package:jusitfi_admin/presentation/screens/view_all.dart';
+import 'package:jusitfi_admin/presentation/screens/schedule3.dart';
 import 'package:jusitfi_admin/presentation/widgets/material_color_builder.dart';
 import 'package:jusitfi_admin/utils/constants/colors.dart';
 
@@ -28,13 +29,12 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      debugShowCheckedModeBanner: false,
-      title: 'Justifi Admin',
-      theme: ThemeData(
-          bottomSheetTheme:
-              const BottomSheetThemeData(backgroundColor: Colors.transparent),
-          primarySwatch: createMaterialColor(kobbuttonColor)),
-      home: LoginScreen(),
-    );
+        debugShowCheckedModeBanner: false,
+        title: 'Justifi Admin',
+        theme: ThemeData(
+            bottomSheetTheme:
+                const BottomSheetThemeData(backgroundColor: Colors.transparent),
+            primarySwatch: createMaterialColor(kobbuttonColor)),
+        home: Schedule3());
   }
 }
