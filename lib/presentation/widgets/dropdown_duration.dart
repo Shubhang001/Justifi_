@@ -27,15 +27,15 @@ class _DurationSelectorState extends State<DurationSelector> {
                 style: kFilterValue,
               ),
             ),
-            DropdownMenuItem(
+            const DropdownMenuItem(
               value: 10,
               child: Text("10 mins"),
             ),
-            DropdownMenuItem(
+            const DropdownMenuItem(
               value: 15,
               child: Text("15 mins"),
             ),
-            DropdownMenuItem(
+            const DropdownMenuItem(
               value: 20,
               child: Text("20 mins"),
             ),
