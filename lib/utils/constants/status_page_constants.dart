@@ -14,8 +14,8 @@ List<String> scheduledMeetSubCategories = [
   "Refund"
 ];
 List<String> casePostSubCategories = [
-  "Pending Apply"
-      "Pending Hire",
+  "Pending Apply",
+  "Pending Hire",
   "Hired",
   "Canclled",
 ];

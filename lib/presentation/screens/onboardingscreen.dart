@@ -96,7 +96,8 @@ class _OnBoardingScreenState extends State<OnBoardingScreen> {
                   TextButton(
                       onPressed: () {
                         Navigator.of(context).pushAndRemoveUntil(
-                            MaterialPageRoute(builder: (context) => const MainPage()),
+                            MaterialPageRoute(
+                                builder: (context) => const MainPage()),
                             (Route<dynamic> route) => false);
                       },
                       child: Text(
@@ -112,7 +113,7 @@ class _OnBoardingScreenState extends State<OnBoardingScreen> {
                           } else {
                             Navigator.of(context).pushAndRemoveUntil(
                                 MaterialPageRoute(
-                                    builder: (context) =>  MainPage()),
+                                    builder: (context) => MainPage()),
                                 (Route<dynamic> route) => false);
                           }
                         });
@@ -130,4 +131,3 @@ class _OnBoardingScreenState extends State<OnBoardingScreen> {
     );
   }
 }
-

@@ -1,11 +1,15 @@
 import 'package:flutter/material.dart';
 import 'package:jusitfi_admin/presentation/widgets/pending_approval_vertical_tile.dart';
+import 'package:jusitfi_admin/presentation/widgets/scheduled_vertical_tile.dart';
 import 'package:jusitfi_admin/presentation/widgets/statusPage_textBox.dart';
 import 'package:jusitfi_admin/utils/constants/colors.dart';
 import 'package:jusitfi_admin/utils/constants/status_page_constants.dart';
 import 'package:jusitfi_admin/utils/constants/textstyles.dart';
 
 import '../widgets/filter_sort.dart';
+import '../widgets/refund_vertical_tile.dart';
+import '../widgets/scheduled_meet_canceled_verticle_tile.dart';
+import '../widgets/scheduled_meet_completed_vertical_tile.dart';
 import '../widgets/searchbar.dart';
 import '../widgets/statusPageFilterSort.dart';
 import '../widgets/statusPageSearchBar.dart';
@@ -28,11 +32,11 @@ class _StatusPageState extends State<StatusPage> {
   ];
   final List<List<Widget>> _verticalTileWidgetList = [
     [
-      PendingApprovalVerticalTile(),
-      Text("Scheduled"),
-      Text("Cancelled"),
-      Text("Completed"),
-      Text("Refund")
+      const PendingApprovalVerticalTile(),
+      const ScheduledVerticalTile(),
+      ScheduledMeetCancelledVerticleTile(),
+      ScheduledMeetCompletedVerticleTile(),
+      RefundVerticalTile()
     ],
     [
       Text("Pending Apply"),
@@ -119,6 +123,7 @@ class _StatusPageState extends State<StatusPage> {
                 children: [
                   Container(
                       height: 40,
+                      margin: EdgeInsets.all(8.0),
                       child: ListView.builder(
                           shrinkWrap: true,
                           scrollDirection: Axis.horizontal,
@@ -128,11 +133,19 @@ class _StatusPageState extends State<StatusPage> {
                                 onTap: () {
                                   _onCategoryTapped(index);
                                 },
-                                child: TextBox(
-                                    text:
-                                        statusPageCategories[index].toString(),
-                                    isSelected: false,
-                                    textSize: 16));
+                                child: Container(
+                                    padding: EdgeInsets.all(8.0),
+                                    decoration: BoxDecoration(
+                                      borderRadius: BorderRadius.circular(15),
+                                      color: _selectedCategoryIndex == index
+                                          ? kPrimaryBlackColor
+                                          : Colors.white,
+                                    ),
+                                    child: TextBox(
+                                        text: statusPageCategories[index]
+                                            .toString(),
+                                        isSelected: false,
+                                        textSize: 16)));
                           })),
                   SizedBox(
                     height: 10,
@@ -150,13 +163,20 @@ class _StatusPageState extends State<StatusPage> {
                                 onTap: () {
                                   _onSubCategoryTapped(index);
                                 },
-                                child: TextBox(
-                                    text:
-                                        _subcategoryList[_selectedCategoryIndex]
-                                                [index]
+                                child: Container(
+                                    padding: EdgeInsets.all(8.0),
+                                    decoration: BoxDecoration(
+                                      borderRadius: BorderRadius.circular(15),
+                                      color: _selectedSubCategoryIndex == index
+                                          ? kPrimaryBlackColor
+                                          : Colors.white,
+                                    ),
+                                    child: TextBox(
+                                        text: _subcategoryList[
+                                                _selectedCategoryIndex][index]
                                             .toString(),
-                                    isSelected: false,
-                                    textSize: 14));
+                                        isSelected: false,
+                                        textSize: 14)));
                           })),
                   Padding(
                     padding: const EdgeInsets.only(

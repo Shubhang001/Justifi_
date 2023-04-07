@@ -65,8 +65,10 @@ class MorePage extends StatelessWidget {
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
               Row(
-                children: const [
-                  SearchBar(),
+                children: [
+                  SearchBar(
+                    backgroundColor: Colors.black,
+                  ),
                   SizedBox(
                     width: 10,
                   ),
