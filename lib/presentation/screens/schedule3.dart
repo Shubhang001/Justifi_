@@ -1,12 +1,13 @@
 import 'package:flutter/material.dart';
 // ignore: depend_on_referenced_packages
 import 'package:intl/intl.dart';
-import 'package:jusitfi_admin/presentation/widgets/dropdown_duration.dart';
+import 'package:jusitfi_admin/presentation/widgets/show_schedule_details.dart';
 import 'package:jusitfi_admin/presentation/widgets/timeboxchip.dart';
 import 'package:jusitfi_admin/utils/constants/colors.dart';
 import 'package:jusitfi_admin/utils/constants/textstyles.dart';
 
 import '../widgets/designed_line.dart';
+import '../widgets/dropdown_duration.dart';
 
 class Schedule3 extends StatefulWidget {
   const Schedule3({Key? key}) : super(key: key);
@@ -293,19 +294,29 @@ class _Schedule3State extends State<Schedule3> {
                 const SizedBox(
                   height: 20,
                 ),
-                Container(
-                  width: MediaQuery.of(context).size.width / 1.5,
-                  height: 50,
-                  decoration: BoxDecoration(
-                    borderRadius: BorderRadius.only(
-                        bottomLeft: Radius.circular(20),
-                        topRight: Radius.circular(20)),
-                    color: kobdescriptionColor,
-                  ),
-                  child: Center(
-                    child: Text(
-                      'Schedule Session',
-                      style: kpageTitle,
+                InkWell(
+                  onTap: () {
+                    showScheduleDetails(
+                        context,
+                        DateFormat('EEEE, dd MMMM').format(_selectedDate),
+                        duration,
+                        startTime,
+                        endtime);
+                  },
+                  child: Container(
+                    width: MediaQuery.of(context).size.width / 1.5,
+                    height: 50,
+                    decoration: BoxDecoration(
+                      borderRadius: BorderRadius.only(
+                          bottomLeft: Radius.circular(20),
+                          topRight: Radius.circular(20)),
+                      color: kobdescriptionColor,
+                    ),
+                    child: Center(
+                      child: Text(
+                        'Schedule Session',
+                        style: kpageTitle,
+                      ),
                     ),
                   ),
                 )
