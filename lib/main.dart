@@ -1,12 +1,16 @@
 import 'package:device_preview/device_preview.dart';
 import 'package:flutter/material.dart';
+import 'package:jusitfi_admin/presentation/screens/assign_work.dart';
 import 'package:jusitfi_admin/presentation/screens/filterpage.dart';
 import 'package:jusitfi_admin/presentation/screens/homepage.dart';
 import 'package:jusitfi_admin/presentation/screens/login_screen.dart';
 import 'package:jusitfi_admin/presentation/screens/more_page.dart';
 import 'package:jusitfi_admin/presentation/screens/onboardingscreen.dart';
+import 'package:jusitfi_admin/presentation/screens/signup_screen.dart';
 import 'package:jusitfi_admin/presentation/screens/view_all.dart';
+import 'package:jusitfi_admin/presentation/screens/schedule3.dart';
 import 'package:jusitfi_admin/presentation/widgets/material_color_builder.dart';
+import 'package:jusitfi_admin/testing.dart';
 import 'package:jusitfi_admin/utils/constants/colors.dart';
 
 import 'presentation/screens/mianpage.dart';
@@ -28,14 +32,12 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      debugShowCheckedModeBanner: false,
-      title: 'Justifi Admin',
-      theme: ThemeData(
-        bottomSheetTheme:
-            const BottomSheetThemeData(backgroundColor: Colors.transparent),
-        primarySwatch: Colors.blue,
-      ),
-      home: MainPage(),
-    );
+        debugShowCheckedModeBanner: false,
+        title: 'Justifi Admin',
+        theme: ThemeData(
+            bottomSheetTheme:
+                const BottomSheetThemeData(backgroundColor: Colors.transparent),
+            primarySwatch: createMaterialColor(kobbuttonColor)),
+        home: TestingPage());
   }
 }

@@ -42,6 +42,9 @@ dependencies:
   smooth_star_rating_null_safety: ^1.0.4+2
   flutter_rating_bar: ^4.0.1
   flutter_svg: ^2.0.4
+  table_calendar: ^3.0.8
+  syncfusion_flutter_calendar: ^21.1.38
+  flutter_calendar_carousel: ^2.4.1
   
 
 
