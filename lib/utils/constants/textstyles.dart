@@ -41,6 +41,12 @@ TextStyle kAdvocateCardRating = GoogleFonts.poppins(
   fontSize: 16,
 );
 
+TextStyle kAdvocateCardRatingWhite = GoogleFonts.poppins(
+  color: Colors.white,
+  fontWeight: FontWeight.w300,
+  fontSize: 16,
+);
+
 TextStyle kMainCategory = GoogleFonts.poppins(
   color: Colors.black,
   fontWeight: FontWeight.w500,
@@ -178,21 +184,84 @@ TextStyle kAdvocateCardName = GoogleFonts.openSans(
   fontWeight: FontWeight.w600,
 );
 
-TextStyle kAdvocateCardLocation = GoogleFonts.openSans(
-  color: Colors.black,
-  fontSize: 4,
-  fontWeight: FontWeight.w400,
+TextStyle kAdvocateCardNameWhite = GoogleFonts.openSans(
+  color: Colors.white,
+  fontSize: 14,
+  fontWeight: FontWeight.w600,
 );
 
-TextStyle kViewAll = GoogleFonts.openSans(
+TextStyle kDateandTimeWhite = GoogleFonts.openSans(
   color: Colors.white,
-  fontSize: 12,
+  fontSize: 10,
   fontWeight: FontWeight.w400,
 );
 
 TextStyle kSort = GoogleFonts.openSans(
   color: Colors.black,
   fontSize: 18,
+  fontWeight: FontWeight.w400,
+);
+
+TextStyle tableTextBold = GoogleFonts.openSans(
+  color: Colors.white,
+  fontSize: 12,
+  fontWeight: FontWeight.w500,
+);
+TextStyle tableTextNormal = GoogleFonts.openSans(
+  color: Colors.white,
+  fontSize: 10,
+  fontWeight: FontWeight.w400,
+);
+
+TextStyle videoCallTextStyle = GoogleFonts.openSans(
+  color: Colors.black,
+  fontSize: 10,
+  fontWeight: FontWeight.w400,
+);
+
+TextStyle paidTextStyle = GoogleFonts.openSans(
+  color: Colors.green,
+  fontSize: 10,
+  fontWeight: FontWeight.w400,
+);
+
+TextStyle cancelTextStyle = GoogleFonts.openSans(
+  color: Colors.red,
+  fontSize: 10,
+  fontWeight: FontWeight.w400,
+);
+TextStyle postedOnTextStyle = GoogleFonts.openSans(
+  color: Colors.white,
+  fontSize: 8,
+  fontWeight: FontWeight.w600,
+);
+TextStyle postedDateTextStyle = GoogleFonts.openSans(
+  color: Colors.white,
+  fontSize: 8,
+  fontWeight: FontWeight.w400,
+);
+
+TextStyle kAdvocateCardLocation = GoogleFonts.openSans(
+  color: Colors.black,
+  fontSize: 4,
+  fontWeight: FontWeight.w400,
+);
+
+TextStyle kAdvocateCardLocationWhite = GoogleFonts.openSans(
+  color: Colors.white,
+  fontSize: 10,
+  fontWeight: FontWeight.w400,
+);
+
+TextStyle kAdvocateCardLocationBlack = GoogleFonts.openSans(
+  color: Colors.black,
+  fontSize: 12,
+  fontWeight: FontWeight.w500,
+);
+
+TextStyle kViewAll = GoogleFonts.openSans(
+  color: Colors.white,
+  fontSize: 12,
   fontWeight: FontWeight.w400,
 );
 
@@ -224,4 +293,28 @@ TextStyle kProfileButtonText = GoogleFonts.poppins(
   color: Colors.white,
   fontSize: 6,
   fontWeight: FontWeight.w300,
+);
+
+TextStyle todayTextStyle = GoogleFonts.mukta(
+  color: Colors.white,
+  fontSize: 16,
+  fontWeight: FontWeight.w700,
+);
+
+TextStyle upcomindScheduleDateTextStyle = GoogleFonts.poppins(
+  color: Colors.black,
+  fontSize: 16,
+  fontWeight: FontWeight.w600,
+);
+
+TextStyle tableTextBoldBlack = GoogleFonts.openSans(
+  color: Colors.black,
+  fontSize: 12,
+  fontWeight: FontWeight.w500,
+);
+
+TextStyle cancellationReasonParaTextStyle = GoogleFonts.poppins(
+  color: Colors.black,
+  fontSize: 9,
+  fontWeight: FontWeight.w400,
 );
