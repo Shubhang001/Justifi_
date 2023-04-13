@@ -14,8 +14,7 @@ class ScheduledUpcomingVerticalTile extends StatelessWidget {
             scrollDirection: Axis.vertical,
             child: Column(
               children: [
-                Text("10th January, 2023",
-                    style: upcomindScheduleDateTextStyle),
+                Text("10th January, 2023", style: poppinsW600S16Black),
                 const ScheduledAdvocateCard(
                     name: "Priya Sharma",
                     image: 'assets/images/advocate_img.png',
@@ -30,8 +29,7 @@ class ScheduledUpcomingVerticalTile extends StatelessWidget {
                     caseSubCategory: "xyz",
                     paidAmount: 700,
                     postingDate: "27th Nov, 2022"),
-                Text("15th January, 2023",
-                    style: upcomindScheduleDateTextStyle),
+                Text("15th January, 2023", style: poppinsW600S16Black),
                 const ScheduledAdvocateCard(
                     name: "Priya Sharma",
                     image: 'assets/images/advocate_img.png',
@@ -46,8 +44,7 @@ class ScheduledUpcomingVerticalTile extends StatelessWidget {
                     caseSubCategory: "xyz",
                     paidAmount: 700,
                     postingDate: "27th Nov, 2022"),
-                Text("17th January, 2023",
-                    style: upcomindScheduleDateTextStyle),
+                Text("17th January, 2023", style: poppinsW600S16Black),
                 const ScheduledAdvocateCard(
                     name: "Priya Sharma",
                     image: 'assets/images/advocate_img.png',
