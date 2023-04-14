@@ -15,8 +15,7 @@ class ScheduleCancelledPreviousVerticalTile extends StatelessWidget {
             scrollDirection: Axis.vertical,
             child: Column(
               children: [
-                Text("10th January, 2023",
-                    style: upcomindScheduleDateTextStyle),
+                Text("10th January, 2023", style: poppinsW600S16Black),
                 const ScheduledCancelledAdvocateCard(
                     name: "Priya Sharma",
                     image: 'assets/images/advocate_img.png',
@@ -33,8 +32,7 @@ class ScheduleCancelledPreviousVerticalTile extends StatelessWidget {
                     postingDate: "27th Nov, 2022",
                     canceledDate: "1st January, 2022",
                     canceledBy: "Client"),
-                Text("15th January, 2023",
-                    style: upcomindScheduleDateTextStyle),
+                Text("15th January, 2023", style: poppinsW600S16Black),
                 const ScheduledCancelledAdvocateCard(
                     name: "Priya Sharma",
                     image: 'assets/images/advocate_img.png',
@@ -51,8 +49,7 @@ class ScheduleCancelledPreviousVerticalTile extends StatelessWidget {
                     postingDate: "27th Nov, 2022",
                     canceledDate: "1st January, 2022",
                     canceledBy: "Client"),
-                Text("17th January, 2023",
-                    style: upcomindScheduleDateTextStyle),
+                Text("17th January, 2023", style: poppinsW600S16Black),
                 const ScheduledCancelledAdvocateCard(
                     name: "Priya Sharma",
                     image: 'assets/images/advocate_img.png',

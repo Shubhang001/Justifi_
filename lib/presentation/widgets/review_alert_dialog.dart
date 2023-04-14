@@ -33,7 +33,7 @@ class _ReviewDialogBox extends State<ReviewDialogBox> {
                   children: [
                     Text(
                       "Review",
-                      style: upcomindScheduleDateTextStyle,
+                      style: poppinsW600S20Black,
                     ),
                     Image.asset(
                       'assets/images/advocate_image.png',
@@ -41,7 +41,7 @@ class _ReviewDialogBox extends State<ReviewDialogBox> {
                     ),
                     Text(
                       "Priya Sharma",
-                      style: upcomindScheduleDateTextStyle,
+                      style: poppinsW600S16Black,
                     ),
                     Row(
                       mainAxisAlignment: MainAxisAlignment.center,
@@ -70,7 +70,7 @@ class _ReviewDialogBox extends State<ReviewDialogBox> {
                           children: [
                             Text(
                               "Sameer Ghosh",
-                              style: upcomindScheduleDateTextStyle,
+                              style: poppinsW600S20Black,
                             ),
                             Container(
                               padding: EdgeInsets.all(2),
