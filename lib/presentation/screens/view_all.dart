@@ -153,7 +153,8 @@ class ViewAllPage extends StatelessWidget {
                       width: 10,
                     ),
                     FilterSort(
-                      isDark: false,
+                      bgColor: Colors.white,
+                      dividerColor: Colors.black,
                     )
                   ],
                 ),

@@ -70,7 +70,10 @@ class _HomePageState extends State<HomePage> {
                   const SizedBox(
                     width: 10,
                   ),
-                  FilterSort()
+                  FilterSort(
+                    bgColor: Colors.black,
+                    dividerColor: Colors.white,
+                  )
                 ],
               ),
             ),
