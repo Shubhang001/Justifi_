@@ -31,6 +31,12 @@ class _Schedule3State extends State<Schedule3> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      appBar: AppBar(
+        backgroundColor: Colors.black,
+        centerTitle: true,
+        title: Text('Schedule'),
+        actions: [IconButton(onPressed: () {}, icon: Icon(Icons.more))],
+      ),
       body: SafeArea(
         child: Padding(
           padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 20),
