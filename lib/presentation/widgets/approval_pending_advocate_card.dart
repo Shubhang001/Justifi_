@@ -27,7 +27,7 @@ class ApprovalPendingAdvocateCard extends StatelessWidget {
   final String image;
   final String name;
   final String location;
-  final double rating;
+  final int rating;
   final String date;
   final String time;
   final int duration;
@@ -65,10 +65,7 @@ class ApprovalPendingAdvocateCard extends StatelessWidget {
                     Row(
                       mainAxisAlignment: MainAxisAlignment.spaceAround,
                       children: [
-                        Icon(
-                          Icons.location_on,
-                          color: Colors.white,
-                        ),
+                        Image.asset("assets/icons/location_icon.png"),
                         Text(
                           location,
                           style: kAdvocateCardLocationWhite,
@@ -78,6 +75,7 @@ class ApprovalPendingAdvocateCard extends StatelessWidget {
                   ],
                 ),
                 Container(
+                  padding: const EdgeInsets.only(left: 8, right: 10),
                   decoration: BoxDecoration(
                       color: Colors.white,
                       borderRadius: BorderRadius.circular(15)),
@@ -120,9 +118,15 @@ class ApprovalPendingAdvocateCard extends StatelessWidget {
                   ),
                   Row(
                     children: [
-                      Icon(
-                        Icons.timer,
-                        color: Colors.white,
+                      Container(
+                          height: 16,
+                          width: 16,
+                          child: Image.asset(
+                            "assets/icons/time_clock.png",
+                            fit: BoxFit.cover,
+                          )),
+                      SizedBox(
+                        width: 4,
                       ),
                       Text(
                         time.toString(),

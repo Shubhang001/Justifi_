@@ -10,7 +10,7 @@ class StatusPageSearchBar extends StatelessWidget {
     return Container(
       decoration: BoxDecoration(
           color: kprimaryTextColor, borderRadius: BorderRadius.circular(8)),
-      width: MediaQuery.of(context).size.width / 1.6,
+      width: MediaQuery.of(context).size.width / 1.78,
       height: 50,
       child: Row(
         children: [

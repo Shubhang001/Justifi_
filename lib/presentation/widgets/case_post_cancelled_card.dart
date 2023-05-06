@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:jusitfi_admin/presentation/widgets/case_post_cancellation_dialog.dart';
+import 'package:jusitfi_admin/presentation/widgets/view_description_dialog_box.dart';
+import 'package:jusitfi_admin/presentation/widgets/view_document_dialog_box.dart';
 import 'package:jusitfi_admin/utils/constants/colors.dart';
 import '../../utils/constants/textstyles.dart';
 
@@ -176,19 +178,29 @@ class CasePostCancelledCard extends StatelessWidget {
                                   )
                                 ],
                               ),
-                              Padding(
-                                  padding: EdgeInsets.all(2),
-                                  child: Container(
-                                      padding:
-                                          EdgeInsets.only(left: 8, right: 8),
-                                      decoration: BoxDecoration(
-                                        color: Colors.white,
-                                        borderRadius: BorderRadius.circular(10),
-                                      ),
-                                      child: Text(
-                                        " View",
-                                        style: poppinsW400S9Black,
-                                      ))),
+                              GestureDetector(
+                                  onTap: () {
+                                    //show alert dialo
+                                    showDialog(
+                                        context: context,
+                                        builder: (BuildContext context) {
+                                          return const ViewDescriptionDialogBox();
+                                        });
+                                  },
+                                  child: Padding(
+                                      padding: EdgeInsets.all(2),
+                                      child: Container(
+                                          padding: EdgeInsets.only(
+                                              left: 8, right: 8),
+                                          decoration: BoxDecoration(
+                                            color: Colors.white,
+                                            borderRadius:
+                                                BorderRadius.circular(10),
+                                          ),
+                                          child: Text(
+                                            " View",
+                                            style: poppinsW400S9Black,
+                                          )))),
                             ],
                           ),
                     VerticalDivider(
@@ -200,7 +212,7 @@ class CasePostCancelledCard extends StatelessWidget {
                         Row(
                           children: [
                             Icon(
-                              Icons.currency_bitcoin,
+                              Icons.currency_rupee,
                               color: Colors.white,
                             ),
                             Text(
@@ -265,19 +277,29 @@ class CasePostCancelledCard extends StatelessWidget {
                                   )
                                 ],
                               ),
-                              Padding(
-                                  padding: EdgeInsets.all(2),
-                                  child: Container(
-                                      padding:
-                                          EdgeInsets.only(left: 8, right: 8),
-                                      decoration: BoxDecoration(
-                                        color: Colors.white,
-                                        borderRadius: BorderRadius.circular(10),
-                                      ),
-                                      child: Text(
-                                        " View",
-                                        style: poppinsW400S9Black,
-                                      ))),
+                              GestureDetector(
+                                  onTap: () {
+                                    //show alert dialo
+                                    showDialog(
+                                        context: context,
+                                        builder: (BuildContext context) {
+                                          return const ViewDocumentDialogBox();
+                                        });
+                                  },
+                                  child: Padding(
+                                      padding: EdgeInsets.all(2),
+                                      child: Container(
+                                          padding: EdgeInsets.only(
+                                              left: 8, right: 8),
+                                          decoration: BoxDecoration(
+                                            color: Colors.white,
+                                            borderRadius:
+                                                BorderRadius.circular(10),
+                                          ),
+                                          child: Text(
+                                            " View",
+                                            style: poppinsW400S9Black,
+                                          )))),
                             ],
                           ),
                     VerticalDivider(

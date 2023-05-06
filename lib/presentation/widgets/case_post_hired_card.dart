@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:jusitfi_admin/presentation/widgets/view_description_dialog_box.dart';
+import 'package:jusitfi_admin/presentation/widgets/view_document_dialog_box.dart';
 import 'package:jusitfi_admin/utils/constants/colors.dart';
 import '../../utils/constants/textstyles.dart';
 
@@ -163,19 +165,29 @@ class CasePostHiredCard extends StatelessWidget {
                                   )
                                 ],
                               ),
-                              Padding(
-                                  padding: EdgeInsets.all(2),
-                                  child: Container(
-                                      padding:
-                                          EdgeInsets.only(left: 8, right: 8),
-                                      decoration: BoxDecoration(
-                                        color: Colors.white,
-                                        borderRadius: BorderRadius.circular(10),
-                                      ),
-                                      child: Text(
-                                        " View",
-                                        style: poppinsW400S9Black,
-                                      ))),
+                              GestureDetector(
+                                  onTap: () {
+                                    //show alert dialo
+                                    showDialog(
+                                        context: context,
+                                        builder: (BuildContext context) {
+                                          return const ViewDescriptionDialogBox();
+                                        });
+                                  },
+                                  child: Padding(
+                                      padding: EdgeInsets.all(2),
+                                      child: Container(
+                                          padding: EdgeInsets.only(
+                                              left: 8, right: 8),
+                                          decoration: BoxDecoration(
+                                            color: Colors.white,
+                                            borderRadius:
+                                                BorderRadius.circular(10),
+                                          ),
+                                          child: Text(
+                                            " View",
+                                            style: poppinsW400S9Black,
+                                          )))),
                             ],
                           ),
                     VerticalDivider(
@@ -187,7 +199,7 @@ class CasePostHiredCard extends StatelessWidget {
                         Row(
                           children: [
                             Icon(
-                              Icons.currency_bitcoin,
+                              Icons.currency_rupee,
                               color: Colors.white,
                             ),
                             Text(
@@ -252,19 +264,29 @@ class CasePostHiredCard extends StatelessWidget {
                                   )
                                 ],
                               ),
-                              Padding(
-                                  padding: EdgeInsets.all(2),
-                                  child: Container(
-                                      padding:
-                                          EdgeInsets.only(left: 8, right: 8),
-                                      decoration: BoxDecoration(
-                                        color: Colors.white,
-                                        borderRadius: BorderRadius.circular(10),
-                                      ),
-                                      child: Text(
-                                        " View",
-                                        style: poppinsW400S9Black,
-                                      ))),
+                              GestureDetector(
+                                  onTap: () {
+                                    //show alert dialo
+                                    showDialog(
+                                        context: context,
+                                        builder: (BuildContext context) {
+                                          return const ViewDocumentDialogBox();
+                                        });
+                                  },
+                                  child: Padding(
+                                      padding: EdgeInsets.all(2),
+                                      child: Container(
+                                          padding: EdgeInsets.only(
+                                              left: 8, right: 8),
+                                          decoration: BoxDecoration(
+                                            color: Colors.white,
+                                            borderRadius:
+                                                BorderRadius.circular(10),
+                                          ),
+                                          child: Text(
+                                            " View",
+                                            style: poppinsW400S9Black,
+                                          )))),
                             ],
                           ),
                     VerticalDivider(
@@ -312,11 +334,11 @@ class CasePostHiredCard extends StatelessWidget {
                                 children: [
                                   Text(" Message Advocate ",
                                       style: poppinsW400S9Black),
-                                  Icon(
-                                    Icons.lock,
-                                    color: Colors.black,
-                                    size: 10,
-                                  )
+                                  // Icon(
+                                  //   Icons.lock,
+                                  //   color: Colors.black,
+                                  //   size: 10,
+                                  // )
                                 ],
                               )))),
                 ],
