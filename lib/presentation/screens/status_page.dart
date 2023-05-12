@@ -191,23 +191,23 @@ class _StatusPageState extends State<StatusPage> {
                         left: 20, right: 20, top: 10, bottom: 10),
                     child: Row(
                       mainAxisAlignment: MainAxisAlignment.spaceAround,
-                      children: [
+                      children: const [
                         StatusPageSearchBar(),
-                        const SizedBox(
+                        SizedBox(
                           width: 10,
                         ),
                         StatusPageFilterSort()
                       ],
                     ),
                   ),
-                  SizedBox(
+                  const SizedBox(
                     height: 8,
                   ),
                   Divider(
                     color: kprimaryTextColor,
                     thickness: 1,
                   ),
-                  SizedBox(
+                  const SizedBox(
                     height: 8,
                   ),
                   Expanded(

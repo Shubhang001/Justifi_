@@ -470,3 +470,69 @@ TextStyle poppinsW500S6Black = GoogleFonts.poppins(
   fontSize: 6,
   fontWeight: FontWeight.w500,
 );
+
+TextStyle poppinsW500S20Black = GoogleFonts.poppins(
+  color: Colors.black,
+  fontSize: 20,
+  fontWeight: FontWeight.w500,
+);
+
+TextStyle poppinsW500S15Black = GoogleFonts.poppins(
+  color: Colors.black,
+  fontSize: 15,
+  fontWeight: FontWeight.w500,
+);
+
+TextStyle poppinsW500S15White = GoogleFonts.poppins(
+  color: Colors.white,
+  fontSize: 15,
+  fontWeight: FontWeight.w500,
+);
+
+TextStyle poppinsW400S14White = GoogleFonts.poppins(
+  color: Colors.white,
+  fontSize: 14,
+  fontWeight: FontWeight.w400,
+);
+
+TextStyle poppinsW400S16Black = GoogleFonts.poppins(
+  color: Colors.black,
+  fontSize: 16,
+  fontWeight: FontWeight.w400,
+);
+
+TextStyle alegreyaW700S16 = GoogleFonts.alegreya(
+  color: Colors.black,
+  fontSize: 16,
+  fontWeight: FontWeight.w700,
+);
+
+TextStyle alegreyaW400S16 = GoogleFonts.alegreya(
+  color: Colors.black,
+  fontSize: 16,
+  fontWeight: FontWeight.w400,
+);
+
+TextStyle poppinsW400S12Black = GoogleFonts.poppins(
+  color: Colors.black,
+  fontSize: 12,
+  fontWeight: FontWeight.w400,
+);
+
+TextStyle poppinsW400S18Black = GoogleFonts.poppins(
+  color: Colors.black,
+  fontSize: 18,
+  fontWeight: FontWeight.w400,
+);
+
+TextStyle poppinsW700S9Black = GoogleFonts.poppins(
+  color: Colors.black,
+  fontSize: 9,
+  fontWeight: FontWeight.w700,
+);
+
+TextStyle poppinsW400S9Grey = GoogleFonts.poppins(
+  color: Colors.grey,
+  fontSize: 9,
+  fontWeight: FontWeight.w400,
+);

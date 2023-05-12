@@ -1,4 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:jusitfi_admin/presentation/widgets/locked_application_dialog_box.dart';
+import 'package:jusitfi_admin/presentation/widgets/view_document_dialog_box.dart';
+import 'package:jusitfi_admin/presentation/widgets/view_description_dialog_box.dart';
 import 'package:jusitfi_admin/utils/constants/colors.dart';
 import '../../utils/constants/textstyles.dart';
 
@@ -175,19 +178,29 @@ class CasePostPendingApplyCard extends StatelessWidget {
                                   )
                                 ],
                               ),
-                              Padding(
-                                  padding: EdgeInsets.all(2),
-                                  child: Container(
-                                      padding:
-                                          EdgeInsets.only(left: 8, right: 8),
-                                      decoration: BoxDecoration(
-                                        color: Colors.white,
-                                        borderRadius: BorderRadius.circular(10),
-                                      ),
-                                      child: Text(
-                                        " View",
-                                        style: poppinsW400S9Black,
-                                      ))),
+                              GestureDetector(
+                                  onTap: () {
+                                    //show alert dialo
+                                    showDialog(
+                                        context: context,
+                                        builder: (BuildContext context) {
+                                          return const ViewDescriptionDialogBox();
+                                        });
+                                  },
+                                  child: Padding(
+                                      padding: EdgeInsets.all(2),
+                                      child: Container(
+                                          padding: EdgeInsets.only(
+                                              left: 8, right: 8),
+                                          decoration: BoxDecoration(
+                                            color: Colors.white,
+                                            borderRadius:
+                                                BorderRadius.circular(10),
+                                          ),
+                                          child: Text(
+                                            " View",
+                                            style: poppinsW400S9Black,
+                                          )))),
                             ],
                           ),
                     VerticalDivider(
@@ -199,7 +212,7 @@ class CasePostPendingApplyCard extends StatelessWidget {
                         Row(
                           children: [
                             Icon(
-                              Icons.currency_bitcoin,
+                              Icons.currency_rupee,
                               color: Colors.white,
                             ),
                             Text(
@@ -264,19 +277,29 @@ class CasePostPendingApplyCard extends StatelessWidget {
                                   )
                                 ],
                               ),
-                              Padding(
-                                  padding: EdgeInsets.all(2),
-                                  child: Container(
-                                      padding:
-                                          EdgeInsets.only(left: 8, right: 8),
-                                      decoration: BoxDecoration(
-                                        color: Colors.white,
-                                        borderRadius: BorderRadius.circular(10),
-                                      ),
-                                      child: Text(
-                                        " View",
-                                        style: poppinsW400S9Black,
-                                      ))),
+                              GestureDetector(
+                                  onTap: () {
+                                    //show alert dialo
+                                    showDialog(
+                                        context: context,
+                                        builder: (BuildContext context) {
+                                          return const ViewDocumentDialogBox();
+                                        });
+                                  },
+                                  child: Padding(
+                                      padding: EdgeInsets.all(2),
+                                      child: Container(
+                                          padding: EdgeInsets.only(
+                                              left: 8, right: 8),
+                                          decoration: BoxDecoration(
+                                            color: Colors.white,
+                                            borderRadius:
+                                                BorderRadius.circular(10),
+                                          ),
+                                          child: Text(
+                                            " View",
+                                            style: poppinsW400S9Black,
+                                          )))),
                             ],
                           ),
                     VerticalDivider(
@@ -312,26 +335,35 @@ class CasePostPendingApplyCard extends StatelessWidget {
                   ? Row(
                       mainAxisAlignment: MainAxisAlignment.center,
                       children: [
-                        Padding(
-                            padding: EdgeInsets.all(16),
-                            child: Container(
-                                padding: EdgeInsets.only(
-                                    left: 16, right: 16, top: 6, bottom: 6),
-                                decoration: BoxDecoration(
-                                  color: Colors.grey,
-                                  borderRadius: BorderRadius.circular(4),
-                                ),
-                                child: Row(
-                                  children: [
-                                    Text("View Application",
-                                        style: poppinsW400S9Black),
-                                    Icon(
-                                      Icons.lock,
-                                      color: Colors.black,
-                                      size: 10,
-                                    )
-                                  ],
-                                ))),
+                        GestureDetector(
+                            onTap: () {
+                              //show  dialog
+                              showDialog(
+                                  context: context,
+                                  builder: (BuildContext context) {
+                                    return const LockedApplicationDialogBox();
+                                  });
+                            },
+                            child: Padding(
+                                padding: EdgeInsets.all(16),
+                                child: Container(
+                                    padding: EdgeInsets.only(
+                                        left: 16, right: 16, top: 6, bottom: 6),
+                                    decoration: BoxDecoration(
+                                      color: Colors.grey,
+                                      borderRadius: BorderRadius.circular(4),
+                                    ),
+                                    child: Row(
+                                      children: [
+                                        Text("View Application",
+                                            style: poppinsW400S9Black),
+                                        Icon(
+                                          Icons.lock,
+                                          color: Colors.black,
+                                          size: 10,
+                                        )
+                                      ],
+                                    )))),
                         Padding(
                             padding: EdgeInsets.all(2),
                             child: Container(

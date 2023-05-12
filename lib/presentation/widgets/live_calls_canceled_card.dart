@@ -19,7 +19,7 @@ class LiveCallsCancelledCard extends StatelessWidget {
   final String image;
   final String name;
   final String location;
-  final double rating;
+  final int rating;
   final String date;
   final String time;
   final int duration;
@@ -53,10 +53,7 @@ class LiveCallsCancelledCard extends StatelessWidget {
                     Row(
                       mainAxisAlignment: MainAxisAlignment.spaceAround,
                       children: [
-                        const Icon(
-                          Icons.location_on,
-                          color: Colors.white,
-                        ),
+                        Image.asset("assets/icons/location_icon.png"),
                         Text(
                           location,
                           style: kAdvocateCardLocationWhite,
@@ -67,6 +64,7 @@ class LiveCallsCancelledCard extends StatelessWidget {
                 ),
                 Column(children: [
                   Container(
+                    padding: const EdgeInsets.only(left: 8, right: 10),
                     decoration: BoxDecoration(
                         color: Colors.white,
                         borderRadius: BorderRadius.circular(15)),
@@ -106,9 +104,15 @@ class LiveCallsCancelledCard extends StatelessWidget {
                   ),
                   Row(
                     children: [
-                      Icon(
-                        Icons.timer,
-                        color: Colors.white,
+                      Container(
+                          height: 16,
+                          width: 16,
+                          child: Image.asset(
+                            "assets/icons/time_clock.png",
+                            fit: BoxFit.cover,
+                          )),
+                      SizedBox(
+                        width: 4,
                       ),
                       Text(
                         time.toString(),

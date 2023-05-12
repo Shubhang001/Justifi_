@@ -34,7 +34,7 @@ class RefundCard extends StatelessWidget {
   final String image;
   final String name;
   final String location;
-  final double rating;
+  final int rating;
   final String date;
   final String time;
   final int duration;
@@ -85,6 +85,7 @@ class RefundCard extends StatelessWidget {
                       style: kAdvocateCardNameWhite,
                     ),
                     Container(
+                      padding: const EdgeInsets.only(left: 8, right: 10),
                       decoration: BoxDecoration(
                           color: Colors.white,
                           borderRadius: BorderRadius.circular(15)),

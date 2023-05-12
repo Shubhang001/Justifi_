@@ -73,7 +73,8 @@ class _ReviewDialogBox extends State<ReviewDialogBox> {
                               style: poppinsW600S20Black,
                             ),
                             Container(
-                              padding: EdgeInsets.all(2),
+                              padding:
+                                  const EdgeInsets.only(left: 8, right: 10),
                               decoration: BoxDecoration(
                                   color: Colors.black,
                                   borderRadius: BorderRadius.circular(15)),

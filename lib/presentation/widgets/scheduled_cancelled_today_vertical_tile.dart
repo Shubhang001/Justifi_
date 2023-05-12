@@ -1,8 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:jusitfi_admin/presentation/widgets/schedule_cancelled_advocate_card.dart';
 
-import 'package:jusitfi_admin/presentation/widgets/scheduled_advocateCard.dart';
-
 class ScheduleCancelledTodayVerticalTile extends StatelessWidget {
   const ScheduleCancelledTodayVerticalTile({Key? key}) : super(key: key);
 
@@ -14,7 +12,7 @@ class ScheduleCancelledTodayVerticalTile extends StatelessWidget {
           child: SingleChildScrollView(
             scrollDirection: Axis.vertical,
             child: Column(
-              children:  const[
+              children: const [
                 ScheduledCancelledAdvocateCard(
                     name: "Priya Sharma",
                     image: 'assets/images/advocate_img.png',
@@ -29,7 +27,7 @@ class ScheduleCancelledTodayVerticalTile extends StatelessWidget {
                     caseSubCategory: "xyz",
                     paidAmount: 700,
                     postingDate: "27th Nov, 2022",
-                    canceledDate:"1st January, 2022" ,
+                    canceledDate: "1st January, 2022",
                     canceledBy: "Client"),
                 ScheduledCancelledAdvocateCard(
                     name: "Priya Sharma",
@@ -45,7 +43,7 @@ class ScheduleCancelledTodayVerticalTile extends StatelessWidget {
                     caseSubCategory: "xyz",
                     paidAmount: 700,
                     postingDate: "27th Nov, 2022",
-                    canceledDate:"1st January, 2022" ,
+                    canceledDate: "1st January, 2022",
                     canceledBy: "Client"),
                 ScheduledCancelledAdvocateCard(
                     name: "Priya Sharma",
@@ -61,7 +59,7 @@ class ScheduleCancelledTodayVerticalTile extends StatelessWidget {
                     caseSubCategory: "xyz",
                     paidAmount: 700,
                     postingDate: "27th Nov, 2022",
-                    canceledDate:"1st January, 2022" ,
+                    canceledDate: "1st January, 2022",
                     canceledBy: "Client"),
               ],
             ),
