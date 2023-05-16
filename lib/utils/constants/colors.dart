@@ -23,3 +23,4 @@ Color kSearchBarColor = HexColor('#D9D9D9');
 Color kPrimaryBlackColor = HexColor('#000000');
 Color casePostCardGreyText = HexColor('#A9A9A9');
 Color redButtonColor = HexColor('#940202');
+Color hiringCardBgColor = HexColor('#E8E8E8');
