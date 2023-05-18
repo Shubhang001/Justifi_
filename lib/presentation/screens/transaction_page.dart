@@ -2,7 +2,6 @@ import 'package:flutter/material.dart';
 
 import '../../utils/constants/colors.dart';
 import '../../utils/constants/textstyles.dart';
-import '../widgets/freezed_balance_vertical_tile.dart';
 import '../widgets/statusPageFilterSort.dart';
 import '../widgets/statusPageSearchBar.dart';
 import '../widgets/transaction_vertical_tile.dart';
