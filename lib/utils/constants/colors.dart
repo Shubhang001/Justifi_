@@ -30,4 +30,5 @@ Color kPrimaryBlackColor = HexColor('#000000');
 Color kPendingcolor = HexColor('#DFB200');
 Color kHiredColor = HexColor('#0C9B00');
 Color kCanceledColor = HexColor('#F11515');
+Color hiringCardBgColor = HexColor('#E8E8E8');
 
