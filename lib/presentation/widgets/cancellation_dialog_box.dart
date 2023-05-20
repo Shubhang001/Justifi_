@@ -32,7 +32,7 @@ class _CancellationDialogBoxState extends State<CancellationDialogBox> {
                   children: [
                     Text(
                       "Cancellation Reason",
-                      style: upcomindScheduleDateTextStyle,
+                      style: poppinsW600S16Black,
                     ),
                     SizedBox(
                       height: 10,
@@ -43,7 +43,7 @@ class _CancellationDialogBoxState extends State<CancellationDialogBox> {
                     ),
                     Text(
                       "At vero eos et accusamus et iusto odio dres et quas int occaecati cupiditate non provident, similique sunt in culpa qui officia deserunt mollitia animi, id est laborum et dolorum fuga. Et harum quidem rerum facilis est et expedita distinctio. Nam libero tempore, cum soluta nobis est eligendi optio cumque nihil impedit quo minus id",
-                      style: cancellationReasonParaTextStyle,
+                      style: poppinsW400S9Black,
                     ),
                   ]),
             )));

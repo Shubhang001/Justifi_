@@ -32,7 +32,7 @@ class ScheduledCancelledAdvocateCard extends StatelessWidget {
   final String image;
   final String name;
   final String location;
-  final double rating;
+  final int rating;
   final String date;
   final String time;
   final int duration;
@@ -72,10 +72,7 @@ class ScheduledCancelledAdvocateCard extends StatelessWidget {
                     Row(
                       mainAxisAlignment: MainAxisAlignment.spaceAround,
                       children: [
-                        const Icon(
-                          Icons.location_on,
-                          color: Colors.white,
-                        ),
+                        Image.asset("assets/icons/location_icon.png"),
                         Text(
                           location,
                           style: kAdvocateCardLocationWhite,
@@ -86,6 +83,7 @@ class ScheduledCancelledAdvocateCard extends StatelessWidget {
                 ),
                 Column(children: [
                   Container(
+                    padding: const EdgeInsets.only(left: 8, right: 10),
                     decoration: BoxDecoration(
                         color: Colors.white,
                         borderRadius: BorderRadius.circular(15)),
@@ -102,12 +100,21 @@ class ScheduledCancelledAdvocateCard extends StatelessWidget {
                       ],
                     ),
                   ),
+                  SizedBox(
+                    height: 4,
+                  ),
                   Row(
                     mainAxisAlignment: MainAxisAlignment.spaceAround,
                     children: [
-                      const Icon(
-                        Icons.timelapse,
-                        color: Colors.white,
+                      Container(
+                          height: 16,
+                          width: 16,
+                          child: Image.asset(
+                            "assets/icons/time_clock.png",
+                            fit: BoxFit.cover,
+                          )),
+                      SizedBox(
+                        width: 4,
                       ),
                       Text(
                         time,
@@ -221,7 +228,7 @@ class ScheduledCancelledAdvocateCard extends StatelessWidget {
                 showDialog(
                     context: context,
                     builder: (BuildContext context) {
-                      return CancellationDialogBox();
+                      return const CancellationDialogBox();
                     });
               },
               child: Center(
@@ -231,7 +238,7 @@ class ScheduledCancelledAdvocateCard extends StatelessWidget {
                         borderRadius: BorderRadius.only(
                             topLeft: Radius.circular(15),
                             topRight: Radius.circular(15))),
-                    padding: EdgeInsets.all(8),
+                    padding: const EdgeInsets.all(8),
                     child: Text(
                       "View Cancellation Reason",
                       style: tableTextBoldBlack,

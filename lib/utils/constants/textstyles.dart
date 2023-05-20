@@ -95,6 +95,12 @@ TextStyle kCallQn = GoogleFonts.poppins(
   fontSize: 12,
 );
 
+TextStyle kCallQnBlack = GoogleFonts.poppins(
+  color: Colors.black,
+  fontWeight: FontWeight.w400,
+  fontSize: 12,
+);
+
 TextStyle kCallAns = GoogleFonts.poppins(
   color: Colors.white,
   fontWeight: FontWeight.w400,
@@ -301,9 +307,27 @@ TextStyle todayTextStyle = GoogleFonts.mukta(
   fontWeight: FontWeight.w700,
 );
 
-TextStyle upcomindScheduleDateTextStyle = GoogleFonts.poppins(
+TextStyle todayTextStyleBlack = GoogleFonts.mukta(
   color: Colors.black,
   fontSize: 16,
+  fontWeight: FontWeight.w700,
+);
+
+TextStyle poppinsW600S16Black = GoogleFonts.poppins(
+  color: Colors.black,
+  fontSize: 16,
+  fontWeight: FontWeight.w600,
+);
+
+TextStyle poppinsW600S16White = GoogleFonts.poppins(
+  color: Colors.white,
+  fontSize: 16,
+  fontWeight: FontWeight.w600,
+);
+
+TextStyle poppinsW600S20Black = GoogleFonts.poppins(
+  color: Colors.black,
+  fontSize: 20,
   fontWeight: FontWeight.w600,
 );
 
@@ -317,4 +341,184 @@ TextStyle cancellationReasonParaTextStyle = GoogleFonts.poppins(
   color: Colors.black,
   fontSize: 9,
   fontWeight: FontWeight.w400,
+);
+
+TextStyle poppinsW400S9White = GoogleFonts.poppins(
+  color: Colors.white,
+  fontSize: 9,
+  fontWeight: FontWeight.w400,
+);
+
+TextStyle poppinsW400S9Black = GoogleFonts.poppins(
+  color: Colors.black,
+  fontSize: 9,
+  fontWeight: FontWeight.w400,
+);
+
+TextStyle poppinsW600S7White = GoogleFonts.poppins(
+  color: Colors.white,
+  fontSize: 7,
+  fontWeight: FontWeight.w600,
+);
+
+TextStyle poppinsW500S12Grey = GoogleFonts.poppins(
+  color: casePostCardGreyText,
+  fontSize: 12,
+  fontWeight: FontWeight.w500,
+);
+
+TextStyle poppinsW500S12White = GoogleFonts.poppins(
+  color: Colors.white,
+  fontSize: 12,
+  fontWeight: FontWeight.w500,
+);
+
+TextStyle poppinsW500S10Grey = GoogleFonts.poppins(
+  color: casePostCardGreyText,
+  fontSize: 10,
+  fontWeight: FontWeight.w500,
+);
+
+TextStyle poppinsW500S10White = GoogleFonts.poppins(
+  color: Colors.white,
+  fontSize: 10,
+  fontWeight: FontWeight.w500,
+);
+
+TextStyle poppinsW500S6Black = GoogleFonts.poppins(
+  color: Colors.black,
+  fontSize: 6,
+  fontWeight: FontWeight.w500,
+);
+
+TextStyle poppinsW500S20Black = GoogleFonts.poppins(
+  color: Colors.black,
+  fontSize: 20,
+  fontWeight: FontWeight.w500,
+);
+
+TextStyle poppinsW500S15Black = GoogleFonts.poppins(
+  color: Colors.black,
+  fontSize: 15,
+  fontWeight: FontWeight.w500,
+);
+
+TextStyle poppinsW500S15White = GoogleFonts.poppins(
+  color: Colors.white,
+  fontSize: 15,
+  fontWeight: FontWeight.w500,
+);
+
+TextStyle poppinsW400S14White = GoogleFonts.poppins(
+  color: Colors.white,
+  fontSize: 14,
+  fontWeight: FontWeight.w400,
+);
+
+TextStyle poppinsW400S16Black = GoogleFonts.poppins(
+  color: Colors.black,
+  fontSize: 16,
+  fontWeight: FontWeight.w400,
+);
+
+TextStyle alegreyaW700S16 = GoogleFonts.alegreya(
+  color: Colors.black,
+  fontSize: 16,
+  fontWeight: FontWeight.w700,
+);
+
+TextStyle alegreyaW400S16 = GoogleFonts.alegreya(
+  color: Colors.black,
+  fontSize: 16,
+  fontWeight: FontWeight.w400,
+);
+
+TextStyle poppinsW400S12Black = GoogleFonts.poppins(
+  color: Colors.black,
+  fontSize: 12,
+  fontWeight: FontWeight.w400,
+);
+
+TextStyle poppinsW400S18Black = GoogleFonts.poppins(
+  color: Colors.black,
+  fontSize: 18,
+  fontWeight: FontWeight.w400,
+);
+
+TextStyle poppinsW700S9Black = GoogleFonts.poppins(
+  color: Colors.black,
+  fontSize: 9,
+  fontWeight: FontWeight.w700,
+);
+
+TextStyle poppinsW400S9Grey = GoogleFonts.poppins(
+  color: Colors.grey,
+  fontSize: 9,
+  fontWeight: FontWeight.w400,
+);
+
+TextStyle alegreyaW700S24White = GoogleFonts.alegreya(
+  color: Colors.white,
+  fontSize: 24,
+  fontWeight: FontWeight.w700,
+);
+
+TextStyle poppinsW500S12Black = GoogleFonts.poppins(
+  color: Colors.black,
+  fontSize: 12,
+  fontWeight: FontWeight.w500,
+);
+
+TextStyle interW400S18Black = GoogleFonts.inter(
+  color: Colors.black,
+  fontSize: 18,
+  fontWeight: FontWeight.w400,
+);
+
+TextStyle interW400S14Black = GoogleFonts.inter(
+  color: Colors.black,
+  fontSize: 14,
+  fontWeight: FontWeight.w400,
+);
+
+TextStyle poppinsW500S18Black = GoogleFonts.poppins(
+  color: Colors.black,
+  fontSize: 18,
+  fontWeight: FontWeight.w500,
+);
+
+TextStyle poppinsW500S18White = GoogleFonts.poppins(
+  color: Colors.white,
+  fontSize: 18,
+  fontWeight: FontWeight.w500,
+);
+
+TextStyle poppinsW700S14White = GoogleFonts.poppins(
+  color: Colors.white,
+  fontSize: 14,
+  fontWeight: FontWeight.w700,
+);
+
+TextStyle poppinsW600S14White = GoogleFonts.poppins(
+  color: Colors.white,
+  fontSize: 14,
+  fontWeight: FontWeight.w600,
+);
+
+TextStyle alegreyaW700S18Black = GoogleFonts.alegreya(
+  color: Colors.black,
+  fontSize: 18,
+  fontWeight: FontWeight.w700,
+);
+
+TextStyle alegreyaW700S18White = GoogleFonts.alegreya(
+  color: Colors.white,
+  fontSize: 18,
+  fontWeight: FontWeight.w700,
+);
+
+TextStyle interW700S10Black = GoogleFonts.alegreya(
+  color: Colors.black,
+  fontSize: 10,
+  fontWeight: FontWeight.w700,
 );
