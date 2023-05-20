@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:jusitfi_admin/presentation/screens/homepage.dart';
 import 'package:jusitfi_admin/presentation/screens/mianpage.dart';
 import 'package:jusitfi_admin/presentation/widgets/big_button.dart';
 import 'package:jusitfi_admin/utils/constants/textstyles.dart';
@@ -24,7 +23,7 @@ class AssignWork extends StatelessWidget {
               textAlign: TextAlign.center,
               style: kAssignText,
             ),
-            CustomButton(
+            const CustomButton(
               removescreens: true,
               nextPage: MainPage(),
               buttonColor: Colors.black,
@@ -34,12 +33,12 @@ class AssignWork extends StatelessWidget {
             Padding(
               padding: const EdgeInsets.all(30.0),
               child: ClipPath(
+                clipper: CustomClipPath(),
                 child: Container(
                   width: 500,
                   height: 200,
                   color: Colors.grey,
                 ),
-                clipper: CustomClipPath(),
               ),
             ),
           ],
