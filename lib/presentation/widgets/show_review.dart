@@ -20,7 +20,7 @@ class _RatingDialogState extends State<RatingDialog> {
         child: Column(
           mainAxisSize: MainAxisSize.min,
           children: [
-            SizedBox(
+            const SizedBox(
               height: 20,
             ),
             Container(
@@ -32,7 +32,7 @@ class _RatingDialogState extends State<RatingDialog> {
               width: 60,
               height: 50,
             ),
-            SizedBox(
+            const SizedBox(
               height: 10,
             ),
             Text(
@@ -42,7 +42,7 @@ class _RatingDialogState extends State<RatingDialog> {
             Row(
               mainAxisAlignment: MainAxisAlignment.center,
               children: [
-                Icon(
+                const Icon(
                   Icons.pin_drop_rounded,
                   size: 15,
                   color: Colors.white,
@@ -53,7 +53,7 @@ class _RatingDialogState extends State<RatingDialog> {
                 )
               ],
             ),
-            SizedBox(height: 30),
+            const SizedBox(height: 30),
             Text(
               'Rate Your Experience',
               style: kCallName,
@@ -63,11 +63,11 @@ class _RatingDialogState extends State<RatingDialog> {
               children: [
                 IconButton(
                   icon: _rating >= 1
-                      ? Icon(
+                      ? const Icon(
                           Icons.star,
                           size: 40,
                         )
-                      : Icon(
+                      : const Icon(
                           Icons.star_border_outlined,
                           size: 40,
                         ),
@@ -80,11 +80,11 @@ class _RatingDialogState extends State<RatingDialog> {
                 ),
                 IconButton(
                   icon: _rating >= 2
-                      ? Icon(
+                      ? const Icon(
                           Icons.star,
                           size: 40,
                         )
-                      : Icon(
+                      : const Icon(
                           Icons.star_border_outlined,
                           size: 40,
                         ),
@@ -97,11 +97,11 @@ class _RatingDialogState extends State<RatingDialog> {
                 ),
                 IconButton(
                   icon: _rating >= 3
-                      ? Icon(
+                      ? const Icon(
                           Icons.star,
                           size: 40,
                         )
-                      : Icon(
+                      : const Icon(
                           Icons.star_border_outlined,
                           size: 40,
                         ),
@@ -114,11 +114,11 @@ class _RatingDialogState extends State<RatingDialog> {
                 ),
                 IconButton(
                   icon: _rating >= 4
-                      ? Icon(
+                      ? const Icon(
                           Icons.star,
                           size: 40,
                         )
-                      : Icon(
+                      : const Icon(
                           Icons.star_border_outlined,
                           size: 40,
                         ),
@@ -131,11 +131,11 @@ class _RatingDialogState extends State<RatingDialog> {
                 ),
                 IconButton(
                   icon: _rating >= 5
-                      ? Icon(
+                      ? const Icon(
                           Icons.star,
                           size: 40,
                         )
-                      : Icon(
+                      : const Icon(
                           Icons.star_border_outlined,
                           size: 40,
                         ),
@@ -148,7 +148,7 @@ class _RatingDialogState extends State<RatingDialog> {
                 ),
               ],
             ),
-            SizedBox(height: 30),
+            const SizedBox(height: 30),
             Padding(
               padding: const EdgeInsets.all(8.0),
               child: Text(
@@ -160,15 +160,15 @@ class _RatingDialogState extends State<RatingDialog> {
               decoration: InputDecoration(
                 filled: true,
                 focusedBorder: OutlineInputBorder(
-                  borderSide: BorderSide(color: Colors.white),
+                  borderSide: const BorderSide(color: Colors.white),
                   borderRadius: BorderRadius.circular(25.7),
                 ),
                 enabledBorder: UnderlineInputBorder(
-                  borderSide: BorderSide(color: Colors.white),
+                  borderSide: const BorderSide(color: Colors.white),
                   borderRadius: BorderRadius.circular(25.7),
                 ),
                 fillColor: Colors.white,
-                border: OutlineInputBorder(),
+                border: const OutlineInputBorder(),
               ),
               maxLines: 5,
               onChanged: (value) {
@@ -177,13 +177,21 @@ class _RatingDialogState extends State<RatingDialog> {
                 });
               },
             ),
-            SizedBox(
+            const SizedBox(
               height: 10,
             ),
             Padding(
               padding: const EdgeInsets.all(8.0),
               child: InkWell(
-                onTap: () => Navigator.pop(context),
+                onTap: () {
+                  Navigator.push(
+                      context,
+                      MaterialPageRoute(
+                          builder: (_) => FinishedPage(
+                              text: 'Your Feedback has been submitted',
+                              nextPage: HomePage(),
+                              nextPageName: 'Home')));
+                },
                 child: Container(
                   child: Center(
                     child: Text(

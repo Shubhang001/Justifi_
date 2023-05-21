@@ -92,11 +92,9 @@ class MorePage extends StatelessWidget {
                     return InkWell(
                       onTap: () {
                         ShowSubCat(context, subCatItems);
-                        // Navigator.push(context,
-                        //     MaterialPageRoute(builder: (_) => AssignWork()));
-                        // showCallDetails(context);
-                        // showDialog(
-                        //     context: context, builder: (_) => RatingDialog());
+                      
+                        
+                      
                       },
                       child: Column(
                         crossAxisAlignment: CrossAxisAlignment.center,
