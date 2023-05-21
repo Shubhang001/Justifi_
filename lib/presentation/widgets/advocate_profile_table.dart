@@ -29,51 +29,57 @@ class AdvocateProfileTable extends StatelessWidget {
               width: 2),
           children: [
             TableRow(children: [
-              Column(children: [Text('CaseTitle', style: tableTextBold)]),
-              Column(
-                  children: [Text(caseTitle.toString(), style: tableTextBold)]),
+              Padding(
+                padding: const EdgeInsets.all(2),
+                child: Text(' CaseTitle', style: tableTextBold),
+              ),
+              Padding(
+                padding: const EdgeInsets.all(2),
+                child: Text(caseTitle.toString(), style: tableTextBold),
+              )
             ]),
             TableRow(children: [
-              Column(children: [
-                Text(
-                  'Court Type',
+              Padding(
+                padding: const EdgeInsets.all(2),
+                child: Text(
+                  ' Court Type',
                   style: tableTextNormal,
-                )
-              ]),
-              Column(children: [
-                Text(
-                  courtType.toString(),
-                  style: tableTextNormal,
-                )
-              ]),
+                ),
+              ),
+              Padding(
+                  padding: const EdgeInsets.all(2),
+                  child: Text(
+                    courtType.toString(),
+                    style: tableTextNormal,
+                  ))
             ]),
             TableRow(children: [
-              Column(children: [
-                Text(
-                  'Case Category',
-                  style: tableTextNormal,
-                )
-              ]),
-              Column(children: [
-                Text(
-                  caseCategory.toString(),
-                  style: tableTextNormal,
-                )
-              ]),
+              Padding(
+                  padding: const EdgeInsets.all(2),
+                  child: Text(
+                    ' Case Category',
+                    style: tableTextNormal,
+                  )),
+              Padding(
+                  padding: const EdgeInsets.all(2),
+                  child: Text(
+                    caseCategory.toString(),
+                    style: tableTextNormal,
+                  ))
             ]),
             TableRow(children: [
-              Column(children: [
-                Text(
-                  'Sub-case Category',
-                  style: tableTextNormal,
-                )
-              ]),
-              Column(children: [
-                Text(
-                  caseSubCategory.toString(),
-                  style: tableTextNormal,
-                )
-              ]),
+              Padding(
+                  padding: const EdgeInsets.all(2),
+                  child: Text(
+                    ' Sub-case Category',
+                    style: tableTextNormal,
+                  )),
+              Padding(
+                  padding: const EdgeInsets.all(2),
+                  child: Text(
+                    caseSubCategory.toString(),
+                    style: tableTextNormal,
+                  )),
             ]),
           ],
         ),

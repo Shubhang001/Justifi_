@@ -1,8 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:jusitfi_admin/presentation/widgets/big_button.dart';
 import 'package:jusitfi_admin/utils/constants/textstyles.dart';
-
-import '../../utils/constants/colors.dart';
 
 class RatingDialog extends StatefulWidget {
   @override

@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:jusitfi_admin/presentation/widgets/case_post_pending_hire_card.dart';
 
 import 'case_post_cancelled_card.dart';
 
