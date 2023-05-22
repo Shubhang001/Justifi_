@@ -1,13 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:jusitfi_admin/presentation/widgets/cancellation_dialog_box.dart';
 import 'package:jusitfi_admin/presentation/widgets/cancelled_advocate_card_table.dart';
-import 'package:jusitfi_admin/presentation/widgets/starrating.dart';
-import 'package:jusitfi_admin/presentation/widgets/videoCallWidget.dart';
-import 'package:jusitfi_admin/utils/constants/colors.dart';
-import 'package:smooth_star_rating_null_safety/smooth_star_rating_null_safety.dart';
-
 import '../../utils/constants/textstyles.dart';
-import 'advocate_profile_table.dart';
 
 class ScheduledCancelledAdvocateCard extends StatelessWidget {
   const ScheduledCancelledAdvocateCard({
@@ -194,7 +188,8 @@ class ScheduledCancelledAdvocateCard extends StatelessWidget {
                     color: Colors.white,
                     thickness: 1,
                   ),
-                  Row(
+                  Container(
+                      child: Row(
                     mainAxisAlignment: MainAxisAlignment.spaceAround,
                     children: [
                       const Icon(
@@ -215,11 +210,11 @@ class ScheduledCancelledAdvocateCard extends StatelessWidget {
                         ],
                       )
                     ],
-                  )
+                  ))
                 ],
               ),
             ),
-            SizedBox(
+            const SizedBox(
               height: 8,
             ),
             GestureDetector(

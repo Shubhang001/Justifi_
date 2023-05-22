@@ -7,11 +7,9 @@ import '../widgets/category_tile.dart';
 import '../widgets/filter_sort.dart';
 import '../widgets/horizontal_tile.dart';
 import '../widgets/searchbar.dart';
-import 'package:flutter/material.dart';
-
 
 class HomePage extends StatefulWidget {
-  HomePage({super.key});
+  const HomePage({super.key});
 
   @override
   State<HomePage> createState() => _HomePageState();

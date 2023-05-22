@@ -85,7 +85,7 @@ class _FreezedBalancePageState extends State<FreezedBalancePage> {
                           ],
                         ),
                       ),
-                      SizedBox(
+                      const SizedBox(
                         height: 20,
                       ),
                       Expanded(

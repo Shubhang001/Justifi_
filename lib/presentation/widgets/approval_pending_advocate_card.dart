@@ -189,7 +189,8 @@ class ApprovalPendingAdvocateCard extends StatelessWidget {
                     color: Colors.white,
                     thickness: 1,
                   ),
-                  Row(
+                  Container(
+                      child: Row(
                     mainAxisAlignment: MainAxisAlignment.spaceAround,
                     children: [
                       Icon(
@@ -210,7 +211,7 @@ class ApprovalPendingAdvocateCard extends StatelessWidget {
                         ],
                       )
                     ],
-                  )
+                  ))
                 ],
               ),
             ),

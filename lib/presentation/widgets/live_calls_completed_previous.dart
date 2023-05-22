@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:jusitfi_admin/presentation/widgets/live_calls_card.dart';
-import 'package:jusitfi_admin/presentation/widgets/scheduled_completed_advocate_card.dart';
 import 'package:jusitfi_admin/utils/constants/textstyles.dart';
 
 class LiveCallsCompletedPreviousVerticalTile extends StatelessWidget {
