@@ -1,0 +1,188 @@
+import 'package:flutter/material.dart';
+import '../../utils/constants/colors.dart';
+import '../../utils/constants/textstyles.dart';
+import '../widgets/statusPageFilterSort.dart';
+import '../widgets/statusPageSearchBar.dart';
+
+class OffersPage extends StatefulWidget {
+  const OffersPage({Key? key}) : super(key: key);
+
+  @override
+  State<OffersPage> createState() => _OffersPage();
+}
+
+class _OffersPage extends State<OffersPage> {
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+        appBar: AppBar(
+          title: Center(
+            child: Text(
+              "Offers",
+              style: alegreyaW700S24White,
+            ),
+          ),
+          backgroundColor: kPrimaryBlackColor,
+        ),
+        endDrawer: Drawer(
+          child: ListView(
+            children: const <Widget>[
+              DrawerHeader(
+                decoration: BoxDecoration(
+                  color: Colors.black,
+                ),
+                child: Text(
+                  'Welcome to Justify',
+                  style: TextStyle(
+                    color: Colors.white,
+                    fontSize: 30,
+                  ),
+                ),
+              ),
+              ListTile(
+                title: Text("Item1"),
+                leading: Icon(Icons.mail),
+              ),
+              Divider(
+                height: 0.2,
+              ),
+              ListTile(
+                title: Text("Item1"),
+                leading: Icon(Icons.mail),
+              ),
+              Divider(
+                height: 0.2,
+              ),
+              ListTile(
+                title: Text("Item1"),
+                leading: Icon(Icons.mail),
+              ),
+              Divider(
+                height: 0.2,
+              ),
+            ],
+          ),
+        ),
+        body: SafeArea(
+            child: Container(
+                padding: EdgeInsets.all(20),
+                child: Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                      Padding(
+                        padding: const EdgeInsets.only(
+                            left: 20, right: 20, top: 10, bottom: 10),
+                        child: Row(
+                          mainAxisAlignment: MainAxisAlignment.spaceAround,
+                          children: const [
+                            StatusPageSearchBar(),
+                            SizedBox(
+                              width: 10,
+                            ),
+                            StatusPageFilterSort()
+                          ],
+                        ),
+                      ),
+                      SizedBox(
+                        height: 20,
+                      ),
+                      Row(
+                        mainAxisAlignment: MainAxisAlignment.spaceAround,
+                        children: [
+                          Container(
+                            height: 200,
+                            width: 160,
+                            decoration: BoxDecoration(
+                                borderRadius: BorderRadius.circular(20),
+                                color: Colors.black),
+                            child: Column(
+                              crossAxisAlignment: CrossAxisAlignment.center,
+                              children: [
+                                SizedBox(
+                                  height: 20,
+                                ),
+                                Image.asset("assets/images/advocate_tie.png"),
+                                Text(
+                                  "Add Money",
+                                  style: poppinsW700S14White,
+                                ),
+                                Text(
+                                  "15% Extra Money",
+                                  style: poppinsW600S14White,
+                                ),
+                                SizedBox(
+                                  height: 25,
+                                ),
+                                Row(
+                                    mainAxisAlignment: MainAxisAlignment.center,
+                                    children: [
+                                      Text(
+                                        "Code : 23HT873 ",
+                                        style: poppinsW500S15White,
+                                      ),
+                                      SizedBox(
+                                        width: 10,
+                                      ),
+                                      Icon(
+                                        Icons.copy,
+                                        color: Colors.white,
+                                        size: 15,
+                                      )
+                                    ]),
+                                SizedBox(
+                                  height: 10,
+                                ),
+                              ],
+                            ),
+                          ),
+                          Container(
+                            height: 200,
+                            width: 160,
+                            decoration: BoxDecoration(
+                                borderRadius: BorderRadius.circular(20),
+                                color: Colors.black),
+                            child: Column(
+                              crossAxisAlignment: CrossAxisAlignment.center,
+                              children: [
+                                SizedBox(
+                                  height: 20,
+                                ),
+                                Image.asset("assets/images/advocate_tie.png"),
+                                Text(
+                                  "One Time Hiring",
+                                  style: poppinsW700S14White,
+                                ),
+                                Text(
+                                  "15% Discount",
+                                  style: poppinsW600S14White,
+                                ),
+                                SizedBox(
+                                  height: 25,
+                                ),
+                                Row(
+                                    mainAxisAlignment: MainAxisAlignment.center,
+                                    children: [
+                                      Text(
+                                        "Code : 23HT873 ",
+                                        style: poppinsW500S15White,
+                                      ),
+                                      SizedBox(
+                                        width: 10,
+                                      ),
+                                      Icon(
+                                        Icons.copy,
+                                        color: Colors.white,
+                                        size: 15,
+                                      )
+                                    ]),
+                                SizedBox(
+                                  height: 10,
+                                ),
+                              ],
+                            ),
+                          ),
+                        ],
+                      )
+                    ]))));
+  }
+}

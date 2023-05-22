@@ -27,12 +27,13 @@ class RefundTable extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Center(
-        child: Column(children: <Widget>[
+    return Expanded(
+        child: Center(
+            child: Column(children: <Widget>[
       Container(
         margin: const EdgeInsets.all(8),
         child: Table(
-          defaultColumnWidth: FixedColumnWidth(100.0),
+          defaultColumnWidth: const FlexColumnWidth(),
           border: TableBorder.all(
               color: Colors.white,
               style: BorderStyle.solid,
@@ -40,111 +41,114 @@ class RefundTable extends StatelessWidget {
               width: 2),
           children: [
             TableRow(children: [
-              Column(children: [Text('CaseTitle', style: tableTextBold)]),
-              Column(
-                  children: [Text(caseTitle.toString(), style: tableTextBold)]),
+              Padding(
+                  padding: const EdgeInsets.all(2),
+                  child: Text(' CaseTitle', style: tableTextBold)),
+              Padding(
+                  padding: const EdgeInsets.all(2),
+                  child: Text(caseTitle.toString(), style: tableTextBold)),
             ]),
             TableRow(children: [
-              Column(children: [
-                Text(
-                  'Court Type',
-                  style: tableTextNormal,
-                )
-              ]),
-              Column(children: [
-                Text(
-                  courtType.toString(),
-                  style: tableTextNormal,
-                )
-              ]),
+              Padding(
+                  padding: const EdgeInsets.all(2),
+                  child: Text(
+                    ' Court Type',
+                    style: tableTextNormal,
+                  )),
+              Padding(
+                  padding: const EdgeInsets.all(2),
+                  child: Text(
+                    courtType.toString(),
+                    style: tableTextNormal,
+                  )),
             ]),
             TableRow(children: [
-              Column(children: [
-                Text(
-                  'Case Category',
-                  style: tableTextNormal,
-                )
-              ]),
-              Column(children: [
-                Text(
-                  caseCategory.toString(),
-                  style: tableTextNormal,
-                )
-              ]),
+              Padding(
+                  padding: const EdgeInsets.all(2),
+                  child: Text(
+                    ' Case Category',
+                    style: tableTextNormal,
+                  )),
+              Padding(
+                  padding: const EdgeInsets.all(2),
+                  child: Text(
+                    caseCategory.toString(),
+                    style: tableTextNormal,
+                  )),
             ]),
             TableRow(children: [
-              Column(children: [
-                Text(
-                  'Sub-case Category',
-                  style: tableTextNormal,
-                )
-              ]),
-              Column(children: [
-                Text(
-                  caseSubCategory.toString(),
-                  style: tableTextNormal,
-                )
-              ]),
+              Padding(
+                  padding: const EdgeInsets.all(2),
+                  child: Text(
+                    ' Sub-case Category',
+                    style: tableTextNormal,
+                  )),
+              Padding(
+                  padding: const EdgeInsets.all(2),
+                  child: Text(
+                    caseSubCategory.toString(),
+                    style: tableTextNormal,
+                  )),
             ]),
             TableRow(children: [
-              Column(children: [
-                Text(
-                  'Refund Date',
-                  style: tableTextNormal,
-                )
-              ]),
-              Column(children: [
-                Text(
-                  refundDate.toString() + " " + refundTime.toString(),
-                  style: tableTextNormal,
-                )
-              ]),
+              Padding(
+                  padding: const EdgeInsets.all(2),
+                  child: Text(
+                    ' Refund Date',
+                    style: tableTextNormal,
+                  )),
+              Padding(
+                  padding: const EdgeInsets.all(2),
+                  child: Text(
+                    refundDate.toString() + " " + refundTime.toString(),
+                    style: tableTextNormal,
+                  )),
             ]),
             TableRow(children: [
-              Column(children: [
-                Text(
-                  'Canceled By',
-                  style: tableTextNormal,
-                )
-              ]),
-              Column(children: [
-                Text(
-                  cancelledBy.toString(),
-                  style: tableTextNormal,
-                )
-              ]),
+              Padding(
+                  padding: const EdgeInsets.all(2),
+                  child: Text(
+                    ' Canceled By',
+                    style: tableTextNormal,
+                  )),
+              Padding(
+                  padding: const EdgeInsets.all(2),
+                  child: Text(
+                    cancelledBy.toString(),
+                    style: tableTextNormal,
+                  )),
             ]),
             TableRow(children: [
-              Column(children: [
-                Text(
-                  'Refund Amount',
-                  style: tableTextNormal,
-                )
-              ]),
-              Column(children: [
-                Text(
-                  refundAmount.toString() + "Rs",
-                  style: tableTextNormal,
-                )
-              ]),
+              Padding(
+                  padding: const EdgeInsets.all(2),
+                  child: Text(
+                    ' Refund Amount',
+                    style: tableTextNormal,
+                  )),
+              Padding(
+                  padding: const EdgeInsets.all(2),
+                  child: Text(
+                    refundAmount.toString() + "Rs",
+                    style: tableTextNormal,
+                  )),
             ]),
             TableRow(children: [
-              Column(children: [
-                Text(
-                  'Refund Status',
-                  style: tableTextNormal,
-                )
-              ]),
-              Column(children: [
-                Text(
-                  meetStatus.toString(),
-                  style: tableTextNormal,
-                )
-              ]),
+              Padding(
+                  padding: const EdgeInsets.all(2),
+                  child: Text(
+                    ' Refund Status',
+                    style: tableTextNormal,
+                  )),
+              Padding(
+                  padding: const EdgeInsets.all(2),
+                  child: Text(
+                    meetStatus.toString(),
+                    style: tableTextNormal,
+                  )),
             ]),
           ],
         ),
       ),
-    ]));
+    ])));
   }
 }

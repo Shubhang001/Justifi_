@@ -1,13 +1,17 @@
 import 'package:flutter/material.dart';
-import 'package:jusitfi_admin/presentation/screens/homepage.dart';
 import 'package:jusitfi_admin/presentation/screens/mianpage.dart';
 import 'package:jusitfi_admin/presentation/widgets/big_button.dart';
 import 'package:jusitfi_admin/utils/constants/textstyles.dart';
 
-import '../widgets/wave_clipper.dart';
-
-class AssignWork extends StatelessWidget {
-  const AssignWork({super.key});
+class FinishedPage extends StatelessWidget {
+  FinishedPage(
+      {super.key,
+      required this.text,
+      required this.nextPage,
+      required this.nextPageName});
+  String text;
+  String nextPageName;
+  Widget nextPage;
 
   @override
   Widget build(BuildContext context) {
@@ -15,33 +19,33 @@ class AssignWork extends StatelessWidget {
       backgroundColor: Colors.white,
       body: SafeArea(
         child: Column(
-          mainAxisAlignment: MainAxisAlignment.spaceAround,
+          mainAxisAlignment: MainAxisAlignment.spaceBetween,
           crossAxisAlignment: CrossAxisAlignment.center,
           children: [
-            Image.asset('assets/images/check_mark.png'),
-            Text(
-              'Your Feedback has been submitted',
-              textAlign: TextAlign.center,
-              style: kAssignText,
+            Column(
+              children: [
+                Image.asset('assets/images/check_mark.png'),
+                const SizedBox(
+                  height: 10,
+                ),
+                Text(
+                  text,
+                  textAlign: TextAlign.center,
+                  style: kAssignText,
+                ),
+              ],
             ),
             CustomButton(
               removescreens: true,
-              nextPage: MainPage(),
+              nextPage: nextPage,
               buttonColor: Colors.black,
-              text: 'Home',
+              text: nextPageName,
               width: 200,
             ),
-            Padding(
-              padding: const EdgeInsets.all(30.0),
-              child: ClipPath(
-                child: Container(
-                  width: 500,
-                  height: 200,
-                  color: Colors.grey,
-                ),
-                clipper: CustomClipPath(),
-              ),
-            ),
+            Container(
+              color: Colors.black,
+              height: MediaQuery.of(context).size.height / 3,
+            )
           ],
         ),
       ),
