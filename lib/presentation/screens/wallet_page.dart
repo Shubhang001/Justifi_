@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:jusitfi_admin/presentation/screens/add_money_page.dart';
+import 'package:jusitfi_admin/presentation/screens/buying_hiring_packages_page.dart';
 import 'package:jusitfi_admin/presentation/screens/freezed_balance_page.dart';
 import 'package:jusitfi_admin/presentation/screens/hiring_package_page.dart';
 import 'package:jusitfi_admin/presentation/screens/offers_page.dart';

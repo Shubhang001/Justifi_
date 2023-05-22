@@ -1,5 +1,8 @@
 import 'package:flutter/material.dart';
+import 'package:jusitfi_admin/presentation/widgets/smallButton.dart';
 import 'package:jusitfi_admin/utils/constants/textstyles.dart';
+import '../screens/finished_page.dart';
+import '../screens/homepage.dart';
 
 class RatingDialog extends StatefulWidget {
   @override
@@ -182,30 +185,10 @@ class _RatingDialogState extends State<RatingDialog> {
             ),
             Padding(
               padding: const EdgeInsets.all(8.0),
-              child: InkWell(
-                onTap: () {
-                  Navigator.push(
-                      context,
-                      MaterialPageRoute(
-                          builder: (_) => FinishedPage(
-                              text: 'Your Feedback has been submitted',
-                              nextPage: HomePage(),
-                              nextPageName: 'Home')));
-                },
-                child: Container(
-                  child: Center(
-                    child: Text(
-                      'Submit',
-                      style: kMainCategory,
-                    ),
-                  ),
-                  width: 120,
-                  height: 40,
-                  decoration: BoxDecoration(
-                      color: Colors.white,
-                      borderRadius: BorderRadius.circular(20)),
-                ),
-              ),
+              child: smallButton(nextPage: FinishedPage(
+                    text: 'Your Feedback has been submitted',
+                    nextPage: HomePage(),
+                    nextPageName: 'Home'),name: 'Submit',),
             )
           ],
         ),
@@ -213,3 +196,4 @@ class _RatingDialogState extends State<RatingDialog> {
     );
   }
 }
+

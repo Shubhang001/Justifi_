@@ -145,14 +145,15 @@ class ViewAllPage extends StatelessWidget {
                 ),
                 Row(
                   children: [
-                    SearchBar(
+                    SearchBarUpdated(
                       backgroundColor: Colors.white,
                     ),
                     SizedBox(
                       width: 10,
                     ),
                     FilterSort(
-                      isDark: false,
+                      bgColor: Colors.white,
+                      dividerColor: Colors.black,
                     )
                   ],
                 ),
@@ -171,7 +172,7 @@ class ViewAllPage extends StatelessWidget {
                             style: kHomePageTitle,
                           ),
                         ),
-                        const CategoryTile(
+                        CategoryTile(
                           image: 'assets/category_icons/criminal.png',
                           name: 'Criminal',
                           isDark: true,

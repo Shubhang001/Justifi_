@@ -1,11 +1,14 @@
 import 'package:flutter/material.dart';
+
 import '../../utils/constants/colors.dart';
 import '../../utils/constants/textstyles.dart';
+
 import '../widgets/statusPageFilterSort.dart';
 import '../widgets/statusPageSearchBar.dart';
+import '../widgets/transaction_vertical_tile.dart';
 
 class OffersPage extends StatefulWidget {
-  const OffersPage({Key? key}) : super(key: key);
+  OffersPage({Key? key}) : super(key: key);
 
   @override
   State<OffersPage> createState() => _OffersPage();

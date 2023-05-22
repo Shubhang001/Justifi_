@@ -1,4 +1,4 @@
-import 'package:flutter/material.dart';
+
 import 'package:jusitfi_admin/presentation/screens/more_page.dart';
 import 'package:jusitfi_admin/presentation/screens/view_all.dart';
 import 'package:jusitfi_admin/utils/constants/colors.dart';
@@ -64,13 +64,16 @@ class _HomePageState extends State<HomePage> {
               child: Row(
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
-                  SearchBar(
+                  SearchBarUpdated(
                     backgroundColor: Colors.black,
                   ),
                   const SizedBox(
                     width: 10,
                   ),
-                  FilterSort()
+                  FilterSort(
+                    bgColor: Colors.black,
+                    dividerColor: Colors.white,
+                  )
                 ],
               ),
             ),

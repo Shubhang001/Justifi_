@@ -1,3 +1,5 @@
+
+
 import 'package:flutter/material.dart';
 import 'package:jusitfi_admin/data/models/category_model.dart';
 import 'package:jusitfi_admin/presentation/widgets/filter_sort.dart';
@@ -60,13 +62,16 @@ class MorePage extends StatelessWidget {
             children: [
               Row(
                 children: [
-                  SearchBar(
+                  SearchBarUpdated(
                     backgroundColor: Colors.black,
                   ),
                   SizedBox(
                     width: 10,
                   ),
-                  FilterSort()
+                  FilterSort(
+                    bgColor: Colors.black,
+                    dividerColor: Colors.white,
+                  )
                 ],
               ),
               const SizedBox(

@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:jusitfi_admin/presentation/widgets/approval_pending_advocate_card.dart';
 import 'package:jusitfi_admin/presentation/widgets/freezed_balance_card.dart';
 
 class FreezedBalanceVerticalTile extends StatelessWidget {

@@ -1,13 +1,18 @@
+
+
 import 'package:flutter/material.dart';
+
 import 'package:jusitfi_admin/presentation/screens/filterpage.dart';
 import 'package:jusitfi_admin/presentation/widgets/sort_options.dart';
 
 import '../../utils/constants/colors.dart';
 
 class FilterSort extends StatelessWidget {
-  const FilterSort({super.key, this.isDark = true});
+  const FilterSort(
+      {super.key, required this.bgColor, required this.dividerColor});
 
-  final bool isDark;
+  final Color bgColor;
+  final Color dividerColor;
 
   @override
   Widget build(BuildContext context) {
@@ -16,8 +21,7 @@ class FilterSort extends StatelessWidget {
         width: 50,
         height: 50,
         decoration: BoxDecoration(
-            color: isDark ? Colors.black : Colors.white,
-            borderRadius: BorderRadius.circular(8)),
+            color: bgColor, borderRadius: BorderRadius.circular(8)),
         child: Row(
           mainAxisAlignment: MainAxisAlignment.spaceAround,
           children: [
@@ -44,11 +48,11 @@ class FilterSort extends StatelessWidget {
               },
               child: Icon(
                 Icons.arrow_upward_rounded,
-                color: kmainButtonColor,
+                color: dividerColor,
               ),
             ),
             VerticalDivider(
-              color: isDark ? Colors.white : Colors.black,
+              color: dividerColor,
             ),
             GestureDetector(
               onTap: () {
@@ -58,7 +62,7 @@ class FilterSort extends StatelessWidget {
               },
               child: Icon(
                 Icons.menu,
-                color: kmainButtonColor,
+                color: dividerColor,
               ),
             )
           ],
