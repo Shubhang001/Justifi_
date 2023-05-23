@@ -1,6 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:jusitfi_admin/presentation/widgets/schedule_cancelled_previous_verticla_tile.dart';
-import 'package:jusitfi_admin/presentation/widgets/scheduled_cancelled_today_vertical_tile.dart';
 import 'package:jusitfi_admin/presentation/widgets/scheduled_complete_previous_vertical_tile.dart';
 import 'package:jusitfi_admin/presentation/widgets/scheduled_completed_previous_vertical_tile.dart';
 

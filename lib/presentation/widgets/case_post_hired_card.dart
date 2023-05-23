@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:jusitfi_admin/presentation/widgets/view_description_dialog_box.dart';
 import 'package:jusitfi_admin/presentation/widgets/view_document_dialog_box.dart';
-import 'package:jusitfi_admin/utils/constants/colors.dart';
 import '../../utils/constants/textstyles.dart';
 
 class CasePostHiredCard extends StatelessWidget {
@@ -71,6 +70,7 @@ class CasePostHiredCard extends StatelessWidget {
                         width: 4,
                       ),
                       Column(
+                        crossAxisAlignment: CrossAxisAlignment.start,
                         children: [
                           Row(
                             mainAxisAlignment: MainAxisAlignment.start,
@@ -221,32 +221,52 @@ class CasePostHiredCard extends StatelessWidget {
                     viewApplication
                         ? Column(
                             children: [
-                              Padding(
-                                  padding: EdgeInsets.all(2),
-                                  child: Container(
-                                      padding:
-                                          EdgeInsets.only(right: 8, left: 8),
-                                      decoration: BoxDecoration(
-                                        color: Colors.white,
-                                        borderRadius: BorderRadius.circular(10),
-                                      ),
-                                      child: Text(
-                                        " Document",
-                                        style: poppinsW400S9Black,
-                                      ))),
-                              Padding(
-                                  padding: EdgeInsets.all(2),
-                                  child: Container(
-                                      padding:
-                                          EdgeInsets.only(right: 8, left: 8),
-                                      decoration: BoxDecoration(
-                                        color: Colors.white,
-                                        borderRadius: BorderRadius.circular(10),
-                                      ),
-                                      child: Text(
-                                        " Description",
-                                        style: poppinsW400S9Black,
-                                      ))),
+                              GestureDetector(
+                                  onTap: () {
+                                    //show alert dialo
+                                    showDialog(
+                                        context: context,
+                                        builder: (BuildContext context) {
+                                          return const ViewDocumentDialogBox();
+                                        });
+                                  },
+                                  child: Padding(
+                                      padding: EdgeInsets.all(2),
+                                      child: Container(
+                                          padding: EdgeInsets.only(
+                                              right: 8, left: 8),
+                                          decoration: BoxDecoration(
+                                            color: Colors.white,
+                                            borderRadius:
+                                                BorderRadius.circular(10),
+                                          ),
+                                          child: Text(
+                                            " Document",
+                                            style: poppinsW400S9Black,
+                                          )))),
+                              GestureDetector(
+                                  onTap: () {
+                                    //show alert dialo
+                                    showDialog(
+                                        context: context,
+                                        builder: (BuildContext context) {
+                                          return const ViewDescriptionDialogBox();
+                                        });
+                                  },
+                                  child: Padding(
+                                      padding: EdgeInsets.all(2),
+                                      child: Container(
+                                          padding: EdgeInsets.only(
+                                              right: 8, left: 8),
+                                          decoration: BoxDecoration(
+                                            color: Colors.white,
+                                            borderRadius:
+                                                BorderRadius.circular(10),
+                                          ),
+                                          child: Text(
+                                            " Description",
+                                            style: poppinsW400S9Black,
+                                          )))),
                             ],
                           )
                         : Column(

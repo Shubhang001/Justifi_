@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:jusitfi_admin/utils/constants/colors.dart';
 import 'package:jusitfi_admin/utils/constants/textstyles.dart';
 
 class LockedHireAdvocateDialogBox extends StatefulWidget {
@@ -14,6 +13,9 @@ class LockedHireAdvocateDialogBox extends StatefulWidget {
 }
 
 class _LockedHireAdvocateDialogBox extends State<LockedHireAdvocateDialogBox> {
+  bool item1 = false;
+  bool item2 = false;
+  bool item3 = false;
   @override
   Widget build(BuildContext context) {
     return Center(
@@ -58,18 +60,21 @@ class _LockedHireAdvocateDialogBox extends State<LockedHireAdvocateDialogBox> {
                     const SizedBox(
                       height: 20,
                     ),
-                    Row(mainAxisAlignment: MainAxisAlignment.start, children: [
-                      Row(children: [
-                        Text(
-                          "Completion time for case  :  ",
-                          style: alegreyaW700S16,
-                        ),
-                        Text(
-                          "6 months  ",
-                          style: alegreyaW400S16,
-                        ),
-                      ])
-                    ]),
+                    Flexible(
+                        child: Row(
+                            mainAxisAlignment: MainAxisAlignment.start,
+                            children: [
+                          Row(children: [
+                            Text(
+                              "Completion time for case  :  ",
+                              style: alegreyaW700S16,
+                            ),
+                            Text(
+                              "6 months",
+                              style: alegreyaW400S16,
+                            ),
+                          ])
+                        ])),
                     const SizedBox(
                       height: 10,
                     ),
@@ -126,18 +131,26 @@ class _LockedHireAdvocateDialogBox extends State<LockedHireAdvocateDialogBox> {
                     ),
                     Row(mainAxisAlignment: MainAxisAlignment.start, children: [
                       Row(children: [
-                        Container(
-                            decoration: BoxDecoration(
-                              borderRadius: BorderRadius.circular(25),
-                              color: Colors.black,
-                            ),
-                            height: 10,
-                            width: 10,
-                            child: Icon(
-                              Icons.circle,
-                              color: Colors.white,
-                              size: 8,
-                            )),
+                        GestureDetector(
+                            onTap: () {
+                              setState(() {
+                                item1 = !item1;
+                              });
+                            },
+                            child: Container(
+                                decoration: BoxDecoration(
+                                  borderRadius: BorderRadius.circular(25),
+                                  color: Colors.black,
+                                ),
+                                height: 10,
+                                width: 10,
+                                child: Icon(
+                                  Icons.circle,
+                                  color: item1 == true
+                                      ? Colors.black
+                                      : Colors.white,
+                                  size: 8,
+                                ))),
                         SizedBox(
                           width: 10,
                         ),
@@ -151,13 +164,25 @@ class _LockedHireAdvocateDialogBox extends State<LockedHireAdvocateDialogBox> {
                       height: 15,
                     ),
                     Row(children: [
-                      Container(
-                          height: 9,
-                          width: 9,
-                          child: Image.asset(
-                            "assets/images/selected_circle.png",
-                            fit: BoxFit.cover,
-                          )),
+                      GestureDetector(
+                          onTap: () {
+                            setState(() {
+                              item2 = !item2;
+                            });
+                          },
+                          child: Container(
+                              decoration: BoxDecoration(
+                                borderRadius: BorderRadius.circular(25),
+                                color: Colors.black,
+                              ),
+                              height: 10,
+                              width: 10,
+                              child: Icon(
+                                Icons.circle,
+                                color:
+                                    item2 == true ? Colors.black : Colors.white,
+                                size: 8,
+                              ))),
                       SizedBox(
                         width: 10,
                       ),
@@ -170,14 +195,26 @@ class _LockedHireAdvocateDialogBox extends State<LockedHireAdvocateDialogBox> {
                       height: 15,
                     ),
                     Row(children: [
-                      Container(
-                          height: 9,
-                          width: 9,
-                          child: Image.asset(
-                            "assets/images/selected_circle.png",
-                            fit: BoxFit.cover,
-                          )),
-                      SizedBox(
+                      GestureDetector(
+                          onTap: () {
+                            setState(() {
+                              item3 = !item3;
+                            });
+                          },
+                          child: Container(
+                              decoration: BoxDecoration(
+                                borderRadius: BorderRadius.circular(25),
+                                color: Colors.black,
+                              ),
+                              height: 10,
+                              width: 10,
+                              child: Icon(
+                                Icons.circle,
+                                color:
+                                    item3 == true ? Colors.black : Colors.white,
+                                size: 8,
+                              ))),
+                      const SizedBox(
                         width: 10,
                       ),
                       Text(

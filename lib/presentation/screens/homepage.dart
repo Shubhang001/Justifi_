@@ -1,4 +1,4 @@
-import 'package:flutter/material.dart';
+
 import 'package:jusitfi_admin/presentation/screens/more_page.dart';
 import 'package:jusitfi_admin/presentation/screens/view_all.dart';
 import 'package:jusitfi_admin/utils/constants/colors.dart';
@@ -9,7 +9,7 @@ import '../widgets/horizontal_tile.dart';
 import '../widgets/searchbar.dart';
 
 class HomePage extends StatefulWidget {
-  HomePage({super.key});
+  const HomePage({super.key});
 
   @override
   State<HomePage> createState() => _HomePageState();
@@ -64,7 +64,7 @@ class _HomePageState extends State<HomePage> {
               child: Row(
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
-                  SearchBar(
+                  SearchBarUpdated(
                     backgroundColor: Colors.black,
                   ),
                   const SizedBox(
