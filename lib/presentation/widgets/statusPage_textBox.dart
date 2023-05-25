@@ -6,7 +6,10 @@ class TextBox extends StatefulWidget {
   bool? isSelected;
   int? textSize;
   TextBox(
-      {required this.text, required this.isSelected, required this.textSize});
+      {super.key,
+      required this.text,
+      required this.isSelected,
+      required this.textSize});
 
   @override
   State<TextBox> createState() => _TextBoxState();
@@ -22,15 +25,13 @@ class _TextBoxState extends State<TextBox> {
       textColor = Colors.white;
       backgrounColor = kPrimaryBlackColor;
     } else {
-      textColor = Colors.black;
+      textColor = kprimaryTextColor;
       backgrounColor = Colors.white;
     }
-    return Container(
-        margin: EdgeInsets.all(10),
-        color: backgrounColor,
-        alignment: Alignment.center,
-        child: Text(widget.text.toString(),
-            style: TextStyle(
-                color: textColor, fontSize: widget.textSize!.toDouble())));
+    return Text(widget.text.toString(),
+        style: TextStyle(
+            fontWeight: FontWeight.w600,
+            color: textColor,
+            fontSize: widget.textSize!.toDouble()));
   }
 }

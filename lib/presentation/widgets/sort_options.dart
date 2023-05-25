@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:jusitfi_admin/utils/constants/textstyles.dart';
 
 class SortOptionsBottomSheet extends StatelessWidget {
   final List<String> sortOptions;
@@ -38,6 +39,7 @@ class SortOptionsBottomSheet extends StatelessWidget {
                 return TextButton(
                   child: Text(
                     sortOption,
+                    style: kSort,
                   ),
                   onPressed: () {
                     onSortOptionSelected(sortOption);

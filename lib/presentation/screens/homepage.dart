@@ -9,7 +9,7 @@ import '../widgets/horizontal_tile.dart';
 import '../widgets/searchbar.dart';
 
 class HomePage extends StatefulWidget {
-  HomePage({super.key});
+  const HomePage({super.key});
 
   @override
   State<HomePage> createState() => _HomePageState();
@@ -70,7 +70,7 @@ class _HomePageState extends State<HomePage> {
                   const SizedBox(
                     width: 10,
                   ),
-                  FilterSort()
+                  const FilterSort()
                 ],
               ),
             ),
@@ -84,16 +84,16 @@ class _HomePageState extends State<HomePage> {
             Row(
               mainAxisAlignment: MainAxisAlignment.spaceAround,
               children: [
-                CategoryTile(
+                const CategoryTile(
                   image: 'assets/category_icons/criminal.png',
                   name: 'Criminal',
                 ),
-                CategoryTile(
+                const CategoryTile(
                   image: 'assets/category_icons/family and adoption.png',
                   name: 'Family and Adoption',
                   isTransparentBackground: false,
                 ),
-                CategoryTile(
+                const CategoryTile(
                   image: 'assets/category_icons/cybercrime.png',
                   name: 'Cybercrime',
                 ),
@@ -103,7 +103,7 @@ class _HomePageState extends State<HomePage> {
                       return MorePage();
                     }));
                   },
-                  child: CategoryTile(
+                  child: const CategoryTile(
                     image: 'assets/category_icons/more.png',
                     name: 'More',
                   ),

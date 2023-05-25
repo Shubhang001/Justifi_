@@ -10,7 +10,7 @@ class StatusPageSearchBar extends StatelessWidget {
     return Container(
       decoration: BoxDecoration(
           color: kprimaryTextColor, borderRadius: BorderRadius.circular(8)),
-      width: MediaQuery.of(context).size.width / 1.6,
+      width: MediaQuery.of(context).size.width / 1.78,
       height: 50,
       child: Row(
         children: [
@@ -28,12 +28,12 @@ class StatusPageSearchBar extends StatelessWidget {
           Expanded(
             child: TextField(
               style: kotp,
-              decoration: InputDecoration(
+              decoration: const InputDecoration(
                 border: InputBorder.none,
               ),
             ),
           ),
-          Icon(
+          const Icon(
             Icons.search,
             size: 30,
             color: Colors.black,

@@ -1,5 +1,3 @@
-import 'dart:ffi';
-
 import 'package:flutter/material.dart';
 
 import '../../utils/constants/colors.dart';
@@ -13,7 +11,7 @@ class StatusPageFilterSort extends StatelessWidget {
   Widget build(BuildContext context) {
     return Expanded(
       child: Container(
-        width: 30,
+        width: 80,
         height: 50,
         decoration: BoxDecoration(
             color: isDark ? kprimaryTextColor : Colors.white,
@@ -21,17 +19,28 @@ class StatusPageFilterSort extends StatelessWidget {
         child: Row(
           mainAxisAlignment: MainAxisAlignment.spaceAround,
           children: [
-            Icon(
-              Icons.arrow_upward_rounded,
-              color: Colors.black,
+            SizedBox(
+              height: 50,
+              child: Row(children: const [
+                Icon(
+                  Icons.arrow_upward_rounded,
+                  color: Colors.black,
+                  size: 20,
+                ),
+                Icon(Icons.arrow_downward_rounded,
+                    color: Colors.black, size: 20),
+              ]),
             ),
             VerticalDivider(
               color: isDark ? Colors.white : Colors.black,
             ),
-            Icon(
-              Icons.menu,
-              color: Colors.black,
-            )
+            SizedBox(
+                height: 30,
+                width: 30,
+                child: Image.asset(
+                  "assets/icons/sort_3lines.png",
+                  fit: BoxFit.cover,
+                ))
           ],
         ),
       ),

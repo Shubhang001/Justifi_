@@ -1,17 +1,24 @@
 import 'package:flutter/material.dart';
+import 'package:jusitfi_admin/presentation/widgets/case_post_hired.dart';
+import 'package:jusitfi_admin/presentation/widgets/case_post_pending_apply.dart';
+import 'package:jusitfi_admin/presentation/widgets/case_post_pending_hire.dart';
+import 'package:jusitfi_admin/presentation/widgets/live_calls_completed_vertical_tile.dart';
 import 'package:jusitfi_admin/presentation/widgets/pending_approval_vertical_tile.dart';
+import 'package:jusitfi_admin/presentation/widgets/scheduled_vertical_tile.dart';
 import 'package:jusitfi_admin/presentation/widgets/statusPage_textBox.dart';
 import 'package:jusitfi_admin/utils/constants/colors.dart';
 import 'package:jusitfi_admin/utils/constants/status_page_constants.dart';
 import 'package:jusitfi_admin/utils/constants/textstyles.dart';
-
-import '../widgets/filter_sort.dart';
-import '../widgets/searchbar.dart';
+import '../widgets/case_post_cancelled.dart';
+import '../widgets/live_calls_cancelled_vertical_tile.dart';
+import '../widgets/refund_vertical_tile.dart';
+import '../widgets/scheduled_meet_canceled_verticle_tile.dart';
+import '../widgets/scheduled_meet_completed_vertical_tile.dart';
 import '../widgets/statusPageFilterSort.dart';
 import '../widgets/statusPageSearchBar.dart';
 
 class StatusPage extends StatefulWidget {
-  StatusPage({Key? key}) : super(key: key);
+  const StatusPage({Key? key}) : super(key: key);
 
   @override
   State<StatusPage> createState() => _StatusPageState();
@@ -28,22 +35,22 @@ class _StatusPageState extends State<StatusPage> {
   ];
   final List<List<Widget>> _verticalTileWidgetList = [
     [
-      PendingApprovalVerticalTile(),
-      Text("Scheduled"),
-      Text("Cancelled"),
-      Text("Completed"),
-      Text("Refund")
+      const PendingApprovalVerticalTile(),
+      const ScheduledVerticalTile(),
+      ScheduledMeetCancelledVerticleTile(),
+      const ScheduledMeetCompletedVerticleTile(),
+      const RefundVerticalTile()
     ],
     [
-      Text("Pending Apply"),
-      Text("Pending Hire"),
-      Text("Hired"),
-      Text("Cancelled")
+      const CasePostPendingApplyVerticalTile(),
+      const CasePostPendingHireVerticalTile(),
+      const CasePostHiredVerticalTile(),
+      const CasePostCancelledVerticalTile(),
     ],
     [
-      Text("Completed"),
-      Text("Cancelled"),
-      Text("Not Picked"),
+      const LiveCallsCompletedVerticleTile(),
+      const LiveCallsCancelledVerticleTile(),
+      const LiveCallsCancelledVerticleTile(),
     ]
   ];
 
@@ -113,13 +120,16 @@ class _StatusPageState extends State<StatusPage> {
       ),
       body: SafeArea(
           child: Container(
-              padding: EdgeInsets.all(20),
+              padding: const EdgeInsets.all(20),
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
                   Container(
                       height: 40,
-                      child: ListView.builder(
+                      margin: const EdgeInsets.all(8.0),
+                      child: ListView.separated(
+                          separatorBuilder: (context, index) =>
+                              const SizedBox(width: 24),
                           shrinkWrap: true,
                           scrollDirection: Axis.horizontal,
                           itemCount: statusPageCategories.length,
@@ -128,18 +138,29 @@ class _StatusPageState extends State<StatusPage> {
                                 onTap: () {
                                   _onCategoryTapped(index);
                                 },
-                                child: TextBox(
-                                    text:
-                                        statusPageCategories[index].toString(),
-                                    isSelected: false,
-                                    textSize: 16));
+                                child: Container(
+                                    padding: const EdgeInsets.all(8.0),
+                                    decoration: BoxDecoration(
+                                      borderRadius: BorderRadius.circular(15),
+                                      color: _selectedCategoryIndex == index
+                                          ? kPrimaryBlackColor
+                                          : Colors.white,
+                                    ),
+                                    child: TextBox(
+                                        text: statusPageCategories[index]
+                                            .toString(),
+                                        isSelected: false,
+                                        textSize: 16)));
                           })),
-                  SizedBox(
+                  const SizedBox(
                     height: 10,
                   ),
-                  Container(
+                  SizedBox(
                       height: 35,
-                      child: ListView.builder(
+                      child: ListView.separated(
+                          separatorBuilder: (context, index) => const SizedBox(
+                                width: 30,
+                              ),
                           shrinkWrap: true,
                           scrollDirection: Axis.horizontal,
                           itemCount: _subcategoryList[_selectedCategoryIndex]
@@ -150,36 +171,43 @@ class _StatusPageState extends State<StatusPage> {
                                 onTap: () {
                                   _onSubCategoryTapped(index);
                                 },
-                                child: TextBox(
-                                    text:
-                                        _subcategoryList[_selectedCategoryIndex]
-                                                [index]
+                                child: Container(
+                                    padding: const EdgeInsets.all(8.0),
+                                    decoration: BoxDecoration(
+                                      borderRadius: BorderRadius.circular(15),
+                                      color: _selectedSubCategoryIndex == index
+                                          ? kPrimaryBlackColor
+                                          : Colors.white,
+                                    ),
+                                    child: TextBox(
+                                        text: _subcategoryList[
+                                                _selectedCategoryIndex][index]
                                             .toString(),
-                                    isSelected: false,
-                                    textSize: 14));
+                                        isSelected: false,
+                                        textSize: 14)));
                           })),
                   Padding(
                     padding: const EdgeInsets.only(
                         left: 20, right: 20, top: 10, bottom: 10),
                     child: Row(
                       mainAxisAlignment: MainAxisAlignment.spaceAround,
-                      children: [
+                      children: const [
                         StatusPageSearchBar(),
-                        const SizedBox(
+                        SizedBox(
                           width: 10,
                         ),
                         StatusPageFilterSort()
                       ],
                     ),
                   ),
-                  SizedBox(
+                  const SizedBox(
                     height: 8,
                   ),
                   Divider(
                     color: kprimaryTextColor,
                     thickness: 1,
                   ),
-                  SizedBox(
+                  const SizedBox(
                     height: 8,
                   ),
                   Expanded(

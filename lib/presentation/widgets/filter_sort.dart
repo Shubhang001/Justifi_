@@ -29,7 +29,7 @@ class FilterSort extends StatelessWidget {
                   context: context,
                   builder: (BuildContext context) {
                     return SortOptionsBottomSheet(
-                      sortOptions: [
+                      sortOptions: const [
                         'Price - high to low',
                         'Price - low to high',
                         'Rating - High to low',
@@ -55,7 +55,7 @@ class FilterSort extends StatelessWidget {
             GestureDetector(
               onTap: () {
                 Navigator.push(context, MaterialPageRoute(builder: (_) {
-                  return FilterPage();
+                  return const FilterPage();
                 }));
               },
               child: Icon(

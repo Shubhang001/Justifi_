@@ -30,7 +30,6 @@ class AdvocateCardExtended extends StatelessWidget {
       padding: const EdgeInsets.all(8.0),
       child: GestureDetector(
         onTap: () {
-          print("Hello");
           Navigator.push(
               context,
               MaterialPageRoute(
@@ -141,30 +140,89 @@ class AdvocateCardExtended extends StatelessWidget {
                     )
                   ],
                 ),
-              ),
-              Padding(
-                padding: const EdgeInsets.symmetric(horizontal: 8, vertical: 3),
-                child: Align(
-                  alignment: Alignment.bottomRight,
-                  child: Container(
-                    height: 10,
-                    width: 44,
-                    decoration: BoxDecoration(
-                        color: Colors.green,
-                        borderRadius: BorderRadius.circular(2)),
-                    child: Center(
-                      child: Text(
-                        'View Profile',
-                        style: kProfileButtonText,
+                Column(
+                  mainAxisAlignment: MainAxisAlignment.spaceAround,
+                  children: [
+                    Text(
+                      rating.toString(),
+                      style: kAdvocateCardRating,
+                    ),
+                    StarRating(rating: rating)
+                  ],
+                )
+              ],
+            ),
+            IntrinsicHeight(
+              child: Row(
+                mainAxisAlignment: MainAxisAlignment.spaceAround,
+                children: [
+                  Column(
+                    children: [
+                      Text(
+                        '80',
+                        style: kAdvocateCardCount,
                       ),
+                      Text(
+                        'Clients',
+                        style: kAdvocateCardCountTitle,
+                      )
+                    ],
+                  ),
+                  const VerticalDivider(
+                    color: Colors.black,
+                  ),
+                  Column(
+                    children: [
+                      Text(
+                        '80',
+                        style: kAdvocateCardCount,
+                      ),
+                      Text(
+                        'Cases',
+                        style: kAdvocateCardCountTitle,
+                      )
+                    ],
+                  ),
+                  const VerticalDivider(
+                    color: Colors.black,
+                  ),
+                  Column(
+                    children: [
+                      Text(
+                        '80',
+                        style: kAdvocateCardCount,
+                      ),
+                      Text(
+                        'Experiences',
+                        style: kAdvocateCardCountTitle,
+                      )
+                    ],
+                  )
+                ],
+              ),
+            ),
+            Padding(
+              padding: const EdgeInsets.symmetric(horizontal: 8, vertical: 3),
+              child: Align(
+                alignment: Alignment.bottomRight,
+                child: Container(
+                  height: 10,
+                  width: 44,
+                  decoration: BoxDecoration(
+                      color: Colors.green,
+                      borderRadius: BorderRadius.circular(2)),
+                  child: Center(
+                    child: Text(
+                      'View Profile',
+                      style: kProfileButtonText,
                     ),
                   ),
                 ),
-              )
-            ],
-          ),
+              ),
+            )
+          ],
         ),
       ),
-    );
+    )
   }
 }

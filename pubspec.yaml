@@ -41,6 +41,11 @@ dependencies:
   flutter_otp_text_field: ^1.1.1
   smooth_star_rating_null_safety: ^1.0.4+2
   flutter_rating_bar: ^4.0.1
+  flutter_svg: ^2.0.4
+  table_calendar: ^3.0.8
+  syncfusion_flutter_calendar: ^21.1.38
+  flutter_calendar_carousel: ^2.4.1
+  image_stack: ^2.1.1
   
 
 
@@ -71,6 +76,7 @@ flutter:
     - assets/images/
     - assets/category_icons/
     - assets/nav_icons/
+    - assets/icons/
   #   - images/a_dot_ham.jpeg
 
   # An image asset can refer to one or more resolution-specific "variants", see

@@ -1,17 +1,19 @@
 import 'package:flutter/material.dart';
-import 'package:jusitfi_admin/presentation/widgets/big_button.dart';
+import 'package:jusitfi_admin/presentation/widgets/smallButton.dart';
 import 'package:jusitfi_admin/utils/constants/textstyles.dart';
-
-import '../../utils/constants/colors.dart';
+import '../screens/finished_page.dart';
+import '../screens/homepage.dart';
 
 class RatingDialog extends StatefulWidget {
+  const RatingDialog({super.key});
+
   @override
   _RatingDialogState createState() => _RatingDialogState();
 }
 
 class _RatingDialogState extends State<RatingDialog> {
-  double _rating = 0;
-  String _review = '';
+  final double _rating = 0;
+  final String _review = '';
 
   @override
   Widget build(BuildContext context) {
@@ -23,19 +25,19 @@ class _RatingDialogState extends State<RatingDialog> {
         child: Column(
           mainAxisSize: MainAxisSize.min,
           children: [
-            SizedBox(
+            const SizedBox(
               height: 20,
             ),
             Container(
               decoration: BoxDecoration(borderRadius: BorderRadius.circular(7)),
+              width: 60,
+              height: 50,
               child: Image.asset(
                 'assets/images/advocate_img.png',
                 fit: BoxFit.fill,
               ),
-              width: 60,
-              height: 50,
             ),
-            SizedBox(
+            const SizedBox(
               height: 10,
             ),
             Text(
@@ -45,7 +47,7 @@ class _RatingDialogState extends State<RatingDialog> {
             Row(
               mainAxisAlignment: MainAxisAlignment.center,
               children: [
-                Icon(
+                const Icon(
                   Icons.pin_drop_rounded,
                   size: 15,
                   color: Colors.white,
@@ -56,7 +58,7 @@ class _RatingDialogState extends State<RatingDialog> {
                 )
               ],
             ),
-            SizedBox(height: 30),
+            const SizedBox(height: 30),
             Text(
               'Rate Your Experience',
               style: kCallName,
@@ -66,11 +68,11 @@ class _RatingDialogState extends State<RatingDialog> {
               children: [
                 IconButton(
                   icon: _rating >= 1
-                      ? Icon(
+                      ? const Icon(
                           Icons.star,
                           size: 40,
                         )
-                      : Icon(
+                      : const Icon(
                           Icons.star_border_outlined,
                           size: 40,
                         ),
@@ -83,11 +85,11 @@ class _RatingDialogState extends State<RatingDialog> {
                 ),
                 IconButton(
                   icon: _rating >= 2
-                      ? Icon(
+                      ? const Icon(
                           Icons.star,
                           size: 40,
                         )
-                      : Icon(
+                      : const Icon(
                           Icons.star_border_outlined,
                           size: 40,
                         ),
@@ -100,11 +102,11 @@ class _RatingDialogState extends State<RatingDialog> {
                 ),
                 IconButton(
                   icon: _rating >= 3
-                      ? Icon(
+                      ? const Icon(
                           Icons.star,
                           size: 40,
                         )
-                      : Icon(
+                      : const Icon(
                           Icons.star_border_outlined,
                           size: 40,
                         ),
@@ -117,11 +119,11 @@ class _RatingDialogState extends State<RatingDialog> {
                 ),
                 IconButton(
                   icon: _rating >= 4
-                      ? Icon(
+                      ? const Icon(
                           Icons.star,
                           size: 40,
                         )
-                      : Icon(
+                      : const Icon(
                           Icons.star_border_outlined,
                           size: 40,
                         ),
@@ -134,11 +136,11 @@ class _RatingDialogState extends State<RatingDialog> {
                 ),
                 IconButton(
                   icon: _rating >= 5
-                      ? Icon(
+                      ? const Icon(
                           Icons.star,
                           size: 40,
                         )
-                      : Icon(
+                      : const Icon(
                           Icons.star_border_outlined,
                           size: 40,
                         ),
@@ -151,7 +153,7 @@ class _RatingDialogState extends State<RatingDialog> {
                 ),
               ],
             ),
-            SizedBox(height: 30),
+            const SizedBox(height: 30),
             Padding(
               padding: const EdgeInsets.all(8.0),
               child: Text(
@@ -163,15 +165,15 @@ class _RatingDialogState extends State<RatingDialog> {
               decoration: InputDecoration(
                 filled: true,
                 focusedBorder: OutlineInputBorder(
-                  borderSide: BorderSide(color: Colors.white),
+                  borderSide: const BorderSide(color: Colors.white),
                   borderRadius: BorderRadius.circular(25.7),
                 ),
                 enabledBorder: UnderlineInputBorder(
-                  borderSide: BorderSide(color: Colors.white),
+                  borderSide: const BorderSide(color: Colors.white),
                   borderRadius: BorderRadius.circular(25.7),
                 ),
                 fillColor: Colors.white,
-                border: OutlineInputBorder(),
+                border: const OutlineInputBorder(),
               ),
               maxLines: 5,
               onChanged: (value) {
@@ -180,26 +182,17 @@ class _RatingDialogState extends State<RatingDialog> {
                 });
               },
             ),
-            SizedBox(
+            const SizedBox(
               height: 10,
             ),
             Padding(
               padding: const EdgeInsets.all(8.0),
-              child: InkWell(
-                onTap: () => Navigator.pop(context),
-                child: Container(
-                  child: Center(
-                    child: Text(
-                      'Submit',
-                      style: kMainCategory,
-                    ),
-                  ),
-                  width: 120,
-                  height: 40,
-                  decoration: BoxDecoration(
-                      color: Colors.white,
-                      borderRadius: BorderRadius.circular(20)),
-                ),
+              child: smallButton(
+                nextPage: FinishedPage(
+                    text: 'Your Feedback has been submitted',
+                    nextPage: const HomePage(),
+                    nextPageName: 'Home'),
+                name: 'Submit',
               ),
             )
           ],

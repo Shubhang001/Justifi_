@@ -3,7 +3,7 @@ import '../../utils/constants/colors.dart';
 import '../../utils/constants/textstyles.dart';
 
 class SearchBar extends StatelessWidget {
-  SearchBar({super.key, required this.backgroundColor});
+  const SearchBar({super.key, required this.backgroundColor});
   final Color backgroundColor;
 
   @override
