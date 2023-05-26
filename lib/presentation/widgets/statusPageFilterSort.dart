@@ -19,7 +19,7 @@ class StatusPageFilterSort extends StatelessWidget {
         child: Row(
           mainAxisAlignment: MainAxisAlignment.spaceAround,
           children: [
-            Container(
+            SizedBox(
               height: 50,
               child: Row(children: const [
                 Icon(
@@ -34,7 +34,7 @@ class StatusPageFilterSort extends StatelessWidget {
             VerticalDivider(
               color: isDark ? Colors.white : Colors.black,
             ),
-            Container(
+            SizedBox(
                 height: 30,
                 width: 30,
                 child: Image.asset(

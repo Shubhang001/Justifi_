@@ -1,7 +1,6 @@
-
-
 import 'package:flutter/material.dart';
 import 'package:jusitfi_admin/data/models/category_model.dart';
+import 'package:jusitfi_admin/presentation/screens/finished_page.dart';
 import 'package:jusitfi_admin/presentation/widgets/filter_sort.dart';
 import 'package:jusitfi_admin/presentation/widgets/searchbar.dart';
 import 'package:jusitfi_admin/presentation/widgets/show_sub_cat.dart';
@@ -65,10 +64,10 @@ class MorePage extends StatelessWidget {
                   SearchBarUpdated(
                     backgroundColor: Colors.black,
                   ),
-                  SizedBox(
+                  const SizedBox(
                     width: 10,
                   ),
-                  FilterSort(
+                  const FilterSort(
                     bgColor: Colors.black,
                     dividerColor: Colors.white,
                   )
@@ -97,9 +96,6 @@ class MorePage extends StatelessWidget {
                     return InkWell(
                       onTap: () {
                         ShowSubCat(context, subCatItems);
-                      
-                        
-                      
                       },
                       child: Column(
                         crossAxisAlignment: CrossAxisAlignment.center,

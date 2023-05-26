@@ -6,7 +6,10 @@ class TextBox extends StatefulWidget {
   bool? isSelected;
   int? textSize;
   TextBox(
-      {required this.text, required this.isSelected, required this.textSize});
+      {super.key,
+      required this.text,
+      required this.isSelected,
+      required this.textSize});
 
   @override
   State<TextBox> createState() => _TextBoxState();

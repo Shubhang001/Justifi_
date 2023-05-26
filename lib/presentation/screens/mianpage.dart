@@ -18,9 +18,9 @@ class _MainPageState extends State<MainPage> {
   int _selectedIndex = 0;
 
   final List<Widget> _widgetOptions = <Widget>[
-    HomePage(),
-    FloatCases(),
-    StatusPage(),
+    const HomePage(),
+    const FloatCases(),
+    const StatusPage(),
     const WalletPage(
         userName: "Sangeeta Rai",
         userImage: "assets/images/user_image.png",

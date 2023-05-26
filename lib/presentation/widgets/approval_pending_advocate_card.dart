@@ -28,7 +28,7 @@ class ApprovalPendingAdvocateCard extends StatelessWidget {
   final String image;
   final String name;
   final String location;
-  final int rating;
+  final double rating;
   final String date;
   final String time;
   final int duration;
@@ -44,7 +44,7 @@ class ApprovalPendingAdvocateCard extends StatelessWidget {
     return Padding(
       padding: const EdgeInsets.all(8.0),
       child: Container(
-        padding: EdgeInsets.all(8),
+        padding: const EdgeInsets.all(8),
         decoration: BoxDecoration(
             color: Colors.black, borderRadius: BorderRadius.circular(15)),
         child: Column(
@@ -82,7 +82,7 @@ class ApprovalPendingAdvocateCard extends StatelessWidget {
                       borderRadius: BorderRadius.circular(15)),
                   child: Row(
                     children: [
-                      Icon(
+                      const Icon(
                         Icons.star,
                         color: Colors.yellow,
                       ),
@@ -95,19 +95,19 @@ class ApprovalPendingAdvocateCard extends StatelessWidget {
                 )
               ],
             ),
-            SizedBox(height: 8),
+            const SizedBox(height: 8),
             Divider(
               color: kprimaryTextColor,
               thickness: 2,
             ),
             Container(
-              padding: EdgeInsets.all(8),
+              padding: const EdgeInsets.all(8),
               child: Row(
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
                   Row(
                     children: [
-                      Icon(
+                      const Icon(
                         Icons.calendar_month,
                         color: Colors.white,
                       ),
@@ -119,14 +119,14 @@ class ApprovalPendingAdvocateCard extends StatelessWidget {
                   ),
                   Row(
                     children: [
-                      Container(
+                      SizedBox(
                           height: 16,
                           width: 16,
                           child: Image.asset(
                             "assets/icons/time_clock.png",
                             fit: BoxFit.cover,
                           )),
-                      SizedBox(
+                      const SizedBox(
                         width: 4,
                       ),
                       Text(
@@ -137,7 +137,7 @@ class ApprovalPendingAdvocateCard extends StatelessWidget {
                   ),
                   Row(
                     children: [
-                      Icon(
+                      const Icon(
                         Icons.timelapse,
                         color: Colors.white,
                       ),
@@ -156,22 +156,22 @@ class ApprovalPendingAdvocateCard extends StatelessWidget {
                 courtType: courtType,
                 caseCategory: caseCategory,
                 caseSubCategory: caseSubCategory),
-            SizedBox(
+            const SizedBox(
               height: 2,
             ),
             IntrinsicHeight(
               child: Row(
                 mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                 children: [
-                  VideoCallWidget(),
-                  VerticalDivider(
+                  const VideoCallWidget(),
+                  const VerticalDivider(
                     color: Colors.white,
                     thickness: 1,
                   ),
                   Row(
                     mainAxisAlignment: MainAxisAlignment.spaceAround,
                     children: [
-                      Icon(
+                      const Icon(
                         Icons.currency_rupee,
                         size: 20,
                         color: Colors.white,
@@ -186,7 +186,7 @@ class ApprovalPendingAdvocateCard extends StatelessWidget {
                       )
                     ],
                   ),
-                  VerticalDivider(
+                  const VerticalDivider(
                     color: Colors.white,
                     thickness: 1,
                   ),
@@ -194,7 +194,7 @@ class ApprovalPendingAdvocateCard extends StatelessWidget {
                       child: Row(
                     mainAxisAlignment: MainAxisAlignment.spaceAround,
                     children: [
-                      Icon(
+                      const Icon(
                         Icons.pending,
                         size: 20,
                         color: Colors.white,
@@ -216,11 +216,11 @@ class ApprovalPendingAdvocateCard extends StatelessWidget {
                 ],
               ),
             ),
-            SizedBox(
+            const SizedBox(
               height: 8,
             ),
             Container(
-                padding: EdgeInsets.all(8),
+                padding: const EdgeInsets.all(8),
                 child: Row(children: [
                   Row(
                     mainAxisAlignment: MainAxisAlignment.spaceAround,

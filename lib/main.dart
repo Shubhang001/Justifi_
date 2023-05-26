@@ -1,4 +1,3 @@
-import 'package:device_preview/device_preview.dart';
 import 'package:flutter/material.dart';
 import 'package:jusitfi_admin/presentation/screens/finished_page.dart';
 import 'package:jusitfi_admin/presentation/screens/assignwork_lawyer_profile.dart';
