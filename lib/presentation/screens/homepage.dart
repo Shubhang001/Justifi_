@@ -1,4 +1,3 @@
-import 'package:flutter/material.dart';
 import 'package:jusitfi_admin/presentation/screens/more_page.dart';
 import 'package:jusitfi_admin/presentation/screens/view_all.dart';
 import 'package:jusitfi_admin/utils/constants/colors.dart';
@@ -7,6 +6,7 @@ import '../widgets/category_tile.dart';
 import '../widgets/filter_sort.dart';
 import '../widgets/horizontal_tile.dart';
 import '../widgets/searchbar.dart';
+import 'package:flutter/material.dart';
 
 class HomePage extends StatefulWidget {
   const HomePage({super.key});
@@ -63,14 +63,17 @@ class _HomePageState extends State<HomePage> {
                   left: 20, right: 30, top: 10, bottom: 10),
               child: Row(
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                children: [
-                  SearchBar(
+                children: const [
+                  SearchBarUpdated(
                     backgroundColor: Colors.black,
                   ),
-                  const SizedBox(
+                  SizedBox(
                     width: 10,
                   ),
-                  const FilterSort()
+                  FilterSort(
+                    bgColor: Colors.black,
+                    dividerColor: Colors.white,
+                  )
                 ],
               ),
             ),
