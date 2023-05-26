@@ -396,6 +396,7 @@ TextStyle lawyerName = GoogleFonts.inter(
 TextStyle locationName = GoogleFonts.inter(
   color: Colors.black,
   fontSize: 15,
+);
 TextStyle todayTextStyle = GoogleFonts.mukta(
   color: Colors.white,
   fontSize: 16,
@@ -612,7 +613,7 @@ TextStyle alegreyaW700S18White = GoogleFonts.alegreya(
   fontWeight: FontWeight.w700,
 );
 
-TextStyle interW700S10Black = GoogleFonts.alegreya(
+var interW700S10Black = GoogleFonts.alegreya(
   color: Colors.black,
   fontSize: 10,
   fontWeight: FontWeight.w700,

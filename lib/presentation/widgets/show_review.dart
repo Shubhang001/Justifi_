@@ -12,8 +12,8 @@ class RatingDialog extends StatefulWidget {
 }
 
 class _RatingDialogState extends State<RatingDialog> {
-  final double _rating = 0;
-  final String _review = '';
+  double _rating = 0;
+  String _review = '';
 
   @override
   Widget build(BuildContext context) {
