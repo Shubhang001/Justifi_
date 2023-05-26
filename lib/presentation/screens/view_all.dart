@@ -3,7 +3,6 @@ import 'package:jusitfi_admin/data/models/lawyer_model.dart';
 import 'package:jusitfi_admin/presentation/widgets/advocate_card_extended.dart';
 import 'package:jusitfi_admin/presentation/widgets/filter_sort.dart';
 import 'package:jusitfi_admin/presentation/widgets/searchbar.dart';
-import 'package:jusitfi_admin/utils/constants/colors.dart';
 import 'package:jusitfi_admin/utils/constants/textstyles.dart';
 
 import '../widgets/category_tile.dart';
@@ -146,14 +145,15 @@ class ViewAllPage extends StatelessWidget {
                 ),
                 Row(
                   children: [
-                    SearchBar(
+                    SearchBarUpdated(
                       backgroundColor: Colors.white,
                     ),
                     SizedBox(
                       width: 10,
                     ),
                     FilterSort(
-                      isDark: false,
+                      bgColor: Colors.white,
+                      dividerColor: Colors.black,
                     )
                   ],
                 ),

@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
+import 'package:jusitfi_admin/presentation/widgets/cancellation_dialog_box.dart';
 import 'package:jusitfi_admin/presentation/widgets/case_post_cancellation_dialog.dart';
 import 'package:jusitfi_admin/presentation/widgets/view_description_dialog_box.dart';
 import 'package:jusitfi_admin/presentation/widgets/view_document_dialog_box.dart';
-import 'package:jusitfi_admin/utils/constants/colors.dart';
 import '../../utils/constants/textstyles.dart';
 
 class CasePostCancelledCard extends StatelessWidget {
@@ -84,6 +84,7 @@ class CasePostCancelledCard extends StatelessWidget {
                         width: 4,
                       ),
                       Column(
+                        crossAxisAlignment: CrossAxisAlignment.start,
                         children: [
                           Row(
                             mainAxisAlignment: MainAxisAlignment.start,
@@ -234,32 +235,52 @@ class CasePostCancelledCard extends StatelessWidget {
                     viewApplication
                         ? Column(
                             children: [
-                              Padding(
-                                  padding: EdgeInsets.all(2),
-                                  child: Container(
-                                      padding:
-                                          EdgeInsets.only(right: 8, left: 8),
-                                      decoration: BoxDecoration(
-                                        color: Colors.white,
-                                        borderRadius: BorderRadius.circular(10),
-                                      ),
-                                      child: Text(
-                                        " Document",
-                                        style: poppinsW400S9Black,
-                                      ))),
-                              Padding(
-                                  padding: EdgeInsets.all(2),
-                                  child: Container(
-                                      padding:
-                                          EdgeInsets.only(right: 8, left: 8),
-                                      decoration: BoxDecoration(
-                                        color: Colors.white,
-                                        borderRadius: BorderRadius.circular(10),
-                                      ),
-                                      child: Text(
-                                        " Description",
-                                        style: poppinsW400S9Black,
-                                      ))),
+                              GestureDetector(
+                                  onTap: () {
+                                    //show alert dialo
+                                    showDialog(
+                                        context: context,
+                                        builder: (BuildContext context) {
+                                          return const ViewDocumentDialogBox();
+                                        });
+                                  },
+                                  child: Padding(
+                                      padding: EdgeInsets.all(2),
+                                      child: Container(
+                                          padding: EdgeInsets.only(
+                                              right: 8, left: 8),
+                                          decoration: BoxDecoration(
+                                            color: Colors.white,
+                                            borderRadius:
+                                                BorderRadius.circular(10),
+                                          ),
+                                          child: Text(
+                                            " Document",
+                                            style: poppinsW400S9Black,
+                                          )))),
+                              GestureDetector(
+                                  onTap: () {
+                                    //show alert dialo
+                                    showDialog(
+                                        context: context,
+                                        builder: (BuildContext context) {
+                                          return const ViewDescriptionDialogBox();
+                                        });
+                                  },
+                                  child: Padding(
+                                      padding: EdgeInsets.all(2),
+                                      child: Container(
+                                          padding: EdgeInsets.only(
+                                              right: 8, left: 8),
+                                          decoration: BoxDecoration(
+                                            color: Colors.white,
+                                            borderRadius:
+                                                BorderRadius.circular(10),
+                                          ),
+                                          child: Text(
+                                            " Description",
+                                            style: poppinsW400S9Black,
+                                          )))),
                             ],
                           )
                         : Column(
@@ -356,25 +377,34 @@ class CasePostCancelledCard extends StatelessWidget {
                                   });
                             },
                             child: Center(
-                                child: Padding(
-                                    padding: EdgeInsets.all(16),
-                                    child: Container(
-                                        padding: EdgeInsets.only(
-                                            left: 16,
-                                            right: 16,
-                                            top: 6,
-                                            bottom: 6),
-                                        decoration: BoxDecoration(
-                                          color: Colors.grey,
-                                          borderRadius:
-                                              BorderRadius.circular(4),
-                                        ),
-                                        child: Row(
-                                          children: [
-                                            Text("Cancellation Reason",
-                                                style: poppinsW400S9Black),
-                                          ],
-                                        ))))),
+                                child: GestureDetector(
+                                    onTap: () {
+                                      //show alert dialo
+                                      showDialog(
+                                          context: context,
+                                          builder: (BuildContext context) {
+                                            return const CancellationDialogBox();
+                                          });
+                                    },
+                                    child: Padding(
+                                        padding: EdgeInsets.all(16),
+                                        child: Container(
+                                            padding: EdgeInsets.only(
+                                                left: 16,
+                                                right: 16,
+                                                top: 6,
+                                                bottom: 6),
+                                            decoration: BoxDecoration(
+                                              color: Colors.grey,
+                                              borderRadius:
+                                                  BorderRadius.circular(4),
+                                            ),
+                                            child: Row(
+                                              children: [
+                                                Text("Cancellation Reason",
+                                                    style: poppinsW400S9Black),
+                                              ],
+                                            )))))),
                       ],
                     )
                   : Row(
@@ -395,21 +425,30 @@ class CasePostCancelledCard extends StatelessWidget {
                                         style: poppinsW400S9Black),
                                   ],
                                 ))),
-                        Padding(
-                            padding: EdgeInsets.all(16),
-                            child: Container(
-                                padding: EdgeInsets.only(
-                                    left: 16, right: 16, top: 6, bottom: 6),
-                                decoration: BoxDecoration(
-                                  color: Colors.grey,
-                                  borderRadius: BorderRadius.circular(4),
-                                ),
-                                child: Row(
-                                  children: [
-                                    Text("Cancellation Reason",
-                                        style: poppinsW400S9Black),
-                                  ],
-                                ))),
+                        GestureDetector(
+                            onTap: () {
+                              //show alert dialo
+                              showDialog(
+                                  context: context,
+                                  builder: (BuildContext context) {
+                                    return const CancellationDialogBox();
+                                  });
+                            },
+                            child: Padding(
+                                padding: EdgeInsets.all(16),
+                                child: Container(
+                                    padding: EdgeInsets.only(
+                                        left: 16, right: 16, top: 6, bottom: 6),
+                                    decoration: BoxDecoration(
+                                      color: Colors.grey,
+                                      borderRadius: BorderRadius.circular(4),
+                                    ),
+                                    child: Row(
+                                      children: [
+                                        Text("Cancellation Reason",
+                                            style: poppinsW400S9Black),
+                                      ],
+                                    )))),
                       ],
                     )
 

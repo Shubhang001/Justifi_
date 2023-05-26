@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:jusitfi_admin/presentation/widgets/schedule_cancelled_advocate_card.dart';
-import 'package:jusitfi_admin/presentation/widgets/scheduled_advocateCard.dart';
 import 'package:jusitfi_admin/utils/constants/textstyles.dart';
 
 class ScheduleCancelledPreviousVerticalTile extends StatelessWidget {

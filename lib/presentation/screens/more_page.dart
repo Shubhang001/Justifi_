@@ -1,14 +1,10 @@
-import 'dart:ui';
+
 
 import 'package:flutter/material.dart';
 import 'package:jusitfi_admin/data/models/category_model.dart';
-import 'package:jusitfi_admin/presentation/screens/assign_work.dart';
 import 'package:jusitfi_admin/presentation/widgets/filter_sort.dart';
 import 'package:jusitfi_admin/presentation/widgets/searchbar.dart';
-import 'package:jusitfi_admin/presentation/widgets/show_call_details.dart';
-import 'package:jusitfi_admin/presentation/widgets/show_review.dart';
 import 'package:jusitfi_admin/presentation/widgets/show_sub_cat.dart';
-import 'package:jusitfi_admin/utils/constants/colors.dart';
 import 'package:jusitfi_admin/utils/constants/textstyles.dart';
 
 class MorePage extends StatelessWidget {
@@ -66,13 +62,16 @@ class MorePage extends StatelessWidget {
             children: [
               Row(
                 children: [
-                  SearchBar(
+                  SearchBarUpdated(
                     backgroundColor: Colors.black,
                   ),
                   SizedBox(
                     width: 10,
                   ),
-                  FilterSort()
+                  FilterSort(
+                    bgColor: Colors.black,
+                    dividerColor: Colors.white,
+                  )
                 ],
               ),
               const SizedBox(

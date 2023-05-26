@@ -18,7 +18,7 @@ import '../widgets/statusPageFilterSort.dart';
 import '../widgets/statusPageSearchBar.dart';
 
 class StatusPage extends StatefulWidget {
-  StatusPage({Key? key}) : super(key: key);
+  const StatusPage({Key? key}) : super(key: key);
 
   @override
   State<StatusPage> createState() => _StatusPageState();

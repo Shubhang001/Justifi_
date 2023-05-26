@@ -94,14 +94,14 @@ class _OffersPage extends State<OffersPage> {
                         children: [
                           Container(
                             height: 200,
-                            width: 160,
+                            //width: 160,
                             decoration: BoxDecoration(
                                 borderRadius: BorderRadius.circular(20),
                                 color: Colors.black),
                             child: Column(
                               crossAxisAlignment: CrossAxisAlignment.center,
                               children: [
-                                SizedBox(
+                                const SizedBox(
                                   height: 20,
                                 ),
                                 Image.asset("assets/images/advocate_tie.png"),
@@ -113,7 +113,7 @@ class _OffersPage extends State<OffersPage> {
                                   "15% Extra Money",
                                   style: poppinsW600S14White,
                                 ),
-                                SizedBox(
+                                const SizedBox(
                                   height: 25,
                                 ),
                                 Row(
@@ -123,16 +123,16 @@ class _OffersPage extends State<OffersPage> {
                                         "Code : 23HT873 ",
                                         style: poppinsW500S15White,
                                       ),
-                                      SizedBox(
+                                      const SizedBox(
                                         width: 10,
                                       ),
-                                      Icon(
+                                      const Icon(
                                         Icons.copy,
                                         color: Colors.white,
                                         size: 15,
                                       )
                                     ]),
-                                SizedBox(
+                                const SizedBox(
                                   height: 10,
                                 ),
                               ],
@@ -140,14 +140,14 @@ class _OffersPage extends State<OffersPage> {
                           ),
                           Container(
                             height: 200,
-                            width: 160,
+                            //rwidth: 160,
                             decoration: BoxDecoration(
                                 borderRadius: BorderRadius.circular(20),
                                 color: Colors.black),
                             child: Column(
                               crossAxisAlignment: CrossAxisAlignment.center,
                               children: [
-                                SizedBox(
+                                const SizedBox(
                                   height: 20,
                                 ),
                                 Image.asset("assets/images/advocate_tie.png"),
@@ -159,7 +159,7 @@ class _OffersPage extends State<OffersPage> {
                                   "15% Discount",
                                   style: poppinsW600S14White,
                                 ),
-                                SizedBox(
+                                const SizedBox(
                                   height: 25,
                                 ),
                                 Row(
@@ -169,16 +169,16 @@ class _OffersPage extends State<OffersPage> {
                                         "Code : 23HT873 ",
                                         style: poppinsW500S15White,
                                       ),
-                                      SizedBox(
+                                      const SizedBox(
                                         width: 10,
                                       ),
-                                      Icon(
+                                      const Icon(
                                         Icons.copy,
                                         color: Colors.white,
                                         size: 15,
                                       )
                                     ]),
-                                SizedBox(
+                                const SizedBox(
                                   height: 10,
                                 ),
                               ],

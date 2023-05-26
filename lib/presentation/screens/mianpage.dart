@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:jusitfi_admin/presentation/screens/float_cases.dart';
+import 'package:jusitfi_admin/presentation/screens/float_cases4.dart';
 import 'package:jusitfi_admin/presentation/screens/homepage.dart';
 import 'package:jusitfi_admin/presentation/screens/status_page.dart';
 import 'package:jusitfi_admin/presentation/screens/wallet_page.dart';
@@ -17,7 +19,7 @@ class _MainPageState extends State<MainPage> {
 
   final List<Widget> _widgetOptions = <Widget>[
     HomePage(),
-    const Text('Page 2'),
+    FloatCases(),
     StatusPage(),
     const WalletPage(
         userName: "Sangeeta Rai",
