@@ -18,7 +18,7 @@ import '../widgets/statusPageFilterSort.dart';
 import '../widgets/statusPageSearchBar.dart';
 
 class StatusPage extends StatefulWidget {
-  StatusPage({Key? key}) : super(key: key);
+  const StatusPage({Key? key}) : super(key: key);
 
   @override
   State<StatusPage> createState() => _StatusPageState();
@@ -120,16 +120,16 @@ class _StatusPageState extends State<StatusPage> {
       ),
       body: SafeArea(
           child: Container(
-              padding: EdgeInsets.all(20),
+              padding: const EdgeInsets.all(20),
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
                   Container(
                       height: 40,
-                      margin: EdgeInsets.all(8.0),
+                      margin: const EdgeInsets.all(8.0),
                       child: ListView.separated(
                           separatorBuilder: (context, index) =>
-                              SizedBox(width: 24),
+                              const SizedBox(width: 24),
                           shrinkWrap: true,
                           scrollDirection: Axis.horizontal,
                           itemCount: statusPageCategories.length,
@@ -139,7 +139,7 @@ class _StatusPageState extends State<StatusPage> {
                                   _onCategoryTapped(index);
                                 },
                                 child: Container(
-                                    padding: EdgeInsets.all(8.0),
+                                    padding: const EdgeInsets.all(8.0),
                                     decoration: BoxDecoration(
                                       borderRadius: BorderRadius.circular(15),
                                       color: _selectedCategoryIndex == index
@@ -155,7 +155,7 @@ class _StatusPageState extends State<StatusPage> {
                   const SizedBox(
                     height: 10,
                   ),
-                  Container(
+                  SizedBox(
                       height: 35,
                       child: ListView.separated(
                           separatorBuilder: (context, index) => const SizedBox(
@@ -172,7 +172,7 @@ class _StatusPageState extends State<StatusPage> {
                                   _onSubCategoryTapped(index);
                                 },
                                 child: Container(
-                                    padding: EdgeInsets.all(8.0),
+                                    padding: const EdgeInsets.all(8.0),
                                     decoration: BoxDecoration(
                                       borderRadius: BorderRadius.circular(15),
                                       color: _selectedSubCategoryIndex == index

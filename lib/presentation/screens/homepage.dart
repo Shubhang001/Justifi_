@@ -1,4 +1,4 @@
-
+import 'package:flutter/material.dart';
 import 'package:jusitfi_admin/presentation/screens/more_page.dart';
 import 'package:jusitfi_admin/presentation/screens/view_all.dart';
 import 'package:jusitfi_admin/utils/constants/colors.dart';
@@ -64,16 +64,13 @@ class _HomePageState extends State<HomePage> {
               child: Row(
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
-                  SearchBarUpdated(
+                  SearchBar(
                     backgroundColor: Colors.black,
                   ),
                   const SizedBox(
                     width: 10,
                   ),
-                  FilterSort(
-                    bgColor: Colors.black,
-                    dividerColor: Colors.white,
-                  )
+                  const FilterSort()
                 ],
               ),
             ),
@@ -87,16 +84,16 @@ class _HomePageState extends State<HomePage> {
             Row(
               mainAxisAlignment: MainAxisAlignment.spaceAround,
               children: [
-                CategoryTile(
+                const CategoryTile(
                   image: 'assets/category_icons/criminal.png',
                   name: 'Criminal',
                 ),
-                CategoryTile(
+                const CategoryTile(
                   image: 'assets/category_icons/family and adoption.png',
                   name: 'Family and Adoption',
                   isTransparentBackground: false,
                 ),
-                CategoryTile(
+                const CategoryTile(
                   image: 'assets/category_icons/cybercrime.png',
                   name: 'Cybercrime',
                 ),
@@ -106,7 +103,7 @@ class _HomePageState extends State<HomePage> {
                       return MorePage();
                     }));
                   },
-                  child: CategoryTile(
+                  child: const CategoryTile(
                     image: 'assets/category_icons/more.png',
                     name: 'More',
                   ),

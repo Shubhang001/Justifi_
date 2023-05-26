@@ -9,14 +9,14 @@ List<String> statusPageCategories = [
 List<String> scheduledMeetSubCategories = [
   "Pending Approval",
   "Scheduled",
-  "Cancelled",
+  "Canclled",
   "Completed",
   "Refund"
 ];
 List<String> casePostSubCategories = [
-  "Pending Apply",
-  "Pending Hire",
+  "Pending Apply"
+      "Pending Hire",
   "Hired",
-  "Cancelled",
+  "Canclled",
 ];
-List<String> liveCallsSubcategories = ["Completed", "Cancelled", "Not Picked"];
+List<String> liveCallsSubcategories = ["Completed", "Canclled", "Not Picked"];

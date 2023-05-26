@@ -5,13 +5,15 @@ import '../screens/finished_page.dart';
 import '../screens/homepage.dart';
 
 class RatingDialog extends StatefulWidget {
+  const RatingDialog({super.key});
+
   @override
   _RatingDialogState createState() => _RatingDialogState();
 }
 
 class _RatingDialogState extends State<RatingDialog> {
-  double _rating = 0;
-  String _review = '';
+  final double _rating = 0;
+  final String _review = '';
 
   @override
   Widget build(BuildContext context) {
@@ -28,12 +30,12 @@ class _RatingDialogState extends State<RatingDialog> {
             ),
             Container(
               decoration: BoxDecoration(borderRadius: BorderRadius.circular(7)),
+              width: 60,
+              height: 50,
               child: Image.asset(
                 'assets/images/advocate_img.png',
                 fit: BoxFit.fill,
               ),
-              width: 60,
-              height: 50,
             ),
             const SizedBox(
               height: 10,
@@ -185,10 +187,13 @@ class _RatingDialogState extends State<RatingDialog> {
             ),
             Padding(
               padding: const EdgeInsets.all(8.0),
-              child: smallButton(nextPage: FinishedPage(
+              child: smallButton(
+                nextPage: FinishedPage(
                     text: 'Your Feedback has been submitted',
-                    nextPage: HomePage(),
-                    nextPageName: 'Home'),name: 'Submit',),
+                    nextPage: const HomePage(),
+                    nextPageName: 'Home'),
+                name: 'Submit',
+              ),
             )
           ],
         ),
@@ -196,4 +201,3 @@ class _RatingDialogState extends State<RatingDialog> {
     );
   }
 }
-

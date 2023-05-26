@@ -1,18 +1,15 @@
-
+import 'dart:ffi';
 
 import 'package:flutter/material.dart';
-
 import 'package:jusitfi_admin/presentation/screens/filterpage.dart';
 import 'package:jusitfi_admin/presentation/widgets/sort_options.dart';
 
 import '../../utils/constants/colors.dart';
 
 class FilterSort extends StatelessWidget {
-  const FilterSort(
-      {super.key, required this.bgColor, required this.dividerColor});
+  const FilterSort({super.key, this.isDark = true});
 
-  final Color bgColor;
-  final Color dividerColor;
+  final bool isDark;
 
   @override
   Widget build(BuildContext context) {
@@ -21,7 +18,8 @@ class FilterSort extends StatelessWidget {
         width: 50,
         height: 50,
         decoration: BoxDecoration(
-            color: bgColor, borderRadius: BorderRadius.circular(8)),
+            color: isDark ? Colors.black : Colors.white,
+            borderRadius: BorderRadius.circular(8)),
         child: Row(
           mainAxisAlignment: MainAxisAlignment.spaceAround,
           children: [
@@ -31,7 +29,7 @@ class FilterSort extends StatelessWidget {
                   context: context,
                   builder: (BuildContext context) {
                     return SortOptionsBottomSheet(
-                      sortOptions: [
+                      sortOptions: const [
                         'Price - high to low',
                         'Price - low to high',
                         'Rating - High to low',
@@ -48,21 +46,21 @@ class FilterSort extends StatelessWidget {
               },
               child: Icon(
                 Icons.arrow_upward_rounded,
-                color: dividerColor,
+                color: kmainButtonColor,
               ),
             ),
             VerticalDivider(
-              color: dividerColor,
+              color: isDark ? Colors.white : Colors.black,
             ),
             GestureDetector(
               onTap: () {
                 Navigator.push(context, MaterialPageRoute(builder: (_) {
-                  return FilterPage();
+                  return const FilterPage();
                 }));
               },
               child: Icon(
                 Icons.menu,
-                color: dividerColor,
+                color: kmainButtonColor,
               ),
             )
           ],

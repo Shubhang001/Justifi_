@@ -381,6 +381,21 @@ TextStyle kProfileButtonText = GoogleFonts.poppins(
   fontWeight: FontWeight.w300,
 );
 
+TextStyle lawyerProfileTitle = GoogleFonts.poppins(
+  color: Colors.white,
+  fontSize: 20,
+  fontWeight: FontWeight.w300,
+);
+
+TextStyle lawyerName = GoogleFonts.inter(
+  color: Colors.black,
+  fontSize: 25,
+  fontWeight: FontWeight.bold,
+);
+
+TextStyle locationName = GoogleFonts.inter(
+  color: Colors.black,
+  fontSize: 15,
 TextStyle todayTextStyle = GoogleFonts.mukta(
   color: Colors.white,
   fontSize: 16,

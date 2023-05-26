@@ -21,7 +21,7 @@ class AdvocateProfileTable extends StatelessWidget {
       Container(
         margin: const EdgeInsets.all(8),
         child: Table(
-          defaultColumnWidth: FixedColumnWidth(140.0),
+          defaultColumnWidth: const FixedColumnWidth(140.0),
           border: TableBorder.all(
               color: Colors.white,
               style: BorderStyle.solid,

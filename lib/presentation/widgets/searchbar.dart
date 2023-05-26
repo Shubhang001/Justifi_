@@ -2,8 +2,8 @@ import 'package:flutter/material.dart';
 import '../../utils/constants/colors.dart';
 import '../../utils/constants/textstyles.dart';
 
-class SearchBarUpdated extends StatelessWidget {
-  SearchBarUpdated({super.key, required this.backgroundColor});
+class SearchBar extends StatelessWidget {
+  const SearchBar({super.key, required this.backgroundColor});
   final Color backgroundColor;
 
   @override
