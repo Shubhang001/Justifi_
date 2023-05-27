@@ -91,7 +91,7 @@ class _FreezedBalancePageState extends State<FreezedBalancePage> {
                       Expanded(
                           child: ListView(
                         scrollDirection: Axis.vertical,
-                        children: [FreezedBalanceVerticalTile()],
+                        children: const [FreezedBalanceVerticalTile()],
                       ))
                     ]))));
   }

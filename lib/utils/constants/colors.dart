@@ -20,6 +20,7 @@ Color kmainButtonColor = HexColor('#9C9C9C');
 Color kinactive = HexColor('#3E3E3E75');
 Color ksearchColor = HexColor('#6D6D6D');
 Color kSearchBarColor = HexColor('#D9D9D9');
+
 Color kPrimaryBlackColor = HexColor('#000000');
 Color casePostCardGreyText = HexColor('#A9A9A9');
 Color redButtonColor = HexColor('#940202');
@@ -29,3 +30,4 @@ Color kPendingcolor = HexColor('#DFB200');
 Color kHiredColor = HexColor('#0C9B00');
 Color kCanceledColor = HexColor('#F11515');
 Color hiringCardBgColor = HexColor('#E8E8E8');
+

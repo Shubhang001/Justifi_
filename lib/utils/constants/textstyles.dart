@@ -618,3 +618,9 @@ var interW700S10Black = GoogleFonts.alegreya(
   fontSize: 10,
   fontWeight: FontWeight.w700,
 );
+
+TextStyle poppinsW600S10Black = GoogleFonts.poppins(
+  color: Colors.black,
+  fontSize: 10,
+  fontWeight: FontWeight.w600,
+);

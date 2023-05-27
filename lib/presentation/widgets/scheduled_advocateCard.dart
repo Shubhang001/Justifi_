@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:jusitfi_admin/presentation/widgets/videoCallWidget.dart';
+import 'package:jusitfi_admin/presentation/widgets/view_cancel_reason_dialog.dart';
 import 'package:jusitfi_admin/utils/constants/colors.dart';
 import '../../utils/constants/textstyles.dart';
 import 'advocate_profile_table.dart';
@@ -232,10 +233,21 @@ class ScheduledAdvocateCard extends StatelessWidget {
                     ],
                   ),
                   const Spacer(),
-                  Text(
-                    "Cancel",
-                    style: cancelTextStyle,
-                  )
+                  GestureDetector(
+                      onTap: () {
+                        showDialog(
+                            context: context,
+                            builder: (BuildContext context) {
+                              return const ViewCancelReasonDialog(
+                                message:
+                                    "Scheduled Meeting has been cancelled Successfully",
+                              );
+                            });
+                      },
+                      child: Text(
+                        "Cancel",
+                        style: cancelTextStyle,
+                      ))
                 ])),
             ////
           ],
