@@ -1,4 +1,5 @@
 import 'package:jusitfi_admin/presentation/screens/more_page.dart';
+import 'package:jusitfi_admin/presentation/screens/profile_page.dart';
 import 'package:jusitfi_admin/presentation/screens/view_all.dart';
 import 'package:jusitfi_admin/utils/constants/colors.dart';
 import 'package:jusitfi_admin/utils/constants/textstyles.dart';
@@ -36,6 +37,17 @@ class _HomePageState extends State<HomePage> {
                         borderRadius: BorderRadius.circular(7)),
                     height: 47,
                     width: 47,
+                    child: GestureDetector(
+                      onTap: () {
+                        Navigator.push(
+                          context,
+                          MaterialPageRoute(
+                            builder: (context) => const ProfileScreen(),
+                          ),
+                        );
+                      },
+                      child: const Icon(Icons.person),
+                    ),
                   ),
                   Row(
                     children: [
@@ -63,7 +75,7 @@ class _HomePageState extends State<HomePage> {
                   left: 20, right: 30, top: 10, bottom: 10),
               child: Row(
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                children: [
+                children: const [
                   SearchBarUpdated(
                     backgroundColor: Colors.black,
                   ),

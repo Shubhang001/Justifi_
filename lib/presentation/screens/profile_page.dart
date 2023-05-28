@@ -78,7 +78,7 @@ class ProfileScreen extends StatelessWidget {
                 ],
               ),
             ),
-            CustomTile(
+            const CustomTile(
               icon: Icons.logout,
               title: "LogOut",
               route: HomePage(),
@@ -113,13 +113,13 @@ class CustomTile extends StatelessWidget {
         children: [
           Container(
             decoration: const BoxDecoration(
-              color: Colors.white,
+              color: Colors.grey,
               boxShadow: [
                 BoxShadow(
-                  color: Colors.grey,
+                  color: Colors.white,
                 ),
                 BoxShadow(
-                  color: Colors.grey,
+                  color: Colors.white,
                 ),
               ],
             ),

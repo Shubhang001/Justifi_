@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:image_picker/image_picker.dart';
 
 class ChatPage extends StatelessWidget {
   const ChatPage({super.key});
@@ -98,7 +99,11 @@ class ChatPage extends StatelessWidget {
                   Radius.circular(50),
                 )),
             child: IconButton(
-              onPressed: () {},
+              onPressed: () async {
+                final ImagePicker picker = ImagePicker();
+                final XFile? image =
+                    await picker.pickImage(source: ImageSource.gallery);
+              },
               icon: const Icon(
                 Icons.add,
                 color: Colors.white,
@@ -109,17 +114,24 @@ class ChatPage extends StatelessWidget {
             child: Container(
               padding: const EdgeInsets.all(8),
               margin: const EdgeInsets.symmetric(vertical: 10, horizontal: 2),
-              height: 50,
+              // height: 50,
               decoration: const BoxDecoration(
                 color: Colors.black,
                 borderRadius: BorderRadius.all(
                   Radius.circular(25),
                 ),
               ),
-              child: const TextField(),
+              child: const TextField(
+                style: TextStyle(color: Colors.white),
+                decoration: InputDecoration(
+                  suffixIcon: Icon(
+                    Icons.send,
+                    color: Colors.white,
+                  ),
+                ),
+              ),
             ),
           ),
-          const Icon(Icons.send)
         ],
       ),
     );

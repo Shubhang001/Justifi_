@@ -1187,7 +1187,7 @@ class _ImageContainer extends StatelessWidget {
             image: DecorationImage(
               fit: BoxFit.cover,
               image: AssetImage(
-                "assets/images/advocate_image.png",
+                "assets/images/advocate_img.png",
               ),
             ),
             color: Colors.black,
