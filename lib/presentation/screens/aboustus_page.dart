@@ -12,10 +12,11 @@ class AboutUsPAge extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: buildprofileNav(context),
       body: SingleChildScrollView(
         child: Column(
           children: [
+            const ProfileNavBar(),
+
             Container(
               width: double.infinity,
               height: 40,

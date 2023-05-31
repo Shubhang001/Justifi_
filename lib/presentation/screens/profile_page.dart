@@ -12,10 +12,10 @@ class ProfileScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: buildprofileNav(context),
       body: SingleChildScrollView(
         child: Column(
           children: [
+            const ProfileNavBar(),
             Container(
               margin: const EdgeInsets.only(top: 20),
               child: const Center(

@@ -21,9 +21,9 @@ class _ContactUsPageState extends State<ContactUsPage>
       length: 2,
     );
     return Scaffold(
-      appBar: buildprofileNav(context),
       body: Column(
         children: [
+          const ProfileNavBar(),
           Container(
             width: double.infinity,
             color: const Color.fromRGBO(222, 226, 230, 1),
