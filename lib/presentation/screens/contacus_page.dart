@@ -248,70 +248,110 @@ class NewIssue extends StatelessWidget {
     "Order Type : ",
     "Select Order : ",
     "Order issue : ",
-    "Description : ",
   ];
 
   static List hinttitle = [
     "Select Order Type",
-    "Select Order",
+    "Select Order Id",
     "Select Order issue",
-    "Description ",
   ];
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: Column(
-        children: [
-          const DatePciker(
-            hintText: "Select Order Date",
-            issueTitle: "Order Date",
-          ),
-          Expanded(
-              child: ListView.builder(
-            itemCount: hinttitle.length,
-            itemBuilder: (context, index) {
-              return IssueWidget(
-                hintText: hinttitle[index],
-                issueTitle: title[index],
-              );
-            },
-          )),
-          Container(
-            margin: const EdgeInsets.only(bottom: 20),
-            child: ElevatedButton(
-              style: const ButtonStyle(
-                backgroundColor: MaterialStatePropertyAll(Colors.black),
-              ),
-              onPressed: () {
-                ashowAlertDialog(BuildContext context) {
-                  Widget okButton = TextButton(
-                    child: const Text("OK"),
-                    onPressed: () {
-                      Navigator.of(context, rootNavigator: true).pop('dialog');
-                    },
-                  );
-                  AlertDialog alert = AlertDialog(
-                    title: const Center(child: Text("Thanks for reaching out")),
-                    content: const Text(
-                        "Your ticket has been initiated . You will receive an  update from our executive in 3 - 5 working days .\n\nTicket ID : XT182"),
-                    actions: [
-                      okButton,
-                    ],
-                  );
-                  showDialog(
-                    context: context,
-                    builder: (BuildContext context) {
-                      return alert;
-                    },
-                  );
-                }
-
-                ashowAlertDialog(context);
-              },
-              child: const Text("Submit"),
+      body: SingleChildScrollView(
+        child: Column(
+          children: [
+            const DatePciker(
+              hintText: "Select Order Date",
+              issueTitle: "Order Date",
             ),
-          )
+            for (int i = 0; i < title.length; i++)
+              IssueWidget(
+                hintText: hinttitle[i],
+                issueTitle: title[i],
+              ),
+
+            const AddDescription(),
+
+            //
+            Container(
+              margin: const EdgeInsets.only(
+                top: 30,
+                bottom: 20,
+              ),
+              child: ElevatedButton(
+                style: const ButtonStyle(
+                  backgroundColor: MaterialStatePropertyAll(Colors.black),
+                ),
+                onPressed: () {
+                  ashowAlertDialog(BuildContext context) {
+                    Widget okButton = TextButton(
+                      child: const Text("OK"),
+                      onPressed: () {
+                        Navigator.of(context, rootNavigator: true)
+                            .pop('dialog');
+                      },
+                    );
+                    AlertDialog alert = AlertDialog(
+                      title:
+                          const Center(child: Text("Thanks for reaching out")),
+                      content: const Text(
+                          "Your ticket has been initiated . You will receive an  update from our executive in 3 - 5 working days .\n\nTicket ID : XT182"),
+                      actions: [
+                        okButton,
+                      ],
+                    );
+                    showDialog(
+                      context: context,
+                      builder: (BuildContext context) {
+                        return alert;
+                      },
+                    );
+                  }
+
+                  ashowAlertDialog(context);
+                },
+                child: const Text("Submit"),
+              ),
+            )
+          ],
+        ),
+      ),
+    );
+  }
+}
+
+class AddDescription extends StatelessWidget {
+  const AddDescription({
+    super.key,
+  });
+
+  @override
+  Widget build(BuildContext context) {
+    return Container(
+      margin: const EdgeInsets.only(left: 10, top: 15),
+      child: Row(
+        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+        children: [
+          const Text("Description"),
+          Expanded(
+            child: Container(
+              padding: const EdgeInsets.only(left: 10),
+              margin: const EdgeInsets.only(left: 20, right: 5),
+              decoration: BoxDecoration(
+                border: Border.all(color: Colors.black),
+              ),
+              child: const TextField(
+                maxLength: null,
+                maxLines: 5,
+                decoration: InputDecoration(
+                  border: InputBorder.none,
+                  hintText: "Description",
+                ),
+              ),
+            ),
+          ),
         ],
       ),
     );
@@ -331,7 +371,12 @@ class IssueWidget extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-      margin: const EdgeInsets.all(20),
+      margin: const EdgeInsets.only(
+        top: 25,
+        bottom: 20,
+        left: 10,
+        right: 20,
+      ),
       child: Row(
         children: [
           Text(issueTitle),
@@ -384,7 +429,11 @@ class DatePciker extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-      margin: const EdgeInsets.all(20),
+      margin: const EdgeInsets.only(
+        top: 20,
+        left: 10,
+        right: 20,
+      ),
       child: Row(
         children: [
           Text(issueTitle),
