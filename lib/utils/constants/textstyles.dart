@@ -16,6 +16,34 @@ TextStyle ktextFieldMainTitle = GoogleFonts.poppins(
   fontWeight: FontWeight.w700,
 );
 
+TextStyle kApplicationDetails = GoogleFonts.poppins(
+  color: ksearchColor,
+  fontStyle: FontStyle.normal,
+  fontSize: 11,
+  fontWeight: FontWeight.w500,
+);
+
+TextStyle kApplicationPending = GoogleFonts.poppins(
+  color: kPendingcolor,
+  fontStyle: FontStyle.normal,
+  fontSize: 11,
+  fontWeight: FontWeight.w500,
+);
+
+TextStyle kApplicationHired = GoogleFonts.poppins(
+  color: kHiredColor,
+  fontStyle: FontStyle.normal,
+  fontSize: 11,
+  fontWeight: FontWeight.w500,
+);
+
+TextStyle kApplicationCanceled = GoogleFonts.poppins(
+  color: kCanceledColor,
+  fontStyle: FontStyle.normal,
+  fontSize: 11,
+  fontWeight: FontWeight.w500,
+);
+
 TextStyle kobButton = GoogleFonts.poppins(
   color: kobbuttonColor,
   fontStyle: FontStyle.normal,
@@ -35,10 +63,22 @@ TextStyle kAdvocateCardSubTitle = GoogleFonts.poppins(
   fontSize: 4,
 );
 
+TextStyle kAdvocateCardSubTitleDark = GoogleFonts.poppins(
+  color: Colors.white,
+  fontWeight: FontWeight.w300,
+  fontSize: 8,
+);
+
 TextStyle kAdvocateCardRating = GoogleFonts.poppins(
   color: Colors.black,
   fontWeight: FontWeight.w300,
   fontSize: 16,
+);
+
+TextStyle kAdvocateCardRatingDark = GoogleFonts.poppins(
+  color: Colors.white,
+  fontWeight: FontWeight.w300,
+  fontSize: 20,
 );
 
 TextStyle kAdvocateCardRatingWhite = GoogleFonts.poppins(
@@ -105,6 +145,17 @@ TextStyle kCallAns = GoogleFonts.poppins(
   color: Colors.white,
   fontWeight: FontWeight.w400,
   fontSize: 12,
+);
+TextStyle kSmallHint = GoogleFonts.openSans(
+  color: kprimaryTextColor,
+  fontWeight: FontWeight.w400,
+  fontSize: 10,
+);
+
+TextStyle kSmallHintDark = GoogleFonts.openSans(
+  color: Colors.black,
+  fontWeight: FontWeight.w400,
+  fontSize: 10,
 );
 
 TextStyle ksearch = GoogleFonts.poppins(
@@ -190,6 +241,12 @@ TextStyle kAdvocateCardName = GoogleFonts.openSans(
   fontWeight: FontWeight.w600,
 );
 
+TextStyle kAdvocateCardNameDark = GoogleFonts.openSans(
+  color: Colors.white,
+  fontSize: 15,
+  fontWeight: FontWeight.w600,
+);
+
 TextStyle kAdvocateCardNameWhite = GoogleFonts.openSans(
   color: Colors.white,
   fontSize: 14,
@@ -253,6 +310,12 @@ TextStyle kAdvocateCardLocation = GoogleFonts.openSans(
   fontWeight: FontWeight.w400,
 );
 
+TextStyle kAdvocateCardLocationDark = GoogleFonts.openSans(
+  color: Colors.white,
+  fontSize: 8,
+  fontWeight: FontWeight.w400,
+);
+
 TextStyle kAdvocateCardLocationWhite = GoogleFonts.openSans(
   color: Colors.white,
   fontSize: 10,
@@ -270,6 +333,11 @@ TextStyle kViewAll = GoogleFonts.openSans(
   fontSize: 12,
   fontWeight: FontWeight.w400,
 );
+TextStyle kTitle = GoogleFonts.openSans(
+  color: Colors.white,
+  fontSize: 25,
+  fontWeight: FontWeight.w600,
+);
 
 TextStyle kAdvocateCardCount = GoogleFonts.openSans(
   color: Colors.black,
@@ -277,9 +345,21 @@ TextStyle kAdvocateCardCount = GoogleFonts.openSans(
   fontWeight: FontWeight.w700,
 );
 
+TextStyle kAdvocateCardCountDark = GoogleFonts.openSans(
+  color: Colors.white,
+  fontSize: 10,
+  fontWeight: FontWeight.w700,
+);
+
 TextStyle kAdvocateCardCountTitle = GoogleFonts.poppins(
   color: Colors.black,
   fontSize: 6,
+  fontWeight: FontWeight.w400,
+);
+
+TextStyle kAdvocateCardCountTitleDark = GoogleFonts.poppins(
+  color: Colors.white,
+  fontSize: 10,
   fontWeight: FontWeight.w400,
 );
 
@@ -301,6 +381,22 @@ TextStyle kProfileButtonText = GoogleFonts.poppins(
   fontWeight: FontWeight.w300,
 );
 
+TextStyle lawyerProfileTitle = GoogleFonts.poppins(
+  color: Colors.white,
+  fontSize: 20,
+  fontWeight: FontWeight.w300,
+);
+
+TextStyle lawyerName = GoogleFonts.inter(
+  color: Colors.black,
+  fontSize: 25,
+  fontWeight: FontWeight.bold,
+);
+
+TextStyle locationName = GoogleFonts.inter(
+  color: Colors.black,
+  fontSize: 15,
+);
 TextStyle todayTextStyle = GoogleFonts.mukta(
   color: Colors.white,
   fontSize: 16,
@@ -517,8 +613,14 @@ TextStyle alegreyaW700S18White = GoogleFonts.alegreya(
   fontWeight: FontWeight.w700,
 );
 
-TextStyle interW700S10Black = GoogleFonts.alegreya(
+var interW700S10Black = GoogleFonts.alegreya(
   color: Colors.black,
   fontSize: 10,
   fontWeight: FontWeight.w700,
+);
+
+TextStyle poppinsW600S10Black = GoogleFonts.poppins(
+  color: Colors.black,
+  fontSize: 10,
+  fontWeight: FontWeight.w600,
 );

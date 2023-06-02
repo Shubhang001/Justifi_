@@ -85,8 +85,8 @@ Future<Object?> ShowSubCat(BuildContext context, List subCatItems) {
       filter:
           ImageFilter.blur(sigmaX: 4 * anim1.value, sigmaY: 4 * anim1.value),
       child: FadeTransition(
-        child: child,
         opacity: anim1,
+        child: child,
       ),
     ),
     context: context,

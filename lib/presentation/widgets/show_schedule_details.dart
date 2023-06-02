@@ -1,10 +1,11 @@
 import 'dart:ui';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
-import 'package:jusitfi_admin/presentation/screens/assign_work.dart';
+
 import 'package:jusitfi_admin/presentation/screens/homepage.dart';
 import '../../utils/constants/colors.dart';
 import '../../utils/constants/textstyles.dart';
+import '../screens/finished_page.dart';
 
 Future<Object?> showScheduleDetails(BuildContext context, String date,int duration, String startTime, String endTime) {
   return showGeneralDialog(

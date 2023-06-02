@@ -3,7 +3,6 @@ import 'package:jusitfi_admin/data/models/lawyer_model.dart';
 import 'package:jusitfi_admin/presentation/widgets/advocate_card_extended.dart';
 import 'package:jusitfi_admin/presentation/widgets/filter_sort.dart';
 import 'package:jusitfi_admin/presentation/widgets/searchbar.dart';
-import 'package:jusitfi_admin/utils/constants/colors.dart';
 import 'package:jusitfi_admin/utils/constants/textstyles.dart';
 
 import '../widgets/category_tile.dart';
@@ -136,28 +135,29 @@ class ViewAllPage extends StatelessWidget {
                     onPressed: () {
                       Navigator.pop(context);
                     },
-                    icon: Icon(
+                    icon: const Icon(
                       Icons.arrow_back,
                       color: Colors.white,
                       size: 30,
                     )),
-                SizedBox(
+                const SizedBox(
                   height: 10,
                 ),
                 Row(
-                  children: [
-                    SearchBar(
+                  children: const [
+                    SearchBarUpdated(
                       backgroundColor: Colors.white,
                     ),
                     SizedBox(
                       width: 10,
                     ),
                     FilterSort(
-                      isDark: false,
+                      bgColor: Colors.white,
+                      dividerColor: Colors.black,
                     )
                   ],
                 ),
-                SizedBox(
+                const SizedBox(
                   height: 30,
                 ),
                 Row(
@@ -172,7 +172,7 @@ class ViewAllPage extends StatelessWidget {
                             style: kHomePageTitle,
                           ),
                         ),
-                        CategoryTile(
+                        const CategoryTile(
                           image: 'assets/category_icons/criminal.png',
                           name: 'Criminal',
                           isDark: true,
@@ -188,7 +188,7 @@ class ViewAllPage extends StatelessWidget {
                             style: kHomePageTitle,
                           ),
                         ),
-                        CategoryTile(
+                        const CategoryTile(
                           image: 'assets/category_icons/cybercrime.png',
                           name: 'Cyber Crime',
                           isDark: true,
@@ -211,7 +211,8 @@ class ViewAllPage extends StatelessWidget {
                   height: 500,
                   child: GridView.builder(
                     itemCount: items.length,
-                    gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
+                    gridDelegate:
+                        const SliverGridDelegateWithFixedCrossAxisCount(
                       childAspectRatio: (136 / 165),
                       crossAxisCount: 2,
                       mainAxisSpacing: 40,

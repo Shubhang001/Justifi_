@@ -6,7 +6,7 @@ import '../../utils/constants/colors.dart';
 import '../../utils/constants/textstyles.dart';
 
 class BuyingHiringPackagePage extends StatefulWidget {
-  BuyingHiringPackagePage({
+  const BuyingHiringPackagePage({
     Key? key,
     required this.packageType,
   }) : super(key: key);

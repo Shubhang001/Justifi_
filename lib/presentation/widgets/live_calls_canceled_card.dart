@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:jusitfi_admin/presentation/widgets/review_alert_dialog.dart';
 import '../../utils/constants/textstyles.dart';
 
 class LiveCallsCancelledCard extends StatelessWidget {

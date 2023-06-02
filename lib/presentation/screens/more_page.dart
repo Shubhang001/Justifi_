@@ -1,14 +1,9 @@
-import 'dart:ui';
-
 import 'package:flutter/material.dart';
 import 'package:jusitfi_admin/data/models/category_model.dart';
-import 'package:jusitfi_admin/presentation/screens/assign_work.dart';
+import 'package:jusitfi_admin/presentation/screens/finished_page.dart';
 import 'package:jusitfi_admin/presentation/widgets/filter_sort.dart';
 import 'package:jusitfi_admin/presentation/widgets/searchbar.dart';
-import 'package:jusitfi_admin/presentation/widgets/show_call_details.dart';
-import 'package:jusitfi_admin/presentation/widgets/show_review.dart';
 import 'package:jusitfi_admin/presentation/widgets/show_sub_cat.dart';
-import 'package:jusitfi_admin/utils/constants/colors.dart';
 import 'package:jusitfi_admin/utils/constants/textstyles.dart';
 
 class MorePage extends StatelessWidget {
@@ -66,13 +61,16 @@ class MorePage extends StatelessWidget {
             children: [
               Row(
                 children: [
-                  SearchBar(
+                  SearchBarUpdated(
                     backgroundColor: Colors.black,
                   ),
-                  SizedBox(
+                  const SizedBox(
                     width: 10,
                   ),
-                  FilterSort()
+                  const FilterSort(
+                    bgColor: Colors.black,
+                    dividerColor: Colors.white,
+                  )
                 ],
               ),
               const SizedBox(
@@ -98,9 +96,6 @@ class MorePage extends StatelessWidget {
                     return InkWell(
                       onTap: () {
                         ShowSubCat(context, subCatItems);
-                      
-                        
-                      
                       },
                       child: Column(
                         crossAxisAlignment: CrossAxisAlignment.center,
