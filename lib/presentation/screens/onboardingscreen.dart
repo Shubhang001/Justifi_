@@ -113,7 +113,7 @@ class _OnBoardingScreenState extends State<OnBoardingScreen> {
                           } else {
                             Navigator.of(context).pushAndRemoveUntil(
                                 MaterialPageRoute(
-                                    builder: (context) => MainPage()),
+                                    builder: (context) => const MainPage()),
                                 (Route<dynamic> route) => false);
                           }
                         });

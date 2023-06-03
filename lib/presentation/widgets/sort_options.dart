@@ -5,7 +5,8 @@ class SortOptionsBottomSheet extends StatelessWidget {
   final List<String> sortOptions;
   final Function(String) onSortOptionSelected;
 
-  const SortOptionsBottomSheet({super.key, 
+  const SortOptionsBottomSheet({
+    super.key,
     required this.sortOptions,
     required this.onSortOptionSelected,
   });
