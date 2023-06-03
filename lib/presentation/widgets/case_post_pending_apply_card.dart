@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:jusitfi_admin/presentation/widgets/cancellation_dialog_box.dart';
 import 'package:jusitfi_admin/presentation/widgets/locked_application_dialog_box.dart';
+import 'package:jusitfi_admin/presentation/widgets/view_cancel_reason_dialog.dart';
 import 'package:jusitfi_admin/presentation/widgets/view_document_dialog_box.dart';
 import 'package:jusitfi_admin/presentation/widgets/view_description_dialog_box.dart';
 import 'package:jusitfi_admin/utils/constants/colors.dart';
@@ -330,25 +331,20 @@ class CasePostPendingApplyCard extends StatelessWidget {
                       thickness: 1,
                     ),
                     Container(
-                        child: Row(
-                      mainAxisAlignment: MainAxisAlignment.spaceAround,
+                        child: Column(
                       children: [
-                        Icon(
+                        Text(
+                          " Pending ",
+                          style: tableTextNormal,
+                        ),
+                        const Icon(
                           Icons.pending,
                           size: 20,
                           color: Colors.white,
                         ),
-                        Column(
-                          children: [
-                            Text(
-                              " Pending ",
-                              style: tableTextNormal,
-                            ),
-                            Text(
-                              " Apply",
-                              style: tableTextNormal,
-                            )
-                          ],
+                        Text(
+                          " Apply",
+                          style: tableTextNormal,
                         )
                       ],
                     )),
@@ -394,7 +390,10 @@ class CasePostPendingApplyCard extends StatelessWidget {
                               showDialog(
                                   context: context,
                                   builder: (BuildContext context) {
-                                    return const CancellationDialogBox();
+                                    return const ViewCancelReasonDialog(
+                                      message:
+                                          "Your Post hiring has been cancelled Successfully.",
+                                    );
                                   });
                             },
                             child: Padding(
@@ -425,7 +424,10 @@ class CasePostPendingApplyCard extends StatelessWidget {
                               showDialog(
                                   context: context,
                                   builder: (BuildContext context) {
-                                    return const CancellationDialogBox();
+                                    return const ViewCancelReasonDialog(
+                                      message:
+                                          "Your Post hiring has been cancelled Successfully.",
+                                    );
                                   });
                             },
                             child: Padding(

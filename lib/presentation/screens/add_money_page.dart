@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import 'package:jusitfi_admin/presentation/screens/offers_page.dart';
 import 'package:jusitfi_admin/presentation/screens/proceed_page.dart';
 
 import '../../utils/constants/colors.dart';
@@ -17,7 +18,19 @@ class AddMoneyPage extends StatefulWidget {
 }
 
 class _AddMoneyPageState extends State<AddMoneyPage> {
+  int _selectedIndex = -1;
+  bool _paymentOpt1 = false;
+  bool _paymentOpt2 = false;
+  bool _paymentOpt3 = false;
   TextEditingController _addMoneyController = TextEditingController();
+  void _onAmountTapped(int index) {
+    setState(() {
+      _selectedIndex = index;
+      _addMoneyController.text = index.toString();
+      //_selectedSubCategoryIndex = 0;
+    });
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -29,45 +42,6 @@ class _AddMoneyPageState extends State<AddMoneyPage> {
           ),
         ),
         backgroundColor: kPrimaryBlackColor,
-      ),
-      endDrawer: Drawer(
-        child: ListView(
-          children: const <Widget>[
-            DrawerHeader(
-              decoration: BoxDecoration(
-                color: Colors.black,
-              ),
-              child: Text(
-                'Welcome to Justify',
-                style: TextStyle(
-                  color: Colors.white,
-                  fontSize: 30,
-                ),
-              ),
-            ),
-            ListTile(
-              title: Text("Item1"),
-              leading: Icon(Icons.mail),
-            ),
-            Divider(
-              height: 0.2,
-            ),
-            ListTile(
-              title: Text("Item1"),
-              leading: Icon(Icons.mail),
-            ),
-            Divider(
-              height: 0.2,
-            ),
-            ListTile(
-              title: Text("Item1"),
-              leading: Icon(Icons.mail),
-            ),
-            Divider(
-              height: 0.2,
-            ),
-          ],
-        ),
       ),
       body: SafeArea(
           child: Container(
@@ -116,149 +90,207 @@ class _AddMoneyPageState extends State<AddMoneyPage> {
                     Row(
                       mainAxisAlignment: MainAxisAlignment.spaceBetween,
                       children: [
-                        Container(
-                          height: 40,
-                          width: 84,
-                          decoration: BoxDecoration(
-                              borderRadius: BorderRadius.circular(10),
-                              border:
-                                  Border.all(color: Colors.black, width: 2)),
-                          child: Center(
-                              child: Text(
-                            "₹ 500 ",
-                            style: poppinsW500S15Black,
-                          )),
-                        ),
-                        Container(
-                          height: 40,
-                          width: 84,
-                          decoration: BoxDecoration(
-                              borderRadius: BorderRadius.circular(10),
-                              border:
-                                  Border.all(color: Colors.black, width: 2)),
-                          child: Center(
-                              child: Text(
-                            "₹ 1000 ",
-                            style: poppinsW500S15Black,
-                          )),
-                        ),
-                        Container(
-                          height: 40,
-                          width: 84,
-                          decoration: BoxDecoration(
-                              borderRadius: BorderRadius.circular(10),
-                              border:
-                                  Border.all(color: Colors.black, width: 2)),
-                          child: Center(
-                              child: Text(
-                            "₹ 1500 ",
-                            style: poppinsW500S15Black,
-                          )),
-                        )
+                        GestureDetector(
+                            onTap: () {
+                              _onAmountTapped(500);
+                            },
+                            child: Container(
+                              height: 40,
+                              width: 84,
+                              decoration: BoxDecoration(
+                                  borderRadius: BorderRadius.circular(10),
+                                  border: Border.all(
+                                      color: Colors.black, width: 2)),
+                              child: Center(
+                                  child: Text(
+                                "₹ 500 ",
+                                style: poppinsW500S15Black,
+                              )),
+                            )),
+                        GestureDetector(
+                            onTap: () {
+                              _onAmountTapped(1000);
+                            },
+                            child: Container(
+                              height: 40,
+                              width: 84,
+                              decoration: BoxDecoration(
+                                  borderRadius: BorderRadius.circular(10),
+                                  border: Border.all(
+                                      color: Colors.black, width: 2)),
+                              child: Center(
+                                  child: Text(
+                                "₹ 1000 ",
+                                style: poppinsW500S15Black,
+                              )),
+                            )),
+                        GestureDetector(
+                            onTap: () {
+                              _onAmountTapped(1500);
+                            },
+                            child: Container(
+                              height: 40,
+                              width: 84,
+                              decoration: BoxDecoration(
+                                  borderRadius: BorderRadius.circular(10),
+                                  border: Border.all(
+                                      color: Colors.black, width: 2)),
+                              child: Center(
+                                  child: Text(
+                                "₹ 1500 ",
+                                style: poppinsW500S15Black,
+                              )),
+                            ))
                       ],
                     ),
                     SizedBox(
                       height: 40,
                     ),
-                    Center(
-                        child: Container(
-                      height: 40,
-                      width: 310,
-                      decoration: BoxDecoration(
-                          borderRadius: BorderRadius.circular(10),
-                          color: Colors.black),
-                      child: Center(
-                          child: Text(
-                        "Coupon Code",
-                        style: poppinsW500S18White,
-                      )),
-                    )),
+                    GestureDetector(
+                        onTap: () {
+                          Navigator.of(context).push(MaterialPageRoute(
+                              builder: (context) => OffersPage()));
+                        },
+                        child: Center(
+                            child: Container(
+                          height: 40,
+                          width: 310,
+                          decoration: BoxDecoration(
+                              borderRadius: BorderRadius.circular(10),
+                              color: Colors.black),
+                          child: Center(
+                              child: Text(
+                            "Coupon Code",
+                            style: poppinsW500S18White,
+                          )),
+                        ))),
                     SizedBox(
                       height: 60,
                     ),
-                    Center(
-                        child: Card(
-                            elevation: 10,
-                            shadowColor: Colors.grey,
-                            color: Colors.white,
-                            child: SizedBox(
-                                width: 310,
-                                height: 80,
-                                child: Padding(
-                                    padding: const EdgeInsets.all(20.0),
-                                    child: Row(
-                                      children: [
-                                        Center(
-                                          child: Stack(children: [
-                                            // Image.asset(
-                                            //     "assets/icons/inner_circle.png"),
-                                            Image.asset(
-                                                "assets/icons/outer_circle.png")
-                                          ]),
-                                        ),
-                                        SizedBox(
-                                          width: 10,
-                                        ),
-                                        Text("Pay with Debit/Credit/ATM Card")
-                                      ],
-                                    ))))),
+                    GestureDetector(
+                        onTap: () {
+                          setState(() {
+                            _paymentOpt1 = !_paymentOpt1;
+                          });
+                        },
+                        child: Center(
+                            child: Card(
+                                elevation: 10,
+                                shadowColor: Colors.grey,
+                                color: Colors.white,
+                                child: SizedBox(
+                                    width: 310,
+                                    height: 80,
+                                    child: Padding(
+                                        padding: const EdgeInsets.all(20.0),
+                                        child: Row(
+                                          children: [
+                                            Container(
+                                                decoration: BoxDecoration(
+                                                  borderRadius:
+                                                      BorderRadius.circular(20),
+                                                  color: Colors.black,
+                                                ),
+                                                height: 25,
+                                                width: 25,
+                                                child: Icon(
+                                                  Icons.circle,
+                                                  color: _paymentOpt1 == true
+                                                      ? Colors.black
+                                                      : Colors.white,
+                                                  size: 25,
+                                                )),
+                                            SizedBox(
+                                              width: 10,
+                                            ),
+                                            Text(
+                                                "Pay with Debit/Credit/ATM Card")
+                                          ],
+                                        )))))),
                     SizedBox(
                       height: 10,
                     ),
-                    Center(
-                        child: Card(
-                            elevation: 10,
-                            shadowColor: Colors.grey,
-                            color: Colors.white,
-                            child: SizedBox(
-                                width: 310,
-                                height: 80,
-                                child: Padding(
-                                    padding: const EdgeInsets.all(20.0),
-                                    child: Row(
-                                      children: [
-                                        Center(
-                                          child: Stack(children: [
-                                            Image.asset(
-                                                "assets/icons/inner_circle.png"),
-                                            Image.asset(
-                                                "assets/icons/outer_circle.png")
-                                          ]),
-                                        ),
-                                        SizedBox(
-                                          width: 10,
-                                        ),
-                                        Text("Net Banking")
-                                      ],
-                                    ))))),
+                    GestureDetector(
+                        onTap: () {
+                          setState(() {
+                            _paymentOpt2 = !_paymentOpt2;
+                          });
+                        },
+                        child: Center(
+                            child: Card(
+                                elevation: 10,
+                                shadowColor: Colors.grey,
+                                color: Colors.white,
+                                child: SizedBox(
+                                    width: 310,
+                                    height: 80,
+                                    child: Padding(
+                                        padding: const EdgeInsets.all(20.0),
+                                        child: Row(
+                                          children: [
+                                            Container(
+                                                decoration: BoxDecoration(
+                                                  borderRadius:
+                                                      BorderRadius.circular(20),
+                                                  color: Colors.black,
+                                                ),
+                                                height: 25,
+                                                width: 25,
+                                                child: Icon(
+                                                  Icons.circle,
+                                                  color: _paymentOpt2 == true
+                                                      ? Colors.black
+                                                      : Colors.white,
+                                                  size: 25,
+                                                )),
+                                            SizedBox(
+                                              width: 10,
+                                            ),
+                                            Text("Net Banking")
+                                          ],
+                                        )))))),
                     SizedBox(
                       height: 10,
                     ),
-                    Center(
-                        child: Card(
-                            elevation: 10,
-                            shadowColor: Colors.grey,
-                            color: Colors.white,
-                            child: SizedBox(
-                                width: 310,
-                                height: 80,
-                                child: Padding(
-                                    padding: const EdgeInsets.all(20.0),
-                                    child: Row(
-                                      children: [
-                                        Stack(children: [
-                                          // Image.asset(
-                                          //     "assets/icons/inner_circle.png"),
-                                          Center(
-                                              child: Image.asset(
-                                                  "assets/icons/outer_circle.png"))
-                                        ]),
-                                        SizedBox(
-                                          width: 10,
-                                        ),
-                                        Text("UPI")
-                                      ],
-                                    ))))),
+                    GestureDetector(
+                        onTap: () {
+                          setState(() {
+                            _paymentOpt3 = !_paymentOpt3;
+                          });
+                        },
+                        child: Center(
+                            child: Card(
+                                elevation: 10,
+                                shadowColor: Colors.grey,
+                                color: Colors.white,
+                                child: SizedBox(
+                                    width: 310,
+                                    height: 80,
+                                    child: Padding(
+                                        padding: const EdgeInsets.all(20.0),
+                                        child: Row(
+                                          children: [
+                                            Container(
+                                                decoration: BoxDecoration(
+                                                  borderRadius:
+                                                      BorderRadius.circular(20),
+                                                  color: Colors.black,
+                                                ),
+                                                height: 25,
+                                                width: 25,
+                                                child: Icon(
+                                                  Icons.circle,
+                                                  color: _paymentOpt3 == true
+                                                      ? Colors.black
+                                                      : Colors.white,
+                                                  size: 25,
+                                                )),
+                                            SizedBox(
+                                              width: 10,
+                                            ),
+                                            Text("UPI")
+                                          ],
+                                        )))))),
                     SizedBox(
                       height: 50,
                     ),

@@ -69,18 +69,21 @@ class TransactionCard extends StatelessWidget {
                 ],
               ),
               SizedBox(
-                height: 25,
+                height: 20,
               ),
               Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
                   Text(
+                    "Transaction Id: ",
+                    style: poppinsW500S10White,
+                  ),
+                  Text(
                     transactionID.toString(),
                     style: poppinsW500S15White,
                   ),
-                  Text(
-                    "Transaction Id: ",
-                    style: poppinsW500S10White,
+                  SizedBox(
+                    height: 20,
                   ),
                 ],
               )
@@ -88,8 +91,10 @@ class TransactionCard extends StatelessWidget {
           ),
           Column(
             crossAxisAlignment: CrossAxisAlignment.start,
+            //mainAxisAlignment: MainAxisAlignment.spaceAround,
             children: [
               Column(
+                mainAxisAlignment: MainAxisAlignment.start,
                 children: [
                   Text(
                     "₹ $paidAmount",
@@ -112,15 +117,11 @@ class TransactionCard extends StatelessWidget {
                 ],
               ),
               SizedBox(
-                height: 25,
+                height: 70,
               ),
-              Column(
-                children: [
-                  Text(
-                    message.toString(),
-                    style: poppinsW500S15White,
-                  ),
-                ],
+              Text(
+                message.toString(),
+                style: poppinsW500S15White,
               )
             ],
           ),

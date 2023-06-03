@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:jusitfi_admin/presentation/widgets/cancellation_dialog_box.dart';
+import 'package:jusitfi_admin/presentation/widgets/rating_box.dart';
 import 'package:jusitfi_admin/presentation/widgets/refund_table.dart';
 import '../../utils/constants/textstyles.dart';
 
@@ -78,24 +79,7 @@ class RefundCard extends StatelessWidget {
                       name,
                       style: kAdvocateCardNameWhite,
                     ),
-                    Container(
-                      padding: const EdgeInsets.only(left: 8, right: 10),
-                      decoration: BoxDecoration(
-                          color: Colors.white,
-                          borderRadius: BorderRadius.circular(15)),
-                      child: Row(
-                        children: [
-                          Icon(
-                            Icons.star,
-                            color: Colors.yellow,
-                          ),
-                          Text(
-                            rating.toString(),
-                            style: kAdvocateCardRating,
-                          )
-                        ],
-                      ),
-                    )
+                    RatingBox(rating: rating),
                   ],
                 ),
                 RefundTable(
@@ -169,25 +153,20 @@ class RefundCard extends StatelessWidget {
                     thickness: 1,
                   ),
                   Container(
-                      child: Row(
-                    mainAxisAlignment: MainAxisAlignment.spaceAround,
+                      child: Column(
                     children: [
+                      Text(
+                        "Refund Status",
+                        style: tableTextNormal,
+                      ),
                       const Icon(
                         Icons.pending_rounded,
                         size: 20,
                         color: Colors.white,
                       ),
-                      Column(
-                        children: [
-                          Text(
-                            "Refund Status",
-                            style: tableTextNormal,
-                          ),
-                          Text(
-                            " In Progress",
-                            style: tableTextBold,
-                          )
-                        ],
+                      Text(
+                        " In Progress",
+                        style: tableTextBold,
                       )
                     ],
                   ))

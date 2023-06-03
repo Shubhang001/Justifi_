@@ -153,207 +153,201 @@ class CasePostCancelledCard extends StatelessWidget {
                 height: 16,
               ),
               IntrinsicHeight(
-                child: Row(
-                  mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                  children: [
-                    viewApplication
-                        ? Column(
-                            children: [
-                              Text(
-                                noOfApplication.toString(),
-                                style: poppinsW500S12White,
-                              ),
-                              Text(
-                                "Applications",
-                                style: poppinsW400S9White,
-                              )
-                            ],
-                          )
-                        : Column(
-                            children: [
-                              Row(
-                                children: [
-                                  Text(
-                                    "Description",
-                                    style: poppinsW400S9White,
-                                  )
-                                ],
-                              ),
-                              GestureDetector(
-                                  onTap: () {
-                                    //show alert dialo
-                                    showDialog(
-                                        context: context,
-                                        builder: (BuildContext context) {
-                                          return const ViewDescriptionDialogBox();
-                                        });
-                                  },
-                                  child: Padding(
-                                      padding: EdgeInsets.all(2),
-                                      child: Container(
-                                          padding: EdgeInsets.only(
-                                              left: 8, right: 8),
-                                          decoration: BoxDecoration(
-                                            color: Colors.white,
-                                            borderRadius:
-                                                BorderRadius.circular(10),
-                                          ),
-                                          child: Text(
-                                            " View",
-                                            style: poppinsW400S9Black,
-                                          )))),
-                            ],
-                          ),
-                    VerticalDivider(
-                      color: Colors.white,
-                      thickness: 1,
-                    ),
-                    Column(
-                      children: [
-                        Row(
+                  child: Row(
+                mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                children: [
+                  viewApplication
+                      ? Column(
                           children: [
-                            Icon(
-                              Icons.currency_rupee,
-                              color: Colors.white,
+                            Text(
+                              noOfApplication.toString(),
+                              style: poppinsW500S12White,
                             ),
                             Text(
-                              " Fee Type ",
+                              "Applications",
                               style: poppinsW400S9White,
                             )
                           ],
-                        ),
-                        Text(
-                          feeType,
-                          style: poppinsW400S9White,
                         )
-                      ],
-                    ),
-                    VerticalDivider(
-                      color: Colors.white,
-                      thickness: 1,
-                    ),
-                    viewApplication
-                        ? Column(
-                            children: [
-                              GestureDetector(
-                                  onTap: () {
-                                    //show alert dialo
-                                    showDialog(
-                                        context: context,
-                                        builder: (BuildContext context) {
-                                          return const ViewDocumentDialogBox();
-                                        });
-                                  },
-                                  child: Padding(
-                                      padding: EdgeInsets.all(2),
-                                      child: Container(
-                                          padding: EdgeInsets.only(
-                                              right: 8, left: 8),
-                                          decoration: BoxDecoration(
-                                            color: Colors.white,
-                                            borderRadius:
-                                                BorderRadius.circular(10),
-                                          ),
-                                          child: Text(
-                                            " Document",
-                                            style: poppinsW400S9Black,
-                                          )))),
-                              GestureDetector(
-                                  onTap: () {
-                                    //show alert dialo
-                                    showDialog(
-                                        context: context,
-                                        builder: (BuildContext context) {
-                                          return const ViewDescriptionDialogBox();
-                                        });
-                                  },
-                                  child: Padding(
-                                      padding: EdgeInsets.all(2),
-                                      child: Container(
-                                          padding: EdgeInsets.only(
-                                              right: 8, left: 8),
-                                          decoration: BoxDecoration(
-                                            color: Colors.white,
-                                            borderRadius:
-                                                BorderRadius.circular(10),
-                                          ),
-                                          child: Text(
-                                            " Description",
-                                            style: poppinsW400S9Black,
-                                          )))),
-                            ],
-                          )
-                        : Column(
-                            children: [
-                              Row(
-                                children: [
-                                  Container(
-                                      height: 8,
-                                      width: 8,
-                                      child: Image.asset(
-                                          "assets/icons/document_icon.png")),
-                                  Text(
-                                    "Document",
-                                    style: poppinsW400S9White,
-                                  )
-                                ],
-                              ),
-                              GestureDetector(
-                                  onTap: () {
-                                    //show alert dialo
-                                    showDialog(
-                                        context: context,
-                                        builder: (BuildContext context) {
-                                          return const ViewDocumentDialogBox();
-                                        });
-                                  },
-                                  child: Padding(
-                                      padding: EdgeInsets.all(2),
-                                      child: Container(
-                                          padding: EdgeInsets.only(
-                                              left: 8, right: 8),
-                                          decoration: BoxDecoration(
-                                            color: Colors.white,
-                                            borderRadius:
-                                                BorderRadius.circular(10),
-                                          ),
-                                          child: Text(
-                                            " View",
-                                            style: poppinsW400S9Black,
-                                          )))),
-                            ],
-                          ),
-                    VerticalDivider(
-                      color: Colors.white,
-                      thickness: 1,
-                    ),
-                    Row(
-                      mainAxisAlignment: MainAxisAlignment.spaceAround,
-                      children: [
-                        Icon(
-                          Icons.pending,
-                          size: 20,
-                          color: Colors.white,
-                        ),
-                        Column(
+                      : Column(
                           children: [
-                            Text(
-                              " Cancelled ",
-                              style: tableTextNormal,
+                            Row(
+                              children: [
+                                Text(
+                                  "Description",
+                                  style: poppinsW400S9White,
+                                )
+                              ],
                             ),
+                            GestureDetector(
+                                onTap: () {
+                                  //show alert dialo
+                                  showDialog(
+                                      context: context,
+                                      builder: (BuildContext context) {
+                                        return const ViewDescriptionDialogBox();
+                                      });
+                                },
+                                child: Padding(
+                                    padding: EdgeInsets.all(2),
+                                    child: Container(
+                                        padding:
+                                            EdgeInsets.only(left: 8, right: 8),
+                                        decoration: BoxDecoration(
+                                          color: Colors.white,
+                                          borderRadius:
+                                              BorderRadius.circular(10),
+                                        ),
+                                        child: Text(
+                                          " View",
+                                          style: poppinsW400S9Black,
+                                        )))),
+                          ],
+                        ),
+                  VerticalDivider(
+                    color: Colors.white,
+                    thickness: 1,
+                  ),
+                  Column(
+                    children: [
+                      Row(
+                        children: [
+                          Icon(
+                            Icons.currency_rupee,
+                            color: Colors.white,
+                          ),
+                          Text(
+                            " Fee Type ",
+                            style: poppinsW400S9White,
+                          )
+                        ],
+                      ),
+                      Text(
+                        feeType,
+                        style: poppinsW400S9White,
+                      )
+                    ],
+                  ),
+                  VerticalDivider(
+                    color: Colors.white,
+                    thickness: 1,
+                  ),
+                  viewApplication
+                      ? Column(
+                          children: [
+                            GestureDetector(
+                                onTap: () {
+                                  //show alert dialo
+                                  showDialog(
+                                      context: context,
+                                      builder: (BuildContext context) {
+                                        return const ViewDocumentDialogBox();
+                                      });
+                                },
+                                child: Padding(
+                                    padding: EdgeInsets.all(2),
+                                    child: Container(
+                                        padding:
+                                            EdgeInsets.only(right: 8, left: 8),
+                                        decoration: BoxDecoration(
+                                          color: Colors.white,
+                                          borderRadius:
+                                              BorderRadius.circular(10),
+                                        ),
+                                        child: Text(
+                                          " Document",
+                                          style: poppinsW400S9Black,
+                                        )))),
+                            GestureDetector(
+                                onTap: () {
+                                  //show alert dialo
+                                  showDialog(
+                                      context: context,
+                                      builder: (BuildContext context) {
+                                        return const ViewDescriptionDialogBox();
+                                      });
+                                },
+                                child: Padding(
+                                    padding: EdgeInsets.all(2),
+                                    child: Container(
+                                        padding:
+                                            EdgeInsets.only(right: 8, left: 8),
+                                        decoration: BoxDecoration(
+                                          color: Colors.white,
+                                          borderRadius:
+                                              BorderRadius.circular(10),
+                                        ),
+                                        child: Text(
+                                          " Description",
+                                          style: poppinsW400S9Black,
+                                        )))),
                           ],
                         )
-                      ],
-                    )
-                  ],
-                ),
-              ),
+                      : Column(
+                          children: [
+                            Row(
+                              children: [
+                                Container(
+                                    height: 8,
+                                    width: 8,
+                                    child: Image.asset(
+                                        "assets/icons/document_icon.png")),
+                                Text(
+                                  "Document",
+                                  style: poppinsW400S9White,
+                                )
+                              ],
+                            ),
+                            GestureDetector(
+                                onTap: () {
+                                  //show alert dialo
+                                  showDialog(
+                                      context: context,
+                                      builder: (BuildContext context) {
+                                        return const ViewDocumentDialogBox();
+                                      });
+                                },
+                                child: Padding(
+                                    padding: EdgeInsets.all(2),
+                                    child: Container(
+                                        padding:
+                                            EdgeInsets.only(left: 8, right: 8),
+                                        decoration: BoxDecoration(
+                                          color: Colors.white,
+                                          borderRadius:
+                                              BorderRadius.circular(10),
+                                        ),
+                                        child: Text(
+                                          " View",
+                                          style: poppinsW400S9Black,
+                                        )))),
+                          ],
+                        ),
+                  VerticalDivider(
+                    color: Colors.white,
+                    thickness: 1,
+                  ),
+                  Column(
+                    children: [
+                      Text(
+                        " Cancelled ",
+                        style: tableTextNormal,
+                      ),
+                      const Icon(
+                        Icons.pending,
+                        size: 20,
+                        color: Colors.white,
+                      ),
+                    ],
+                  )
+                ],
+              )),
               viewApplication
                   ? Row(
                       mainAxisAlignment: MainAxisAlignment.spaceBetween,
                       children: [
                         Padding(
-                            padding: EdgeInsets.all(16),
+                            padding: const EdgeInsets.all(16),
                             child: Container(
                                 padding: EdgeInsets.only(
                                     left: 16, right: 16, top: 6, bottom: 6),
