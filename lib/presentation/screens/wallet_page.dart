@@ -36,45 +36,6 @@ class _WalletPageState extends State<WalletPage> {
           ),
           backgroundColor: kPrimaryBlackColor,
         ),
-        endDrawer: Drawer(
-          child: ListView(
-            children: const <Widget>[
-              DrawerHeader(
-                decoration: BoxDecoration(
-                  color: Colors.black,
-                ),
-                child: Text(
-                  'Welcome to Justify',
-                  style: TextStyle(
-                    color: Colors.white,
-                    fontSize: 30,
-                  ),
-                ),
-              ),
-              ListTile(
-                title: Text("Item1"),
-                leading: Icon(Icons.mail),
-              ),
-              Divider(
-                height: 0.2,
-              ),
-              ListTile(
-                title: Text("Item1"),
-                leading: Icon(Icons.mail),
-              ),
-              Divider(
-                height: 0.2,
-              ),
-              ListTile(
-                title: Text("Item1"),
-                leading: Icon(Icons.mail),
-              ),
-              Divider(
-                height: 0.2,
-              ),
-            ],
-          ),
-        ),
         body: SingleChildScrollView(
             scrollDirection: Axis.vertical,
             child: Column(children: [
@@ -121,7 +82,10 @@ class _WalletPageState extends State<WalletPage> {
                 children: [
                   Column(children: [
                     GestureDetector(
-                        onTap: () {},
+                        onTap: () {
+                          Navigator.of(context).push(MaterialPageRoute(
+                              builder: (context) => const HiringPackagePage()));
+                        },
                         child: Container(
                           height: 54,
                           width: 48,

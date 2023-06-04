@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:jusitfi_admin/presentation/widgets/rating_box.dart';
 import 'package:jusitfi_admin/presentation/widgets/review_alert_dialog.dart';
 import '../../utils/constants/textstyles.dart';
 import 'advocate_profile_table.dart';
@@ -72,24 +73,7 @@ class ScheduledCompletedAdvocateCard extends StatelessWidget {
                   ],
                 ),
                 Column(children: [
-                  Container(
-                    padding: const EdgeInsets.only(left: 8, right: 10),
-                    decoration: BoxDecoration(
-                        color: Colors.white,
-                        borderRadius: BorderRadius.circular(15)),
-                    child: Row(
-                      children: [
-                        Icon(
-                          Icons.star,
-                          color: Colors.yellow,
-                        ),
-                        Text(
-                          rating.toString(),
-                          style: kAdvocateCardRating,
-                        )
-                      ],
-                    ),
-                  ),
+                  RatingBox(rating: rating),
                 ])
               ],
             ),

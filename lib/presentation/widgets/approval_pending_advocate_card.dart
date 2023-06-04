@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:jusitfi_admin/presentation/widgets/rating_box.dart';
 import 'package:jusitfi_admin/presentation/widgets/starrating.dart';
 import 'package:jusitfi_admin/presentation/widgets/videoCallWidget.dart';
 import 'package:jusitfi_admin/presentation/widgets/view_cancel_reason_dialog.dart';
@@ -75,24 +76,7 @@ class ApprovalPendingAdvocateCard extends StatelessWidget {
                     )
                   ],
                 ),
-                Container(
-                  padding: const EdgeInsets.only(left: 8, right: 10),
-                  decoration: BoxDecoration(
-                      color: Colors.white,
-                      borderRadius: BorderRadius.circular(15)),
-                  child: Row(
-                    children: [
-                      const Icon(
-                        Icons.star,
-                        color: Colors.yellow,
-                      ),
-                      Text(
-                        rating.toString(),
-                        style: kAdvocateCardRating,
-                      )
-                    ],
-                  ),
-                )
+                RatingBox(rating: rating),
               ],
             ),
             const SizedBox(height: 8),
@@ -191,26 +175,21 @@ class ApprovalPendingAdvocateCard extends StatelessWidget {
                     thickness: 1,
                   ),
                   Container(
-                      child: Row(
-                    mainAxisAlignment: MainAxisAlignment.spaceAround,
+                      child: Column(
                     children: [
-                      const Icon(
+                      Text(
+                        " Approval",
+                        style: tableTextNormal,
+                      ),
+                      Text(
+                        " Pending",
+                        style: tableTextNormal,
+                      ),
+                      Icon(
                         Icons.pending,
                         size: 20,
                         color: Colors.white,
                       ),
-                      Column(
-                        children: [
-                          Text(
-                            " Approval",
-                            style: tableTextNormal,
-                          ),
-                          Text(
-                            " Pending",
-                            style: tableTextNormal,
-                          )
-                        ],
-                      )
                     ],
                   ))
                 ],

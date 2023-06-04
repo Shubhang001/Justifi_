@@ -44,9 +44,15 @@ class HiringPackageCard extends StatelessWidget {
             children: [
               Container(
                   height: 220,
-                  width: 164,
+                  //width: 164,
                   child: Image.asset(image.toString())),
-              Column(
+              SizedBox(
+                width: 10,
+              ),
+              Expanded(
+                  child: Center(
+                      child: Column(
+                crossAxisAlignment: CrossAxisAlignment.center,
                 children: [
                   Row(
                     children: [
@@ -93,13 +99,12 @@ class HiringPackageCard extends StatelessWidget {
                   //profileType && logo in row
                   // Active status in row
                   //table
-
                   Center(
                       child: Column(children: <Widget>[
                     Container(
                       margin: const EdgeInsets.all(8),
                       child: Table(
-                        defaultColumnWidth: FixedColumnWidth(50),
+                        defaultColumnWidth: FlexColumnWidth(),
                         defaultVerticalAlignment:
                             TableCellVerticalAlignment.middle,
                         border: TableBorder.all(
@@ -172,6 +177,7 @@ class HiringPackageCard extends StatelessWidget {
                       ),
                     ),
                   ])),
+
                   Row(
                     crossAxisAlignment: CrossAxisAlignment.end,
                     children: [
@@ -182,7 +188,7 @@ class HiringPackageCard extends StatelessWidget {
                     ],
                   )
                 ],
-              )
+              ))),
             ],
           )),
     );
