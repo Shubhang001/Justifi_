@@ -6,9 +6,6 @@ Future<String> updateCategories(
   String updatedCategory,
 ) async {
   final response = await http.patch(
-    headers: <String, String>{
-      'Content-Type': 'application/json; charset=UTF-8',
-    },
     body: {
       "first_name": updatedCategory,
     },
