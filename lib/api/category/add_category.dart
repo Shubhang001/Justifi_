@@ -23,8 +23,8 @@ Future<String> addCategory(String categoryName, categoryCode, logoPath) async {
   );
 
   if (response.statusCode == 201) {
-    return "True";
+    return "Successfull";
   } else {
-    return "Failed";
+    return "The operation failed";
   }
 }
