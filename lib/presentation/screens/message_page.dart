@@ -22,13 +22,12 @@ class MessageScreen extends StatelessWidget {
       body: SingleChildScrollView(
         child: Column(
           children: [
-            const SearchBar(),
             Container(
               margin: const EdgeInsets.symmetric(vertical: 10, horizontal: 10),
               child: Row(
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
-                  Container(),
+                  const SearchBar(),
                   Container(
                     padding: const EdgeInsets.all(2),
                     decoration: const BoxDecoration(
@@ -78,22 +77,31 @@ class SearchBar extends StatelessWidget {
   Widget build(BuildContext context) {
     return Container(
       margin: const EdgeInsets.symmetric(
-        horizontal: 20,
         vertical: 15,
       ),
       height: 40,
-      width: double.infinity,
+      width: MediaQuery.of(context).size.width / 1.5,
       decoration: const BoxDecoration(
-          color: Colors.black,
-          borderRadius: BorderRadius.all(
-            Radius.circular(25),
-          )),
+        color: Colors.black,
+        borderRadius: BorderRadius.all(
+          Radius.circular(25),
+        ),
+      ),
       child: Container(
+        padding: const EdgeInsets.symmetric(horizontal: 12),
         margin: const EdgeInsets.only(right: 20),
         alignment: Alignment.centerRight,
-        child: const Icon(
-          Icons.search,
-          color: Colors.grey,
+        child: const TextField(
+          decoration: InputDecoration(
+            border: InputBorder.none,
+            suffixIcon: Icon(
+              Icons.search,
+            ),
+            suffixIconColor: Colors.white,
+          ),
+          style: TextStyle(
+            color: Colors.white,
+          ),
         ),
       ),
     );

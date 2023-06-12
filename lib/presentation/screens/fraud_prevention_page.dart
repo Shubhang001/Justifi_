@@ -9,9 +9,9 @@ class FraudPreventionPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: buildprofileNav(context),
       body: Column(
         children: [
+          const ProfileNavBar(),
           Container(
             width: double.infinity,
             height: 20,

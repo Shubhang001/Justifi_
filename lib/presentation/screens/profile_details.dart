@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:jusitfi_admin/presentation/widgets/profile_appbar.dart';
 
 class ProfileDetails extends StatelessWidget {
   const ProfileDetails({super.key});
@@ -6,17 +7,10 @@ class ProfileDetails extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        elevation: 0,
-        backgroundColor: Colors.black,
-        leading: const Icon(Icons.person_outlined),
-        centerTitle: true,
-        title: const Text("Mumbai"),
-        actions: const [Icon(Icons.notifications_outlined)],
-      ),
       body: SingleChildScrollView(
         child: Column(
           children: [
+            const ProfileNavBar(),
             Container(
               width: double.infinity,
               height: 40,

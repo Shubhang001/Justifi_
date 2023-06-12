@@ -12,10 +12,10 @@ class ProfileScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: buildprofileNav(context),
       body: SingleChildScrollView(
         child: Column(
           children: [
+            const ProfileNavBar(),
             Container(
               margin: const EdgeInsets.only(top: 20),
               child: const Center(
@@ -55,17 +55,14 @@ class ProfileScreen extends StatelessWidget {
             ),
             Container(
               padding: const EdgeInsets.all(20),
-              decoration: const BoxDecoration(
-                  //
-                  color: Colors.white,
-                  boxShadow: [
-                    BoxShadow(
-                      color: Colors.grey,
-                    ),
-                    BoxShadow(
-                      color: Colors.grey,
-                    )
-                  ]),
+              decoration: const BoxDecoration(color: Colors.white, boxShadow: [
+                BoxShadow(
+                  color: Colors.grey,
+                ),
+                BoxShadow(
+                  color: Colors.grey,
+                )
+              ]),
               margin: const EdgeInsets.only(top: 2),
               child: Row(
                 mainAxisAlignment: MainAxisAlignment.spaceEvenly,
@@ -113,19 +110,21 @@ class CustomTile extends StatelessWidget {
         children: [
           Container(
             decoration: const BoxDecoration(
-              color: Colors.grey,
+              color: Colors.white,
               boxShadow: [
-                BoxShadow(
-                  color: Colors.white,
-                ),
-                BoxShadow(
-                  color: Colors.white,
-                ),
+                BoxShadow(color: Colors.grey),
+                BoxShadow(color: Colors.grey),
               ],
             ),
-            child: Container(
-              color: Colors.grey,
-              child: Material(
+            child: Material(
+              color: Colors.white,
+              child: GestureDetector(
+                onTap: () {
+                  Navigator.push(
+                    context,
+                    MaterialPageRoute(builder: (context) => route),
+                  );
+                },
                 child: ListTile(
                     iconColor: Colors.black,
                     leading: Icon(icon),
