@@ -275,7 +275,7 @@ class _WalletPageState extends State<WalletPage> {
                     GestureDetector(
                         onTap: () {
                           Navigator.of(context).push(MaterialPageRoute(
-                              builder: (context) => HiringPackagePage()));
+                              builder: (context) => const HiringPackagePage()));
                         },
                         child: Padding(
                             padding: EdgeInsets.only(

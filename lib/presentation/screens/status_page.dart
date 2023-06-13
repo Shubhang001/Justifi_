@@ -87,7 +87,7 @@ class _StatusPageState extends State<StatusPage> {
                 children: [
                   Container(
                       height: 40,
-                      margin: EdgeInsets.all(8.0),
+                      margin: const EdgeInsets.all(8.0),
                       child: ListView.separated(
                           separatorBuilder: (context, index) =>
                               SizedBox(width: 24),
