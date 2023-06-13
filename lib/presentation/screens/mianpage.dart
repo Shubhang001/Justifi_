@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:jusitfi_admin/presentation/screens/float_cases.dart';
 import 'package:jusitfi_admin/presentation/screens/float_cases4.dart';
 import 'package:jusitfi_admin/presentation/screens/homepage.dart';
+import 'package:jusitfi_admin/presentation/screens/message_page.dart';
 import 'package:jusitfi_admin/presentation/screens/status_page.dart';
 import 'package:jusitfi_admin/presentation/screens/wallet_page.dart';
 import 'package:jusitfi_admin/utils/constants/textstyles.dart';
@@ -18,14 +19,14 @@ class _MainPageState extends State<MainPage> {
   int _selectedIndex = 0;
 
   final List<Widget> _widgetOptions = <Widget>[
-    HomePage(),
-    FloatCases(),
-    StatusPage(),
+    const HomePage(),
+    const FloatCases(),
+    const StatusPage(),
     const WalletPage(
         userName: "Sangeeta Rai",
         userImage: "assets/images/user_image.png",
         userLocation: "Mumbai"),
-    const Text('Page 5'),
+    const MessageScreen(),
   ];
 
   void _onItemTapped(int index) {

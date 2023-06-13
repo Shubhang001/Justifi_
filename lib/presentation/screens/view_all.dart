@@ -135,16 +135,16 @@ class ViewAllPage extends StatelessWidget {
                     onPressed: () {
                       Navigator.pop(context);
                     },
-                    icon: Icon(
+                    icon: const Icon(
                       Icons.arrow_back,
                       color: Colors.white,
                       size: 30,
                     )),
-                SizedBox(
+                const SizedBox(
                   height: 10,
                 ),
                 Row(
-                  children: [
+                  children: const [
                     SearchBarUpdated(
                       backgroundColor: Colors.white,
                     ),
@@ -157,7 +157,7 @@ class ViewAllPage extends StatelessWidget {
                     )
                   ],
                 ),
-                SizedBox(
+                const SizedBox(
                   height: 30,
                 ),
                 Row(
@@ -172,7 +172,7 @@ class ViewAllPage extends StatelessWidget {
                             style: kHomePageTitle,
                           ),
                         ),
-                        CategoryTile(
+                        const CategoryTile(
                           image: 'assets/category_icons/criminal.png',
                           name: 'Criminal',
                           isDark: true,
@@ -188,7 +188,7 @@ class ViewAllPage extends StatelessWidget {
                             style: kHomePageTitle,
                           ),
                         ),
-                        CategoryTile(
+                        const CategoryTile(
                           image: 'assets/category_icons/cybercrime.png',
                           name: 'Cyber Crime',
                           isDark: true,
@@ -211,7 +211,8 @@ class ViewAllPage extends StatelessWidget {
                   height: 500,
                   child: GridView.builder(
                     itemCount: items.length,
-                    gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
+                    gridDelegate:
+                        const SliverGridDelegateWithFixedCrossAxisCount(
                       childAspectRatio: (136 / 165),
                       crossAxisCount: 2,
                       mainAxisSpacing: 40,

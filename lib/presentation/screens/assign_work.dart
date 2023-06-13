@@ -3,15 +3,10 @@ import 'package:jusitfi_admin/presentation/screens/mianpage.dart';
 import 'package:jusitfi_admin/presentation/widgets/big_button.dart';
 import 'package:jusitfi_admin/utils/constants/textstyles.dart';
 
-class FinishedPage extends StatelessWidget {
-  FinishedPage(
-      {super.key,
-      required this.text,
-      required this.nextPage,
-      required this.nextPageName});
-  String text;
-  String nextPageName;
-  Widget nextPage;
+import '../widgets/wave_clipper.dart';
+
+class AssignWork extends StatelessWidget {
+  const AssignWork({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -19,33 +14,33 @@ class FinishedPage extends StatelessWidget {
       backgroundColor: Colors.white,
       body: SafeArea(
         child: Column(
-          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+          mainAxisAlignment: MainAxisAlignment.spaceAround,
           crossAxisAlignment: CrossAxisAlignment.center,
           children: [
-            Column(
-              children: [
-                Image.asset('assets/images/check_mark.png'),
-                const SizedBox(
-                  height: 10,
-                ),
-                Text(
-                  text,
-                  textAlign: TextAlign.center,
-                  style: kAssignText,
-                ),
-              ],
+            Image.asset('assets/images/check_mark.png'),
+            Text(
+              'Your Feedback has been submitted',
+              textAlign: TextAlign.center,
+              style: kAssignText,
             ),
-            CustomButton(
+            const CustomButton(
               removescreens: true,
-              nextPage: nextPage,
+              nextPage: MainPage(),
               buttonColor: Colors.black,
-              text: nextPageName,
+              text: 'Home',
               width: 200,
             ),
-            Container(
-              color: Colors.black,
-              height: MediaQuery.of(context).size.height / 3,
-            )
+            Padding(
+              padding: const EdgeInsets.all(30.0),
+              child: ClipPath(
+                clipper: CustomClipPath(),
+                child: Container(
+                  width: 500,
+                  height: 200,
+                  color: Colors.grey,
+                ),
+              ),
+            ),
           ],
         ),
       ),

@@ -28,12 +28,12 @@ class StatusPageSearchBar extends StatelessWidget {
           Expanded(
             child: TextField(
               style: kotp,
-              decoration: InputDecoration(
+              decoration: const InputDecoration(
                 border: InputBorder.none,
               ),
             ),
           ),
-          Icon(
+          const Icon(
             Icons.search,
             size: 30,
             color: Colors.black,

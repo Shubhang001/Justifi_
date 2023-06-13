@@ -1,5 +1,5 @@
-import 'package:flutter/material.dart';
 import 'package:jusitfi_admin/presentation/screens/more_page.dart';
+import 'package:jusitfi_admin/presentation/screens/profile_page.dart';
 import 'package:jusitfi_admin/presentation/screens/view_all.dart';
 import 'package:jusitfi_admin/utils/constants/colors.dart';
 import 'package:jusitfi_admin/utils/constants/textstyles.dart';
@@ -7,6 +7,7 @@ import '../widgets/category_tile.dart';
 import '../widgets/filter_sort.dart';
 import '../widgets/horizontal_tile.dart';
 import '../widgets/searchbar.dart';
+import 'package:flutter/material.dart';
 
 class HomePage extends StatefulWidget {
   const HomePage({super.key});
@@ -36,6 +37,17 @@ class _HomePageState extends State<HomePage> {
                         borderRadius: BorderRadius.circular(7)),
                     height: 47,
                     width: 47,
+                    child: GestureDetector(
+                      onTap: () {
+                        Navigator.push(
+                          context,
+                          MaterialPageRoute(
+                            builder: (context) => const ProfileScreen(),
+                          ),
+                        );
+                      },
+                      child: const Icon(Icons.person),
+                    ),
                   ),
                   Row(
                     children: [
@@ -63,11 +75,11 @@ class _HomePageState extends State<HomePage> {
                   left: 20, right: 30, top: 10, bottom: 10),
               child: Row(
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                children: [
+                children: const [
                   SearchBarUpdated(
                     backgroundColor: Colors.black,
                   ),
-                  const SizedBox(
+                  SizedBox(
                     width: 10,
                   ),
                   FilterSort(
@@ -87,16 +99,16 @@ class _HomePageState extends State<HomePage> {
             Row(
               mainAxisAlignment: MainAxisAlignment.spaceAround,
               children: [
-                CategoryTile(
+                const CategoryTile(
                   image: 'assets/category_icons/criminal.png',
                   name: 'Criminal',
                 ),
-                CategoryTile(
+                const CategoryTile(
                   image: 'assets/category_icons/family and adoption.png',
                   name: 'Family and Adoption',
                   isTransparentBackground: false,
                 ),
-                CategoryTile(
+                const CategoryTile(
                   image: 'assets/category_icons/cybercrime.png',
                   name: 'Cybercrime',
                 ),
@@ -106,7 +118,7 @@ class _HomePageState extends State<HomePage> {
                       return MorePage();
                     }));
                   },
-                  child: CategoryTile(
+                  child: const CategoryTile(
                     image: 'assets/category_icons/more.png',
                     name: 'More',
                   ),

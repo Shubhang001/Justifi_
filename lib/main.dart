@@ -1,4 +1,3 @@
-import 'package:device_preview/device_preview.dart';
 import 'package:flutter/material.dart';
 import 'package:jusitfi_admin/presentation/screens/api_test_page.dart';
 import 'package:jusitfi_admin/presentation/screens/finished_page.dart';
@@ -16,11 +15,8 @@ import 'package:jusitfi_admin/presentation/screens/testScreen.dart';
 import 'package:jusitfi_admin/presentation/screens/view_all.dart';
 import 'package:jusitfi_admin/presentation/screens/schedule3.dart';
 import 'package:jusitfi_admin/presentation/widgets/material_color_builder.dart';
-import 'package:jusitfi_admin/presentation/widgets/show_review.dart';
-import 'package:jusitfi_admin/testing.dart';
 import 'package:jusitfi_admin/utils/constants/colors.dart';
 
-import 'presentation/screens/floatcases5.dart';
 import 'presentation/screens/mianpage.dart';
 
 void main() {
