@@ -3,7 +3,6 @@ import 'dart:ui';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:jusitfi_admin/presentation/screens/floatcases5.dart';
 import 'package:jusitfi_admin/presentation/screens/floatcases8.dart';
-import 'package:jusitfi_admin/presentation/screens/homepage.dart';
 import '../../utils/constants/textstyles.dart';
 import '../widgets/advocate_card_extended.dart';
 import '../widgets/smallButton.dart';
@@ -71,20 +70,20 @@ Future<Object?> floatCases9(
                         floatCases8(context);
                       },
                       child: Container(
+                        width: 120,
+                        height: 40,
+                        decoration: BoxDecoration(
+                            color: Colors.white,
+                            borderRadius: BorderRadius.circular(20)),
                         child: Center(
                           child: Text(
                             'Hire',
                             style: kMainCategory,
                           ),
                         ),
-                        width: 120,
-                        height: 40,
-                        decoration: BoxDecoration(
-                            color: Colors.white,
-                            borderRadius: BorderRadius.circular(20)),
                       ),
                     ),
-                    smallButton(nextPage: FloatCases5(), name: 'Cancel'),
+                    smallButton(nextPage: const FloatCases5(), name: 'Cancel'),
                   ],
                 ),
               ))
@@ -95,8 +94,8 @@ Future<Object?> floatCases9(
       filter:
           ImageFilter.blur(sigmaX: 1 * anim1.value, sigmaY: 1 * anim1.value),
       child: FadeTransition(
-        child: child,
         opacity: anim1,
+        child: child,
       ),
     ),
     context: context,

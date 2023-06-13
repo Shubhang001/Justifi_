@@ -31,11 +31,11 @@ class ChatPage extends StatelessWidget {
           Container(
             padding: const EdgeInsets.all(10),
             color: Colors.black,
-            child: Row(
+            child: const Row(
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
                 Column(
-                  children: const [
+                  children: [
                     CircleAvatar(
                       radius: 35,
                       backgroundImage: AssetImage(
@@ -52,7 +52,7 @@ class ChatPage extends StatelessWidget {
                   ],
                 ),
                 Column(
-                  children: const [
+                  children: [
                     Text(
                       "Case Title : ABC",
                       style: TextStyle(

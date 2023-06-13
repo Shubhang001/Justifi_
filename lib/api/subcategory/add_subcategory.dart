@@ -3,9 +3,7 @@ import 'package:flutter/services.dart';
 import 'package:http/http.dart' as http;
 import 'package:jusitfi_admin/api/base_url.dart';
 
-// v1/categories/:category/sub_categories/
-
-Future<String> addSubCategory(
+addSubCategory(
   String categoryName,
   subcategoryCode,
   subcategoryLogo,

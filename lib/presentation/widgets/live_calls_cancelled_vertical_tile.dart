@@ -49,7 +49,7 @@ class _LiveCallsCancelledVerticleTile
                               decoration: BoxDecoration(
                                 borderRadius: BorderRadius.circular(15),
                                 color: _selectedIndex == 0
-                                    ? Color.fromRGBO(0, 0, 0, 1)
+                                    ? const Color.fromRGBO(0, 0, 0, 1)
                                     : Colors.white,
                               ),
                               height: 30,
@@ -64,7 +64,7 @@ class _LiveCallsCancelledVerticleTile
                         ],
                       ),
                     ),
-                    Spacer(),
+                    const Spacer(),
                     GestureDetector(
                       onTap: () {
                         _onDayTapped(1);

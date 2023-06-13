@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:jusitfi_admin/presentation/widgets/approval_pending_advocate_card.dart';
 import 'package:jusitfi_admin/presentation/widgets/freezed_balance_card.dart';
 
 class FreezedBalanceVerticalTile extends StatelessWidget {
@@ -7,13 +6,13 @@ class FreezedBalanceVerticalTile extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Column(
+    return const Column(
       children: [
         SizedBox(
           child: SingleChildScrollView(
             scrollDirection: Axis.vertical,
             child: Column(
-              children: const [
+              children: [
                 FreezedBalanceCard(
                   image: 'assets/images/advocate_img.png',
                   date: "06 Oct 2022",

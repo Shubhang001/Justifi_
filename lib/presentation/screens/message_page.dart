@@ -133,8 +133,8 @@ class CaseTile extends StatelessWidget {
             },
             child: Row(
               children: [
-                Column(
-                  children: const [
+                const Column(
+                  children: [
                     CircleAvatar(
                       radius: 35,
                       backgroundImage: AssetImage(

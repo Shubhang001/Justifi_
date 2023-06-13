@@ -26,7 +26,7 @@ class _ReviewDialogBox extends State<ReviewDialogBox> {
                 child: Container(
               decoration: BoxDecoration(
                   borderRadius: BorderRadius.circular(20), color: Colors.white),
-              padding: EdgeInsets.all(30),
+              padding: const EdgeInsets.all(30),
               child: Column(
                   mainAxisSize: MainAxisSize.min,
                   crossAxisAlignment: CrossAxisAlignment.center,
@@ -46,7 +46,7 @@ class _ReviewDialogBox extends State<ReviewDialogBox> {
                     Row(
                       mainAxisAlignment: MainAxisAlignment.center,
                       children: [
-                        Icon(
+                        const Icon(
                           Icons.location_on,
                           color: Colors.black,
                         ),
@@ -80,7 +80,7 @@ class _ReviewDialogBox extends State<ReviewDialogBox> {
                                   borderRadius: BorderRadius.circular(15)),
                               child: Row(
                                 children: [
-                                  Icon(
+                                  const Icon(
                                     Icons.star,
                                     color: Colors.yellow,
                                   ),

@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:jusitfi_admin/utils/constants/colors.dart';
 import 'package:jusitfi_admin/utils/constants/textstyles.dart';
 
 class ViewDocumentDialogBox extends StatefulWidget {
@@ -25,7 +24,7 @@ class _ViewDocumentDialogBox extends State<ViewDocumentDialogBox> {
             child: Container(
               decoration: BoxDecoration(
                   borderRadius: BorderRadius.circular(20), color: Colors.white),
-              padding: EdgeInsets.all(30),
+              padding: const EdgeInsets.all(30),
               child: Column(
                   mainAxisSize: MainAxisSize.min,
                   crossAxisAlignment: CrossAxisAlignment.center,
@@ -33,7 +32,7 @@ class _ViewDocumentDialogBox extends State<ViewDocumentDialogBox> {
                     Row(
                       mainAxisAlignment: MainAxisAlignment.spaceBetween,
                       children: [
-                        Container(
+                        SizedBox(
                           height: 18,
                           width: 18,
                           child: Image.asset(
@@ -43,7 +42,7 @@ class _ViewDocumentDialogBox extends State<ViewDocumentDialogBox> {
                         Stack(
                           children: [
                             Center(
-                              child: Container(
+                              child: SizedBox(
                                 height: 18,
                                 width: 18,
                                 child: Image.asset(
@@ -52,7 +51,7 @@ class _ViewDocumentDialogBox extends State<ViewDocumentDialogBox> {
                               ),
                             ),
                             Center(
-                              child: Container(
+                              child: SizedBox(
                                 height: 18,
                                 width: 18,
                                 child: Image.asset(
@@ -61,7 +60,7 @@ class _ViewDocumentDialogBox extends State<ViewDocumentDialogBox> {
                               ),
                             ),
                             Center(
-                              child: Container(
+                              child: SizedBox(
                                 height: 18,
                                 width: 18,
                                 child: Image.asset(
@@ -77,7 +76,7 @@ class _ViewDocumentDialogBox extends State<ViewDocumentDialogBox> {
                       "Documents",
                       style: poppinsW400S12Black,
                     ),
-                    SizedBox(
+                    const SizedBox(
                       height: 20,
                     ),
                     Text(
@@ -90,10 +89,10 @@ class _ViewDocumentDialogBox extends State<ViewDocumentDialogBox> {
                         style: poppinsW400S9Grey,
                       )
                     ]),
-                    SizedBox(
+                    const SizedBox(
                       height: 10,
                     ),
-                    Container(
+                    SizedBox(
                         height: 60,
                         width: 266,
                         child: SingleChildScrollView(
@@ -102,7 +101,7 @@ class _ViewDocumentDialogBox extends State<ViewDocumentDialogBox> {
                             style: poppinsW400S9Black,
                           ),
                         )),
-                    Container(
+                    SizedBox(
                         height: 60,
                         width: 266,
                         child: SingleChildScrollView(
@@ -111,7 +110,7 @@ class _ViewDocumentDialogBox extends State<ViewDocumentDialogBox> {
                             style: poppinsW400S9Black,
                           ),
                         )),
-                    Container(
+                    SizedBox(
                         height: 60,
                         width: 266,
                         child: SingleChildScrollView(
@@ -120,7 +119,7 @@ class _ViewDocumentDialogBox extends State<ViewDocumentDialogBox> {
                             style: poppinsW400S9Black,
                           ),
                         )),
-                    Container(
+                    SizedBox(
                         height: 60,
                         width: 266,
                         child: SingleChildScrollView(

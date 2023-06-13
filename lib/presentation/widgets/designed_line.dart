@@ -10,18 +10,18 @@ class DesignedLine extends StatelessWidget {
     return Row(
       mainAxisAlignment: MainAxisAlignment.center,
       children: [
-        CircleAvatar(
+        const CircleAvatar(
           backgroundColor: Colors.black,
           radius: 3,
         ),
-        Container(
+        SizedBox(
           width: MediaQuery.of(context).size.width / 2,
-          child: Divider(
+          child: const Divider(
             thickness: 1.5,
             color: Colors.black,
           ),
         ),
-        CircleAvatar(
+        const CircleAvatar(
           backgroundColor: Colors.black,
           radius: 3,
         ),

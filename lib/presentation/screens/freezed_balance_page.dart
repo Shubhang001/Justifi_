@@ -7,7 +7,7 @@ import '../widgets/statusPageFilterSort.dart';
 import '../widgets/statusPageSearchBar.dart';
 
 class FreezedBalancePage extends StatefulWidget {
-  FreezedBalancePage({Key? key}) : super(key: key);
+  const FreezedBalancePage({Key? key}) : super(key: key);
 
   @override
   State<FreezedBalancePage> createState() => _FreezedBalancePageState();
@@ -67,16 +67,16 @@ class _FreezedBalancePageState extends State<FreezedBalancePage> {
         ),
         body: SafeArea(
             child: Container(
-                padding: EdgeInsets.all(20),
+                padding: const EdgeInsets.all(20),
                 child: Column(
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
-                      Padding(
-                        padding: const EdgeInsets.only(
+                      const Padding(
+                        padding: EdgeInsets.only(
                             left: 20, right: 20, top: 10, bottom: 10),
                         child: Row(
                           mainAxisAlignment: MainAxisAlignment.spaceAround,
-                          children: const [
+                          children: [
                             StatusPageSearchBar(),
                             SizedBox(
                               width: 10,

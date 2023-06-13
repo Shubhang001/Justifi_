@@ -25,7 +25,7 @@ class _LockedApplicationDialogBox extends State<LockedApplicationDialogBox> {
             child: Container(
               decoration: BoxDecoration(
                   borderRadius: BorderRadius.circular(20), color: Colors.white),
-              padding: EdgeInsets.all(30),
+              padding: const EdgeInsets.all(30),
               child: Column(
                   mainAxisSize: MainAxisSize.min,
                   crossAxisAlignment: CrossAxisAlignment.center,
@@ -41,7 +41,7 @@ class _LockedApplicationDialogBox extends State<LockedApplicationDialogBox> {
                       "15",
                       style: poppinsW500S20Black,
                     ),
-                    Container(
+                    SizedBox(
                         height: 28,
                         width: 72,
                         child: Image.asset(
@@ -59,19 +59,19 @@ class _LockedApplicationDialogBox extends State<LockedApplicationDialogBox> {
                       "Pay fees to Unlock fees Quote",
                       style: poppinsW500S15Black,
                     ),
-                    SizedBox(
+                    const SizedBox(
                       height: 20,
                     ),
                     Row(mainAxisAlignment: MainAxisAlignment.center, children: [
                       Row(children: [
-                        Container(
+                        SizedBox(
                             height: 20,
                             width: 16,
                             child: Image.asset(
                               "assets/images/unlocked_lock.png",
                               fit: BoxFit.cover,
                             )),
-                        SizedBox(
+                        const SizedBox(
                           width: 10,
                         ),
                         Text(
@@ -91,12 +91,12 @@ class _LockedApplicationDialogBox extends State<LockedApplicationDialogBox> {
                             decoration: BoxDecoration(
                                 borderRadius: BorderRadius.circular(25),
                                 color: Colors.black),
-                            child: Icon(
+                            child: const Icon(
                               Icons.circle,
                               color: Colors.white,
                               size: 8,
                             )),
-                        SizedBox(
+                        const SizedBox(
                           width: 10,
                         ),
                         Text(
@@ -105,18 +105,18 @@ class _LockedApplicationDialogBox extends State<LockedApplicationDialogBox> {
                         ),
                       ])
                     ]),
-                    SizedBox(
+                    const SizedBox(
                       height: 15,
                     ),
                     Row(children: [
-                      Container(
+                      SizedBox(
                           height: 9,
                           width: 9,
                           child: Image.asset(
                             "assets/images/selected_circle.png",
                             fit: BoxFit.cover,
                           )),
-                      SizedBox(
+                      const SizedBox(
                         width: 10,
                       ),
                       Text(
@@ -124,18 +124,18 @@ class _LockedApplicationDialogBox extends State<LockedApplicationDialogBox> {
                         style: poppinsW500S15Black,
                       ),
                     ]),
-                    SizedBox(
+                    const SizedBox(
                       height: 15,
                     ),
                     Row(children: [
-                      Container(
+                      SizedBox(
                           height: 9,
                           width: 9,
                           child: Image.asset(
                             "assets/images/selected_circle.png",
                             fit: BoxFit.cover,
                           )),
-                      SizedBox(
+                      const SizedBox(
                         width: 10,
                       ),
                       Text(
@@ -143,7 +143,7 @@ class _LockedApplicationDialogBox extends State<LockedApplicationDialogBox> {
                         style: poppinsW500S15Black,
                       ),
                     ]),
-                    SizedBox(
+                    const SizedBox(
                       height: 10,
                     ),
                     Container(
@@ -159,7 +159,7 @@ class _LockedApplicationDialogBox extends State<LockedApplicationDialogBox> {
                         ),
                       ),
                     ),
-                    SizedBox(
+                    const SizedBox(
                       height: 10,
                     ),
                     Container(

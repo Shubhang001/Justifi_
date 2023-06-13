@@ -203,7 +203,7 @@ class _FilterPageState extends State<FilterPage> {
                 padding: const EdgeInsets.all(30.0),
                 child: CustomButton(
                     removescreens: false,
-                    nextPage: HomePage(),
+                    nextPage: const HomePage(),
                     buttonColor: kobbuttonColor,
                     text: 'Apply'),
               )

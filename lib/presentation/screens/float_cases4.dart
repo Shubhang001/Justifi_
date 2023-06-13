@@ -72,6 +72,8 @@ class FloatCases4 extends StatelessWidget {
     },
   ];
 
+  FloatCases4({super.key});
+
   @override
   Widget build(BuildContext context) {
     return SafeArea(
@@ -174,9 +176,9 @@ class FloatCases4 extends StatelessWidget {
               TextButton(
                   onPressed: () {
                     Navigator.push(context,
-                        MaterialPageRoute(builder: (_) => FloatCases5()));
+                        MaterialPageRoute(builder: (_) => const FloatCases5()));
                   },
-                  child: Text('Next'))
+                  child: const Text('Next'))
             ],
           ),
         ),

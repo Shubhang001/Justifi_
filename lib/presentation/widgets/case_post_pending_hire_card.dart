@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:jusitfi_admin/presentation/widgets/cancellation_dialog_box.dart';
-import 'package:jusitfi_admin/presentation/widgets/locked_application_dialog_box.dart';
 import 'package:jusitfi_admin/presentation/widgets/locked_hire_advocate.dart';
 import 'package:jusitfi_admin/presentation/widgets/view_description_dialog_box.dart';
 import 'package:jusitfi_admin/presentation/widgets/view_document_dialog_box.dart';
@@ -38,7 +37,7 @@ class CasePostPendingHireCard extends StatelessWidget {
     return Padding(
         padding: const EdgeInsets.all(8.0),
         child: Container(
-          padding: EdgeInsets.all(8),
+          padding: const EdgeInsets.all(8),
           decoration: BoxDecoration(
               color: Colors.black, borderRadius: BorderRadius.circular(15)),
           child: Column(
@@ -61,7 +60,7 @@ class CasePostPendingHireCard extends StatelessWidget {
                       viewApplication
                           ? Row(
                               children: [
-                                Container(
+                                SizedBox(
                                     height: 48,
                                     width: 48,
                                     child: Image.asset(
@@ -73,7 +72,7 @@ class CasePostPendingHireCard extends StatelessWidget {
                           : Column(
                               children: [
                                 Image.asset(image),
-                                SizedBox(
+                                const SizedBox(
                                   height: 2,
                                 ),
                                 Text(
@@ -82,7 +81,7 @@ class CasePostPendingHireCard extends StatelessWidget {
                                 )
                               ],
                             ),
-                      SizedBox(
+                      const SizedBox(
                         width: 4,
                       ),
                       Column(
@@ -134,7 +133,7 @@ class CasePostPendingHireCard extends StatelessWidget {
                     children: [
                       Column(
                         children: [
-                          Container(
+                          SizedBox(
                               height: 28,
                               width: 28,
                               child: Image.asset(
@@ -151,7 +150,7 @@ class CasePostPendingHireCard extends StatelessWidget {
                   )
                 ],
               ),
-              SizedBox(
+              const SizedBox(
                 height: 16,
               ),
               IntrinsicHeight(
@@ -191,9 +190,9 @@ class CasePostPendingHireCard extends StatelessWidget {
                                         });
                                   },
                                   child: Padding(
-                                      padding: EdgeInsets.all(2),
+                                      padding: const EdgeInsets.all(2),
                                       child: Container(
-                                          padding: EdgeInsets.only(
+                                          padding: const EdgeInsets.only(
                                               left: 8, right: 8),
                                           decoration: BoxDecoration(
                                             color: Colors.white,
@@ -206,7 +205,7 @@ class CasePostPendingHireCard extends StatelessWidget {
                                           )))),
                             ],
                           ),
-                    VerticalDivider(
+                    const VerticalDivider(
                       color: Colors.white,
                       thickness: 1,
                     ),
@@ -214,7 +213,7 @@ class CasePostPendingHireCard extends StatelessWidget {
                       children: [
                         Row(
                           children: [
-                            Icon(
+                            const Icon(
                               Icons.currency_rupee,
                               color: Colors.white,
                             ),
@@ -230,7 +229,7 @@ class CasePostPendingHireCard extends StatelessWidget {
                         )
                       ],
                     ),
-                    VerticalDivider(
+                    const VerticalDivider(
                       color: Colors.white,
                       thickness: 1,
                     ),
@@ -247,9 +246,9 @@ class CasePostPendingHireCard extends StatelessWidget {
                                         });
                                   },
                                   child: Padding(
-                                      padding: EdgeInsets.all(2),
+                                      padding: const EdgeInsets.all(2),
                                       child: Container(
-                                          padding: EdgeInsets.only(
+                                          padding: const EdgeInsets.only(
                                               right: 8, left: 8),
                                           decoration: BoxDecoration(
                                             color: Colors.white,
@@ -270,9 +269,9 @@ class CasePostPendingHireCard extends StatelessWidget {
                                         });
                                   },
                                   child: Padding(
-                                      padding: EdgeInsets.all(2),
+                                      padding: const EdgeInsets.all(2),
                                       child: Container(
-                                          padding: EdgeInsets.only(
+                                          padding: const EdgeInsets.only(
                                               right: 8, left: 8),
                                           decoration: BoxDecoration(
                                             color: Colors.white,
@@ -289,7 +288,7 @@ class CasePostPendingHireCard extends StatelessWidget {
                             children: [
                               Row(
                                 children: [
-                                  Container(
+                                  SizedBox(
                                       height: 8,
                                       width: 8,
                                       child: Image.asset(
@@ -310,9 +309,9 @@ class CasePostPendingHireCard extends StatelessWidget {
                                         });
                                   },
                                   child: Padding(
-                                      padding: EdgeInsets.all(2),
+                                      padding: const EdgeInsets.all(2),
                                       child: Container(
-                                          padding: EdgeInsets.only(
+                                          padding: const EdgeInsets.only(
                                               left: 8, right: 8),
                                           decoration: BoxDecoration(
                                             color: Colors.white,
@@ -325,14 +324,14 @@ class CasePostPendingHireCard extends StatelessWidget {
                                           )))),
                             ],
                           ),
-                    VerticalDivider(
+                    const VerticalDivider(
                       color: Colors.white,
                       thickness: 1,
                     ),
                     Row(
                       mainAxisAlignment: MainAxisAlignment.spaceAround,
                       children: [
-                        Icon(
+                        const Icon(
                           Icons.pending,
                           size: 20,
                           color: Colors.white,
@@ -372,9 +371,9 @@ class CasePostPendingHireCard extends StatelessWidget {
                       mainAxisAlignment: MainAxisAlignment.center,
                       children: [
                         Padding(
-                            padding: EdgeInsets.all(16),
+                            padding: const EdgeInsets.all(16),
                             child: Container(
-                                padding: EdgeInsets.only(
+                                padding: const EdgeInsets.only(
                                     left: 16, right: 16, top: 6, bottom: 6),
                                 decoration: BoxDecoration(
                                   color: Colors.grey,
@@ -396,7 +395,7 @@ class CasePostPendingHireCard extends StatelessWidget {
                                   });
                             },
                             child: Padding(
-                                padding: EdgeInsets.all(2),
+                                padding: const EdgeInsets.all(2),
                                 child: Container(
                                     padding: const EdgeInsets.only(
                                         left: 16, right: 16, top: 6, bottom: 6),
@@ -418,9 +417,9 @@ class CasePostPendingHireCard extends StatelessWidget {
                       mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                       children: [
                         Padding(
-                            padding: EdgeInsets.all(16),
+                            padding: const EdgeInsets.all(16),
                             child: Container(
-                                padding: EdgeInsets.only(
+                                padding: const EdgeInsets.only(
                                     left: 16, right: 16, top: 6, bottom: 6),
                                 decoration: BoxDecoration(
                                   color: Colors.grey,
@@ -442,9 +441,9 @@ class CasePostPendingHireCard extends StatelessWidget {
                                   });
                             },
                             child: Padding(
-                                padding: EdgeInsets.all(16),
+                                padding: const EdgeInsets.all(16),
                                 child: Container(
-                                    padding: EdgeInsets.only(
+                                    padding: const EdgeInsets.only(
                                         left: 16, right: 16, top: 6, bottom: 6),
                                     decoration: BoxDecoration(
                                       color: Colors.grey,
@@ -454,7 +453,7 @@ class CasePostPendingHireCard extends StatelessWidget {
                                       children: [
                                         Text("Hire Advocate ",
                                             style: poppinsW400S9Black),
-                                        Icon(
+                                        const Icon(
                                           Icons.lock,
                                           color: Colors.black,
                                           size: 10,
@@ -471,7 +470,7 @@ class CasePostPendingHireCard extends StatelessWidget {
                                   });
                             },
                             child: Padding(
-                                padding: EdgeInsets.all(2),
+                                padding: const EdgeInsets.all(2),
                                 child: Container(
                                     padding: const EdgeInsets.only(
                                         left: 16, right: 16, top: 6, bottom: 6),

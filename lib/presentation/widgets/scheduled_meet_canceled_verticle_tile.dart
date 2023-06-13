@@ -5,7 +5,7 @@ import 'package:jusitfi_admin/presentation/widgets/scheduled_cancelled_today_ver
 import '../../utils/constants/textstyles.dart';
 
 class ScheduledMeetCancelledVerticleTile extends StatefulWidget {
-  ScheduledMeetCancelledVerticleTile({Key? key}) : super(key: key);
+  const ScheduledMeetCancelledVerticleTile({Key? key}) : super(key: key);
 
   @override
   State<ScheduledMeetCancelledVerticleTile> createState() =>
@@ -70,7 +70,7 @@ class _ScheduledMeetCancelledVerticleTileState
                         ],
                       ),
                     ),
-                    Spacer(),
+                    const Spacer(),
                     GestureDetector(
                       onTap: () {
                         _onDayTapped(1);
@@ -115,6 +115,5 @@ class _ScheduledMeetCancelledVerticleTileState
         ),
       ],
     );
-    ;
   }
 }

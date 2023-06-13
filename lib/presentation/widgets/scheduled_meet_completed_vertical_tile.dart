@@ -70,7 +70,7 @@ class _ScheduledMeetCompletedVerticleTileState
                         ],
                       ),
                     ),
-                    Spacer(),
+                    const Spacer(),
                     GestureDetector(
                       onTap: () {
                         _onDayTapped(1);
@@ -115,6 +115,5 @@ class _ScheduledMeetCompletedVerticleTileState
         ),
       ],
     );
-    ;
   }
 }

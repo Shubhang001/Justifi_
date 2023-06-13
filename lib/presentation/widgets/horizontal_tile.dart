@@ -14,11 +14,11 @@ class HorizontalTiles extends StatelessWidget {
           title,
           style: kHomePageTitle,
         ),
-        SizedBox(
+        const SizedBox(
           child: SingleChildScrollView(
             scrollDirection: Axis.horizontal,
             child: Row(
-              children: const [
+              children: [
                 AdvocateCard(
                   name: 'Priya Sharma',
                   image: 'assets/images/advocate_img.png',

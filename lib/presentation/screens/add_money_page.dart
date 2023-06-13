@@ -6,7 +6,7 @@ import '../../utils/constants/colors.dart';
 import '../../utils/constants/textstyles.dart';
 
 class AddMoneyPage extends StatefulWidget {
-  AddMoneyPage({
+  const AddMoneyPage({
     Key? key,
     required this.currentWalletBalance,
   }) : super(key: key);
@@ -17,7 +17,7 @@ class AddMoneyPage extends StatefulWidget {
 }
 
 class _AddMoneyPageState extends State<AddMoneyPage> {
-  TextEditingController _addMoneyController = TextEditingController();
+  final TextEditingController _addMoneyController = TextEditingController();
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -71,7 +71,7 @@ class _AddMoneyPageState extends State<AddMoneyPage> {
       ),
       body: SafeArea(
           child: Container(
-              padding: EdgeInsets.all(20),
+              padding: const EdgeInsets.all(20),
               child: Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
@@ -88,13 +88,13 @@ class _AddMoneyPageState extends State<AddMoneyPage> {
                           )
                         ],
                       ),
-                      Spacer(),
+                      const Spacer(),
                       Text(
-                        "₹" + widget.currentWalletBalance.toString(),
+                        "₹${widget.currentWalletBalance}",
                         style: poppinsW500S18Black,
                       )
                     ]),
-                    SizedBox(
+                    const SizedBox(
                       height: 40,
                     ),
                     TextFormField(
@@ -103,14 +103,14 @@ class _AddMoneyPageState extends State<AddMoneyPage> {
                         inputFormatters: <TextInputFormatter>[
                           FilteringTextInputFormatter.digitsOnly
                         ],
-                        decoration: InputDecoration(
+                        decoration: const InputDecoration(
                             border: OutlineInputBorder(),
                             icon: Icon(
                               Icons.currency_rupee,
                               color: Colors.black,
                               size: 24,
                             ))),
-                    SizedBox(
+                    const SizedBox(
                       height: 40,
                     ),
                     Row(
@@ -157,7 +157,7 @@ class _AddMoneyPageState extends State<AddMoneyPage> {
                         )
                       ],
                     ),
-                    SizedBox(
+                    const SizedBox(
                       height: 40,
                     ),
                     Center(
@@ -173,7 +173,7 @@ class _AddMoneyPageState extends State<AddMoneyPage> {
                         style: poppinsW500S18White,
                       )),
                     )),
-                    SizedBox(
+                    const SizedBox(
                       height: 60,
                     ),
                     Center(
@@ -196,13 +196,13 @@ class _AddMoneyPageState extends State<AddMoneyPage> {
                                                 "assets/icons/outer_circle.png")
                                           ]),
                                         ),
-                                        SizedBox(
+                                        const SizedBox(
                                           width: 10,
                                         ),
-                                        Text("Pay with Debit/Credit/ATM Card")
+                                        const Text("Pay with Debit/Credit/ATM Card")
                                       ],
                                     ))))),
-                    SizedBox(
+                    const SizedBox(
                       height: 10,
                     ),
                     Center(
@@ -225,13 +225,13 @@ class _AddMoneyPageState extends State<AddMoneyPage> {
                                                 "assets/icons/outer_circle.png")
                                           ]),
                                         ),
-                                        SizedBox(
+                                        const SizedBox(
                                           width: 10,
                                         ),
-                                        Text("Net Banking")
+                                        const Text("Net Banking")
                                       ],
                                     ))))),
-                    SizedBox(
+                    const SizedBox(
                       height: 10,
                     ),
                     Center(
@@ -253,19 +253,19 @@ class _AddMoneyPageState extends State<AddMoneyPage> {
                                               child: Image.asset(
                                                   "assets/icons/outer_circle.png"))
                                         ]),
-                                        SizedBox(
+                                        const SizedBox(
                                           width: 10,
                                         ),
-                                        Text("UPI")
+                                        const Text("UPI")
                                       ],
                                     ))))),
-                    SizedBox(
+                    const SizedBox(
                       height: 50,
                     ),
                     GestureDetector(
                         onTap: () {
                           Navigator.of(context).push(MaterialPageRoute(
-                              builder: (context) => ProceedPage(
+                              builder: (context) => const ProceedPage(
                                   message:
                                       "Your money has been added successfully.")));
                         },

@@ -7,7 +7,7 @@ import '../widgets/statusPageSearchBar.dart';
 import '../widgets/transaction_vertical_tile.dart';
 
 class TransactionPage extends StatefulWidget {
-  TransactionPage({Key? key}) : super(key: key);
+  const TransactionPage({Key? key}) : super(key: key);
 
   @override
   State<TransactionPage> createState() => _TransactionPage();
@@ -67,16 +67,16 @@ class _TransactionPage extends State<TransactionPage> {
         ),
         body: SafeArea(
             child: Container(
-                padding: EdgeInsets.all(20),
+                padding: const EdgeInsets.all(20),
                 child: Column(
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
-                      Padding(
-                        padding: const EdgeInsets.only(
+                      const Padding(
+                        padding: EdgeInsets.only(
                             left: 20, right: 20, top: 10, bottom: 10),
                         child: Row(
                           mainAxisAlignment: MainAxisAlignment.spaceAround,
-                          children: const [
+                          children: [
                             StatusPageSearchBar(),
                             SizedBox(
                               width: 10,
@@ -85,13 +85,13 @@ class _TransactionPage extends State<TransactionPage> {
                           ],
                         ),
                       ),
-                      SizedBox(
+                      const SizedBox(
                         height: 20,
                       ),
                       Expanded(
                           child: ListView(
                         scrollDirection: Axis.vertical,
-                        children: [TransactionVerticalTile()],
+                        children: const [TransactionVerticalTile()],
                       ))
                     ]))));
   }

@@ -40,7 +40,7 @@ class ScheduledCompletedAdvocateCard extends StatelessWidget {
     return Padding(
       padding: const EdgeInsets.all(8.0),
       child: Container(
-        padding: EdgeInsets.all(8),
+        padding: const EdgeInsets.all(8),
         decoration: BoxDecoration(
             color: Colors.black, borderRadius: BorderRadius.circular(15)),
         child: Column(
@@ -79,7 +79,7 @@ class ScheduledCompletedAdvocateCard extends StatelessWidget {
                         borderRadius: BorderRadius.circular(15)),
                     child: Row(
                       children: [
-                        Icon(
+                        const Icon(
                           Icons.star,
                           color: Colors.yellow,
                         ),
@@ -100,13 +100,13 @@ class ScheduledCompletedAdvocateCard extends StatelessWidget {
               caseSubCategory: caseSubCategory,
             ),
             Container(
-              padding: EdgeInsets.all(8),
+              padding: const EdgeInsets.all(8),
               child: Row(
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
                   Row(
                     children: [
-                      Icon(
+                      const Icon(
                         Icons.calendar_month,
                         color: Colors.white,
                       ),
@@ -118,14 +118,14 @@ class ScheduledCompletedAdvocateCard extends StatelessWidget {
                   ),
                   Row(
                     children: [
-                      Container(
+                      SizedBox(
                           height: 16,
                           width: 16,
                           child: Image.asset(
                             "assets/icons/time_clock.png",
                             fit: BoxFit.cover,
                           )),
-                      SizedBox(
+                      const SizedBox(
                         width: 4,
                       ),
                       Text(
@@ -136,7 +136,7 @@ class ScheduledCompletedAdvocateCard extends StatelessWidget {
                   ),
                   Row(
                     children: [
-                      Icon(
+                      const Icon(
                         Icons.timelapse,
                         color: Colors.white,
                       ),
@@ -149,7 +149,7 @@ class ScheduledCompletedAdvocateCard extends StatelessWidget {
                 ],
               ),
             ),
-            SizedBox(
+            const SizedBox(
               height: 2,
             ),
             IntrinsicHeight(
@@ -159,7 +159,7 @@ class ScheduledCompletedAdvocateCard extends StatelessWidget {
                   Row(
                       mainAxisAlignment: MainAxisAlignment.spaceAround,
                       children: [
-                        Icon(
+                        const Icon(
                           Icons.videocam,
                           color: Colors.white,
                         ),
@@ -168,14 +168,14 @@ class ScheduledCompletedAdvocateCard extends StatelessWidget {
                           style: tableTextBold,
                         )
                       ]),
-                  VerticalDivider(
+                  const VerticalDivider(
                     color: Colors.white,
                     thickness: 1,
                   ),
                   Row(
                     mainAxisAlignment: MainAxisAlignment.spaceAround,
                     children: [
-                      Icon(
+                      const Icon(
                         Icons.currency_rupee,
                         size: 20,
                         color: Colors.white,
@@ -190,7 +190,7 @@ class ScheduledCompletedAdvocateCard extends StatelessWidget {
                       )
                     ],
                   ),
-                  VerticalDivider(
+                  const VerticalDivider(
                     color: Colors.white,
                     thickness: 1,
                   ),
@@ -220,7 +220,7 @@ class ScheduledCompletedAdvocateCard extends StatelessWidget {
                 ],
               ),
             ),
-            SizedBox(
+            const SizedBox(
               height: 8,
             ),
             GestureDetector(
@@ -229,7 +229,7 @@ class ScheduledCompletedAdvocateCard extends StatelessWidget {
                 showDialog(
                     context: context,
                     builder: (BuildContext context) {
-                      return ReviewDialogBox();
+                      return const ReviewDialogBox();
                     });
               },
               child: Center(
@@ -239,7 +239,7 @@ class ScheduledCompletedAdvocateCard extends StatelessWidget {
                         borderRadius: BorderRadius.only(
                             topLeft: Radius.circular(15),
                             topRight: Radius.circular(15))),
-                    padding: EdgeInsets.all(8),
+                    padding: const EdgeInsets.all(8),
                     child: Text(
                       "View Review",
                       style: tableTextBoldBlack,

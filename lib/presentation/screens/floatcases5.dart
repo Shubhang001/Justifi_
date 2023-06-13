@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:jusitfi_admin/presentation/screens/floatcases8.dart';
 import 'package:jusitfi_admin/presentation/screens/floatcases9.dart';
 import 'package:jusitfi_admin/utils/constants/colors.dart';
 
@@ -88,13 +87,13 @@ class _FloatCases5State extends State<FloatCases5> {
                           ),
                         ],
                       ),
-                      Divider(),
-                      LawyerHireDetails(),
-                      Divider(),
-                      LawyerHireDetails(),
-                      Divider(),
-                      LawyerHireDetails(),
-                      Divider(),
+                      const Divider(),
+                      const LawyerHireDetails(),
+                      const Divider(),
+                      const LawyerHireDetails(),
+                      const Divider(),
+                      const LawyerHireDetails(),
+                      const Divider(),
                     ],
                   ),
                 ),
@@ -122,7 +121,7 @@ class LawyerHireDetails extends StatelessWidget {
           children: [
             Row(
               children: [
-                SizedBox(
+                const SizedBox(
                   width: 10,
                 ),
                 Container(
@@ -138,7 +137,7 @@ class LawyerHireDetails extends StatelessWidget {
                     ],
                   ),
                 ),
-                SizedBox(
+                const SizedBox(
                   width: 15,
                 ),
                 Column(
@@ -164,12 +163,12 @@ class LawyerHireDetails extends StatelessWidget {
                 ),
               ],
             ),
-            SizedBox(
+            const SizedBox(
               height: 10,
             ),
             Row(
               children: [
-                SizedBox(
+                const SizedBox(
                   width: 80,
                 ),
                 Text(

@@ -37,7 +37,7 @@ class _StatusPageState extends State<StatusPage> {
     [
       const PendingApprovalVerticalTile(),
       const ScheduledVerticalTile(),
-      ScheduledMeetCancelledVerticleTile(),
+      const ScheduledMeetCancelledVerticleTile(),
       const ScheduledMeetCompletedVerticleTile(),
       const RefundVerticalTile()
     ],
@@ -186,12 +186,12 @@ class _StatusPageState extends State<StatusPage> {
                                         isSelected: false,
                                         textSize: 14)));
                           })),
-                  Padding(
-                    padding: const EdgeInsets.only(
+                  const Padding(
+                    padding: EdgeInsets.only(
                         left: 20, right: 20, top: 10, bottom: 10),
                     child: Row(
                       mainAxisAlignment: MainAxisAlignment.spaceAround,
-                      children: const [
+                      children: [
                         StatusPageSearchBar(),
                         SizedBox(
                           width: 10,
