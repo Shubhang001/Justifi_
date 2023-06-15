@@ -33,7 +33,7 @@ class IssueChat extends StatelessWidget {
             child: Row(
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
-                const Column(
+                Column(
                   children: [
                     CircleAvatar(
                       radius: 35,
