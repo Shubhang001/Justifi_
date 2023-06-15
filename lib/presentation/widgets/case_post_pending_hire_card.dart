@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:jusitfi_admin/presentation/widgets/cancellation_dialog_box.dart';
 import 'package:jusitfi_admin/presentation/widgets/locked_hire_advocate.dart';
+import 'package:jusitfi_admin/presentation/widgets/view_cancel_reason_dialog.dart';
 import 'package:jusitfi_admin/presentation/widgets/view_description_dialog_box.dart';
 import 'package:jusitfi_admin/presentation/widgets/view_document_dialog_box.dart';
 import 'package:jusitfi_admin/utils/constants/colors.dart';
@@ -328,41 +329,41 @@ class CasePostPendingHireCard extends StatelessWidget {
                       color: Colors.white,
                       thickness: 1,
                     ),
-                    Row(
-                      mainAxisAlignment: MainAxisAlignment.spaceAround,
-                      children: [
-                        const Icon(
-                          Icons.pending,
-                          size: 20,
-                          color: Colors.white,
-                        ),
-                        viewApplication
-                            ? Column(
-                                children: [
-                                  Text(
-                                    " Pending ",
-                                    style: tableTextNormal,
-                                  ),
-                                  Text(
-                                    " Hire",
-                                    style: tableTextNormal,
-                                  )
-                                ],
+                    viewApplication
+                        ? Column(
+                            children: [
+                              Text(
+                                " Pending ",
+                                style: tableTextNormal,
+                              ),
+                              const Icon(
+                                Icons.pending,
+                                size: 20,
+                                color: Colors.white,
+                              ),
+                              Text(
+                                " Hire",
+                                style: tableTextNormal,
                               )
-                            : Column(
-                                children: [
-                                  Text(
-                                    " Advocate ",
-                                    style: tableTextNormal,
-                                  ),
-                                  Text(
-                                    " Applied ",
-                                    style: tableTextNormal,
-                                  )
-                                ],
+                            ],
+                          )
+                        : Column(
+                            children: [
+                              Text(
+                                " Advocate ",
+                                style: tableTextNormal,
+                              ),
+                              const Icon(
+                                Icons.pending,
+                                size: 20,
+                                color: Colors.white,
+                              ),
+                              Text(
+                                " Applied ",
+                                style: tableTextNormal,
                               )
-                      ],
-                    )
+                            ],
+                          )
                   ],
                 ),
               ),
@@ -391,7 +392,10 @@ class CasePostPendingHireCard extends StatelessWidget {
                               showDialog(
                                   context: context,
                                   builder: (BuildContext context) {
-                                    return const CancellationDialogBox();
+                                    return const ViewCancelReasonDialog(
+                                      message:
+                                          "Your Post hiring has been cancelled Successfully.",
+                                    );
                                   });
                             },
                             child: Padding(
@@ -466,7 +470,10 @@ class CasePostPendingHireCard extends StatelessWidget {
                               showDialog(
                                   context: context,
                                   builder: (BuildContext context) {
-                                    return const CancellationDialogBox();
+                                    return const ViewCancelReasonDialog(
+                                      message:
+                                          "Your Post hiring has been cancelled Successfully.",
+                                    );
                                   });
                             },
                             child: Padding(

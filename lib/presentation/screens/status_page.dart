@@ -79,45 +79,6 @@ class _StatusPageState extends State<StatusPage> {
         ),
         backgroundColor: kPrimaryBlackColor,
       ),
-      drawer: Drawer(
-        child: ListView(
-          children: const <Widget>[
-            DrawerHeader(
-              decoration: BoxDecoration(
-                color: Colors.black,
-              ),
-              child: Text(
-                'Welcome to Justify',
-                style: TextStyle(
-                  color: Colors.white,
-                  fontSize: 30,
-                ),
-              ),
-            ),
-            ListTile(
-              title: Text("Item1"),
-              leading: Icon(Icons.mail),
-            ),
-            Divider(
-              height: 0.2,
-            ),
-            ListTile(
-              title: Text("Item1"),
-              leading: Icon(Icons.mail),
-            ),
-            Divider(
-              height: 0.2,
-            ),
-            ListTile(
-              title: Text("Item1"),
-              leading: Icon(Icons.mail),
-            ),
-            Divider(
-              height: 0.2,
-            ),
-          ],
-        ),
-      ),
       body: SafeArea(
           child: Container(
               padding: const EdgeInsets.all(20),
@@ -186,20 +147,6 @@ class _StatusPageState extends State<StatusPage> {
                                         isSelected: false,
                                         textSize: 14)));
                           })),
-                  Padding(
-                    padding: EdgeInsets.only(
-                        left: 20, right: 20, top: 10, bottom: 10),
-                    child: Row(
-                      mainAxisAlignment: MainAxisAlignment.spaceAround,
-                      children: [
-                        StatusPageSearchBar(),
-                        SizedBox(
-                          width: 10,
-                        ),
-                        StatusPageFilterSort()
-                      ],
-                    ),
-                  ),
                   const SizedBox(
                     height: 8,
                   ),

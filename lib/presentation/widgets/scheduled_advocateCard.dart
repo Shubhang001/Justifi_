@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:jusitfi_admin/presentation/widgets/rating_box.dart';
 import 'package:jusitfi_admin/presentation/widgets/videoCallWidget.dart';
 import 'package:jusitfi_admin/presentation/widgets/view_cancel_reason_dialog.dart';
 import 'package:jusitfi_admin/utils/constants/colors.dart';
@@ -72,24 +73,7 @@ class ScheduledAdvocateCard extends StatelessWidget {
                     )
                   ],
                 ),
-                Container(
-                  padding: const EdgeInsets.only(left: 8, right: 10),
-                  decoration: BoxDecoration(
-                      color: Colors.white,
-                      borderRadius: BorderRadius.circular(15)),
-                  child: Row(
-                    children: [
-                      const Icon(
-                        Icons.star,
-                        color: Colors.yellow,
-                      ),
-                      Text(
-                        rating.toString(),
-                        style: kAdvocateCardRating,
-                      )
-                    ],
-                  ),
-                )
+                RatingBox(rating: rating),
               ],
             ),
             const SizedBox(height: 8),

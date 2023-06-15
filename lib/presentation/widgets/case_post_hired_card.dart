@@ -313,22 +313,17 @@ class CasePostHiredCard extends StatelessWidget {
                       color: Colors.white,
                       thickness: 1,
                     ),
-                    Row(
-                      mainAxisAlignment: MainAxisAlignment.spaceAround,
+                    Column(
                       children: [
+                        Text(
+                          " Hired ",
+                          style: tableTextNormal,
+                        ),
                         const Icon(
                           Icons.pending,
                           size: 20,
                           color: Colors.white,
                         ),
-                        Column(
-                          children: [
-                            Text(
-                              " Hired ",
-                              style: tableTextNormal,
-                            ),
-                          ],
-                        )
                       ],
                     )
                   ],

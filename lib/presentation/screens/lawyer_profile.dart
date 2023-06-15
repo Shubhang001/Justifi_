@@ -463,8 +463,8 @@ class ReviewSection extends StatelessWidget {
                     ),
                   ],
                 ),
-                const Column(
-                  children: [
+                Column(
+                  children: const [
                     ProgressBar(number: 5, val: .4),
                     ProgressBar(number: 4, val: .2),
                     ProgressBar(number: 3, val: .15),
@@ -927,9 +927,9 @@ class Details extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return const Row(
+    return Row(
       mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-      children: [
+      children: const [
         RoundedButton(
           text: "Practice Area",
           padding: 6,
@@ -960,9 +960,9 @@ class TopNav extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return const Row(
+    return Row(
       mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-      children: [
+      children: const [
         RoundedButton(
           text: "Details",
           color: Color.fromRGBO(217, 217, 217, 1),
@@ -995,12 +995,12 @@ class CallToAction extends StatelessWidget {
   Widget build(BuildContext context) {
     return Container(
       margin: const EdgeInsets.symmetric(vertical: 10, horizontal: 2),
-      child: const Row(
+      child: Row(
         mainAxisAlignment: MainAxisAlignment.spaceBetween,
         children: [
           Row(
             mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-            children: [
+            children: const [
               LawyerCTA(icon: "assets/images/call.png", price: "20 Rs"),
               LawyerCTA(icon: "assets/images/message.png", price: "10 Rs"),
               LawyerCTA(icon: "assets/images/video_call.png", price: "30 Rs"),
@@ -1008,7 +1008,7 @@ class CallToAction extends StatelessWidget {
             ],
           ),
           Row(
-            children: [
+            children: const [
               RoundedButton(
                 text: "Assign Work",
                 color: Colors.black,
@@ -1069,8 +1069,8 @@ class LawyerInfo extends StatelessWidget {
         children: [
           Container(
             margin: const EdgeInsets.only(right: 15, left: 10),
-            child: const Column(
-              children: [
+            child: Column(
+              children: const [
                 Text(
                   "80",
                   style: TextStyle(
@@ -1091,8 +1091,8 @@ class LawyerInfo extends StatelessWidget {
           ),
           Container(
             margin: const EdgeInsets.only(left: 8, right: 10),
-            child: const Column(
-              children: [
+            child: Column(
+              children: const [
                 Text(
                   "100",
                   style: TextStyle(
@@ -1113,8 +1113,8 @@ class LawyerInfo extends StatelessWidget {
           ),
           Container(
             margin: const EdgeInsets.only(left: 8),
-            child: const Column(
-              children: [
+            child: Column(
+              children: const [
                 Text(
                   "8 yrs",
                   style: TextStyle(

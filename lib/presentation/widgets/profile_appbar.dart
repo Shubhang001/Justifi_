@@ -19,8 +19,8 @@ class ProfileNavBar extends StatelessWidget {
                   Icons.arrow_back,
                   color: Colors.white,
                 )),
-            const Row(
-              children: [
+            Row(
+              children: const [
                 Icon(
                   Icons.pin_drop_rounded,
                   size: 35,

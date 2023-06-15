@@ -189,9 +189,9 @@ class CasePostCancelledCard extends StatelessWidget {
                                         });
                                   },
                                   child: Padding(
-                                      padding: const EdgeInsets.all(2),
+                                      padding: EdgeInsets.all(2),
                                       child: Container(
-                                          padding: const EdgeInsets.only(
+                                          padding: EdgeInsets.only(
                                               left: 8, right: 8),
                                           decoration: BoxDecoration(
                                             color: Colors.white,
@@ -204,7 +204,7 @@ class CasePostCancelledCard extends StatelessWidget {
                                           )))),
                             ],
                           ),
-                    const VerticalDivider(
+                    VerticalDivider(
                       color: Colors.white,
                       thickness: 1,
                     ),
@@ -212,7 +212,7 @@ class CasePostCancelledCard extends StatelessWidget {
                       children: [
                         Row(
                           children: [
-                            const Icon(
+                            Icon(
                               Icons.currency_rupee,
                               color: Colors.white,
                             ),
@@ -228,7 +228,7 @@ class CasePostCancelledCard extends StatelessWidget {
                         )
                       ],
                     ),
-                    const VerticalDivider(
+                    VerticalDivider(
                       color: Colors.white,
                       thickness: 1,
                     ),
@@ -245,9 +245,9 @@ class CasePostCancelledCard extends StatelessWidget {
                                         });
                                   },
                                   child: Padding(
-                                      padding: const EdgeInsets.all(2),
+                                      padding: EdgeInsets.all(2),
                                       child: Container(
-                                          padding: const EdgeInsets.only(
+                                          padding: EdgeInsets.only(
                                               right: 8, left: 8),
                                           decoration: BoxDecoration(
                                             color: Colors.white,
@@ -268,9 +268,9 @@ class CasePostCancelledCard extends StatelessWidget {
                                         });
                                   },
                                   child: Padding(
-                                      padding: const EdgeInsets.all(2),
+                                      padding: EdgeInsets.all(2),
                                       child: Container(
-                                          padding: const EdgeInsets.only(
+                                          padding: EdgeInsets.only(
                                               right: 8, left: 8),
                                           decoration: BoxDecoration(
                                             color: Colors.white,
@@ -287,7 +287,7 @@ class CasePostCancelledCard extends StatelessWidget {
                             children: [
                               Row(
                                 children: [
-                                  SizedBox(
+                                  Container(
                                       height: 8,
                                       width: 8,
                                       child: Image.asset(
@@ -308,9 +308,9 @@ class CasePostCancelledCard extends StatelessWidget {
                                         });
                                   },
                                   child: Padding(
-                                      padding: const EdgeInsets.all(2),
+                                      padding: EdgeInsets.all(2),
                                       child: Container(
-                                          padding: const EdgeInsets.only(
+                                          padding: EdgeInsets.only(
                                               left: 8, right: 8),
                                           decoration: BoxDecoration(
                                             color: Colors.white,
@@ -323,26 +323,21 @@ class CasePostCancelledCard extends StatelessWidget {
                                           )))),
                             ],
                           ),
-                    const VerticalDivider(
+                    VerticalDivider(
                       color: Colors.white,
                       thickness: 1,
                     ),
-                    Row(
-                      mainAxisAlignment: MainAxisAlignment.spaceAround,
+                    Column(
                       children: [
+                        Text(
+                          " Cancelled ",
+                          style: tableTextNormal,
+                        ),
                         const Icon(
                           Icons.pending,
                           size: 20,
                           color: Colors.white,
                         ),
-                        Column(
-                          children: [
-                            Text(
-                              " Cancelled ",
-                              style: tableTextNormal,
-                            ),
-                          ],
-                        )
                       ],
                     )
                   ],

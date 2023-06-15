@@ -64,10 +64,8 @@ class _AssignWorkLawyerProfileState extends State<AssignWorkLawyerProfile> {
               style: kpageTitle,
             ),
           ),
-          const Row(
-            children: [
-              Text('')
-            ],
+          Row(
+            children: const [Text('')],
           )
         ],
       ),

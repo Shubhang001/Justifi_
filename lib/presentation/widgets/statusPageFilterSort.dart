@@ -11,7 +11,6 @@ class StatusPageFilterSort extends StatelessWidget {
   Widget build(BuildContext context) {
     return Expanded(
       child: Container(
-        width: 80,
         height: 50,
         decoration: BoxDecoration(
             color: isDark ? kprimaryTextColor : Colors.white,
@@ -19,16 +18,16 @@ class StatusPageFilterSort extends StatelessWidget {
         child: Row(
           mainAxisAlignment: MainAxisAlignment.spaceAround,
           children: [
-            const SizedBox(
+            SizedBox(
               height: 50,
-              child: Row(children: [
+              child: Row(children: const [
                 Icon(
                   Icons.arrow_upward_rounded,
                   color: Colors.black,
-                  size: 20,
+                  size: 16,
                 ),
                 Icon(Icons.arrow_downward_rounded,
-                    color: Colors.black, size: 20),
+                    color: Colors.black, size: 16),
               ]),
             ),
             VerticalDivider(
