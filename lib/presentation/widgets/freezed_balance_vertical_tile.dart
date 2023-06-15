@@ -6,13 +6,13 @@ class FreezedBalanceVerticalTile extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return const Column(
+    return Column(
       children: [
         SizedBox(
           child: SingleChildScrollView(
             scrollDirection: Axis.vertical,
             child: Column(
-              children: [
+              children: const [
                 FreezedBalanceCard(
                   image: 'assets/images/advocate_img.png',
                   date: "06 Oct 2022",

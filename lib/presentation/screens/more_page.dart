@@ -58,8 +58,8 @@ class MorePage extends StatelessWidget {
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
-              const Row(
-                children: [
+              Row(
+                children: const [
                   SearchBarUpdated(
                     backgroundColor: Colors.black,
                   ),

@@ -89,11 +89,11 @@ class _Schedule3State extends State<Schedule3> {
                           ),
                         ),
                       ),
-                      const Padding(
+                      Padding(
                         padding: EdgeInsets.all(8.0),
                         child: Row(
                           mainAxisAlignment: MainAxisAlignment.spaceAround,
-                          children: [
+                          children: const [
                             Text(
                               'Mon',
                               style: TextStyle(color: Colors.white),

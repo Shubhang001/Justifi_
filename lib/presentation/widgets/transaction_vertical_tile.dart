@@ -6,13 +6,13 @@ class TransactionVerticalTile extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return const Column(
+    return Column(
       children: [
         SizedBox(
           child: SingleChildScrollView(
             scrollDirection: Axis.vertical,
             child: Column(
-              children: [
+              children: const [
                 TransactionCard(
                     image: 'assets/images/coin_wallet.png',
                     date: "06 Oct 2022",

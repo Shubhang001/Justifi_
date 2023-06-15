@@ -26,52 +26,13 @@ class _FreezedBalancePageState extends State<FreezedBalancePage> {
           ),
           backgroundColor: kPrimaryBlackColor,
         ),
-        endDrawer: Drawer(
-          child: ListView(
-            children: const <Widget>[
-              DrawerHeader(
-                decoration: BoxDecoration(
-                  color: Colors.black,
-                ),
-                child: Text(
-                  'Welcome to Justify',
-                  style: TextStyle(
-                    color: Colors.white,
-                    fontSize: 30,
-                  ),
-                ),
-              ),
-              ListTile(
-                title: Text("Item1"),
-                leading: Icon(Icons.mail),
-              ),
-              Divider(
-                height: 0.2,
-              ),
-              ListTile(
-                title: Text("Item1"),
-                leading: Icon(Icons.mail),
-              ),
-              Divider(
-                height: 0.2,
-              ),
-              ListTile(
-                title: Text("Item1"),
-                leading: Icon(Icons.mail),
-              ),
-              Divider(
-                height: 0.2,
-              ),
-            ],
-          ),
-        ),
         body: SafeArea(
             child: Container(
                 padding: const EdgeInsets.all(20),
                 child: Column(
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
-                      const Padding(
+                      Padding(
                         padding: EdgeInsets.only(
                             left: 20, right: 20, top: 10, bottom: 10),
                         child: Row(

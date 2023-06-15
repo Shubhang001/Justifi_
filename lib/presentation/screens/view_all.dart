@@ -143,8 +143,8 @@ class ViewAllPage extends StatelessWidget {
                 const SizedBox(
                   height: 10,
                 ),
-                const Row(
-                  children: [
+                Row(
+                  children: const [
                     SearchBarUpdated(
                       backgroundColor: Colors.white,
                     ),

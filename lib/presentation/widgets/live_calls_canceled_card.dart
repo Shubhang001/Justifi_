@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:jusitfi_admin/presentation/widgets/rating_box.dart';
 import '../../utils/constants/textstyles.dart';
 
 class LiveCallsCancelledCard extends StatelessWidget {
@@ -62,24 +63,7 @@ class LiveCallsCancelledCard extends StatelessWidget {
                   ],
                 ),
                 Column(children: [
-                  Container(
-                    padding: const EdgeInsets.only(left: 8, right: 10),
-                    decoration: BoxDecoration(
-                        color: Colors.white,
-                        borderRadius: BorderRadius.circular(15)),
-                    child: Row(
-                      children: [
-                        const Icon(
-                          Icons.star,
-                          color: Colors.yellow,
-                        ),
-                        Text(
-                          rating.toString(),
-                          style: kAdvocateCardRating,
-                        )
-                      ],
-                    ),
-                  ),
+                  RatingBox(rating: rating),
                 ])
               ],
             ),

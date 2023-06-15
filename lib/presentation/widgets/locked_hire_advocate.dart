@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:jusitfi_admin/presentation/screens/offers_page.dart';
 import 'package:jusitfi_admin/utils/constants/textstyles.dart';
 
 class LockedHireAdvocateDialogBox extends StatefulWidget {
@@ -142,14 +143,14 @@ class _LockedHireAdvocateDialogBox extends State<LockedHireAdvocateDialogBox> {
                                   borderRadius: BorderRadius.circular(25),
                                   color: Colors.black,
                                 ),
-                                height: 10,
-                                width: 10,
+                                height: 15,
+                                width: 15,
                                 child: Icon(
                                   Icons.circle,
                                   color: item1 == true
                                       ? Colors.black
                                       : Colors.white,
-                                  size: 8,
+                                  size: 15,
                                 ))),
                         const SizedBox(
                           width: 10,
@@ -172,16 +173,16 @@ class _LockedHireAdvocateDialogBox extends State<LockedHireAdvocateDialogBox> {
                           },
                           child: Container(
                               decoration: BoxDecoration(
-                                borderRadius: BorderRadius.circular(25),
+                                borderRadius: BorderRadius.circular(20),
                                 color: Colors.black,
                               ),
-                              height: 10,
-                              width: 10,
+                              height: 15,
+                              width: 15,
                               child: Icon(
                                 Icons.circle,
                                 color:
                                     item2 == true ? Colors.black : Colors.white,
-                                size: 8,
+                                size: 15,
                               ))),
                       const SizedBox(
                         width: 10,
@@ -206,13 +207,13 @@ class _LockedHireAdvocateDialogBox extends State<LockedHireAdvocateDialogBox> {
                                 borderRadius: BorderRadius.circular(25),
                                 color: Colors.black,
                               ),
-                              height: 10,
-                              width: 10,
+                              height: 15,
+                              width: 15,
                               child: Icon(
                                 Icons.circle,
                                 color:
                                     item3 == true ? Colors.black : Colors.white,
-                                size: 8,
+                                size: 15,
                               ))),
                       const SizedBox(
                         width: 10,
@@ -225,19 +226,24 @@ class _LockedHireAdvocateDialogBox extends State<LockedHireAdvocateDialogBox> {
                     const SizedBox(
                       height: 10,
                     ),
-                    Container(
-                      height: 32,
-                      width: 220,
-                      decoration: BoxDecoration(
-                          borderRadius: BorderRadius.circular(10),
-                          color: Colors.black),
-                      child: Center(
-                        child: Text(
-                          "Coupon Code",
-                          style: poppinsW500S15White,
-                        ),
-                      ),
-                    ),
+                    GestureDetector(
+                        onTap: () {
+                          Navigator.of(context).push(MaterialPageRoute(
+                              builder: (context) => const OffersPage()));
+                        },
+                        child: Container(
+                          height: 32,
+                          width: 220,
+                          decoration: BoxDecoration(
+                              borderRadius: BorderRadius.circular(10),
+                              color: Colors.black),
+                          child: Center(
+                            child: Text(
+                              "Coupon Code",
+                              style: poppinsW500S15White,
+                            ),
+                          ),
+                        )),
                     const SizedBox(
                       height: 10,
                     ),
