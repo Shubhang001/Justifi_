@@ -76,7 +76,7 @@ class ApprovalPendingAdvocateCard extends StatelessWidget {
                     )
                   ],
                 ),
-                RatingBox(rating: rating),
+                RatingBox(rating: rating.toInt()),
               ],
             ),
             const SizedBox(height: 8),
