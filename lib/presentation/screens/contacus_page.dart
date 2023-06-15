@@ -111,8 +111,8 @@ class ExistingIssue extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Column(
-      children: const [
+    return const Column(
+      children: [
         IssueTile(
           title: "Criminal Cases",
           icon: Icons.class_rounded,

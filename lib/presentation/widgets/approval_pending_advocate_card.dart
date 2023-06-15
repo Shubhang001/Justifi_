@@ -1,9 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:jusitfi_admin/presentation/widgets/starrating.dart';
 import 'package:jusitfi_admin/presentation/widgets/videoCallWidget.dart';
 import 'package:jusitfi_admin/presentation/widgets/view_cancel_reason_dialog.dart';
 import 'package:jusitfi_admin/utils/constants/colors.dart';
-import 'package:smooth_star_rating_null_safety/smooth_star_rating_null_safety.dart';
 
 import '../../utils/constants/textstyles.dart';
 import 'advocate_profile_table.dart';

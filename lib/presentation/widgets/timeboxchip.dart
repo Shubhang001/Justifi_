@@ -5,7 +5,7 @@ class TimeBoxChip extends StatefulWidget {
   final List<String> timeSlots;
   final Function(String) onSelected;
 
-  TimeBoxChip({required this.timeSlots, required this.onSelected});
+  const TimeBoxChip({super.key, required this.timeSlots, required this.onSelected});
 
   @override
   _TimeBoxChipState createState() => _TimeBoxChipState();
@@ -39,7 +39,7 @@ class _TimeBoxChipState extends State<TimeBoxChip> {
             child: Padding(
               padding: const EdgeInsets.all(8.0),
               child: Container(
-                padding: EdgeInsets.symmetric(horizontal: 15),
+                padding: const EdgeInsets.symmetric(horizontal: 15),
                 decoration: BoxDecoration(
                     color: selectedIndex == index
                         ? kSelectedColor
@@ -49,7 +49,7 @@ class _TimeBoxChipState extends State<TimeBoxChip> {
                 child: Center(
                   child: Text(
                     widget.timeSlots[index],
-                    style: TextStyle(
+                    style: const TextStyle(
                       color: Colors.black,
                       fontWeight: FontWeight.bold,
                     ),

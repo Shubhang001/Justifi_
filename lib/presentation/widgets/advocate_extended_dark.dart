@@ -99,7 +99,7 @@ class AdvocateCardExtendedDark extends StatelessWidget {
                       )
                     ],
                   ),
-                  VerticalDivider(
+                  const VerticalDivider(
                     color: Colors.white,
                   ),
                   Column(
@@ -114,7 +114,7 @@ class AdvocateCardExtendedDark extends StatelessWidget {
                       )
                     ],
                   ),
-                  VerticalDivider(
+                  const VerticalDivider(
                     color: Colors.white,
                   ),
                   Column(

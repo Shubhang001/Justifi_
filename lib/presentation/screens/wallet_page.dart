@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:jusitfi_admin/presentation/screens/add_money_page.dart';
-import 'package:jusitfi_admin/presentation/screens/buying_hiring_packages_page.dart';
 import 'package:jusitfi_admin/presentation/screens/freezed_balance_page.dart';
 import 'package:jusitfi_admin/presentation/screens/hiring_package_page.dart';
 import 'package:jusitfi_admin/presentation/screens/offers_page.dart';
@@ -95,7 +94,7 @@ class _WalletPageState extends State<WalletPage> {
                     Row(
                       mainAxisAlignment: MainAxisAlignment.spaceAround,
                       children: [
-                        Container(
+                        SizedBox(
                           height: 20,
                           width: 20,
                           child: Image.asset(
@@ -112,7 +111,7 @@ class _WalletPageState extends State<WalletPage> {
                   ],
                 ),
               ]),
-              SizedBox(
+              const SizedBox(
                 height: 15,
               ),
               Row(
@@ -147,7 +146,7 @@ class _WalletPageState extends State<WalletPage> {
                     GestureDetector(
                       onTap: () {
                         Navigator.of(context).push(MaterialPageRoute(
-                            builder: (context) => AddMoneyPage(
+                            builder: (context) => const AddMoneyPage(
                                   currentWalletBalance: '1455',
                                 )));
                       },
@@ -178,7 +177,7 @@ class _WalletPageState extends State<WalletPage> {
                     GestureDetector(
                         onTap: () {
                           Navigator.of(context).push(MaterialPageRoute(
-                              builder: (context) => OffersPage()));
+                              builder: (context) => const OffersPage()));
                         },
                         child: Container(
                           height: 54,
@@ -198,7 +197,7 @@ class _WalletPageState extends State<WalletPage> {
                     GestureDetector(
                         onTap: () {
                           Navigator.of(context).push(MaterialPageRoute(
-                              builder: (context) => TransactionPage()));
+                              builder: (context) => const TransactionPage()));
                         },
                         child: Container(
                           height: 54,
@@ -217,13 +216,13 @@ class _WalletPageState extends State<WalletPage> {
                   ]),
                 ],
               ),
-              SizedBox(
+              const SizedBox(
                 height: 10,
               ),
               GestureDetector(
                   onTap: () {
                     Navigator.of(context).push(MaterialPageRoute(
-                        builder: (context) => FreezedBalancePage()));
+                        builder: (context) => const FreezedBalancePage()));
                   },
                   child: Container(
                       height: 100,
@@ -267,7 +266,7 @@ class _WalletPageState extends State<WalletPage> {
                 "Buy Hiring packages as per your need ",
                 style: interW400S18Black,
               )),
-              SizedBox(
+              const SizedBox(
                 height: 5,
               ),
               Table(
@@ -311,10 +310,10 @@ class _WalletPageState extends State<WalletPage> {
                     GestureDetector(
                         onTap: () {
                           Navigator.of(context).push(MaterialPageRoute(
-                              builder: (context) => HiringPackagePage()));
+                              builder: (context) => const HiringPackagePage()));
                         },
                         child: Padding(
-                            padding: EdgeInsets.only(
+                            padding: const EdgeInsets.only(
                                 top: 5, bottom: 5, left: 10, right: 10),
                             child: Container(
                               height: 20,
@@ -333,7 +332,7 @@ class _WalletPageState extends State<WalletPage> {
                               builder: (context) => const HiringPackagePage()));
                         },
                         child: Padding(
-                            padding: EdgeInsets.only(
+                            padding: const EdgeInsets.only(
                                 top: 5, bottom: 5, left: 10, right: 10),
                             child: Container(
                               height: 20,
@@ -360,7 +359,7 @@ class _WalletPageState extends State<WalletPage> {
                               builder: (context) => const HiringPackagePage()));
                         },
                         child: Padding(
-                            padding: EdgeInsets.only(
+                            padding: const EdgeInsets.only(
                                 top: 5, bottom: 5, left: 10, right: 10),
                             child: Container(
                               height: 20,
@@ -379,7 +378,7 @@ class _WalletPageState extends State<WalletPage> {
                               builder: (context) => const HiringPackagePage()));
                         },
                         child: Padding(
-                            padding: EdgeInsets.only(
+                            padding: const EdgeInsets.only(
                                 top: 5, bottom: 5, left: 10, right: 10),
                             child: Container(
                               height: 20,
@@ -398,7 +397,7 @@ class _WalletPageState extends State<WalletPage> {
                               builder: (context) => const HiringPackagePage()));
                         },
                         child: Padding(
-                            padding: EdgeInsets.only(
+                            padding: const EdgeInsets.only(
                                 top: 5, bottom: 5, left: 10, right: 10),
                             child: Container(
                               height: 20,
@@ -420,7 +419,7 @@ class _WalletPageState extends State<WalletPage> {
                               builder: (context) => const HiringPackagePage()));
                         },
                         child: Padding(
-                            padding: EdgeInsets.only(
+                            padding: const EdgeInsets.only(
                                 top: 5, bottom: 5, left: 10, right: 10),
                             child: Container(
                               height: 20,
@@ -439,7 +438,7 @@ class _WalletPageState extends State<WalletPage> {
                               builder: (context) => const HiringPackagePage()));
                         },
                         child: Padding(
-                            padding: EdgeInsets.only(
+                            padding: const EdgeInsets.only(
                                 top: 5, bottom: 5, left: 10, right: 10),
                             child: Container(
                               height: 20,
@@ -458,7 +457,7 @@ class _WalletPageState extends State<WalletPage> {
                             builder: (context) => const HiringPackagePage()));
                       },
                       child: Padding(
-                          padding: EdgeInsets.only(
+                          padding: const EdgeInsets.only(
                               top: 5, bottom: 5, left: 10, right: 10),
                           child: Container(
                             height: 20,
@@ -476,7 +475,7 @@ class _WalletPageState extends State<WalletPage> {
                               builder: (context) => const HiringPackagePage()));
                         },
                         child: Padding(
-                            padding: EdgeInsets.only(
+                            padding: const EdgeInsets.only(
                                 top: 5, bottom: 5, left: 10, right: 10),
                             child: Container(
                               height: 20,
@@ -495,7 +494,7 @@ class _WalletPageState extends State<WalletPage> {
                               builder: (context) => const HiringPackagePage()));
                         },
                         child: Padding(
-                            padding: EdgeInsets.only(
+                            padding: const EdgeInsets.only(
                                 top: 5, bottom: 5, left: 10, right: 10),
                             child: Container(
                               height: 20,
@@ -509,7 +508,7 @@ class _WalletPageState extends State<WalletPage> {
                               )),
                             ))),
                     Padding(
-                        padding: EdgeInsets.only(
+                        padding: const EdgeInsets.only(
                             top: 5, bottom: 5, left: 10, right: 10),
                         child: Container(
                           height: 20,

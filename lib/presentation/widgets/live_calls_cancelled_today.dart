@@ -6,13 +6,13 @@ class LiveCallsCancelledTodayVerticalTile extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Column(
+    return const Column(
       children: [
         SizedBox(
           child: SingleChildScrollView(
             scrollDirection: Axis.vertical,
             child: Column(
-              children: const [
+              children: [
                 LiveCallsCancelledCard(
                     name: "Priya Sharma",
                     image: 'assets/images/advocate_img.png',

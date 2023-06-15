@@ -17,7 +17,7 @@ class ViewCancelReasonDialog extends StatefulWidget {
 }
 
 class _ViewCancelReasonDialog extends State<ViewCancelReasonDialog> {
-  TextEditingController _cancelReasonController = TextEditingController();
+  final TextEditingController _cancelReasonController = TextEditingController();
 
   @override
   Widget build(BuildContext context) {
@@ -31,7 +31,7 @@ class _ViewCancelReasonDialog extends State<ViewCancelReasonDialog> {
             child: Container(
               decoration: BoxDecoration(
                   borderRadius: BorderRadius.circular(20), color: Colors.black),
-              padding: EdgeInsets.all(30),
+              padding: const EdgeInsets.all(30),
               child: Column(
                   mainAxisSize: MainAxisSize.min,
                   crossAxisAlignment: CrossAxisAlignment.center,
@@ -82,7 +82,7 @@ class _ViewCancelReasonDialog extends State<ViewCancelReasonDialog> {
                                 )));
                       },
                       child: Container(
-                        padding: EdgeInsets.all(4),
+                        padding: const EdgeInsets.all(4),
                         decoration: BoxDecoration(
                             borderRadius: BorderRadius.circular(6),
                             color: Colors.white),

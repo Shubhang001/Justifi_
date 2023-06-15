@@ -1,6 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:jusitfi_admin/presentation/screens/finished_page.dart';
-import 'package:jusitfi_admin/presentation/screens/float_cases4.dart';
 import 'package:jusitfi_admin/presentation/screens/floatcases2.dart';
 
 class FloatCases extends StatefulWidget {
@@ -13,12 +11,12 @@ class FloatCases extends StatefulWidget {
 class _FloatCasesState extends State<FloatCases> {
   @override
   void initState() {
-    Future.delayed(Duration(seconds: 2), () {
+    Future.delayed(const Duration(seconds: 2), () {
       //Navigator.pushReplacement(context, MaterialPageRoute(builder: (_) => FinishedPage(text: 'Your application has been submitted', nextPage: FloatCases4(), nextPageName: 'View Status'), ));
       Navigator.push(
           context,
           MaterialPageRoute(
-            builder: (_) => FloatCases2(),
+            builder: (_) => const FloatCases2(),
           ));
     });
     super.initState();

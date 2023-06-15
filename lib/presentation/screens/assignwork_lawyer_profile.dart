@@ -27,7 +27,7 @@ class _AssignWorkLawyerProfileState extends State<AssignWorkLawyerProfile> {
       body: Stack(
         children: [
           Container(
-            decoration: BoxDecoration(
+            decoration: const BoxDecoration(
                 color: Colors.black,
                 borderRadius: BorderRadius.only(
                   bottomLeft: Radius.circular(150),
@@ -64,7 +64,7 @@ class _AssignWorkLawyerProfileState extends State<AssignWorkLawyerProfile> {
               style: kpageTitle,
             ),
           ),
-          Row(
+          const Row(
             children: [
               Text('')
             ],

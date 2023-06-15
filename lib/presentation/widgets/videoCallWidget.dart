@@ -9,13 +9,13 @@ class VideoCallWidget extends StatelessWidget {
     return Container(
       height: 26,
       width: 85,
-      padding: EdgeInsets.all(4),
+      padding: const EdgeInsets.all(4),
       decoration: BoxDecoration(
           color: Colors.white, borderRadius: BorderRadius.circular(15)),
       child: Row(
         mainAxisAlignment: MainAxisAlignment.spaceAround,
         children: [
-          Icon(
+          const Icon(
             Icons.videocam,
             color: Colors.black,
           ),

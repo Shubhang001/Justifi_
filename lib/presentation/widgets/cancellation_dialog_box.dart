@@ -25,7 +25,7 @@ class _CancellationDialogBoxState extends State<CancellationDialogBox> {
             child: Container(
               decoration: BoxDecoration(
                   borderRadius: BorderRadius.circular(20), color: Colors.white),
-              padding: EdgeInsets.all(30),
+              padding: const EdgeInsets.all(30),
               child: Column(
                   mainAxisSize: MainAxisSize.min,
                   crossAxisAlignment: CrossAxisAlignment.center,
@@ -34,7 +34,7 @@ class _CancellationDialogBoxState extends State<CancellationDialogBox> {
                       "Cancellation Reason",
                       style: poppinsW600S16Black,
                     ),
-                    SizedBox(
+                    const SizedBox(
                       height: 10,
                     ),
                     Divider(

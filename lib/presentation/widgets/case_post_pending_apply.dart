@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:jusitfi_admin/presentation/widgets/approval_pending_advocate_card.dart';
 import 'package:jusitfi_admin/presentation/widgets/case_post_pending_apply_card.dart';
 
 class CasePostPendingApplyVerticalTile extends StatelessWidget {
@@ -7,13 +6,13 @@ class CasePostPendingApplyVerticalTile extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Column(
+    return const Column(
       children: [
         SizedBox(
           child: SingleChildScrollView(
             scrollDirection: Axis.vertical,
             child: Column(
-              children: const [
+              children: [
                 CasePostPendingApplyCard(
                     name: "Priya Sharma",
                     image: 'assets/images/advocate_img.png',
