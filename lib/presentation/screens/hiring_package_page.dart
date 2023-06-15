@@ -36,89 +36,93 @@ class _HiringPackagePage extends State<HiringPackagePage> {
           ),
           backgroundColor: kPrimaryBlackColor,
         ),
-        body: Padding(
-            padding: EdgeInsets.all(20),
-            child: Column(
-              children: [
-                SizedBox(
-                  child: SingleChildScrollView(
-                    scrollDirection: Axis.vertical,
-                    child: Column(
-                      children: [
-                        SizedBox(height: 20),
-                        Row(
-                          mainAxisAlignment: MainAxisAlignment.start,
+        body: SingleChildScrollView(
+            scrollDirection: Axis.vertical,
+            child: Padding(
+                padding: EdgeInsets.all(20),
+                child: Column(
+                  children: [
+                    SizedBox(
+                      child: SingleChildScrollView(
+                        scrollDirection: Axis.vertical,
+                        child: Column(
                           children: [
-                            GestureDetector(
-                              onTap: () {
-                                _onDayTapped(0);
-                              },
-                              child: Row(
-                                mainAxisAlignment:
-                                    MainAxisAlignment.spaceEvenly,
-                                children: [
-                                  Container(
-                                      decoration: BoxDecoration(
-                                        borderRadius: BorderRadius.circular(20),
-                                        color: _selectedIndex == 0
-                                            ? Color.fromRGBO(0, 0, 0, 1)
-                                            : Colors.white,
-                                      ),
-                                      height: 30,
-                                      width: 84,
-                                      child: Center(
-                                          child: Text(
-                                        "Active",
-                                        style: _selectedIndex == 0
-                                            ? alegreyaW700S18White
-                                            : alegreyaW700S18Black,
-                                      ))),
-                                ],
-                              ),
+                            SizedBox(height: 20),
+                            Row(
+                              mainAxisAlignment: MainAxisAlignment.start,
+                              children: [
+                                GestureDetector(
+                                  onTap: () {
+                                    _onDayTapped(0);
+                                  },
+                                  child: Row(
+                                    mainAxisAlignment:
+                                        MainAxisAlignment.spaceEvenly,
+                                    children: [
+                                      Container(
+                                          decoration: BoxDecoration(
+                                            borderRadius:
+                                                BorderRadius.circular(20),
+                                            color: _selectedIndex == 0
+                                                ? Color.fromRGBO(0, 0, 0, 1)
+                                                : Colors.white,
+                                          ),
+                                          height: 30,
+                                          width: 84,
+                                          child: Center(
+                                              child: Text(
+                                            "Active",
+                                            style: _selectedIndex == 0
+                                                ? alegreyaW700S18White
+                                                : alegreyaW700S18Black,
+                                          ))),
+                                    ],
+                                  ),
+                                ),
+                                Spacer(),
+                                GestureDetector(
+                                  onTap: () {
+                                    _onDayTapped(1);
+                                  },
+                                  child: Row(
+                                    mainAxisAlignment:
+                                        MainAxisAlignment.spaceEvenly,
+                                    children: [
+                                      Container(
+                                          decoration: BoxDecoration(
+                                            borderRadius:
+                                                BorderRadius.circular(20),
+                                            color: _selectedIndex == 1
+                                                ? Colors.black
+                                                : Colors.white,
+                                          ),
+                                          height: 30,
+                                          width: 84,
+                                          child: Center(
+                                              child: Text(
+                                            "Expired",
+                                            style: _selectedIndex == 1
+                                                ? alegreyaW700S18White
+                                                : alegreyaW700S18Black,
+                                          ))),
+                                    ],
+                                  ),
+                                ),
+                              ],
                             ),
-                            Spacer(),
-                            GestureDetector(
-                              onTap: () {
-                                _onDayTapped(1);
-                              },
-                              child: Row(
-                                mainAxisAlignment:
-                                    MainAxisAlignment.spaceEvenly,
-                                children: [
-                                  Container(
-                                      decoration: BoxDecoration(
-                                        borderRadius: BorderRadius.circular(20),
-                                        color: _selectedIndex == 1
-                                            ? Colors.black
-                                            : Colors.white,
-                                      ),
-                                      height: 30,
-                                      width: 84,
-                                      child: Center(
-                                          child: Text(
-                                        "Expired",
-                                        style: _selectedIndex == 1
-                                            ? alegreyaW700S18White
-                                            : alegreyaW700S18Black,
-                                      ))),
-                                ],
-                              ),
+                            SizedBox(height: 20),
+                            Divider(
+                              color: kprimaryTextColor,
+                              thickness: 1,
                             ),
+                            Container(
+                              child: _verticalTiles[_selectedIndex],
+                            )
                           ],
                         ),
-                        SizedBox(height: 20),
-                        Divider(
-                          color: kprimaryTextColor,
-                          thickness: 1,
-                        ),
-                        Container(
-                          child: _verticalTiles[_selectedIndex],
-                        )
-                      ],
+                      ),
                     ),
-                  ),
-                ),
-              ],
-            )));
+                  ],
+                ))));
   }
 }
