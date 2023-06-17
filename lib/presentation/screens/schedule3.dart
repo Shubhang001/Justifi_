@@ -34,8 +34,8 @@ class _Schedule3State extends State<Schedule3> {
       appBar: AppBar(
         backgroundColor: Colors.black,
         centerTitle: true,
-        title: Text('Schedule'),
-        actions: [IconButton(onPressed: () {}, icon: Icon(Icons.more))],
+        title: const Text('Schedule'),
+        actions: [IconButton(onPressed: () {}, icon: const Icon(Icons.more))],
       ),
       body: SafeArea(
         child: Padding(
@@ -90,7 +90,7 @@ class _Schedule3State extends State<Schedule3> {
                         ),
                       ),
                       Padding(
-                        padding: const EdgeInsets.all(8.0),
+                        padding: EdgeInsets.all(8.0),
                         child: Row(
                           mainAxisAlignment: MainAxisAlignment.spaceAround,
                           children: const [
@@ -238,11 +238,11 @@ class _Schedule3State extends State<Schedule3> {
                               style: kFilterValue,
                             ),
                             DurationSelector(
-                              onSelected: (_duration) {
+                              onSelected: (duration) {
                                 print(duration);
                                 setState(() {
-                                  duration = _duration;
-                                  endtime = endTime(startTime, _duration);
+                                  duration = duration;
+                                  endtime = endTime(startTime, duration);
                                 });
                               },
                             )
@@ -313,7 +313,7 @@ class _Schedule3State extends State<Schedule3> {
                     width: MediaQuery.of(context).size.width / 1.5,
                     height: 50,
                     decoration: BoxDecoration(
-                      borderRadius: BorderRadius.only(
+                      borderRadius: const BorderRadius.only(
                           bottomLeft: Radius.circular(20),
                           topRight: Radius.circular(20)),
                       color: kobdescriptionColor,

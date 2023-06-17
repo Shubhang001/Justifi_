@@ -1,6 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:jusitfi_admin/presentation/widgets/approval_pending_advocate_card.dart';
-import 'package:jusitfi_admin/presentation/widgets/case_post_pending_apply_card.dart';
 import 'package:jusitfi_admin/presentation/widgets/case_post_pending_hire_card.dart';
 
 class CasePostPendingHireVerticalTile extends StatelessWidget {

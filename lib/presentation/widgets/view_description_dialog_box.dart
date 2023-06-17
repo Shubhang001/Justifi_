@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:jusitfi_admin/utils/constants/colors.dart';
 import 'package:jusitfi_admin/utils/constants/textstyles.dart';
 
 class ViewDescriptionDialogBox extends StatefulWidget {
@@ -25,7 +24,7 @@ class _ViewDescriptionDialogBox extends State<ViewDescriptionDialogBox> {
             child: Container(
               decoration: BoxDecoration(
                   borderRadius: BorderRadius.circular(0), color: Colors.white),
-              padding: EdgeInsets.all(30),
+              padding: const EdgeInsets.all(30),
               child: Column(
                   mainAxisSize: MainAxisSize.min,
                   crossAxisAlignment: CrossAxisAlignment.center,
@@ -33,7 +32,7 @@ class _ViewDescriptionDialogBox extends State<ViewDescriptionDialogBox> {
                     Row(
                       mainAxisAlignment: MainAxisAlignment.spaceBetween,
                       children: [
-                        Container(
+                        SizedBox(
                           height: 18,
                           width: 18,
                           child: Image.asset(
@@ -43,7 +42,7 @@ class _ViewDescriptionDialogBox extends State<ViewDescriptionDialogBox> {
                         Stack(
                           children: [
                             Center(
-                              child: Container(
+                              child: SizedBox(
                                 height: 18,
                                 width: 18,
                                 child: Image.asset(
@@ -52,7 +51,7 @@ class _ViewDescriptionDialogBox extends State<ViewDescriptionDialogBox> {
                               ),
                             ),
                             Center(
-                              child: Container(
+                              child: SizedBox(
                                 height: 18,
                                 width: 18,
                                 child: Image.asset(
@@ -61,7 +60,7 @@ class _ViewDescriptionDialogBox extends State<ViewDescriptionDialogBox> {
                               ),
                             ),
                             Center(
-                              child: Container(
+                              child: SizedBox(
                                 height: 18,
                                 width: 18,
                                 child: Image.asset(
@@ -77,7 +76,7 @@ class _ViewDescriptionDialogBox extends State<ViewDescriptionDialogBox> {
                       "Description",
                       style: poppinsW400S12Black,
                     ),
-                    SizedBox(
+                    const SizedBox(
                       height: 20,
                     ),
                     Text(
@@ -99,7 +98,7 @@ class _ViewDescriptionDialogBox extends State<ViewDescriptionDialogBox> {
                         style: poppinsW400S9Black,
                       )
                     ]),
-                    SizedBox(
+                    const SizedBox(
                       height: 10,
                     ),
                     Row(mainAxisAlignment: MainAxisAlignment.start, children: [
@@ -108,7 +107,7 @@ class _ViewDescriptionDialogBox extends State<ViewDescriptionDialogBox> {
                         style: poppinsW700S9Black,
                       )
                     ]),
-                    Container(
+                    SizedBox(
                         height: 60,
                         width: 266,
                         child: SingleChildScrollView(
@@ -123,25 +122,7 @@ class _ViewDescriptionDialogBox extends State<ViewDescriptionDialogBox> {
                         style: poppinsW700S9Black,
                       )
                     ]),
-                    Container(
-                        height: 60,
-                        width: 266,
-                        child: SingleChildScrollView(
-                          child: Text(
-                            "g industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived",
-                            style: poppinsW400S9Black,
-                          ),
-                        )),
-                    Container(
-                        height: 60,
-                        width: 266,
-                        child: SingleChildScrollView(
-                          child: Text(
-                            "g industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived",
-                            style: poppinsW400S9Black,
-                          ),
-                        )),
-                    Container(
+                    SizedBox(
                         height: 60,
                         width: 266,
                         child: SingleChildScrollView(
@@ -151,6 +132,24 @@ class _ViewDescriptionDialogBox extends State<ViewDescriptionDialogBox> {
                           ),
                         )),
                     SizedBox(
+                        height: 60,
+                        width: 266,
+                        child: SingleChildScrollView(
+                          child: Text(
+                            "g industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived",
+                            style: poppinsW400S9Black,
+                          ),
+                        )),
+                    SizedBox(
+                        height: 60,
+                        width: 266,
+                        child: SingleChildScrollView(
+                          child: Text(
+                            "g industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived",
+                            style: poppinsW400S9Black,
+                          ),
+                        )),
+                    const SizedBox(
                       height: 10,
                     ),
                     Row(mainAxisAlignment: MainAxisAlignment.start, children: [
@@ -159,7 +158,7 @@ class _ViewDescriptionDialogBox extends State<ViewDescriptionDialogBox> {
                         style: poppinsW700S9Black,
                       )
                     ]),
-                    Container(
+                    SizedBox(
                         height: 60,
                         width: 266,
                         child: SingleChildScrollView(

@@ -25,7 +25,7 @@ class FreezedBalanceCard extends StatelessWidget {
     return Padding(
       padding: const EdgeInsets.all(8.0),
       child: Container(
-        padding: EdgeInsets.all(8),
+        padding: const EdgeInsets.all(8),
         decoration: BoxDecoration(
             color: Colors.black, borderRadius: BorderRadius.circular(15)),
         child:
@@ -54,7 +54,7 @@ class FreezedBalanceCard extends StatelessWidget {
                         date.toString(),
                         style: poppinsW500S10White,
                       ),
-                      SizedBox(
+                      const SizedBox(
                         width: 5,
                       ),
                       Text(
@@ -65,7 +65,7 @@ class FreezedBalanceCard extends StatelessWidget {
                   )
                 ],
               ),
-              SizedBox(
+              const SizedBox(
                 height: 25,
               ),
               Column(
@@ -106,7 +106,7 @@ class FreezedBalanceCard extends StatelessWidget {
                   )
                 ],
               ),
-              SizedBox(
+              const SizedBox(
                 height: 25,
               ),
               Column(

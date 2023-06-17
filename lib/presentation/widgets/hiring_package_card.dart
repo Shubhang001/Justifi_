@@ -38,11 +38,11 @@ class HiringPackageCard extends StatelessWidget {
     return Padding(
       padding: const EdgeInsets.all(8.0),
       child: Container(
-          padding: EdgeInsets.all(8),
+          padding: const EdgeInsets.all(8),
           decoration: BoxDecoration(color: hiringCardBgColor),
           child: Row(
             children: [
-              Container(
+              SizedBox(
                   height: 220,
                   //width: 164,
                   child: Image.asset(image.toString())),
@@ -57,13 +57,13 @@ class HiringPackageCard extends StatelessWidget {
                   Row(
                     children: [
                       hiringType == "Profile Hiring"
-                          ? Icon(Icons.person)
-                          : Container(
+                          ? const Icon(Icons.person)
+                          : SizedBox(
                               height: 18,
                               width: 14,
                               child: Image.asset("assets/icons/group_icon.png"),
                             ),
-                      SizedBox(
+                      const SizedBox(
                         width: 10,
                       ),
                       Text(
@@ -72,12 +72,12 @@ class HiringPackageCard extends StatelessWidget {
                       )
                     ],
                   ),
-                  SizedBox(
+                  const SizedBox(
                     height: 10,
                   ),
                   Row(
                     children: [
-                      Container(
+                      SizedBox(
                         height: 21,
                         width: 25,
                         child: Image.asset("assets/icons/up_down_icon.png"),
@@ -92,7 +92,7 @@ class HiringPackageCard extends StatelessWidget {
                       )
                     ],
                   ),
-                  SizedBox(
+                  const SizedBox(
                     height: 10,
                   ),
 
@@ -104,7 +104,7 @@ class HiringPackageCard extends StatelessWidget {
                     Container(
                       margin: const EdgeInsets.all(8),
                       child: Table(
-                        defaultColumnWidth: FlexColumnWidth(),
+                        defaultColumnWidth: const FlexColumnWidth(),
                         defaultVerticalAlignment:
                             TableCellVerticalAlignment.middle,
                         border: TableBorder.all(

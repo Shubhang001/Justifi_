@@ -50,7 +50,7 @@ class RefundCard extends StatelessWidget {
     return Padding(
         padding: const EdgeInsets.all(8.0),
         child: Container(
-          padding: EdgeInsets.all(8),
+          padding: const EdgeInsets.all(8),
           decoration: BoxDecoration(
               color: Colors.black, borderRadius: BorderRadius.circular(15)),
           child:
@@ -59,7 +59,7 @@ class RefundCard extends StatelessWidget {
               mainAxisAlignment: MainAxisAlignment.end,
               children: [
                 Text(
-                  date.toString() + " ",
+                  "$date ",
                   style: kDateandTimeWhite,
                 ),
                 Text(
@@ -106,7 +106,7 @@ class RefundCard extends StatelessWidget {
                       ),
                       Row(
                         children: [
-                          Icon(
+                          const Icon(
                             Icons.timelapse,
                             color: Colors.white,
                           ),
@@ -118,22 +118,22 @@ class RefundCard extends StatelessWidget {
                       )
                     ],
                   ),
-                  VerticalDivider(
+                  const VerticalDivider(
                     color: Colors.white,
                     thickness: 1,
                   ),
-                  Icon(
+                  const Icon(
                     Icons.videocam,
                     color: Colors.white,
                   ),
-                  VerticalDivider(
+                  const VerticalDivider(
                     color: Colors.white,
                     thickness: 1,
                   ),
                   Row(
                     mainAxisAlignment: MainAxisAlignment.spaceAround,
                     children: [
-                      Icon(
+                      const Icon(
                         Icons.currency_rupee,
                         size: 20,
                         color: Colors.white,
@@ -148,7 +148,7 @@ class RefundCard extends StatelessWidget {
                       )
                     ],
                   ),
-                  VerticalDivider(
+                  const VerticalDivider(
                     color: Colors.white,
                     thickness: 1,
                   ),
@@ -173,7 +173,7 @@ class RefundCard extends StatelessWidget {
                 ],
               ),
             ),
-            SizedBox(
+            const SizedBox(
               height: 8,
             ),
             GestureDetector(
@@ -182,7 +182,7 @@ class RefundCard extends StatelessWidget {
                 showDialog(
                     context: context,
                     builder: (BuildContext context) {
-                      return CancellationDialogBox();
+                      return const CancellationDialogBox();
                     });
               },
               child: Center(
@@ -192,7 +192,7 @@ class RefundCard extends StatelessWidget {
                         borderRadius: BorderRadius.only(
                             topLeft: Radius.circular(15),
                             topRight: Radius.circular(15))),
-                    padding: EdgeInsets.all(8),
+                    padding: const EdgeInsets.all(8),
                     child: Text(
                       "View Cancellation Reason",
                       style: tableTextBoldBlack,

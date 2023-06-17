@@ -1,6 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:jusitfi_admin/presentation/screens/homepage.dart';
-import 'package:jusitfi_admin/presentation/screens/mianpage.dart';
 import 'package:jusitfi_admin/presentation/screens/wallet_page.dart';
 import 'package:jusitfi_admin/presentation/widgets/big_button.dart';
 import 'package:jusitfi_admin/utils/constants/textstyles.dart';
@@ -40,12 +38,12 @@ class ProceedPage extends StatelessWidget {
             Padding(
               padding: const EdgeInsets.all(0),
               child: ClipPath(
+                clipper: CustomClipPath(),
                 child: Container(
                   width: 500,
                   height: 200,
                   color: Colors.black,
                 ),
-                clipper: CustomClipPath(),
               ),
             ),
           ],

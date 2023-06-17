@@ -409,7 +409,10 @@ class _FloatCases2State extends State<FloatCases2> {
                       Navigator.push(
                           context,
                           MaterialPageRoute(
-                            builder: (_) => FinishedPage(text: 'Your application has been submitted', nextPage: FloatCases4(), nextPageName: 'View Status'),
+                            builder: (_) => FinishedPage(
+                                text: 'Your application has been submitted',
+                                nextPage: FloatCases4(),
+                                nextPageName: 'View Status'),
                           ));
                     },
                     child: Container(

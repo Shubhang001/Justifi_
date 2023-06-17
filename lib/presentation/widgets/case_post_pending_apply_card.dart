@@ -38,7 +38,7 @@ class CasePostPendingApplyCard extends StatelessWidget {
     return Padding(
         padding: const EdgeInsets.all(8.0),
         child: Container(
-          padding: EdgeInsets.all(8),
+          padding: const EdgeInsets.all(8),
           decoration: BoxDecoration(
               color: Colors.black, borderRadius: BorderRadius.circular(15)),
           child: Column(
@@ -61,7 +61,7 @@ class CasePostPendingApplyCard extends StatelessWidget {
                       viewApplication
                           ? Row(
                               children: [
-                                Container(
+                                SizedBox(
                                     height: 48,
                                     width: 48,
                                     child: Image.asset(
@@ -73,7 +73,7 @@ class CasePostPendingApplyCard extends StatelessWidget {
                           : Column(
                               children: [
                                 Image.asset(image),
-                                SizedBox(
+                                const SizedBox(
                                   height: 2,
                                 ),
                                 Text(
@@ -82,7 +82,7 @@ class CasePostPendingApplyCard extends StatelessWidget {
                                 )
                               ],
                             ),
-                      SizedBox(
+                      const SizedBox(
                         width: 4,
                       ),
                       Column(
@@ -134,7 +134,7 @@ class CasePostPendingApplyCard extends StatelessWidget {
                     children: [
                       Column(
                         children: [
-                          Container(
+                          SizedBox(
                               height: 28,
                               width: 28,
                               child: Image.asset(
@@ -151,7 +151,7 @@ class CasePostPendingApplyCard extends StatelessWidget {
                   )
                 ],
               ),
-              SizedBox(
+              const SizedBox(
                 height: 16,
               ),
 
@@ -192,9 +192,9 @@ class CasePostPendingApplyCard extends StatelessWidget {
                                         });
                                   },
                                   child: Padding(
-                                      padding: EdgeInsets.all(2),
+                                      padding: const EdgeInsets.all(2),
                                       child: Container(
-                                          padding: EdgeInsets.only(
+                                          padding: const EdgeInsets.only(
                                               left: 8, right: 8),
                                           decoration: BoxDecoration(
                                             color: Colors.white,
@@ -207,7 +207,7 @@ class CasePostPendingApplyCard extends StatelessWidget {
                                           )))),
                             ],
                           ),
-                    VerticalDivider(
+                    const VerticalDivider(
                       color: Colors.white,
                       thickness: 1,
                     ),
@@ -215,7 +215,7 @@ class CasePostPendingApplyCard extends StatelessWidget {
                       children: [
                         Row(
                           children: [
-                            Icon(
+                            const Icon(
                               Icons.currency_rupee,
                               color: Colors.white,
                             ),
@@ -231,7 +231,7 @@ class CasePostPendingApplyCard extends StatelessWidget {
                         )
                       ],
                     ),
-                    VerticalDivider(
+                    const VerticalDivider(
                       color: Colors.white,
                       thickness: 1,
                     ),
@@ -248,9 +248,9 @@ class CasePostPendingApplyCard extends StatelessWidget {
                                         });
                                   },
                                   child: Padding(
-                                      padding: EdgeInsets.all(2),
+                                      padding: const EdgeInsets.all(2),
                                       child: Container(
-                                          padding: EdgeInsets.only(
+                                          padding: const EdgeInsets.only(
                                               right: 8, left: 8),
                                           decoration: BoxDecoration(
                                             color: Colors.white,
@@ -271,9 +271,9 @@ class CasePostPendingApplyCard extends StatelessWidget {
                                         });
                                   },
                                   child: Padding(
-                                      padding: EdgeInsets.all(2),
+                                      padding: const EdgeInsets.all(2),
                                       child: Container(
-                                          padding: EdgeInsets.only(
+                                          padding: const EdgeInsets.only(
                                               right: 8, left: 8),
                                           decoration: BoxDecoration(
                                             color: Colors.white,
@@ -290,7 +290,7 @@ class CasePostPendingApplyCard extends StatelessWidget {
                             children: [
                               Row(
                                 children: [
-                                  Container(
+                                  SizedBox(
                                       height: 8,
                                       width: 8,
                                       child: Image.asset(
@@ -311,9 +311,9 @@ class CasePostPendingApplyCard extends StatelessWidget {
                                         });
                                   },
                                   child: Padding(
-                                      padding: EdgeInsets.all(2),
+                                      padding: const EdgeInsets.all(2),
                                       child: Container(
-                                          padding: EdgeInsets.only(
+                                          padding: const EdgeInsets.only(
                                               left: 8, right: 8),
                                           decoration: BoxDecoration(
                                             color: Colors.white,
@@ -326,7 +326,7 @@ class CasePostPendingApplyCard extends StatelessWidget {
                                           )))),
                             ],
                           ),
-                    VerticalDivider(
+                    const VerticalDivider(
                       color: Colors.white,
                       thickness: 1,
                     ),
@@ -337,7 +337,7 @@ class CasePostPendingApplyCard extends StatelessWidget {
                           " Pending ",
                           style: tableTextNormal,
                         ),
-                        const Icon(
+                        Icon(
                           Icons.pending,
                           size: 20,
                           color: Colors.white,
@@ -365,9 +365,9 @@ class CasePostPendingApplyCard extends StatelessWidget {
                                   });
                             },
                             child: Padding(
-                                padding: EdgeInsets.all(16),
+                                padding: const EdgeInsets.all(16),
                                 child: Container(
-                                    padding: EdgeInsets.only(
+                                    padding: const EdgeInsets.only(
                                         left: 16, right: 16, top: 6, bottom: 6),
                                     decoration: BoxDecoration(
                                       color: Colors.grey,
@@ -377,7 +377,7 @@ class CasePostPendingApplyCard extends StatelessWidget {
                                       children: [
                                         Text("View Application",
                                             style: poppinsW400S9Black),
-                                        Icon(
+                                        const Icon(
                                           Icons.lock,
                                           color: Colors.black,
                                           size: 10,
@@ -397,7 +397,7 @@ class CasePostPendingApplyCard extends StatelessWidget {
                                   });
                             },
                             child: Padding(
-                                padding: EdgeInsets.all(2),
+                                padding: const EdgeInsets.all(2),
                                 child: Container(
                                     padding: const EdgeInsets.only(
                                         left: 16, right: 16, top: 6, bottom: 6),

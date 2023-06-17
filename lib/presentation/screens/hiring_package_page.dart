@@ -39,7 +39,7 @@ class _HiringPackagePage extends State<HiringPackagePage> {
         body: SingleChildScrollView(
             scrollDirection: Axis.vertical,
             child: Padding(
-                padding: EdgeInsets.all(20),
+                padding: const EdgeInsets.all(20),
                 child: Column(
                   children: [
                     SizedBox(
@@ -47,7 +47,7 @@ class _HiringPackagePage extends State<HiringPackagePage> {
                         scrollDirection: Axis.vertical,
                         child: Column(
                           children: [
-                            SizedBox(height: 20),
+                            const SizedBox(height: 20),
                             Row(
                               mainAxisAlignment: MainAxisAlignment.start,
                               children: [
@@ -64,7 +64,8 @@ class _HiringPackagePage extends State<HiringPackagePage> {
                                             borderRadius:
                                                 BorderRadius.circular(20),
                                             color: _selectedIndex == 0
-                                                ? Color.fromRGBO(0, 0, 0, 1)
+                                                ? const Color.fromRGBO(
+                                                    0, 0, 0, 1)
                                                 : Colors.white,
                                           ),
                                           height: 30,
@@ -79,7 +80,7 @@ class _HiringPackagePage extends State<HiringPackagePage> {
                                     ],
                                   ),
                                 ),
-                                Spacer(),
+                                const Spacer(),
                                 GestureDetector(
                                   onTap: () {
                                     _onDayTapped(1);
@@ -110,7 +111,7 @@ class _HiringPackagePage extends State<HiringPackagePage> {
                                 ),
                               ],
                             ),
-                            SizedBox(height: 20),
+                            const SizedBox(height: 20),
                             Divider(
                               color: kprimaryTextColor,
                               thickness: 1,

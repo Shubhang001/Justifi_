@@ -4,7 +4,7 @@ import 'package:flutter_rating_bar/flutter_rating_bar.dart';
 class StarRating extends StatelessWidget {
   final double rating;
 
-  StarRating({required this.rating});
+  const StarRating({super.key, required this.rating});
 
   @override
   Widget build(BuildContext context) {
@@ -15,7 +15,7 @@ class StarRating extends StatelessWidget {
       allowHalfRating: true,
       itemSize: 5,
       itemCount: 5,
-      itemBuilder: (context, _) => Icon(
+      itemBuilder: (context, _) => const Icon(
         Icons.star,
         color: Colors.amber,
       ),

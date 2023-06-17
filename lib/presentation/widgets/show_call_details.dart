@@ -19,19 +19,19 @@ Future<Object?> showCallDetails(BuildContext context) {
                 child: InkWell(
                   onTap: () => Navigator.pop(context),
                   child: Container(
+                    height: 50,
+                    decoration: BoxDecoration(
+                        color: Colors.black,
+                        border: Border.all(color: Colors.white, width: 3),
+                        borderRadius: const BorderRadius.only(
+                            topRight: Radius.circular(35),
+                            bottomLeft: Radius.circular(35))),
                     child: Center(
                       child: Text(
                         'Cancel',
                         style: kdesignButtonText,
                       ),
                     ),
-                    height: 50,
-                    decoration: BoxDecoration(
-                        color: Colors.black,
-                        border: Border.all(color: Colors.white, width: 3),
-                        borderRadius: BorderRadius.only(
-                            topRight: Radius.circular(35),
-                            bottomLeft: Radius.circular(35))),
                   ),
                 ),
               ),
@@ -42,18 +42,18 @@ Future<Object?> showCallDetails(BuildContext context) {
                 child: InkWell(
                   onTap: () => Navigator.pop(context),
                   child: Container(
+                    decoration: BoxDecoration(
+                        color: kprimaryTextColor,
+                        borderRadius: const BorderRadius.only(
+                            topLeft: Radius.circular(35),
+                            bottomRight: Radius.circular(35))),
+                    height: 50,
                     child: Center(
                       child: Text(
                         'Call',
                         style: kdesignButtonText,
                       ),
                     ),
-                    decoration: BoxDecoration(
-                        color: kprimaryTextColor,
-                        borderRadius: BorderRadius.only(
-                            topLeft: Radius.circular(35),
-                            bottomRight: Radius.circular(35))),
-                    height: 50,
                   ),
                 ),
               ),
@@ -79,12 +79,12 @@ Future<Object?> showCallDetails(BuildContext context) {
               Container(
                 decoration:
                     BoxDecoration(borderRadius: BorderRadius.circular(7)),
+                width: 100,
+                height: 90,
                 child: Image.asset(
                   'assets/images/advocate_img.png',
                   fit: BoxFit.fill,
                 ),
-                width: 100,
-                height: 90,
               ),
               Text('Priya Sharma', style: kCallName),
               Table(
@@ -94,7 +94,7 @@ Future<Object?> showCallDetails(BuildContext context) {
                     children: [
                       TableCell(
                         child: Padding(
-                          padding: EdgeInsets.all(4),
+                          padding: const EdgeInsets.all(4),
                           child: Center(
                             child: Text(
                               'Mode',
@@ -105,7 +105,7 @@ Future<Object?> showCallDetails(BuildContext context) {
                       ),
                       TableCell(
                         child: Padding(
-                          padding: EdgeInsets.all(4),
+                          padding: const EdgeInsets.all(4),
                           child: Center(
                             child: Text(
                               'Phone Call',
@@ -120,7 +120,7 @@ Future<Object?> showCallDetails(BuildContext context) {
                     children: [
                       TableCell(
                         child: Padding(
-                          padding: EdgeInsets.all(4),
+                          padding: const EdgeInsets.all(4),
                           child: Center(
                             child: Text(
                               'Price /15mins',
@@ -131,7 +131,7 @@ Future<Object?> showCallDetails(BuildContext context) {
                       ),
                       TableCell(
                         child: Padding(
-                          padding: EdgeInsets.all(4),
+                          padding: const EdgeInsets.all(4),
                           child: Center(
                             child: Text(
                               '200Rs',
@@ -146,7 +146,7 @@ Future<Object?> showCallDetails(BuildContext context) {
                     children: [
                       TableCell(
                         child: Padding(
-                          padding: EdgeInsets.all(4),
+                          padding: const EdgeInsets.all(4),
                           child: Center(
                             child: Text(
                               'Location',
@@ -157,7 +157,7 @@ Future<Object?> showCallDetails(BuildContext context) {
                       ),
                       TableCell(
                         child: Padding(
-                          padding: EdgeInsets.all(4),
+                          padding: const EdgeInsets.all(4),
                           child: Center(
                             child: Text(
                               'Mumbai',
@@ -172,7 +172,7 @@ Future<Object?> showCallDetails(BuildContext context) {
                     children: [
                       TableCell(
                         child: Padding(
-                          padding: EdgeInsets.all(4),
+                          padding: const EdgeInsets.all(4),
                           child: Center(
                             child: Text(
                               'Current Balance',
@@ -183,7 +183,7 @@ Future<Object?> showCallDetails(BuildContext context) {
                       ),
                       TableCell(
                         child: Padding(
-                          padding: EdgeInsets.all(4),
+                          padding: const EdgeInsets.all(4),
                           child: Center(
                             child: Text(
                               '350Rs',
@@ -198,7 +198,7 @@ Future<Object?> showCallDetails(BuildContext context) {
                     children: [
                       TableCell(
                         child: Padding(
-                          padding: EdgeInsets.all(4),
+                          padding: const EdgeInsets.all(4),
                           child: Center(
                             child: Text(
                               'Call Possible for',
@@ -209,7 +209,7 @@ Future<Object?> showCallDetails(BuildContext context) {
                       ),
                       TableCell(
                         child: Padding(
-                          padding: EdgeInsets.all(4),
+                          padding: const EdgeInsets.all(4),
                           child: Center(
                             child: Text(
                               '15 mins',
@@ -229,8 +229,8 @@ Future<Object?> showCallDetails(BuildContext context) {
       filter:
           ImageFilter.blur(sigmaX: 1 * anim1.value, sigmaY: 1 * anim1.value),
       child: FadeTransition(
-        child: child,
         opacity: anim1,
+        child: child,
       ),
     ),
     context: context,

@@ -5,10 +5,9 @@ import '../../utils/constants/textstyles.dart';
 
 import '../widgets/statusPageFilterSort.dart';
 import '../widgets/statusPageSearchBar.dart';
-import '../widgets/transaction_vertical_tile.dart';
 
 class OffersPage extends StatefulWidget {
-  OffersPage({Key? key}) : super(key: key);
+  const OffersPage({Key? key}) : super(key: key);
 
   @override
   State<OffersPage> createState() => _OffersPage();
@@ -29,16 +28,16 @@ class _OffersPage extends State<OffersPage> {
         ),
         body: SafeArea(
             child: Container(
-                padding: EdgeInsets.all(20),
+                padding: const EdgeInsets.all(20),
                 child: Column(
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
                       Padding(
-                        padding: const EdgeInsets.only(
+                        padding: EdgeInsets.only(
                             left: 20, right: 20, top: 10, bottom: 10),
                         child: Row(
                           mainAxisAlignment: MainAxisAlignment.spaceAround,
-                          children: const [
+                          children: [
                             StatusPageSearchBar(),
                             SizedBox(
                               width: 10,
@@ -47,7 +46,7 @@ class _OffersPage extends State<OffersPage> {
                           ],
                         ),
                       ),
-                      SizedBox(
+                      const SizedBox(
                         height: 20,
                       ),
                       Row(

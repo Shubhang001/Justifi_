@@ -100,7 +100,7 @@ class RefundTable extends StatelessWidget {
               Padding(
                   padding: const EdgeInsets.all(2),
                   child: Text(
-                    refundDate.toString() + " " + refundTime.toString(),
+                    "$refundDate $refundTime",
                     style: tableTextNormal,
                   )),
             ]),
@@ -128,7 +128,7 @@ class RefundTable extends StatelessWidget {
               Padding(
                   padding: const EdgeInsets.all(2),
                   child: Text(
-                    refundAmount.toString() + "Rs",
+                    "${refundAmount}Rs",
                     style: tableTextNormal,
                   )),
             ]),

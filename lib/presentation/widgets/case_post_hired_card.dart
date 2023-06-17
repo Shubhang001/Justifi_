@@ -34,7 +34,7 @@ class CasePostHiredCard extends StatelessWidget {
     return Padding(
         padding: const EdgeInsets.all(8.0),
         child: Container(
-          padding: EdgeInsets.all(8),
+          padding: const EdgeInsets.all(8),
           decoration: BoxDecoration(
               color: Colors.black, borderRadius: BorderRadius.circular(15)),
           child: Column(
@@ -57,7 +57,7 @@ class CasePostHiredCard extends StatelessWidget {
                       Column(
                         children: [
                           Image.asset(image),
-                          SizedBox(
+                          const SizedBox(
                             height: 2,
                           ),
                           Text(
@@ -66,7 +66,7 @@ class CasePostHiredCard extends StatelessWidget {
                           )
                         ],
                       ),
-                      SizedBox(
+                      const SizedBox(
                         width: 4,
                       ),
                       Column(
@@ -118,7 +118,7 @@ class CasePostHiredCard extends StatelessWidget {
                     children: [
                       Column(
                         children: [
-                          Container(
+                          SizedBox(
                               height: 28,
                               width: 28,
                               child: Image.asset(
@@ -135,7 +135,7 @@ class CasePostHiredCard extends StatelessWidget {
                   )
                 ],
               ),
-              SizedBox(
+              const SizedBox(
                 height: 16,
               ),
               IntrinsicHeight(
@@ -175,9 +175,9 @@ class CasePostHiredCard extends StatelessWidget {
                                         });
                                   },
                                   child: Padding(
-                                      padding: EdgeInsets.all(2),
+                                      padding: const EdgeInsets.all(2),
                                       child: Container(
-                                          padding: EdgeInsets.only(
+                                          padding: const EdgeInsets.only(
                                               left: 8, right: 8),
                                           decoration: BoxDecoration(
                                             color: Colors.white,
@@ -190,7 +190,7 @@ class CasePostHiredCard extends StatelessWidget {
                                           )))),
                             ],
                           ),
-                    VerticalDivider(
+                    const VerticalDivider(
                       color: Colors.white,
                       thickness: 1,
                     ),
@@ -198,7 +198,7 @@ class CasePostHiredCard extends StatelessWidget {
                       children: [
                         Row(
                           children: [
-                            Icon(
+                            const Icon(
                               Icons.currency_rupee,
                               color: Colors.white,
                             ),
@@ -214,7 +214,7 @@ class CasePostHiredCard extends StatelessWidget {
                         )
                       ],
                     ),
-                    VerticalDivider(
+                    const VerticalDivider(
                       color: Colors.white,
                       thickness: 1,
                     ),
@@ -231,9 +231,9 @@ class CasePostHiredCard extends StatelessWidget {
                                         });
                                   },
                                   child: Padding(
-                                      padding: EdgeInsets.all(2),
+                                      padding: const EdgeInsets.all(2),
                                       child: Container(
-                                          padding: EdgeInsets.only(
+                                          padding: const EdgeInsets.only(
                                               right: 8, left: 8),
                                           decoration: BoxDecoration(
                                             color: Colors.white,
@@ -254,9 +254,9 @@ class CasePostHiredCard extends StatelessWidget {
                                         });
                                   },
                                   child: Padding(
-                                      padding: EdgeInsets.all(2),
+                                      padding: const EdgeInsets.all(2),
                                       child: Container(
-                                          padding: EdgeInsets.only(
+                                          padding: const EdgeInsets.only(
                                               right: 8, left: 8),
                                           decoration: BoxDecoration(
                                             color: Colors.white,
@@ -273,7 +273,7 @@ class CasePostHiredCard extends StatelessWidget {
                             children: [
                               Row(
                                 children: [
-                                  Container(
+                                  SizedBox(
                                       height: 8,
                                       width: 8,
                                       child: Image.asset(
@@ -294,9 +294,9 @@ class CasePostHiredCard extends StatelessWidget {
                                         });
                                   },
                                   child: Padding(
-                                      padding: EdgeInsets.all(2),
+                                      padding: const EdgeInsets.all(2),
                                       child: Container(
-                                          padding: EdgeInsets.only(
+                                          padding: const EdgeInsets.only(
                                               left: 8, right: 8),
                                           decoration: BoxDecoration(
                                             color: Colors.white,
@@ -309,7 +309,7 @@ class CasePostHiredCard extends StatelessWidget {
                                           )))),
                             ],
                           ),
-                    VerticalDivider(
+                    const VerticalDivider(
                       color: Colors.white,
                       thickness: 1,
                     ),
@@ -337,9 +337,9 @@ class CasePostHiredCard extends StatelessWidget {
                         //direct to message page
                       },
                       child: Padding(
-                          padding: EdgeInsets.all(16),
+                          padding: const EdgeInsets.all(16),
                           child: Container(
-                              padding: EdgeInsets.only(
+                              padding: const EdgeInsets.only(
                                   left: 16, right: 16, top: 6, bottom: 6),
                               decoration: BoxDecoration(
                                 color: Colors.grey,

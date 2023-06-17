@@ -67,7 +67,7 @@ class _ScheduledVerticalTileState extends State<ScheduledVerticalTile> {
                         ],
                       ),
                     ),
-                    Spacer(),
+                    const Spacer(),
                     GestureDetector(
                       onTap: () {
                         _onDayTapped(1);

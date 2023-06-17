@@ -37,7 +37,7 @@ class _StatusPageState extends State<StatusPage> {
     [
       const PendingApprovalVerticalTile(),
       const ScheduledVerticalTile(),
-      ScheduledMeetCancelledVerticleTile(),
+      const ScheduledMeetCancelledVerticleTile(),
       const ScheduledMeetCompletedVerticleTile(),
       const RefundVerticalTile()
     ],

@@ -17,7 +17,7 @@ class BuyingHiringPackagePage extends StatefulWidget {
 }
 
 class _BuyingHiringPackagePage extends State<BuyingHiringPackagePage> {
-  TextEditingController _addMoneyController = TextEditingController();
+  final TextEditingController _addMoneyController = TextEditingController();
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -71,7 +71,7 @@ class _BuyingHiringPackagePage extends State<BuyingHiringPackagePage> {
       ),
       body: SafeArea(
           child: Container(
-              padding: EdgeInsets.all(20),
+              padding: const EdgeInsets.all(20),
               child: Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
@@ -81,7 +81,7 @@ class _BuyingHiringPackagePage extends State<BuyingHiringPackagePage> {
                         style: poppinsW500S20Black,
                       )
                     ]),
-                    SizedBox(
+                    const SizedBox(
                       height: 40,
                     ),
                     TextFormField(
@@ -90,14 +90,14 @@ class _BuyingHiringPackagePage extends State<BuyingHiringPackagePage> {
                         inputFormatters: <TextInputFormatter>[
                           FilteringTextInputFormatter.digitsOnly
                         ],
-                        decoration: InputDecoration(
+                        decoration: const InputDecoration(
                             border: OutlineInputBorder(),
                             icon: Icon(
                               Icons.currency_rupee,
                               color: Colors.black,
                               size: 24,
                             ))),
-                    SizedBox(
+                    const SizedBox(
                       height: 40,
                     ),
                     Center(
@@ -113,7 +113,7 @@ class _BuyingHiringPackagePage extends State<BuyingHiringPackagePage> {
                         style: poppinsW500S18White,
                       )),
                     )),
-                    SizedBox(
+                    const SizedBox(
                       height: 60,
                     ),
                     Center(
@@ -136,13 +136,13 @@ class _BuyingHiringPackagePage extends State<BuyingHiringPackagePage> {
                                                 "assets/icons/outer_circle.png")
                                           ]),
                                         ),
-                                        SizedBox(
+                                        const SizedBox(
                                           width: 10,
                                         ),
-                                        Text("Pay with Debit/Credit/ATM Card")
+                                        const Text("Pay with Debit/Credit/ATM Card")
                                       ],
                                     ))))),
-                    SizedBox(
+                    const SizedBox(
                       height: 10,
                     ),
                     Center(
@@ -165,13 +165,13 @@ class _BuyingHiringPackagePage extends State<BuyingHiringPackagePage> {
                                                 "assets/icons/outer_circle.png")
                                           ]),
                                         ),
-                                        SizedBox(
+                                        const SizedBox(
                                           width: 10,
                                         ),
-                                        Text("Net Banking")
+                                        const Text("Net Banking")
                                       ],
                                     ))))),
-                    SizedBox(
+                    const SizedBox(
                       height: 10,
                     ),
                     Center(
@@ -193,13 +193,13 @@ class _BuyingHiringPackagePage extends State<BuyingHiringPackagePage> {
                                               child: Image.asset(
                                                   "assets/icons/outer_circle.png"))
                                         ]),
-                                        SizedBox(
+                                        const SizedBox(
                                           width: 10,
                                         ),
-                                        Text("UPI")
+                                        const Text("UPI")
                                       ],
                                     ))))),
-                    SizedBox(
+                    const SizedBox(
                       height: 50,
                     ),
                     GestureDetector(

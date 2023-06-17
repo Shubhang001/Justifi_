@@ -35,7 +35,7 @@ class _LockedHireAdvocateDialogBox extends State<LockedHireAdvocateDialogBox> {
                   crossAxisAlignment: CrossAxisAlignment.center,
                   children: [
                     Stack(children: [
-                      Container(
+                      SizedBox(
                           height: 60,
                           width: 64,
                           child: Image.asset(
@@ -91,7 +91,7 @@ class _LockedHireAdvocateDialogBox extends State<LockedHireAdvocateDialogBox> {
                         ),
                       ])
                     ]),
-                    SizedBox(
+                    const SizedBox(
                       height: 10,
                     ),
                     Row(mainAxisAlignment: MainAxisAlignment.start, children: [
@@ -106,19 +106,19 @@ class _LockedHireAdvocateDialogBox extends State<LockedHireAdvocateDialogBox> {
                         ),
                       ])
                     ]),
-                    SizedBox(
+                    const SizedBox(
                       height: 20,
                     ),
                     Row(mainAxisAlignment: MainAxisAlignment.center, children: [
                       Row(children: [
-                        Container(
+                        SizedBox(
                             height: 20,
                             width: 16,
                             child: Image.asset(
                               "assets/images/unlocked_lock.png",
                               fit: BoxFit.cover,
                             )),
-                        SizedBox(
+                        const SizedBox(
                           width: 8,
                         ),
                         Text(
@@ -127,7 +127,7 @@ class _LockedHireAdvocateDialogBox extends State<LockedHireAdvocateDialogBox> {
                         ),
                       ])
                     ]),
-                    SizedBox(
+                    const SizedBox(
                       height: 10,
                     ),
                     Row(mainAxisAlignment: MainAxisAlignment.start, children: [
@@ -152,7 +152,7 @@ class _LockedHireAdvocateDialogBox extends State<LockedHireAdvocateDialogBox> {
                                       : Colors.white,
                                   size: 15,
                                 ))),
-                        SizedBox(
+                        const SizedBox(
                           width: 10,
                         ),
                         Text(
@@ -161,7 +161,7 @@ class _LockedHireAdvocateDialogBox extends State<LockedHireAdvocateDialogBox> {
                         ),
                       ])
                     ]),
-                    SizedBox(
+                    const SizedBox(
                       height: 15,
                     ),
                     Row(children: [
@@ -184,7 +184,7 @@ class _LockedHireAdvocateDialogBox extends State<LockedHireAdvocateDialogBox> {
                                     item2 == true ? Colors.black : Colors.white,
                                 size: 15,
                               ))),
-                      SizedBox(
+                      const SizedBox(
                         width: 10,
                       ),
                       Text(
@@ -192,7 +192,7 @@ class _LockedHireAdvocateDialogBox extends State<LockedHireAdvocateDialogBox> {
                         style: poppinsW500S15Black,
                       ),
                     ]),
-                    SizedBox(
+                    const SizedBox(
                       height: 15,
                     ),
                     Row(children: [
@@ -223,13 +223,13 @@ class _LockedHireAdvocateDialogBox extends State<LockedHireAdvocateDialogBox> {
                         style: poppinsW500S15Black,
                       ),
                     ]),
-                    SizedBox(
+                    const SizedBox(
                       height: 10,
                     ),
                     GestureDetector(
                         onTap: () {
                           Navigator.of(context).push(MaterialPageRoute(
-                              builder: (context) => OffersPage()));
+                              builder: (context) => const OffersPage()));
                         },
                         child: Container(
                           height: 32,
@@ -244,7 +244,7 @@ class _LockedHireAdvocateDialogBox extends State<LockedHireAdvocateDialogBox> {
                             ),
                           ),
                         )),
-                    SizedBox(
+                    const SizedBox(
                       height: 10,
                     ),
                     Container(

@@ -7,7 +7,7 @@ import '../../utils/constants/colors.dart';
 import '../../utils/constants/textstyles.dart';
 
 class AddMoneyPage extends StatefulWidget {
-  AddMoneyPage({
+  const AddMoneyPage({
     Key? key,
     required this.currentWalletBalance,
   }) : super(key: key);
@@ -22,7 +22,7 @@ class _AddMoneyPageState extends State<AddMoneyPage> {
   bool _paymentOpt1 = false;
   bool _paymentOpt2 = false;
   bool _paymentOpt3 = false;
-  TextEditingController _addMoneyController = TextEditingController();
+  final TextEditingController _addMoneyController = TextEditingController();
   void _onAmountTapped(int index) {
     setState(() {
       _selectedIndex = index;
@@ -66,13 +66,13 @@ class _AddMoneyPageState extends State<AddMoneyPage> {
                                   )
                                 ],
                               ),
-                              Spacer(),
+                              const Spacer(),
                               Text(
-                                "₹" + widget.currentWalletBalance.toString(),
+                                "₹${widget.currentWalletBalance}",
                                 style: poppinsW500S18Black,
                               )
                             ]),
-                        SizedBox(
+                        const SizedBox(
                           height: 40,
                         ),
                         TextFormField(
@@ -81,14 +81,14 @@ class _AddMoneyPageState extends State<AddMoneyPage> {
                             inputFormatters: <TextInputFormatter>[
                               FilteringTextInputFormatter.digitsOnly
                             ],
-                            decoration: InputDecoration(
+                            decoration: const InputDecoration(
                                 border: OutlineInputBorder(),
                                 icon: Icon(
                                   Icons.currency_rupee,
                                   color: Colors.black,
                                   size: 24,
                                 ))),
-                        SizedBox(
+                        const SizedBox(
                           height: 40,
                         ),
                         Row(
@@ -147,7 +147,7 @@ class _AddMoneyPageState extends State<AddMoneyPage> {
                                 ))
                           ],
                         ),
-                        SizedBox(
+                        const SizedBox(
                           height: 40,
                         ),
                         GestureDetector(
@@ -168,7 +168,7 @@ class _AddMoneyPageState extends State<AddMoneyPage> {
                                 style: poppinsW500S18White,
                               )),
                             ))),
-                        SizedBox(
+                        const SizedBox(
                           height: 60,
                         ),
                         GestureDetector(
@@ -206,14 +206,14 @@ class _AddMoneyPageState extends State<AddMoneyPage> {
                                                               : Colors.white,
                                                       size: 25,
                                                     )),
-                                                SizedBox(
+                                                const SizedBox(
                                                   width: 10,
                                                 ),
-                                                Text(
+                                                const Text(
                                                     "Pay with Debit/Credit/ATM Card")
                                               ],
                                             )))))),
-                        SizedBox(
+                        const SizedBox(
                           height: 10,
                         ),
                         GestureDetector(
@@ -251,13 +251,13 @@ class _AddMoneyPageState extends State<AddMoneyPage> {
                                                               : Colors.white,
                                                       size: 25,
                                                     )),
-                                                SizedBox(
+                                                const SizedBox(
                                                   width: 10,
                                                 ),
-                                                Text("Net Banking")
+                                                const Text("Net Banking")
                                               ],
                                             )))))),
-                        SizedBox(
+                        const SizedBox(
                           height: 10,
                         ),
                         GestureDetector(
@@ -295,19 +295,19 @@ class _AddMoneyPageState extends State<AddMoneyPage> {
                                                               : Colors.white,
                                                       size: 25,
                                                     )),
-                                                SizedBox(
+                                                const SizedBox(
                                                   width: 10,
                                                 ),
-                                                Text("UPI")
+                                                const Text("UPI")
                                               ],
                                             )))))),
-                        SizedBox(
+                        const SizedBox(
                           height: 50,
                         ),
                         GestureDetector(
                             onTap: () {
                               Navigator.of(context).push(MaterialPageRoute(
-                                  builder: (context) => ProceedPage(
+                                  builder: (context) => const ProceedPage(
                                       message:
                                           "Your money has been added successfully.")));
                             },
