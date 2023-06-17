@@ -2,37 +2,35 @@ import 'dart:convert';
 import 'package:http/http.dart' as http;
 import 'package:jusitfi_admin/api/base_url.dart';
 
-getReviews(
-  int advocateID,
-) async {
-  final response = await http.get(
-    Uri.parse(
-      "$baseURL/v1/advocate/$advocateID/reviews",
-    ),
+getPopular() async {
+  final http.Response response = await http.delete(
+    Uri.parse('$baseURL/v1/nearest-advocates'),
   );
 
   if (response.statusCode == 200) {
-    return AdvocateReviews.fromJson(jsonDecode(response.body));
+    return PopularLawyer.fromJson(
+      jsonDecode(response.body),
+    );
   } else {
-    return "Operation Failed";
+    return "Something went wrong";
   }
 }
 
-class AdvocateReviews {
+class PopularLawyer {
   final int count;
   final String next;
   final String previous;
   final List<Map> results;
 
-  const AdvocateReviews({
+  const PopularLawyer({
     required this.count,
     required this.next,
     required this.previous,
     required this.results,
   });
 
-  factory AdvocateReviews.fromJson(Map<String, dynamic> json) {
-    return AdvocateReviews(
+  factory PopularLawyer.fromJson(Map<String, dynamic> json) {
+    return PopularLawyer(
       count: json['count'],
       next: json['next'],
       previous: json['previous'],

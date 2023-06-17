@@ -31,7 +31,7 @@ class LiveCallsCancelledCard extends StatelessWidget {
     return Padding(
       padding: const EdgeInsets.all(8.0),
       child: Container(
-        padding: EdgeInsets.all(8),
+        padding: const EdgeInsets.all(8),
         decoration: BoxDecoration(
             color: Colors.black, borderRadius: BorderRadius.circular(15)),
         child: Column(
@@ -69,13 +69,13 @@ class LiveCallsCancelledCard extends StatelessWidget {
             ),
 
             Container(
-              padding: EdgeInsets.all(8),
+              padding: const EdgeInsets.all(8),
               child: Row(
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
                   Row(
                     children: [
-                      Icon(
+                      const Icon(
                         Icons.calendar_month,
                         color: Colors.white,
                       ),
@@ -87,14 +87,14 @@ class LiveCallsCancelledCard extends StatelessWidget {
                   ),
                   Row(
                     children: [
-                      Container(
+                      SizedBox(
                           height: 16,
                           width: 16,
                           child: Image.asset(
                             "assets/icons/time_clock.png",
                             fit: BoxFit.cover,
                           )),
-                      SizedBox(
+                      const SizedBox(
                         width: 4,
                       ),
                       Text(
@@ -105,7 +105,7 @@ class LiveCallsCancelledCard extends StatelessWidget {
                   ),
                   Row(
                     children: [
-                      Icon(
+                      const Icon(
                         Icons.timelapse,
                         color: Colors.white,
                       ),
@@ -118,7 +118,7 @@ class LiveCallsCancelledCard extends StatelessWidget {
                 ],
               ),
             ),
-            SizedBox(
+            const SizedBox(
               height: 2,
             ),
             IntrinsicHeight(
@@ -129,11 +129,11 @@ class LiveCallsCancelledCard extends StatelessWidget {
                       mainAxisAlignment: MainAxisAlignment.spaceAround,
                       children: [
                         callType.toString() == "Video Call"
-                            ? Icon(
+                            ? const Icon(
                                 Icons.videocam,
                                 color: Colors.white,
                               )
-                            : Icon(
+                            : const Icon(
                                 Icons.call,
                                 color: Colors.white,
                               ),
@@ -142,14 +142,14 @@ class LiveCallsCancelledCard extends StatelessWidget {
                           style: tableTextBold,
                         )
                       ]),
-                  VerticalDivider(
+                  const VerticalDivider(
                     color: Colors.white,
                     thickness: 1,
                   ),
                   Row(
                     mainAxisAlignment: MainAxisAlignment.spaceAround,
                     children: [
-                      Icon(
+                      const Icon(
                         Icons.currency_rupee,
                         size: 20,
                         color: Colors.white,
@@ -160,7 +160,7 @@ class LiveCallsCancelledCard extends StatelessWidget {
                       )
                     ],
                   ),
-                  VerticalDivider(
+                  const VerticalDivider(
                     color: Colors.white,
                     thickness: 1,
                   ),
@@ -180,7 +180,7 @@ class LiveCallsCancelledCard extends StatelessWidget {
                               borderRadius: BorderRadius.only(
                                   topLeft: Radius.circular(15),
                                   topRight: Radius.circular(15))),
-                          padding: EdgeInsets.all(8),
+                          padding: const EdgeInsets.all(8),
                           child: Text(
                             "Reason",
                             style: tableTextBoldBlack,

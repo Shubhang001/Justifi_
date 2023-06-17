@@ -29,7 +29,7 @@ class ApprovalPendingAdvocateCard extends StatelessWidget {
   final String image;
   final String name;
   final String location;
-  final double rating;
+  final int rating;
   final String date;
   final String time;
   final int duration;
@@ -185,7 +185,7 @@ class ApprovalPendingAdvocateCard extends StatelessWidget {
                         " Pending",
                         style: tableTextNormal,
                       ),
-                      Icon(
+                      const Icon(
                         Icons.pending,
                         size: 20,
                         color: Colors.white,
