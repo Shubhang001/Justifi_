@@ -1,9 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:jusitfi_admin/presentation/screens/onboardingscreen.dart';
 import 'package:jusitfi_admin/presentation/widgets/big_button.dart';
+import 'package:jusitfi_admin/presentation/widgets/dob_picker.dart';
+import 'package:jusitfi_admin/presentation/widgets/img_picker_container.dart';
 import 'package:jusitfi_admin/utils/constants/colors.dart';
 import '../../utils/constants/textstyles.dart';
-
 import '../widgets/drop_down.dart';
 import '../widgets/importanttext.dart';
 import '../widgets/inputtextfield.dart';
@@ -20,6 +21,7 @@ class _SignupScreenState extends State<SignupScreen> {
   bool validate = false;
 
   bool isNumeric(String s) {
+    // ignore: unnecessary_null_comparison
     if (s == null) {
       return false;
     }
@@ -35,7 +37,6 @@ class _SignupScreenState extends State<SignupScreen> {
       firstNameController.text.isEmpty,
       lastNameController.text.isEmpty,
       emailController.text.isEmpty,
-      addressController.text.isEmpty
     ];
     setState(() {
       values.contains(true) ? validate = true : validate = false;
@@ -76,7 +77,7 @@ class _SignupScreenState extends State<SignupScreen> {
                       ),
                     ),
                     const Icon(
-                      Icons.person_2_outlined,
+                      Icons.person_outlined,
                       color: Colors.white,
                     )
                   ],
@@ -88,14 +89,7 @@ class _SignupScreenState extends State<SignupScreen> {
                     style: ktextFieldMainTitle,
                   ),
                 ),
-                Container(
-                  width: 85,
-                  height: 85,
-                  decoration: BoxDecoration(
-                    borderRadius: BorderRadius.circular(15),
-                    color: Colors.white,
-                  ),
-                ),
+                ImagePickerContainer(),
                 InputTextField(
                   errorText: 'First Name Should Be Filled',
                   validate: validate,
@@ -151,34 +145,46 @@ class _SignupScreenState extends State<SignupScreen> {
                         child: Column(
                           crossAxisAlignment: CrossAxisAlignment.start,
                           children: [
-                            const ImportantText(
-                              text: 'Date Of Birth',
-                            ),
+                            const ImportantText(text: 'DOB'),
                             const SizedBox(
                               height: 3,
                             ),
-                            AppDropdownInput(
-                              options: const ["Male", "Female"],
-                              value: gender,
-                              onChanged: (value) {
-                                setState(() {
-                                  gender = value!;
-                                  // state.didChange(newValue);
-                                });
-                              },
-                              getLabel: (String value) => value,
-                            ),
+                            DOBPicker()
                           ],
                         ),
                       ),
                     ],
                   ),
                 ),
-                InputTextField(
-                  errorText: 'Address must be entered',
-                  validate: validate,
-                  title: 'Address',
-                  txtController: addressController,
+                Padding(
+                  padding: const EdgeInsets.symmetric(vertical: 8),
+                  child: SizedBox(
+                    // height: 70,
+                    child: Column(
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: [
+                        Text(
+                          'Address',
+                          style: ktextFieldTitle,
+                        ),
+                        const SizedBox(
+                          height: 6,
+                        ),
+                        TextFormField(
+                          maxLines: 2,
+                          controller: addressController,
+                          style: kTextFieldValue,
+                          decoration: InputDecoration(
+                              isDense: true,
+                              contentPadding: const EdgeInsets.all(10),
+                              border: OutlineInputBorder(
+                                  borderRadius: BorderRadius.circular(10)),
+                              fillColor: Colors.white,
+                              filled: true),
+                        ),
+                      ],
+                    ),
+                  ),
                 ),
                 MobileInputTextField(
                     validate: validate,

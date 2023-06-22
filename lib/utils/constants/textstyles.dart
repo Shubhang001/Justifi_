@@ -9,6 +9,12 @@ TextStyle ktextFieldTitle = GoogleFonts.poppins(
   fontWeight: FontWeight.w400,
 );
 
+TextStyle kTextFieldValueDOB = GoogleFonts.poppins(
+  color: Colors.black,
+  fontWeight: FontWeight.w400,
+  fontSize: 15,
+);
+
 TextStyle ktextFieldMainTitle = GoogleFonts.poppins(
   color: kprimaryTextColor,
   fontStyle: FontStyle.normal,

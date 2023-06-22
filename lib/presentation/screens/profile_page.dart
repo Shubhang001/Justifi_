@@ -49,7 +49,7 @@ class ProfileScreen extends StatelessWidget {
               route: FaqPage(),
             ),
             const CustomTile(
-              icon: Icons.person_2_sharp,
+              icon: Icons.person_sharp,
               title: "About Us",
               route: AboutUsPAge(),
             ),
