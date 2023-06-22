@@ -8,7 +8,8 @@ import 'package:jusitfi_admin/utils/constants/textstyles.dart';
 import '../widgets/category_tile.dart';
 
 class ViewAllPage extends StatelessWidget {
-  ViewAllPage({super.key});
+  ViewAllPage({super.key,required this.title});
+  final String title;
   final List<Lawyer> items = [
     Lawyer(
         name: 'Priya Sharma',
@@ -160,76 +161,35 @@ class ViewAllPage extends StatelessWidget {
                 const SizedBox(
                   height: 30,
                 ),
-                Row(
-                  mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                  children: [
-                    Column(
-                      children: [
-                        Padding(
-                          padding: const EdgeInsets.all(8.0),
-                          child: Text(
-                            'Category',
-                            style: kHomePageTitle,
-                          ),
-                        ),
-                        const CategoryTile(
-                          image: 'assets/category_icons/criminal.png',
-                          name: 'Criminal',
-                          isDark: true,
-                        ),
-                      ],
-                    ),
-                    Column(
-                      children: [
-                        Padding(
-                          padding: const EdgeInsets.all(8.0),
-                          child: Text(
-                            'Sub - Category',
-                            style: kHomePageTitle,
-                          ),
-                        ),
-                        const CategoryTile(
-                          image: 'assets/category_icons/cybercrime.png',
-                          name: 'Cyber Crime',
-                          isDark: true,
-                        ),
-                      ],
-                    )
-                  ],
-                ),
                 Padding(
                   padding: const EdgeInsets.only(top: 40, bottom: 40),
                   child: Align(
                     alignment: Alignment.center,
                     child: Text(
-                      'Lawyers Near Me',
+                      title,
                       style: kHomePageTitle,
                     ),
                   ),
                 ),
-                SizedBox(
-                  height: 500,
-                  child: GridView.builder(
-                    itemCount: items.length,
-                    gridDelegate:
-                        const SliverGridDelegateWithFixedCrossAxisCount(
-                      childAspectRatio: (136 / 165),
-                      crossAxisCount: 2,
-                      mainAxisSpacing: 40,
-                      crossAxisSpacing: 40,
+                Center(
+                  child: SizedBox(
+                    height: 500,
+                    width: 270,
+                    child: ListView.builder(
+                      itemCount: items.length,
+                      itemBuilder: (context, index) {
+                        return AdvocateCardExtended(
+                          name: items[index].name,
+                          image: items[index].image,
+                          education: items[index].education,
+                          distance: items[index].distance,
+                          rating: items[index].rating,
+                          clients: items[index].clients,
+                          cases: items[index].cases,
+                          experience: items[index].experience,
+                        );
+                      },
                     ),
-                    itemBuilder: (context, index) {
-                      return AdvocateCardExtended(
-                        name: items[index].name,
-                        image: items[index].image,
-                        education: items[index].education,
-                        distance: items[index].distance,
-                        rating: items[index].rating,
-                        clients: items[index].clients,
-                        cases: items[index].cases,
-                        experience: items[index].experience,
-                      );
-                    },
                   ),
                 ),
               ],

@@ -15,11 +15,15 @@ class HorizontalTiles extends StatelessWidget {
           style: kHomePageTitle,
         ),
         SizedBox(
-          child: SingleChildScrollView(
+          width: MediaQuery.of(context).size.width,
+          height: 270,
+          child: ListView.builder(
             scrollDirection: Axis.horizontal,
-            child: Row(
-              children: const [
-                AdvocateCard(
+            itemCount: 3,
+            itemBuilder: (context, index) {
+              return Padding(
+                padding: const EdgeInsets.all(8.0),
+                child: const AdvocateCard(
                   name: 'Priya Sharma',
                   image: 'assets/images/advocate_img.png',
                   education:
@@ -27,26 +31,10 @@ class HorizontalTiles extends StatelessWidget {
                   distance: 10,
                   rating: 3.5,
                 ),
-                AdvocateCard(
-                  name: 'Priya Sharma',
-                  image: 'assets/images/advocate_img.png',
-                  education:
-                      'LL.B - Delhi University\nCyber Law - Indian Law Institue',
-                  distance: 10,
-                  rating: 4.5,
-                ),
-                AdvocateCard(
-                  name: 'Priya Sharma',
-                  image: 'assets/images/advocate_img.png',
-                  education:
-                      'LL.B - Delhi University\nCyber Law - Indian Law Institue',
-                  distance: 8,
-                  rating: 4.5,
-                ),
-              ],
-            ),
+              );
+            },
           ),
-        )
+        ),
       ],
     );
   }

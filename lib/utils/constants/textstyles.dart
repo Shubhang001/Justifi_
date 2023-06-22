@@ -65,20 +65,20 @@ TextStyle kTextFieldValue = GoogleFonts.poppins(
 
 TextStyle kAdvocateCardSubTitle = GoogleFonts.poppins(
   color: kobbuttonColor,
-  fontWeight: FontWeight.w300,
-  fontSize: 4,
+  fontWeight: FontWeight.w400,
+  fontSize: 10,
 );
 
 TextStyle kAdvocateCardSubTitleDark = GoogleFonts.poppins(
   color: Colors.white,
-  fontWeight: FontWeight.w300,
-  fontSize: 8,
+  fontWeight: FontWeight.w400,
+  fontSize: 10,
 );
 
 TextStyle kAdvocateCardRating = GoogleFonts.poppins(
   color: Colors.black,
   fontWeight: FontWeight.w300,
-  fontSize: 16,
+  fontSize: 25,
 );
 
 TextStyle kAdvocateCardRatingDark = GoogleFonts.poppins(
@@ -155,7 +155,7 @@ TextStyle kCallAns = GoogleFonts.poppins(
 TextStyle kSmallHint = GoogleFonts.openSans(
   color: kprimaryTextColor,
   fontWeight: FontWeight.w400,
-  fontSize: 10,
+  fontSize: 13,
 );
 
 TextStyle kSmallHintDark = GoogleFonts.openSans(
@@ -243,13 +243,13 @@ TextStyle kCategoryNameDark = GoogleFonts.openSans(
 
 TextStyle kAdvocateCardName = GoogleFonts.openSans(
   color: Colors.black,
-  fontSize: 12,
+  fontSize: 20,
   fontWeight: FontWeight.w600,
 );
 
 TextStyle kAdvocateCardNameDark = GoogleFonts.openSans(
   color: Colors.white,
-  fontSize: 15,
+  fontSize: 20,
   fontWeight: FontWeight.w600,
 );
 
@@ -312,13 +312,13 @@ TextStyle postedDateTextStyle = GoogleFonts.openSans(
 
 TextStyle kAdvocateCardLocation = GoogleFonts.openSans(
   color: Colors.black,
-  fontSize: 4,
+  fontSize: 10,
   fontWeight: FontWeight.w400,
 );
 
 TextStyle kAdvocateCardLocationDark = GoogleFonts.openSans(
   color: Colors.white,
-  fontSize: 8,
+  fontSize: 10,
   fontWeight: FontWeight.w400,
 );
 
@@ -347,19 +347,19 @@ TextStyle kTitle = GoogleFonts.openSans(
 
 TextStyle kAdvocateCardCount = GoogleFonts.openSans(
   color: Colors.black,
-  fontSize: 8,
+  fontSize: 15,
   fontWeight: FontWeight.w700,
 );
 
 TextStyle kAdvocateCardCountDark = GoogleFonts.openSans(
   color: Colors.white,
-  fontSize: 10,
+  fontSize: 15,
   fontWeight: FontWeight.w700,
 );
 
 TextStyle kAdvocateCardCountTitle = GoogleFonts.poppins(
   color: Colors.black,
-  fontSize: 6,
+  fontSize: 10,
   fontWeight: FontWeight.w400,
 );
 
@@ -383,8 +383,8 @@ TextStyle kFilterValue = GoogleFonts.poppins(
 
 TextStyle kProfileButtonText = GoogleFonts.poppins(
   color: Colors.white,
-  fontSize: 6,
-  fontWeight: FontWeight.w300,
+  fontSize: 10,
+  fontWeight: FontWeight.w500,
 );
 
 TextStyle lawyerProfileTitle = GoogleFonts.poppins(

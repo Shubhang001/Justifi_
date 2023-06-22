@@ -3,12 +3,12 @@ import 'package:jusitfi_admin/presentation/screens/lawyer_profile.dart';
 import 'package:jusitfi_admin/presentation/widgets/starrating.dart';
 import '../../utils/constants/textstyles.dart';
 
-class AdvocateCardExtended extends StatelessWidget {
-  const AdvocateCardExtended(
+class AdvocateCardFloatCases extends StatelessWidget {
+  const AdvocateCardFloatCases(
       {super.key,
       required this.name,
       required this.image,
-      required this.education,
+      required this.location,
       required this.distance,
       required this.rating,
       required this.clients,
@@ -17,7 +17,7 @@ class AdvocateCardExtended extends StatelessWidget {
 
   final String image;
   final String name;
-  final String education;
+  final String location;
   final double distance;
   final double rating;
   final int cases;
@@ -40,7 +40,9 @@ class AdvocateCardExtended extends StatelessWidget {
           height: 270,
           width: 250,
           decoration: BoxDecoration(
-              color: Colors.white, borderRadius: BorderRadius.circular(8)),
+              color: Colors.white,
+              borderRadius: BorderRadius.circular(8),
+              border: Border.all(color: Colors.grey, width: 2)),
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
@@ -62,7 +64,7 @@ class AdvocateCardExtended extends StatelessWidget {
                         style: kAdvocateCardName,
                       ),
                       Text(
-                        education,
+                        location,
                         style: kAdvocateCardSubTitle,
                       ),
                       Row(
@@ -141,25 +143,28 @@ class AdvocateCardExtended extends StatelessWidget {
                   ],
                 ),
               ),
-              Padding(
-                padding: const EdgeInsets.symmetric(horizontal: 8, vertical: 5),
-                child: Align(
-                  alignment: Alignment.bottomRight,
-                  child: Container(
-                    height: 20,
-                    width: 80,
-                    decoration: BoxDecoration(
-                        color: Colors.green,
-                        borderRadius: BorderRadius.circular(2)),
-                    child: Center(
-                      child: Text(
-                        'View Profile',
-                        style: kProfileButtonText,
-                      ),
-                    ),
-                  ),
-                ),
+              SizedBox(
+                height: 10,
               )
+              // Padding(
+              //   padding: const EdgeInsets.symmetric(horizontal: 8, vertical: 5),
+              //   child: Align(
+              //     alignment: Alignment.bottomRight,
+              //     child: Container(
+              //       height: 20,
+              //       width: 80,
+              //       decoration: BoxDecoration(
+              //           color: Colors.green,
+              //           borderRadius: BorderRadius.circular(2)),
+              //       child: Center(
+              //         child: Text(
+              //           'View Profile',
+              //           style: kProfileButtonText,
+              //         ),
+              //       ),
+              //     ),
+              //   ),
+              // )
             ],
           ),
         ),

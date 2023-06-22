@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:jusitfi_admin/presentation/screens/finished_page.dart';
 import 'package:jusitfi_admin/presentation/screens/float_cases4.dart';
+import 'package:jusitfi_admin/presentation/screens/floatcases5.dart';
 import 'package:jusitfi_admin/utils/constants/textstyles.dart';
 
 class FloatCases2 extends StatefulWidget {
@@ -17,12 +18,12 @@ class _FloatCases2State extends State<FloatCases2> {
       child: Scaffold(
         body: SingleChildScrollView(
           child: SizedBox(
-            height: MediaQuery.of(context).size.height,
+            height: 800,
             width: MediaQuery.of(context).size.width,
             child: Column(
               children: [
-                Expanded(
-                  flex: 8,
+                SizedBox(
+                  height: 650,
                   child: Stack(children: [
                     Container(
                       decoration: const BoxDecoration(
@@ -66,7 +67,7 @@ class _FloatCases2State extends State<FloatCases2> {
                       ),
                     ),
                     Positioned(
-                      top: 80,
+                      top: 60,
                       left: MediaQuery.of(context).size.width / 5,
                       child: Column(
                         children: [
@@ -431,14 +432,20 @@ class _FloatCases2State extends State<FloatCases2> {
                 ),
                 Expanded(
                   flex: 1,
-                  child: Container(
-                    width: double.infinity,
-                    decoration: const BoxDecoration(color: Colors.black),
-                    child: Center(
-                        child: Text(
-                      'View Application',
-                      style: kpageTitle,
-                    )),
+                  child: InkWell(
+                    onTap: () {
+                      Navigator.push(context,
+                          MaterialPageRoute(builder: (_) => FloatCases4()));
+                    },
+                    child: Container(
+                      width: double.infinity,
+                      decoration: const BoxDecoration(color: Colors.black),
+                      child: Center(
+                          child: Text(
+                        'View Application',
+                        style: kpageTitle,
+                      )),
+                    ),
                   ),
                 ),
               ],

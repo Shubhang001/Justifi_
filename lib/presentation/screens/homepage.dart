@@ -22,22 +22,17 @@ class _HomePageState extends State<HomePage> {
     return Scaffold(
         body: SafeArea(
       child: SingleChildScrollView(
-        child: Column(
-          crossAxisAlignment: CrossAxisAlignment.start,
-          children: [
-            Padding(
-              padding: const EdgeInsets.only(
-                  left: 20, right: 30, top: 10, bottom: 10),
-              child: Row(
-                mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                children: [
-                  Container(
-                    decoration: BoxDecoration(
-                        color: kprimaryTextColor,
-                        borderRadius: BorderRadius.circular(7)),
-                    height: 47,
-                    width: 47,
-                    child: GestureDetector(
+        child: SizedBox(
+          child: Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              Padding(
+                padding: const EdgeInsets.only(
+                    left: 20, right: 30, top: 10, bottom: 10),
+                child: Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                  children: [
+                    GestureDetector(
                       onTap: () {
                         Navigator.push(
                           context,
@@ -46,139 +41,157 @@ class _HomePageState extends State<HomePage> {
                           ),
                         );
                       },
-                      child: const Icon(Icons.person),
-                    ),
-                  ),
-                  Row(
-                    children: [
-                      Icon(
-                        Icons.pin_drop_rounded,
-                        size: 35,
-                        color: kobbuttonColor,
+                      child: Image.asset(
+                        'assets/icons/profile_new.png',
+                        width: 38,
+                        height: 38,
                       ),
-                      Text(
-                        "Mumbai",
-                        style: klocation,
-                      )
-                    ],
-                  ),
-                  const Icon(
-                    Icons.notifications_outlined,
-                    color: Colors.black,
-                    size: 35,
-                  )
-                ],
+                    ),
+                    Row(
+                      children: [
+                        Icon(
+                          Icons.pin_drop_rounded,
+                          size: 35,
+                          color: kobbuttonColor,
+                        ),
+                        Text(
+                          "Mumbai",
+                          style: klocation,
+                        )
+                      ],
+                    ),
+                    const Icon(
+                      Icons.notifications_outlined,
+                      color: Colors.black,
+                      size: 35,
+                    )
+                  ],
+                ),
               ),
-            ),
-            Padding(
-              padding:
-                  EdgeInsets.only(left: 20, right: 30, top: 10, bottom: 10),
-              child: Row(
-                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+              Padding(
+                padding: const EdgeInsets.only(
+                    left: 20, right: 30, top: 10, bottom: 10),
+                child: Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                  children: const [
+                    SearchBarUpdated(
+                      backgroundColor: Colors.black,
+                    ),
+                    SizedBox(
+                      width: 10,
+                    ),
+                    FilterSort(
+                      bgColor: Colors.black,
+                      dividerColor: Colors.white,
+                    )
+                  ],
+                ),
+              ),
+              Padding(
+                padding: const EdgeInsets.all(8.0),
+                child: Text(
+                  'Category',
+                  style: kMainCategory,
+                ),
+              ),
+              const SizedBox(
+                height: 10,
+              ),
+              Row(
+                mainAxisAlignment: MainAxisAlignment.spaceAround,
                 children: [
-                  SearchBarUpdated(
-                    backgroundColor: Colors.black,
+                  CategoryTile(
+                    image: 'assets/category_icons/criminal.png',
+                    name: 'Criminal',
                   ),
-                  SizedBox(
-                    width: 10,
+                  CategoryTile(
+                    image: 'assets/category_icons/family and adoption.png',
+                    name: 'Family and Adoption',
+                    isTransparentBackground: false,
                   ),
-                  FilterSort(
-                    bgColor: Colors.black,
-                    dividerColor: Colors.white,
+                  CategoryTile(
+                    image: 'assets/category_icons/cybercrime.png',
+                    name: 'Cybercrime',
+                  ),
+                  InkWell(
+                    onTap: () {
+                      Navigator.of(context)
+                          .push(MaterialPageRoute(builder: (_) {
+                        return MorePage();
+                      }));
+                    },
+                    child: CategoryTile(
+                      image: 'assets/category_icons/more.png',
+                      name: 'More',
+                      is_more: true,
+                    ),
                   )
                 ],
               ),
-            ),
-            Text(
-              'Category',
-              style: kMainCategory,
-            ),
-            const SizedBox(
-              height: 10,
-            ),
-            Row(
-              mainAxisAlignment: MainAxisAlignment.spaceAround,
-              children: [
-                const CategoryTile(
-                  image: 'assets/category_icons/criminal.png',
-                  name: 'Criminal',
-                ),
-                const CategoryTile(
-                  image: 'assets/category_icons/family and adoption.png',
-                  name: 'Family and Adoption',
-                  isTransparentBackground: false,
-                ),
-                const CategoryTile(
-                  image: 'assets/category_icons/cybercrime.png',
-                  name: 'Cybercrime',
-                ),
-                InkWell(
-                  onTap: () {
-                    Navigator.of(context).push(MaterialPageRoute(builder: (_) {
-                      return MorePage();
-                    }));
-                  },
-                  child: const CategoryTile(
-                    image: 'assets/category_icons/more.png',
-                    name: 'More',
+              Stack(alignment: Alignment.center, children: [
+                SizedBox(
+                  width: double.infinity,
+                  child: Image.asset(
+                    'assets/images/home_rect.png',
+                    height: 850,
+                    fit: BoxFit.fill,
                   ),
-                )
-              ],
-            ),
-            Stack(alignment: Alignment.center, children: [
-              SizedBox(
-                width: double.infinity,
-                child: Image.asset(
-                  'assets/images/home_rect.png',
-                  fit: BoxFit.fill,
                 ),
-              ),
-              Positioned(
-                top: 70,
-                child: Image.asset('assets/images/advocate.png'),
-              ),
-              const Positioned(
-                top: 130,
-                child: HorizontalTiles(
-                  title: 'Lawyers Near Me',
+                Positioned(
+                  top: 30,
+                  child: Image.asset(
+                    'assets/images/advocate.png',
+                    width: 300,
+                    height: 300,
+                  ),
                 ),
-              ),
-              Positioned(
-                  top: 290,
-                  right: 10,
-                  child: TextButton(
-                      onPressed: () {
-                        Navigator.of(context)
-                            .push(MaterialPageRoute(builder: (_) {
-                          return ViewAllPage();
-                        }));
-                      },
-                      child: Text(
-                        'View All',
-                        style: kViewAll,
-                      ))),
-              const Positioned(
-                top: 350,
-                child: HorizontalTiles(
-                  title: 'Popular Lawyers',
+                const Positioned(
+                  top: 170,
+                  child: HorizontalTiles(
+                    title: 'Lawyers Near Me',
+                  ),
                 ),
-              ),
-              Positioned(
-                  top: 510,
-                  right: 10,
-                  child: TextButton(
-                      onPressed: () {
-                        Navigator.of(context)
-                            .push(MaterialPageRoute(builder: (_) {
-                          return ViewAllPage();
-                        }));
-                      },
-                      child: Text(
-                        'View All',
-                        style: kViewAll,
-                      )))
-            ]),
-          ],
+                Positioned(
+                    top: 450,
+                    right: 10,
+                    child: TextButton(
+                        onPressed: () {
+                          Navigator.of(context)
+                              .push(MaterialPageRoute(builder: (_) {
+                            return ViewAllPage(
+                              title: 'Lawyers Near Me',
+                            );
+                          }));
+                        },
+                        child: Text(
+                          'View All',
+                          style: kViewAll,
+                        ))),
+                const Positioned(
+                  top: 500,
+                  child: HorizontalTiles(
+                    title: 'Popular Lawyers',
+                  ),
+                ),
+                Positioned(
+                    top: 780,
+                    right: 10,
+                    child: TextButton(
+                        onPressed: () {
+                          Navigator.of(context)
+                              .push(MaterialPageRoute(builder: (_) {
+                            return ViewAllPage(
+                              title: 'Popular Lawyers',
+                            );
+                          }));
+                        },
+                        child: Text(
+                          'View All',
+                          style: kViewAll,
+                        )))
+              ]),
+            ],
+          ),
         ),
       ),
     ));

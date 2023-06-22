@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
+
 import 'package:jusitfi_admin/presentation/screens/floatcases9.dart';
+import 'package:jusitfi_admin/presentation/widgets/notes.dart';
 import 'package:jusitfi_admin/utils/constants/colors.dart';
 
 import '../../utils/constants/textstyles.dart';
@@ -46,54 +48,13 @@ class _FloatCases5State extends State<FloatCases5> {
                       const SizedBox(
                         height: 25,
                       ),
-                      Row(
-                        children: [
-                          const SizedBox(
-                            width: 10,
-                          ),
-                          Expanded(
-                            flex: 2,
-                            child: Container(
-                              decoration: BoxDecoration(
-                                  color: kobdescriptionColor,
-                                  borderRadius: BorderRadius.circular(8)),
-                              child: ListTile(
-                                leading: Image.asset(
-                                  'assets/images/document.png',
-                                  width: 35,
-                                  height: 35,
-                                ),
-                                title: Text(
-                                  'Case Title',
-                                  style: kpageTitle,
-                                ),
-                                trailing: const Icon(
-                                  Icons.arrow_drop_down,
-                                  color: Colors.white,
-                                  size: 40,
-                                ),
-                              ),
-                            ),
-                          ),
-                          const SizedBox(
-                            width: 20,
-                          ),
-                          FilterSort(
-                            bgColor: kprimaryTextColor,
-                            dividerColor: Colors.black,
-                          ),
-                          const SizedBox(
-                            width: 10,
-                          ),
-                        ],
-                      ),
-                      const Divider(),
-                      const LawyerHireDetails(),
-                      const Divider(),
-                      const LawyerHireDetails(),
-                      const Divider(),
-                      const LawyerHireDetails(),
-                      const Divider(),
+                      Divider(),
+                      LawyerHireDetails(),
+                      Divider(),
+                      LawyerHireDetails(),
+                      Divider(),
+                      LawyerHireDetails(),
+                      Divider(),
                     ],
                   ),
                 ),
@@ -121,11 +82,11 @@ class LawyerHireDetails extends StatelessWidget {
           children: [
             Row(
               children: [
-                const SizedBox(
+                SizedBox(
                   width: 10,
                 ),
                 Container(
-                  height: 90,
+                  height: 120,
                   width: 100,
                   decoration: BoxDecoration(
                       color: Colors.white,
@@ -137,7 +98,7 @@ class LawyerHireDetails extends StatelessWidget {
                     ],
                   ),
                 ),
-                const SizedBox(
+                SizedBox(
                   width: 15,
                 ),
                 Column(
@@ -163,12 +124,12 @@ class LawyerHireDetails extends StatelessWidget {
                 ),
               ],
             ),
-            const SizedBox(
+            SizedBox(
               height: 10,
             ),
             Row(
               children: [
-                const SizedBox(
+                SizedBox(
                   width: 80,
                 ),
                 Text(
@@ -194,7 +155,9 @@ class LawyerHireDetails extends StatelessWidget {
             Padding(
               padding: const EdgeInsets.symmetric(vertical: 4),
               child: InkWell(
-                onTap: () {},
+                onTap: () {
+                  showNotes(context);
+                },
                 child: Container(
                   width: 60,
                   height: 20,
@@ -230,7 +193,7 @@ class LawyerHireDetails extends StatelessWidget {
               ),
             ),
             Text(
-              'R. 10000000',
+              '₹ 10000000',
               style: kCallAns,
             )
           ],
