@@ -43,7 +43,7 @@ class MyApp extends StatelessWidget {
           bottomSheetTheme:
               const BottomSheetThemeData(backgroundColor: Colors.transparent),
           primarySwatch: createMaterialColor(kobbuttonColor)),
-      home: const AssignWorkLawyerProfile(),
+      home: const LoginScreen(),
     );
   }
 }
