@@ -3,10 +3,8 @@ import 'package:jusitfi_admin/presentation/screens/mianpage.dart';
 import 'package:jusitfi_admin/presentation/widgets/big_button.dart';
 import 'package:jusitfi_admin/utils/constants/textstyles.dart';
 
-import '../widgets/wave_clipper.dart';
-
-class AssignWork extends StatelessWidget {
-  const AssignWork({super.key});
+class AssignWorkCompleted extends StatelessWidget {
+  const AssignWorkCompleted({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -14,12 +12,12 @@ class AssignWork extends StatelessWidget {
       backgroundColor: Colors.white,
       body: SafeArea(
         child: Column(
-          mainAxisAlignment: MainAxisAlignment.spaceAround,
+          mainAxisAlignment: MainAxisAlignment.spaceBetween,
           crossAxisAlignment: CrossAxisAlignment.center,
           children: [
             Image.asset('assets/images/check_mark.png'),
             Text(
-              'Your Feedback has been submitted',
+              'Your Application has been submitted',
               textAlign: TextAlign.center,
               style: kAssignText,
             ),
@@ -27,20 +25,14 @@ class AssignWork extends StatelessWidget {
               removescreens: true,
               nextPage: MainPage(),
               buttonColor: Colors.black,
-              text: 'Home',
+              text: 'View Status',
               width: 200,
             ),
-            Padding(
-              padding: const EdgeInsets.all(30.0),
-              child: ClipPath(
-                clipper: CustomClipPath(),
-                child: Container(
-                  width: 500,
-                  height: 200,
-                  color: Colors.grey,
-                ),
-              ),
-            ),
+            Container(
+              color: Colors.black,
+              width: double.infinity,
+              height: MediaQuery.of(context).size.width / 1.5,
+            )
           ],
         ),
       ),
