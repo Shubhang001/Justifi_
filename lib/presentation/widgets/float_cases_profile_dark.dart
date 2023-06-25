@@ -2,12 +2,12 @@ import 'package:flutter/material.dart';
 import 'package:jusitfi_admin/presentation/widgets/starrating.dart';
 import '../../utils/constants/textstyles.dart';
 
-class AdvocateCardExtendedDark extends StatelessWidget {
-  const AdvocateCardExtendedDark(
+class AdvocateCardFloatCasesDark extends StatelessWidget {
+  const AdvocateCardFloatCasesDark(
       {super.key,
       required this.name,
       required this.image,
-      required this.education,
+      required this.location,
       required this.distance,
       required this.rating,
       required this.clients,
@@ -16,7 +16,7 @@ class AdvocateCardExtendedDark extends StatelessWidget {
 
   final String image;
   final String name;
-  final String education;
+  final String location;
   final double distance;
   final double rating;
   final int cases;
@@ -28,8 +28,8 @@ class AdvocateCardExtendedDark extends StatelessWidget {
     return Padding(
       padding: const EdgeInsets.all(8.0),
       child: Container(
-        height: 200,
-        width: 170,
+        height: 270,
+        width: 250,
         decoration: BoxDecoration(
             color: Colors.black, borderRadius: BorderRadius.circular(8)),
         child: Column(
@@ -38,13 +38,16 @@ class AdvocateCardExtendedDark extends StatelessWidget {
           children: [
             Image.asset(
               image,
-              width: 170,
-              height: 100,
+              width: 250,
+              height: 120,
               fit: BoxFit.fill,
             ),
             Row(
               mainAxisAlignment: MainAxisAlignment.spaceAround,
               children: [
+                SizedBox(
+                  width: 3,
+                ),
                 Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
@@ -53,7 +56,7 @@ class AdvocateCardExtendedDark extends StatelessWidget {
                       style: kAdvocateCardNameDark,
                     ),
                     Text(
-                      education,
+                      location,
                       style: kAdvocateCardSubTitleDark,
                     ),
                     Row(
@@ -132,6 +135,9 @@ class AdvocateCardExtendedDark extends StatelessWidget {
                 ],
               ),
             ),
+            SizedBox(
+              height: 10,
+            )
           ],
         ),
       ),

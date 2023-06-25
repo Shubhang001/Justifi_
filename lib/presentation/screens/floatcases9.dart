@@ -3,6 +3,8 @@ import 'dart:ui';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:jusitfi_admin/presentation/screens/floatcases5.dart';
 import 'package:jusitfi_admin/presentation/screens/floatcases8.dart';
+import 'package:jusitfi_admin/presentation/screens/homepage.dart';
+import 'package:jusitfi_admin/presentation/widgets/float_cases_profile.dart';
 import '../../utils/constants/textstyles.dart';
 import '../widgets/advocate_card_extended.dart';
 import '../widgets/smallButton.dart';
@@ -21,8 +23,8 @@ Future<Object?> floatCases9(
           borderRadius: BorderRadius.all(Radius.circular(22.0))),
       backgroundColor: Colors.white,
       content: SizedBox(
-          width: 500,
-          height: 400,
+          width: 600,
+          height: 500,
           child: Column(
             children: [
               Padding(
@@ -42,11 +44,10 @@ Future<Object?> floatCases9(
               const SizedBox(
                 height: 20,
               ),
-              const AdvocateCardExtended(
+              const AdvocateCardFloatCases(
                 name: 'Priya Sharma',
                 image: 'assets/images/advocate_img.png',
-                education:
-                    'LL.B - Delhi University\nCyber Law - Indian Law Institue',
+                location: 'Mumbai',
                 distance: 10,
                 rating: 3.5,
                 clients: 100,
@@ -67,23 +68,24 @@ Future<Object?> floatCases9(
                   children: [
                     InkWell(
                       onTap: () {
+                        Navigator.pop(context);
                         floatCases8(context);
                       },
                       child: Container(
-                        width: 120,
-                        height: 40,
-                        decoration: BoxDecoration(
-                            color: Colors.white,
-                            borderRadius: BorderRadius.circular(20)),
                         child: Center(
                           child: Text(
                             'Hire',
                             style: kMainCategory,
                           ),
                         ),
+                        width: 120,
+                        height: 40,
+                        decoration: BoxDecoration(
+                            color: Colors.white,
+                            borderRadius: BorderRadius.circular(20)),
                       ),
                     ),
-                    smallButton(nextPage: const FloatCases5(), name: 'Cancel'),
+                    smallButton(nextPage: FloatCases5(), name: 'Cancel'),
                   ],
                 ),
               ))
@@ -94,8 +96,8 @@ Future<Object?> floatCases9(
       filter:
           ImageFilter.blur(sigmaX: 1 * anim1.value, sigmaY: 1 * anim1.value),
       child: FadeTransition(
-        opacity: anim1,
         child: child,
+        opacity: anim1,
       ),
     ),
     context: context,

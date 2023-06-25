@@ -10,24 +10,6 @@ Future<Object?> ShowSubCat(BuildContext context, List subCatItems) {
     barrierColor: Colors.black38,
     transitionDuration: const Duration(milliseconds: 500),
     pageBuilder: (ctx, anim1, anim2) => AlertDialog(
-      actions: [
-        TextButton(
-            onPressed: () {
-              Navigator.pop(context);
-            },
-            child: Text(
-              'Save',
-              style: kNavLabel,
-            )),
-        TextButton(
-            onPressed: () {
-              Navigator.pop(context);
-            },
-            child: Text(
-              'Reset',
-              style: kNavLabel,
-            ))
-      ],
       shape: const RoundedRectangleBorder(
           borderRadius: BorderRadius.all(Radius.circular(22.0))),
       backgroundColor: Colors.black,
@@ -53,7 +35,7 @@ Future<Object?> ShowSubCat(BuildContext context, List subCatItems) {
       ),
       content: SizedBox(
         width: 300,
-        height: 300,
+        height: 350,
         child: GridView.builder(
             itemCount: subCatItems.length,
             gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(

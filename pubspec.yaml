@@ -36,7 +36,6 @@ dependencies:
   flutter_calendar_carousel: ^2.4.1
   flutter_otp_text_field: ^1.1.1
   flutter_rating_bar: ^4.0.1
-  flutter_svg: ^2.0.4
   google_fonts: ^4.0.3
   http: any
   image_picker: ^0.8.7+5

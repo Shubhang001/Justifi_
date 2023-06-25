@@ -21,11 +21,7 @@ class _OnBoardingScreenState extends State<OnBoardingScreen> {
     'Communicate directly with advocates',
     'Float cases to hire advocates'
   ];
-  List description = [
-    'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua',
-    'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua',
-    'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua'
-  ];
+  List description = ['', '', ''];
   @override
   Widget build(BuildContext context) {
     return SafeArea(

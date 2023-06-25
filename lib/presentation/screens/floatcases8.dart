@@ -1,8 +1,12 @@
 import 'package:flutter/material.dart';
 import 'dart:ui';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:jusitfi_admin/presentation/screens/homepage.dart';
 import 'package:jusitfi_admin/presentation/widgets/advocate_extended_dark.dart';
+import 'package:jusitfi_admin/presentation/widgets/float_cases_profile_dark.dart';
 import 'package:jusitfi_admin/utils/constants/textstyles.dart';
+import '../widgets/advocate_card_extended.dart';
+import '../widgets/smallButton.dart';
 
 Future<Object?> floatCases8(
   BuildContext context,
@@ -19,8 +23,9 @@ Future<Object?> floatCases8(
       backgroundColor: Colors.white,
       content: SizedBox(
           width: 500,
-          height: 600,
+          height: 700,
           child: Column(
+            mainAxisAlignment: MainAxisAlignment.spaceAround,
             children: [
               Padding(
                 padding: const EdgeInsets.all(8.0),
@@ -33,7 +38,7 @@ Future<Object?> floatCases8(
                   ),
                 ),
               ),
-              const Divider(
+              Divider(
                 thickness: 1,
                 color: Colors.black,
               ),
@@ -44,21 +49,20 @@ Future<Object?> floatCases8(
                   style: kFilterValue,
                 ),
               ),
-              const SizedBox(
+              SizedBox(
                 height: 30,
               ),
-              const AdvocateCardExtendedDark(
+              const AdvocateCardFloatCasesDark(
                 name: 'Priya Sharma',
                 image: 'assets/images/advocate_img.png',
-                education:
-                    'LL.B - Delhi University\nCyber Law - Indian Law Institue',
+                location: 'Mumbai',
                 distance: 10,
                 rating: 3.5,
                 clients: 100,
                 cases: 100,
                 experience: 15,
               ),
-              const SizedBox(
+              SizedBox(
                 height: 30,
               ),
               Column(
@@ -68,7 +72,7 @@ Future<Object?> floatCases8(
                     width: 60,
                     height: 60,
                   ),
-                  const SizedBox(
+                  SizedBox(
                     height: 30,
                   ),
                   Row(
@@ -105,6 +109,9 @@ Future<Object?> floatCases8(
                         ),
                       ))
                     ],
+                  ),
+                  SizedBox(
+                    height: 20,
                   )
                 ],
               )
@@ -115,8 +122,8 @@ Future<Object?> floatCases8(
       filter:
           ImageFilter.blur(sigmaX: 1 * anim1.value, sigmaY: 1 * anim1.value),
       child: FadeTransition(
-        opacity: anim1,
         child: child,
+        opacity: anim1,
       ),
     ),
     context: context,

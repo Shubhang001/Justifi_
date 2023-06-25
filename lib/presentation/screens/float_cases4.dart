@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:jusitfi_admin/presentation/screens/floatcases5.dart';
+import 'package:jusitfi_admin/presentation/screens/mianpage.dart';
 import 'package:jusitfi_admin/presentation/widgets/application_details.dart';
 import 'package:jusitfi_admin/utils/constants/textstyles.dart';
 
@@ -72,8 +73,6 @@ class FloatCases4 extends StatelessWidget {
     },
   ];
 
-  FloatCases4({super.key});
-
   @override
   Widget build(BuildContext context) {
     return SafeArea(
@@ -85,7 +84,9 @@ class FloatCases4 extends StatelessWidget {
             children: [
               IconButton(
                   onPressed: () {
-                    Navigator.pop(context);
+                    Navigator.push(context, MaterialPageRoute(builder: (_) {
+                      return MainPage();
+                    }));
                   },
                   icon: const Icon(
                     Icons.arrow_back,
@@ -132,38 +133,54 @@ class FloatCases4 extends StatelessWidget {
                         ],
                         rows: _sampleData
                             .map((data) => DataRow(cells: [
-                                  DataCell(Row(
-                                    crossAxisAlignment:
-                                        CrossAxisAlignment.center,
-                                    children: [
-                                      Image.asset(
-                                        'assets/images/document.png',
-                                        width: 55,
-                                        height: 55,
-                                      ),
-                                      Column(
-                                        mainAxisAlignment:
-                                            MainAxisAlignment.center,
-                                        children: [
-                                          Text(
-                                            data['Case Title'],
-                                            style: kApplicationDetails,
-                                          ),
-                                          Text(data['Date'],
-                                              style: kApplicationDetails),
-                                          Text(data['Case Category'],
-                                              style: kApplicationDetails),
-                                          Text(data['Location'],
-                                              style: kApplicationDetails),
-                                        ],
-                                      )
-                                    ],
+                                  DataCell(InkWell(
+                                    onTap: () {
+                                      Navigator.push(
+                                          context,
+                                          MaterialPageRoute(
+                                              builder: (_) => FloatCases5()));
+                                    },
+                                    child: Row(
+                                      crossAxisAlignment:
+                                          CrossAxisAlignment.center,
+                                      children: [
+                                        Image.asset(
+                                          'assets/images/document.png',
+                                          width: 55,
+                                          height: 55,
+                                        ),
+                                        Column(
+                                          mainAxisAlignment:
+                                              MainAxisAlignment.center,
+                                          children: [
+                                            Text(
+                                              data['Case Title'],
+                                              style: kApplicationDetails,
+                                            ),
+                                            Text(data['Date'],
+                                                style: kApplicationDetails),
+                                            Text(data['Case Category'],
+                                                style: kApplicationDetails),
+                                            Text(data['Location'],
+                                                style: kApplicationDetails),
+                                          ],
+                                        )
+                                      ],
+                                    ),
                                   )),
-                                  DataCell(Center(
-                                    child: ApplicantsDetails(
-                                      applications: 10,
-                                      images: data['images'],
-                                      status: data['status'],
+                                  DataCell(InkWell(
+                                    onTap: () {
+                                      Navigator.push(
+                                          context,
+                                          MaterialPageRoute(
+                                              builder: (_) => FloatCases5()));
+                                    },
+                                    child: Center(
+                                      child: ApplicantsDetails(
+                                        applications: 10,
+                                        images: data['images'],
+                                        status: data['status'],
+                                      ),
                                     ),
                                   )),
                                 ]))
@@ -173,12 +190,6 @@ class FloatCases4 extends StatelessWidget {
                   ),
                 ),
               ),
-              TextButton(
-                  onPressed: () {
-                    Navigator.push(context,
-                        MaterialPageRoute(builder: (_) => const FloatCases5()));
-                  },
-                  child: const Text('Next'))
             ],
           ),
         ),
