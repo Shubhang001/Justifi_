@@ -1,9 +1,12 @@
 import 'package:flutter/material.dart';
+import 'dart:io';
+import 'package:file_picker/file_picker.dart';
 import 'package:jusitfi_admin/presentation/screens/assign_work_completed.dart';
 import 'package:jusitfi_admin/utils/constants/textstyles.dart';
 
 class AssignWorkLawyerProfile extends StatefulWidget {
-  const AssignWorkLawyerProfile({super.key});
+  AssignWorkLawyerProfile({super.key});
+  String _filePath = '';
 
   @override
   State<AssignWorkLawyerProfile> createState() =>
@@ -11,6 +14,22 @@ class AssignWorkLawyerProfile extends StatefulWidget {
 }
 
 class _AssignWorkLawyerProfileState extends State<AssignWorkLawyerProfile> {
+  Future<void> _pickDocument() async {
+    FilePickerResult? result = await FilePicker.platform.pickFiles(
+      type: FileType.custom,
+      allowedExtensions: ['pdf', 'doc', 'docx'],
+    );
+
+    if (result != null) {
+      File file = File(result.files.single.path!);
+      setState(() {
+        widget._filePath = file.path;
+      });
+    } else {
+      // User canceled the picker
+    }
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -389,27 +408,36 @@ class _AssignWorkLawyerProfileState extends State<AssignWorkLawyerProfile> {
                                       style: kpageTitle,
                                     ),
                                   ),
-                                  Container(
-                                      width: 250,
-                                      height: 30,
-                                      decoration: BoxDecoration(
-                                        color: Colors.grey[200],
-                                        borderRadius:
-                                            BorderRadius.circular(8.0),
-                                      ),
-                                      child: Row(
-                                        children: [
-                                          const Icon(Icons.upload),
-                                          const SizedBox(
-                                            width: 10,
-                                          ),
-                                          Text(
-                                            'Name of Document',
-                                            style: kCallQn,
-                                            overflow: TextOverflow.fade,
-                                          )
-                                        ],
-                                      )),
+                                  InkWell(
+                                    onTap: () {
+                                      _pickDocument();
+                                    },
+                                    child: Container(
+                                        width: 250,
+                                        height: 30,
+                                        decoration: BoxDecoration(
+                                          color: Colors.grey[200],
+                                          borderRadius:
+                                              BorderRadius.circular(8.0),
+                                        ),
+                                        child: Row(
+                                          children: [
+                                            const Icon(Icons.upload),
+                                            const SizedBox(
+                                              width: 10,
+                                            ),
+                                            Text(
+                                              widget._filePath == ''
+                                                  ? 'Name of the document uploaded'
+                                                  : widget._filePath
+                                                      .split('/')
+                                                      .last,
+                                              style: kCallQn,
+                                              overflow: TextOverflow.fade,
+                                            )
+                                          ],
+                                        )),
+                                  ),
                                 ],
                               ),
                             ),
