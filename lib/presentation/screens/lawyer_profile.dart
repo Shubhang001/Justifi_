@@ -1,9 +1,10 @@
 import 'package:flutter/material.dart';
+import 'package:jusitfi_admin/presentation/screens/wallet_transcation_page.dart';
+import 'package:jusitfi_admin/utils/constants/textstyles.dart';
+import 'package:share_plus/share_plus.dart';
 import 'package:jusitfi_admin/presentation/screens/assignwork_lawyer_profile.dart';
 import 'package:jusitfi_admin/presentation/screens/schedule3.dart';
 import 'package:jusitfi_admin/presentation/widgets/show_call_details.dart';
-import 'package:jusitfi_admin/utils/constants/textstyles.dart';
-
 import '../widgets/show_call_dialog.dart';
 
 class LawyerProfileScreen extends StatefulWidget {
@@ -16,13 +17,12 @@ class LawyerProfileScreen extends StatefulWidget {
 class _LawyerProfileScreenState extends State<LawyerProfileScreen>
     with TickerProviderStateMixin {
   TabController? _tabController;
-  final GlobalKey<ScaffoldState> _scaffoldKey = GlobalKey<ScaffoldState>();
 
   @override
   void initState() {
     super.initState();
     _tabController = TabController(
-      initialIndex: 0,
+      initialIndex: 1,
       vsync: this,
       length: 3,
     );
@@ -31,25 +31,26 @@ class _LawyerProfileScreenState extends State<LawyerProfileScreen>
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      key: _scaffoldKey,
       appBar: buildAppBar(),
       body: Column(
         children: [
           Row(
             children: [
               const _ImageContainer(160, 150),
-              Column(
-                children: [
-                  Container(
-                    margin: const EdgeInsets.only(left: 5),
-                    child: Text(
+              Container(
+                margin: const EdgeInsets.only(left: 10),
+                child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    Text(
                       "Priya sharma",
                       style: lawyerName,
                     ),
-                  ),
-                  Container(
-                    margin: const EdgeInsets.only(right: 100),
-                    child: Row(
+                    const SizedBox(
+                      height: 10,
+                    ),
+                    Row(
+                      crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
                         const Icon(
                           Icons.location_on_outlined,
@@ -60,9 +61,9 @@ class _LawyerProfileScreenState extends State<LawyerProfileScreen>
                         ),
                       ],
                     ),
-                  ),
-                  const LawyerInfo(),
-                ],
+                    const LawyerInfo(),
+                  ],
+                ),
               ),
             ],
           ),
@@ -172,48 +173,46 @@ class Court extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Expanded(
-      child: GridView.builder(
-        gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
-          crossAxisCount: 2,
-        ),
-        itemCount: 3,
-        itemBuilder: (context, index) {
-          return Container(
-            margin: const EdgeInsets.all(20),
-            padding: const EdgeInsets.all(20),
-            decoration: const BoxDecoration(
-              color: Color.fromRGBO(169, 169, 169, 1),
-              boxShadow: [
-                BoxShadow(
-                  color: Colors.black,
-                  offset: Offset(
-                    5.0,
-                    5.0,
-                  ),
-                  blurRadius: 10.0,
-                  spreadRadius: 2.0,
-                ), //BoxShadow
-                BoxShadow(
-                  color: Colors.white,
-                  offset: Offset(0.0, 0.0),
-                  blurRadius: 0.0,
-                  spreadRadius: 0.0,
-                ), //BoxShadow
-              ],
-              borderRadius: BorderRadius.all(
-                Radius.circular(25),
-              ),
-            ),
-            child: Column(
-              children: [
-                Image.asset("assets/images/court$index.png"),
-                const Text("Supreme Court"),
-              ],
-            ),
-          );
-        },
+    return GridView.builder(
+      gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
+        crossAxisCount: 2,
       ),
+      itemCount: 3,
+      itemBuilder: (context, index) {
+        return Container(
+          margin: const EdgeInsets.all(20),
+          padding: const EdgeInsets.all(20),
+          decoration: const BoxDecoration(
+            color: Color.fromRGBO(169, 169, 169, 1),
+            boxShadow: [
+              BoxShadow(
+                color: Colors.black,
+                offset: Offset(
+                  5.0,
+                  5.0,
+                ),
+                blurRadius: 10.0,
+                spreadRadius: 2.0,
+              ), //BoxShadow
+              BoxShadow(
+                color: Colors.white,
+                offset: Offset(0.0, 0.0),
+                blurRadius: 0.0,
+                spreadRadius: 0.0,
+              ), //BoxShadow
+            ],
+            borderRadius: BorderRadius.all(
+              Radius.circular(25),
+            ),
+          ),
+          child: Column(
+            children: [
+              Image.asset("assets/images/court$index.png"),
+              const Text("Supreme Court"),
+            ],
+          ),
+        );
+      },
     );
   }
 }
@@ -312,18 +311,22 @@ class PracticeArea extends StatelessWidget {
           const SizedBox(height: 10),
           Expertise(),
           PastExperience(
+            imageAsset: "experience.jpg",
             date: "Oct 2021 - Oct 2022",
-            jobType: "Senior",
+            jobType: "Mumbai, Maharastra,India",
             positionName: "Legal Associate",
-            subPositionName: "Consulta Juris",
+            subPositionName: "Google Technologies",
             titlecard: "Past Experience",
+            holdertext: "Full Time",
           ),
           PastExperience(
+            imageAsset: "certificate.jpg",
             date: "Oct 2021 - Oct 2022",
             jobType: "Full Time",
             positionName: "Advocate",
             subPositionName: "Seniore",
             titlecard: "Certifications",
+            holdertext: "Certificate Id - 15646",
           ),
           const ShareProfile()
         ],
@@ -337,67 +340,31 @@ class ShareProfile extends StatelessWidget {
     super.key,
   });
 
-  static String path = "assets/images";
-
   @override
   Widget build(BuildContext context) {
-    return Column(
-      children: [
-        Container(
-          height: 50,
-          margin: const EdgeInsets.only(
-            top: 10,
-          ),
-          width: double.infinity - 40,
-          child: Center(
-            child: Row(
-              mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-              children: [
-                IconButton(
-                  onPressed: () {},
-                  icon: Image.asset("$path/whatsapp.png"),
-                ),
-                IconButton(
-                  onPressed: () {},
-                  icon: Image.asset("$path/linkedin.png"),
-                ),
-                IconButton(
-                  onPressed: () {},
-                  icon: Image.asset("$path/insta.png"),
-                ),
-                IconButton(
-                  onPressed: () {},
-                  icon: Image.asset("$path/facebook.png"),
-                ),
-                IconButton(
-                  onPressed: () {},
-                  icon: Image.asset("$path/twitter.png"),
-                ),
-                IconButton(
-                  onPressed: () {},
-                  icon: Image.asset("$path/mail.png"),
-                ),
-                IconButton(
-                  onPressed: () {},
-                  icon: Image.asset("$path/file.png"),
-                ),
-              ],
+    return Container(
+      margin: const EdgeInsets.only(top: 20, bottom: 20),
+      child: GestureDetector(
+        onTap: () {
+          Share.share('Share Layer Profile with your friends & family',
+              subject: 'Share Lawyer Profile');
+        },
+        child: Column(
+          children: [
+            Container(
+              margin: const EdgeInsets.only(bottom: 10),
+              child: const Icon(Icons.share),
             ),
-          ),
-        ),
-        Container(
-          margin: const EdgeInsets.only(bottom: 20),
-          child: const Center(
-            child: Text(
-              "Share Advocate Profile",
+            const Text(
+              "Share Lawyer Profile",
               style: TextStyle(
+                fontSize: 15,
                 fontWeight: FontWeight.bold,
-                fontSize: 20,
               ),
-            ),
-          ),
+            )
+          ],
         ),
-      ],
+      ),
     );
   }
 }
@@ -470,7 +437,7 @@ class ReviewSection extends StatelessWidget {
                     ),
                   ],
                 ),
-                Column(
+                const Column(
                   children: [
                     ProgressBar(number: 5, val: .4),
                     ProgressBar(number: 4, val: .2),
@@ -494,13 +461,13 @@ class WorkingHours extends StatelessWidget {
     super.key,
   });
   static List<String> days = [
-    'Monday',
-    'Tuesday',
-    'Wednesday',
-    'Thursday',
-    'Friday',
-    'Saturday',
-    'Sunday',
+    'Monday\n\n9:00 Am - 6:00 Pm',
+    'Tuesday\n\n9:00 Am - 6:00 Pm',
+    'Wednesday\n\n9:00 Am - 6:00 Pm',
+    'Thursday\n\n9:00 Am - 6:00 Pm',
+    'Friday\n\n9:00 Am - 6:00 Pm',
+    'Saturday\n\n9:00 Am - 4:00 Pm',
+    'Sunday\n\n9:00 Am - 12:00 Pm',
   ];
 
   @override
@@ -509,7 +476,6 @@ class WorkingHours extends StatelessWidget {
       itemCount: days.length,
       gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
         crossAxisCount: 2,
-        // mainAxisExtent: 4,
         crossAxisSpacing: 16,
       ),
       itemBuilder: (context, index) {
@@ -732,6 +698,8 @@ class PastExperience extends StatelessWidget {
     required this.subPositionName,
     required this.date,
     required this.jobType,
+    required this.imageAsset,
+    required this.holdertext,
   });
 
   final String titlecard;
@@ -739,6 +707,8 @@ class PastExperience extends StatelessWidget {
   final String subPositionName;
   final String date;
   final String jobType;
+  final String holdertext;
+  final String imageAsset;
 
   final List<String> expertise = [
     "HealthCare",
@@ -759,15 +729,14 @@ class PastExperience extends StatelessWidget {
         ),
         Container(
           margin: const EdgeInsets.only(top: 2, bottom: 10),
-          height: 130,
+          height: 175,
           child: ListView.builder(
             scrollDirection: Axis.horizontal,
             itemCount: 3,
             itemBuilder: (context, index) {
               return Container(
-                padding: const EdgeInsets.all(10),
+                padding: const EdgeInsets.all(25),
                 margin: const EdgeInsets.symmetric(horizontal: 5),
-                // width: 250,
                 decoration: const BoxDecoration(
                   color: Colors.black,
                   borderRadius: BorderRadius.all(
@@ -778,13 +747,20 @@ class PastExperience extends StatelessWidget {
                   children: [
                     Row(
                       children: [
-                        const _ImageContainer(50, 50),
+                        Container(
+                          margin: const EdgeInsets.only(right: 10),
+                          child: Image.asset(
+                            height: 45,
+                            "assets/images/$imageAsset",
+                          ),
+                        ),
                         Container(
                           margin: const EdgeInsets.only(
                             top: 2,
                             left: 8,
                           ),
                           child: Column(
+                            crossAxisAlignment: CrossAxisAlignment.start,
                             children: [
                               Text(
                                 positionName,
@@ -797,23 +773,23 @@ class PastExperience extends StatelessWidget {
                               ExperienceTitles(content: subPositionName),
                               ExperienceTitles(content: date),
                               ExperienceTitles(content: jobType),
-                              Row(
-                                children: [
-                                  Image.asset(
-                                    "assets/images/pdf.png",
-                                  ),
-                                  const Text(
-                                    "Document",
-                                    style: TextStyle(
-                                      color: Colors.white,
-                                    ),
-                                  )
-                                ],
-                              )
+                              ExperienceTitles(content: holdertext),
+                              const SizedBox(height: 10),
+                              Container(
+                                padding: const EdgeInsets.all(5),
+                                decoration: const BoxDecoration(
+                                  borderRadius:
+                                      BorderRadius.all(Radius.circular(25)),
+                                  color: Colors.green,
+                                ),
+                                child: const Text(
+                                  "View Certiffications",
+                                  style: TextStyle(color: Colors.white),
+                                ),
+                              ),
                             ],
                           ),
                         ),
-                        //
                       ],
                     )
                   ],
@@ -934,7 +910,7 @@ class Details extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Row(
+    return const Row(
       mainAxisAlignment: MainAxisAlignment.spaceEvenly,
       children: [
         RoundedButton(
@@ -967,7 +943,7 @@ class TopNav extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Row(
+    return const Row(
       mainAxisAlignment: MainAxisAlignment.spaceEvenly,
       children: [
         RoundedButton(
@@ -1037,22 +1013,18 @@ class CallToAction extends StatelessWidget {
               LawyerCTA(icon: "assets/images/hand_shake.png", price: "600 Rs"),
             ],
           ),
-          Row(
-            children: [
-              InkWell(
-                onTap: () {
-                  Navigator.push(context, MaterialPageRoute(builder: (_) {
-                    return AssignWorkLawyerProfile();
-                  }));
-                },
-                child: RoundedButton(
-                  text: "Assign Work",
-                  color: Colors.black,
-                  textColor: Colors.white,
-                  padding: 15,
-                ),
-              ),
-            ],
+          InkWell(
+            onTap: () {
+              Navigator.push(context, MaterialPageRoute(builder: (_) {
+                return AssignWorkLawyerProfile();
+              }));
+            },
+            child: const RoundedButton(
+              text: "Assign Work",
+              color: Colors.black,
+              textColor: Colors.white,
+              padding: 15,
+            ),
           ),
         ],
       ),
@@ -1101,71 +1073,78 @@ class LawyerInfo extends StatelessWidget {
   Widget build(BuildContext context) {
     return Container(
       margin: const EdgeInsets.only(top: 20),
-      child: Row(
-        mainAxisAlignment: MainAxisAlignment.spaceBetween,
-        children: [
-          Container(
-            margin: const EdgeInsets.only(right: 15, left: 10),
-            child: Column(
-              children: [
-                Text(
-                  "80",
-                  style: TextStyle(
-                    fontSize: 25,
-                    fontWeight: FontWeight.bold,
+      child: SingleChildScrollView(
+        physics: const BouncingScrollPhysics(),
+        scrollDirection: Axis.horizontal,
+        child: Row(
+          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+          children: [
+            Container(
+              margin: const EdgeInsets.only(
+                right: 10,
+                left: 2,
+              ),
+              child: const Column(
+                children: [
+                  Text(
+                    "80",
+                    style: TextStyle(
+                      fontSize: 25,
+                      fontWeight: FontWeight.bold,
+                    ),
                   ),
-                ),
-                Text(
-                  "clients",
-                ),
-              ],
-            ),
-          ),
-          Container(
-            height: 50,
-            width: 2,
-            color: Colors.black,
-          ),
-          Container(
-            margin: const EdgeInsets.only(left: 8, right: 10),
-            child: Column(
-              children: [
-                Text(
-                  "100",
-                  style: TextStyle(
-                    fontSize: 25,
-                    fontWeight: FontWeight.bold,
+                  Text(
+                    "clients",
                   ),
-                ),
-                Text(
-                  "Cases",
-                ),
-              ],
+                ],
+              ),
             ),
-          ),
-          Container(
-            height: 50,
-            width: 2,
-            color: Colors.black,
-          ),
-          Container(
-            margin: const EdgeInsets.only(left: 8),
-            child: Column(
-              children: [
-                Text(
-                  "8 yrs",
-                  style: TextStyle(
-                    fontSize: 25,
-                    fontWeight: FontWeight.bold,
+            Container(
+              height: 50,
+              width: 2,
+              color: Colors.black,
+            ),
+            Container(
+              margin: const EdgeInsets.only(left: 10, right: 10),
+              child: const Column(
+                children: [
+                  Text(
+                    "100",
+                    style: TextStyle(
+                      fontSize: 25,
+                      fontWeight: FontWeight.bold,
+                    ),
                   ),
-                ),
-                Text(
-                  "Expeirence",
-                ),
-              ],
+                  Text(
+                    "Cases",
+                  ),
+                ],
+              ),
             ),
-          ),
-        ],
+            Container(
+              height: 50,
+              width: 2,
+              color: Colors.black,
+            ),
+            Container(
+              margin: const EdgeInsets.only(left: 8),
+              child: const Column(
+                children: [
+                  Text(
+                    "8 yrs",
+                    style: TextStyle(
+                      fontSize: 25,
+                      fontWeight: FontWeight.bold,
+                    ),
+                  ),
+                  Text(
+                    "Experience",
+                  ),
+                ],
+              ),
+            ),
+          ],
+        ),
       ),
     );
   }
@@ -1182,25 +1161,28 @@ class LawyerCTA extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Column(
-      children: [
-        Container(
-          margin: const EdgeInsets.only(left: 8),
-          decoration: const BoxDecoration(
-            shape: BoxShape.circle,
-            color: Colors.black,
+    return Padding(
+      padding: const EdgeInsets.all(4.0),
+      child: Column(
+        children: [
+          Container(
+            margin: const EdgeInsets.only(left: 8),
+            decoration: const BoxDecoration(
+              shape: BoxShape.circle,
+              color: Colors.black,
+            ),
+            child: Image.asset(
+              icon,
+              width: 30,
+              height: 30,
+            ),
           ),
-          child: Image.asset(
-            icon,
-            width: 35,
-            height: 35,
+          const SizedBox(
+            height: 5,
           ),
-        ),
-        const SizedBox(
-          height: 5,
-        ),
-        Text(price)
-      ],
+          Text(price)
+        ],
+      ),
     );
   }
 }
@@ -1212,43 +1194,52 @@ class _ImageContainer extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Stack(
-      children: [
-        Container(
-          margin: const EdgeInsets.only(
-            top: 10,
-            left: 10,
-          ),
-          height: height,
-          width: width,
-          decoration: const BoxDecoration(
-            image: DecorationImage(
-              fit: BoxFit.cover,
-              image: AssetImage(
-                "assets/images/advocate_img.png",
-              ),
+    return GestureDetector(
+      onTap: () {
+        Navigator.push(
+            context,
+            MaterialPageRoute(
+              builder: (context) => const WalletTransactionPage(),
+            ));
+      },
+      child: Stack(
+        children: [
+          Container(
+            margin: const EdgeInsets.only(
+              top: 10,
+              left: 5,
             ),
-            color: Colors.black,
-            borderRadius: BorderRadius.all(
-              Radius.circular(20),
-            ),
-          ),
-        ),
-        Positioned(
-          top: 15,
-          left: 130,
-          child: Container(
-            height: 15,
-            width: 15,
+            height: height,
+            width: width,
             decoration: const BoxDecoration(
-              color: Colors.greenAccent,
+              image: DecorationImage(
+                fit: BoxFit.cover,
+                image: AssetImage(
+                  "assets/images/advocate_img.png",
+                ),
+              ),
+              color: Colors.black,
               borderRadius: BorderRadius.all(
                 Radius.circular(20),
               ),
             ),
           ),
-        )
-      ],
+          Positioned(
+            top: 15,
+            left: 140,
+            child: Container(
+              height: 15,
+              width: 15,
+              decoration: const BoxDecoration(
+                color: Colors.greenAccent,
+                borderRadius: BorderRadius.all(
+                  Radius.circular(20),
+                ),
+              ),
+            ),
+          )
+        ],
+      ),
     );
   }
 }

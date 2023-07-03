@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 
 import 'package:jusitfi_admin/presentation/screens/floatcases9.dart';
 import 'package:jusitfi_admin/presentation/widgets/notes.dart';
+import 'package:jusitfi_admin/presentation/widgets/starrating.dart';
 import 'package:jusitfi_admin/utils/constants/colors.dart';
 
 import '../../utils/constants/textstyles.dart';
@@ -109,16 +110,21 @@ class LawyerHireDetails extends StatelessWidget {
                       style: kCallAns,
                     ),
                     Text(
-                      'Category Cases solved : 55',
+                      'Fees : One Time ',
                       style: kCallAns,
                     ),
                     Text(
                       'Total Cases Solved : 502',
                       style: kCallAns,
                     ),
-                    Text(
-                      'Rating: 5',
-                      style: kCallAns,
+                    Row(
+                      children: [
+                        Text(
+                          'Rating: ',
+                          style: kCallAns,
+                        ),
+                        StarRating(rating: 3)
+                      ],
                     ),
                   ],
                 ),
@@ -140,18 +146,9 @@ class LawyerHireDetails extends StatelessWidget {
             )
           ],
         ),
-        const Icon(
-          Icons.pin_drop,
-          size: 20,
-          color: Colors.red,
-        ),
         Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            Text(
-              '10 km from\nyour location',
-              style: kCallAns,
-            ),
             Padding(
               padding: const EdgeInsets.symmetric(vertical: 4),
               child: InkWell(

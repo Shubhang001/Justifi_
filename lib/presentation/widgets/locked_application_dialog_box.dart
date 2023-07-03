@@ -111,97 +111,108 @@ class _LockedApplicationDialogBox extends State<LockedApplicationDialogBox> {
                                   size: 15,
                                 ))),
                         const SizedBox(
-                          width: 10,
+                          height: 100,
                         ),
                         Text(
-                          " ₹ 599 / One Time hiring",
+                          " ₹ 499 / Post credit hiring",
                           style: poppinsW500S15Black,
                         ),
                       ])
                     ]),
                     const SizedBox(
-                      height: 15,
+                      height: 70,
                     ),
-                    Row(children: [
-                      GestureDetector(
+                    // Row(children: [
+                    //   GestureDetector(
+                    //       onTap: () {
+                    //         setState(() {
+                    //           item2 = !item2;
+                    //         });
+                    //       },
+                    //       child: Container(
+                    //           decoration: BoxDecoration(
+                    //             borderRadius: BorderRadius.circular(25),
+                    //             color: Colors.black,
+                    //           ),
+                    //           height: 15,
+                    //           width: 15,
+                    //           child: Icon(
+                    //             Icons.circle,
+                    //             color:
+                    //                 item2 == true ? Colors.black : Colors.white,
+                    //             size: 15,
+                    //           ))),
+                    //   const SizedBox(
+                    //     width: 10,
+                    //   ),
+                    //   Text(
+                    //     "₹ 2999/Month/Unlimited hiring",
+                    //     style: poppinsW500S15Black,
+                    //   ),
+                    // ]),
+                    // const SizedBox(
+                    //   height: 15,
+                    // ),
+                    // Row(children: [
+                    //   GestureDetector(
+                    //       onTap: () {
+                    //         setState(() {
+                    //           item3 = !item3;
+                    //         });
+                    //       },
+                    //       child: Container(
+                    //           decoration: BoxDecoration(
+                    //             borderRadius: BorderRadius.circular(25),
+                    //             color: Colors.black,
+                    //           ),
+                    //           height: 15,
+                    //           width: 15,
+                    //           child: Icon(
+                    //             Icons.circle,
+                    //             color:
+                    //                 item3 == true ? Colors.black : Colors.white,
+                    //             size: 15,
+                    //           ))),
+                    //   const SizedBox(
+                    //     width: 10,
+                    //   ),
+                    //   Text(
+                    //     "₹ 2999/Year/Unlimited hiring",
+                    //     style: poppinsW500S15Black,
+                    //   ),
+                    // ]),
+                    // const SizedBox(
+                    //   height: 10,
+                    // ),
+                    Column(
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: [
+                        Padding(
+                          padding: const EdgeInsets.symmetric(
+                              horizontal: 8, vertical: 2),
+                          child: Text('Apply Copun Code',
+                              style: kAdvocateCardCountTitle),
+                        ),
+                        GestureDetector(
                           onTap: () {
-                            setState(() {
-                              item2 = !item2;
-                            });
+                            Navigator.of(context).push(MaterialPageRoute(
+                                builder: (context) => OffersPage()));
                           },
                           child: Container(
-                              decoration: BoxDecoration(
-                                borderRadius: BorderRadius.circular(25),
-                                color: Colors.black,
+                            height: 32,
+                            width: 220,
+                            decoration: BoxDecoration(
+                                borderRadius: BorderRadius.circular(10),
+                                color: Colors.black),
+                            child: Center(
+                              child: Text(
+                                "Coupon Code",
+                                style: poppinsW500S15White,
                               ),
-                              height: 15,
-                              width: 15,
-                              child: Icon(
-                                Icons.circle,
-                                color:
-                                    item2 == true ? Colors.black : Colors.white,
-                                size: 15,
-                              ))),
-                      const SizedBox(
-                        width: 10,
-                      ),
-                      Text(
-                        "₹ 2999/Month/Unlimited hiring",
-                        style: poppinsW500S15Black,
-                      ),
-                    ]),
-                    const SizedBox(
-                      height: 15,
-                    ),
-                    Row(children: [
-                      GestureDetector(
-                          onTap: () {
-                            setState(() {
-                              item3 = !item3;
-                            });
-                          },
-                          child: Container(
-                              decoration: BoxDecoration(
-                                borderRadius: BorderRadius.circular(25),
-                                color: Colors.black,
-                              ),
-                              height: 15,
-                              width: 15,
-                              child: Icon(
-                                Icons.circle,
-                                color:
-                                    item3 == true ? Colors.black : Colors.white,
-                                size: 15,
-                              ))),
-                      const SizedBox(
-                        width: 10,
-                      ),
-                      Text(
-                        "₹ 2999/Year/Unlimited hiring",
-                        style: poppinsW500S15Black,
-                      ),
-                    ]),
-                    const SizedBox(
-                      height: 10,
-                    ),
-                    GestureDetector(
-                      onTap: () {
-                        Navigator.of(context).push(MaterialPageRoute(
-                            builder: (context) => OffersPage()));
-                      },
-                      child: Container(
-                        height: 32,
-                        width: 220,
-                        decoration: BoxDecoration(
-                            borderRadius: BorderRadius.circular(10),
-                            color: Colors.black),
-                        child: Center(
-                          child: Text(
-                            "Coupon Code",
-                            style: poppinsW500S15White,
+                            ),
                           ),
                         ),
-                      ),
+                      ],
                     ),
                     const SizedBox(
                       height: 10,

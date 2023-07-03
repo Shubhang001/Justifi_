@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:jusitfi_admin/presentation/screens/profile_page.dart';
 import 'package:jusitfi_admin/presentation/widgets/case_post_hired.dart';
 import 'package:jusitfi_admin/presentation/widgets/case_post_pending_apply.dart';
 import 'package:jusitfi_admin/presentation/widgets/case_post_pending_hire.dart';
@@ -71,6 +72,37 @@ class _StatusPageState extends State<StatusPage> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
+        actions: [
+          const Padding(
+            padding: EdgeInsets.only(left: 20, right: 30, top: 10, bottom: 10),
+            child: Row(
+              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+              children: [
+                Icon(
+                  Icons.notifications_outlined,
+                  color: Colors.white,
+                  size: 35,
+                )
+              ],
+            ),
+          ),
+        ],
+        leading: GestureDetector(
+          onTap: () {
+            Navigator.push(
+              context,
+              MaterialPageRoute(
+                builder: (context) => const ProfileScreen(),
+              ),
+            );
+          },
+          child: Image.asset(
+            'assets/icons/profile_new.png',
+            color: Colors.white,
+            width: 38,
+            height: 38,
+          ),
+        ),
         title: Center(
           child: Text(
             "Status",
