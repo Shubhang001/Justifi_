@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:jusitfi_admin/presentation/screens/mianpage.dart';
+import 'package:jusitfi_admin/presentation/screens/onboardingscreen.dart';
 import 'package:jusitfi_admin/presentation/screens/signup_screen.dart';
 import 'package:jusitfi_admin/presentation/widgets/mobilenumberfield.dart';
 import 'package:jusitfi_admin/presentation/widgets/text_with_line.dart';
@@ -66,10 +67,25 @@ class _LoginScreenState extends State<LoginScreen> {
                 children: [
                   Padding(
                     padding: const EdgeInsets.fromLTRB(60, 80, 60, 0),
-                    child: MobileInputTextField(
-                        validate: validate,
-                        title: 'Enter Your Mobile Number',
-                        txtController: mobileNumber),
+                    child: Column(
+                      crossAxisAlignment: CrossAxisAlignment.end,
+                      children: [
+                        MobileInputTextField(
+                            validate: validate,
+                            title: 'Enter Your Mobile Number',
+                            txtController: mobileNumber),
+                        InkWell(
+                          onTap: () {},
+                          child: Text(
+                            'Resend otp',
+                            style: TextStyle(
+                                color: Colors.white,
+                                fontSize: 16,
+                                fontWeight: FontWeight.bold),
+                          ),
+                        )
+                      ],
+                    ),
                   ),
                   Padding(
                     padding: const EdgeInsets.fromLTRB(60, 0, 60, 0),

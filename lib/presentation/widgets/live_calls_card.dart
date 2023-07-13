@@ -150,11 +150,14 @@ class LiveCallsCard extends StatelessWidget {
                   Row(
                     mainAxisAlignment: MainAxisAlignment.spaceAround,
                     children: [
-                      const Icon(
-                        Icons.currency_rupee,
-                        size: 20,
-                        color: Colors.white,
-                      ),
+                    Padding(
+                              padding: const EdgeInsets.all(2.0),
+                              child: Image.asset(
+                                'assets/icons/coin_symbol.png',
+                                width: 20,
+                                height: 20,
+                              ),
+                            ),
                       Text(
                         "$paidAmount",
                         style: tableTextNormal,

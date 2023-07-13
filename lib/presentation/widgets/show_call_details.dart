@@ -3,7 +3,7 @@ import 'package:flutter/material.dart';
 import '../../utils/constants/colors.dart';
 import '../../utils/constants/textstyles.dart';
 
-Future<Object?> showCallDetails(BuildContext context) {
+Future<Object?> showCallDetails(BuildContext context, String mode) {
   return showGeneralDialog(
     barrierDismissible: true,
     barrierLabel: '',
@@ -108,7 +108,7 @@ Future<Object?> showCallDetails(BuildContext context) {
                           padding: const EdgeInsets.all(4),
                           child: Center(
                             child: Text(
-                              'Phone Call',
+                              mode,
                               style: kCallAns,
                             ),
                           ),

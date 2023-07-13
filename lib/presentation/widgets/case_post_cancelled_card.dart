@@ -1,13 +1,16 @@
 import 'package:flutter/material.dart';
 import 'package:jusitfi_admin/presentation/widgets/cancellation_dialog_box.dart';
 import 'package:jusitfi_admin/presentation/widgets/case_post_cancellation_dialog.dart';
+import 'package:jusitfi_admin/presentation/widgets/drop_down_button.dart';
+import 'package:jusitfi_admin/presentation/widgets/notes.dart';
 import 'package:jusitfi_admin/presentation/widgets/view_description_dialog_box.dart';
 import 'package:jusitfi_admin/presentation/widgets/view_document_dialog_box.dart';
 import '../../utils/constants/textstyles.dart';
 
-class CasePostCancelledCard extends StatelessWidget {
+class CasePostCancelledCard extends StatefulWidget {
   const CasePostCancelledCard({
     super.key,
+    required this.fees,
     required this.name,
     required this.image,
     required this.caseTitle,
@@ -18,6 +21,7 @@ class CasePostCancelledCard extends StatelessWidget {
     required this.noOfApplication,
     required this.feeType,
     required this.viewApplication,
+    required this.courtName,
   });
 
   final String image;
@@ -30,7 +34,14 @@ class CasePostCancelledCard extends StatelessWidget {
   final int noOfApplication;
   final String feeType;
   final bool viewApplication;
+  final String courtName;
+  final String fees;
 
+  @override
+  State<CasePostCancelledCard> createState() => _CasePostCancelledCardState();
+}
+
+class _CasePostCancelledCardState extends State<CasePostCancelledCard> {
   @override
   Widget build(BuildContext context) {
     return Padding(
@@ -43,62 +54,67 @@ class CasePostCancelledCard extends StatelessWidget {
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
               Row(
-                mainAxisAlignment: MainAxisAlignment.end,
                 children: [
+                  SizedBox(
+                      height: 16,
+                      width: 16,
+                      child: Image.asset(
+                        "assets/icons/document_icon.png",
+                        fit: BoxFit.cover,
+                      )),
+                  const SizedBox(
+                    width: 10,
+                  ),
                   Text(
-                    "Post Date : $postingDate",
-                    style: poppinsW400S9White,
-                  )
+                    widget.caseTitle.toString(),
+                    style: poppinsW500S12White,
+                  ),
                 ],
               ),
+              const Divider(
+                color: Colors.white,
+                thickness: 1,
+              ),
+
               Row(
                 children: [
                   Row(
                     mainAxisAlignment: MainAxisAlignment.spaceAround,
                     children: [
-                      viewApplication
+                      widget.viewApplication
                           ? Row(
                               children: [
                                 SizedBox(
-                                    height: 48,
-                                    width: 48,
+                                    height: 30,
+                                    width: 30,
                                     child: Image.asset(
-                                      "assets/icons/document_icon.png",
+                                      "assets/icons/court_icon.png",
                                       fit: BoxFit.cover,
                                     )),
                               ],
                             )
                           : Column(
                               children: [
-                                Image.asset(image),
+                                SizedBox(
+                                  height: 30,
+                                  width: 30,
+                                  child: Image.asset(widget.image),
+                                ),
                                 const SizedBox(
                                   height: 2,
                                 ),
                                 Text(
-                                  name,
+                                  widget.name,
                                   style: poppinsW600S7White,
                                 )
                               ],
                             ),
                       const SizedBox(
-                        width: 4,
+                        width: 12,
                       ),
                       Column(
                         crossAxisAlignment: CrossAxisAlignment.start,
                         children: [
-                          Row(
-                            mainAxisAlignment: MainAxisAlignment.start,
-                            children: [
-                              Text(
-                                "Case Title : ",
-                                style: poppinsW500S12Grey,
-                              ),
-                              Text(
-                                caseTitle,
-                                style: poppinsW500S12White,
-                              )
-                            ],
-                          ),
                           Row(
                             children: [
                               Text(
@@ -106,10 +122,13 @@ class CasePostCancelledCard extends StatelessWidget {
                                 style: poppinsW500S10Grey,
                               ),
                               Text(
-                                caseCategory,
+                                widget.caseCategory,
                                 style: poppinsW500S10White,
                               )
                             ],
+                          ),
+                          SizedBox(
+                            height: 10,
                           ),
                           Row(
                             children: [
@@ -117,36 +136,53 @@ class CasePostCancelledCard extends StatelessWidget {
                                 "Case Subcategory : ",
                                 style: poppinsW500S10Grey,
                               ),
-                              Text(
-                                caseSubCategory,
-                                style: poppinsW500S10White,
-                              )
+                              const DropDownMenuButton(),
                             ],
                           ),
                         ],
                       )
                     ],
                   ),
-                  const Spacer(),
-                  Row(
-                    children: [
-                      Column(
-                        children: [
-                          SizedBox(
-                              height: 28,
-                              width: 28,
-                              child: Image.asset(
-                                "assets/icons/court_icon.png",
-                                fit: BoxFit.contain,
-                              )),
-                          Text(
-                            courtType,
-                            style: poppinsW500S10White,
-                          )
-                        ],
-                      )
-                    ],
-                  )
+                ],
+              ),
+              const SizedBox(
+                height: 8,
+              ),
+              Row(
+                children: [
+                  widget.viewApplication
+                      ? const SizedBox()
+                      : SizedBox(
+                          height: 28,
+                          width: 28,
+                          child: Image.asset(
+                            "assets/icons/court_icon.png",
+                            fit: BoxFit.contain,
+                          ),
+                        ),
+                  widget.viewApplication
+                      ? const SizedBox()
+                      : const VerticalDivider(
+                          color: Colors.white,
+                          thickness: 1,
+                        ),
+                  Text(
+                    widget.courtType,
+                    style: poppinsW500S10White,
+                  ),
+                  Text(
+                    " : ",
+                    style: poppinsW500S10White,
+                  ),
+                  Flexible(
+                    child: Container(
+                      child: Text(
+                        widget.courtName.toString(),
+                        style: poppinsW500S10White,
+                        overflow: TextOverflow.ellipsis,
+                      ),
+                    ),
+                  ),
                 ],
               ),
               const SizedBox(
@@ -156,11 +192,11 @@ class CasePostCancelledCard extends StatelessWidget {
                 child: Row(
                   mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                   children: [
-                    viewApplication
+                    widget.viewApplication
                         ? Column(
                             children: [
                               Text(
-                                noOfApplication.toString(),
+                                widget.noOfApplication.toString(),
                                 style: poppinsW500S12White,
                               ),
                               Text(
@@ -171,14 +207,6 @@ class CasePostCancelledCard extends StatelessWidget {
                           )
                         : Column(
                             children: [
-                              Row(
-                                children: [
-                                  Text(
-                                    "Description",
-                                    style: poppinsW400S9White,
-                                  )
-                                ],
-                              ),
                               GestureDetector(
                                   onTap: () {
                                     //show alert dialo
@@ -189,22 +217,30 @@ class CasePostCancelledCard extends StatelessWidget {
                                         });
                                   },
                                   child: Padding(
-                                      padding: EdgeInsets.all(2),
+                                      padding: const EdgeInsets.all(2),
                                       child: Container(
-                                          padding: EdgeInsets.only(
-                                              left: 8, right: 8),
+                                          padding: const EdgeInsets.only(
+                                              right: 8, left: 8),
                                           decoration: BoxDecoration(
                                             color: Colors.white,
                                             borderRadius:
                                                 BorderRadius.circular(10),
                                           ),
                                           child: Text(
-                                            " View",
+                                            " Description",
                                             style: poppinsW400S9Black,
                                           )))),
+                              Text(
+                                '4',
+                                style: poppinsW500S12White,
+                              ),
+                              Text(
+                                "Weeks",
+                                style: poppinsW400S9White,
+                              )
                             ],
                           ),
-                    VerticalDivider(
+                    const VerticalDivider(
                       color: Colors.white,
                       thickness: 1,
                     ),
@@ -212,10 +248,6 @@ class CasePostCancelledCard extends StatelessWidget {
                       children: [
                         Row(
                           children: [
-                            Icon(
-                              Icons.currency_rupee,
-                              color: Colors.white,
-                            ),
                             Text(
                               " Fee Type ",
                               style: poppinsW400S9White,
@@ -223,16 +255,22 @@ class CasePostCancelledCard extends StatelessWidget {
                           ],
                         ),
                         Text(
-                          feeType,
+                          widget.feeType,
                           style: poppinsW400S9White,
-                        )
+                        ),
+                        widget.viewApplication
+                            ? SizedBox()
+                            : Text(
+                                '₹ ${widget.fees}',
+                                style: poppinsW400S9White,
+                              )
                       ],
                     ),
-                    VerticalDivider(
+                    const VerticalDivider(
                       color: Colors.white,
                       thickness: 1,
                     ),
-                    viewApplication
+                    widget.viewApplication
                         ? Column(
                             children: [
                               GestureDetector(
@@ -245,9 +283,9 @@ class CasePostCancelledCard extends StatelessWidget {
                                         });
                                   },
                                   child: Padding(
-                                      padding: EdgeInsets.all(2),
+                                      padding: const EdgeInsets.all(2),
                                       child: Container(
-                                          padding: EdgeInsets.only(
+                                          padding: const EdgeInsets.only(
                                               right: 8, left: 8),
                                           decoration: BoxDecoration(
                                             color: Colors.white,
@@ -268,9 +306,9 @@ class CasePostCancelledCard extends StatelessWidget {
                                         });
                                   },
                                   child: Padding(
-                                      padding: EdgeInsets.all(2),
+                                      padding: const EdgeInsets.all(2),
                                       child: Container(
-                                          padding: EdgeInsets.only(
+                                          padding: const EdgeInsets.only(
                                               right: 8, left: 8),
                                           decoration: BoxDecoration(
                                             color: Colors.white,
@@ -284,20 +322,8 @@ class CasePostCancelledCard extends StatelessWidget {
                             ],
                           )
                         : Column(
+                            mainAxisAlignment: MainAxisAlignment.center,
                             children: [
-                              Row(
-                                children: [
-                                  Container(
-                                      height: 8,
-                                      width: 8,
-                                      child: Image.asset(
-                                          "assets/icons/document_icon.png")),
-                                  Text(
-                                    "Document",
-                                    style: poppinsW400S9White,
-                                  )
-                                ],
-                              ),
                               GestureDetector(
                                   onTap: () {
                                     //show alert dialo
@@ -308,9 +334,9 @@ class CasePostCancelledCard extends StatelessWidget {
                                         });
                                   },
                                   child: Padding(
-                                      padding: EdgeInsets.all(2),
+                                      padding: const EdgeInsets.all(2),
                                       child: Container(
-                                          padding: EdgeInsets.only(
+                                          padding: const EdgeInsets.only(
                                               left: 8, right: 8),
                                           decoration: BoxDecoration(
                                             color: Colors.white,
@@ -318,12 +344,35 @@ class CasePostCancelledCard extends StatelessWidget {
                                                 BorderRadius.circular(10),
                                           ),
                                           child: Text(
-                                            " View",
+                                            " Document",
+                                            style: poppinsW400S9Black,
+                                          )))),
+                              SizedBox(
+                                height: 5,
+                              ),
+                              GestureDetector(
+                                  onTap: () {
+                                    //show alert dialo
+
+                                    showNotes(context);
+                                  },
+                                  child: Padding(
+                                      padding: const EdgeInsets.all(2),
+                                      child: Container(
+                                          padding: const EdgeInsets.only(
+                                              right: 8, left: 8),
+                                          decoration: BoxDecoration(
+                                            color: Colors.white,
+                                            borderRadius:
+                                                BorderRadius.circular(10),
+                                          ),
+                                          child: Text(
+                                            " Notes",
                                             style: poppinsW400S9Black,
                                           )))),
                             ],
                           ),
-                    VerticalDivider(
+                    const VerticalDivider(
                       color: Colors.white,
                       thickness: 1,
                     ),
@@ -343,15 +392,19 @@ class CasePostCancelledCard extends StatelessWidget {
                   ],
                 ),
               ),
-              viewApplication
+              widget.viewApplication
                   ? Row(
-                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                      // mainAxisAlignment: MainAxisAlignment.spaceBetween,
                       children: [
                         Padding(
-                            padding: const EdgeInsets.all(16),
+                            padding: const EdgeInsets.only(
+                              top: 16,
+                              bottom: 16,
+                              left: 16,
+                            ),
                             child: Container(
                                 padding: const EdgeInsets.only(
-                                    left: 16, right: 16, top: 6, bottom: 6),
+                                    left: 4, right: 4, top: 6, bottom: 6),
                                 decoration: BoxDecoration(
                                   color: Colors.grey,
                                   borderRadius: BorderRadius.circular(4),
@@ -362,54 +415,57 @@ class CasePostCancelledCard extends StatelessWidget {
                                         style: poppinsW400S9Black),
                                   ],
                                 ))),
+                        const Spacer(),
                         GestureDetector(
-                            onTap: () {
-                              //show alert dialo
-                              showDialog(
-                                  context: context,
-                                  builder: (BuildContext context) {
-                                    return const CasePostCancellationDialogBox();
-                                  });
-                            },
-                            child: Center(
-                                child: GestureDetector(
-                                    onTap: () {
-                                      //show alert dialo
-                                      showDialog(
-                                          context: context,
-                                          builder: (BuildContext context) {
-                                            return const CancellationDialogBox();
-                                          });
-                                    },
-                                    child: Padding(
-                                        padding: const EdgeInsets.all(16),
-                                        child: Container(
-                                            padding: const EdgeInsets.only(
-                                                left: 16,
-                                                right: 16,
-                                                top: 6,
-                                                bottom: 6),
-                                            decoration: BoxDecoration(
-                                              color: Colors.grey,
-                                              borderRadius:
-                                                  BorderRadius.circular(4),
-                                            ),
-                                            child: Row(
-                                              children: [
-                                                Text("Cancellation Reason",
-                                                    style: poppinsW400S9Black),
-                                              ],
-                                            )))))),
+                          onTap: () {
+                            //show alert dialo
+                            showDialog(
+                                context: context,
+                                builder: (BuildContext context) {
+                                  return const CasePostCancellationDialogBox();
+                                });
+                          },
+                          child: Center(
+                            child: GestureDetector(
+                              onTap: () {
+                                //show alert dialo
+                                showDialog(
+                                    context: context,
+                                    builder: (BuildContext context) {
+                                      return const CancellationDialogBox();
+                                    });
+                              },
+                              child: Padding(
+                                padding: const EdgeInsets.all(16),
+                                child: Container(
+                                  padding: const EdgeInsets.only(
+                                      left: 4, right: 4, top: 6, bottom: 6),
+                                  decoration: BoxDecoration(
+                                    color: Colors.grey,
+                                    borderRadius: BorderRadius.circular(4),
+                                  ),
+                                  child: Row(
+                                    children: [
+                                      Text("Cancellation Reason",
+                                          style: poppinsW400S9Black),
+                                    ],
+                                  ),
+                                ),
+                              ),
+                            ),
+                          ),
+                        ),
                       ],
                     )
                   : Row(
                       mainAxisAlignment: MainAxisAlignment.spaceBetween,
                       children: [
                         Padding(
-                            padding: const EdgeInsets.all(16),
+                            padding: const EdgeInsets.only(
+                                top: 16, bottom: 16, left: 16),
                             child: Container(
                                 padding: const EdgeInsets.only(
-                                    left: 16, right: 16, top: 6, bottom: 6),
+                                    left: 4, right: 4, top: 6, bottom: 6),
                                 decoration: BoxDecoration(
                                   color: Colors.grey,
                                   borderRadius: BorderRadius.circular(4),
@@ -433,7 +489,7 @@ class CasePostCancelledCard extends StatelessWidget {
                                 padding: const EdgeInsets.all(16),
                                 child: Container(
                                     padding: const EdgeInsets.only(
-                                        left: 16, right: 16, top: 6, bottom: 6),
+                                        left: 4, right: 4, top: 6, bottom: 6),
                                     decoration: BoxDecoration(
                                       color: Colors.grey,
                                       borderRadius: BorderRadius.circular(4),

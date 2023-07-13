@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:jusitfi_admin/presentation/widgets/rating_box.dart';
+import 'package:jusitfi_admin/presentation/widgets/review_alert_dialog.dart';
+import 'package:jusitfi_admin/presentation/widgets/show_reason.dart';
 import '../../utils/constants/textstyles.dart';
 
 class LiveCallsCancelledCard extends StatelessWidget {
@@ -149,10 +151,13 @@ class LiveCallsCancelledCard extends StatelessWidget {
                   Row(
                     mainAxisAlignment: MainAxisAlignment.spaceAround,
                     children: [
-                      const Icon(
-                        Icons.currency_rupee,
-                        size: 20,
-                        color: Colors.white,
+                      Padding(
+                        padding: const EdgeInsets.all(2.0),
+                        child: Image.asset(
+                          'assets/icons/coin_symbol.png',
+                          width: 20,
+                          height: 20,
+                        ),
                       ),
                       Text(
                         "$paidAmount",
@@ -166,12 +171,15 @@ class LiveCallsCancelledCard extends StatelessWidget {
                   ),
                   GestureDetector(
                     onTap: () {
-                      //show alert dialo
-                      // showDialog(
-                      //     context: context,
-                      //     builder: (BuildContext context) {
-                      //       return ReviewDialogBox();
-                      //     });
+                      // show alert dialo
+                      showDialog(
+                          context: context,
+                          builder: (BuildContext context) {
+                            return ReasonDialogBox(
+                              reason:
+                                  '"At vero eos et accusamus et iusto odio dres et quas int occaecati cupiditate non provident, similique sunt in culpa qui officia deserunt mollitia animi, id est laborum et dolorum fuga. Et harum quidem rerum facilis est et expedita distinctio. Nam libero tempore, cum soluta nobis est eligendi optio cumque nihil impedit quo minus id"',
+                            );
+                          });
                     },
                     child: Center(
                       child: Container(

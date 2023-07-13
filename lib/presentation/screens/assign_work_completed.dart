@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:jusitfi_admin/presentation/screens/mianpage.dart';
+import 'package:jusitfi_admin/presentation/screens/status_page.dart';
 import 'package:jusitfi_admin/presentation/widgets/big_button.dart';
 import 'package:jusitfi_admin/utils/constants/textstyles.dart';
 
@@ -23,7 +24,7 @@ class AssignWorkCompleted extends StatelessWidget {
             ),
             const CustomButton(
               removescreens: true,
-              nextPage: MainPage(),
+              nextPage: MainPage(index: 2,),
               buttonColor: Colors.black,
               text: 'View Status',
               width: 200,

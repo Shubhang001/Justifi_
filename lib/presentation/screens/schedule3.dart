@@ -10,10 +10,12 @@ import '../widgets/designed_line.dart';
 import '../widgets/dropdown_duration.dart';
 
 class Schedule3 extends StatefulWidget {
-  const Schedule3({Key? key}) : super(key: key);
+  const Schedule3({Key? key, required this.mode}) : super(key: key);
 
   @override
   _Schedule3State createState() => _Schedule3State();
+
+  final String mode;
 }
 
 class _Schedule3State extends State<Schedule3> {
@@ -307,7 +309,8 @@ class _Schedule3State extends State<Schedule3> {
                         DateFormat('EEEE, dd MMMM').format(_selectedDate),
                         duration,
                         startTime,
-                        endtime);
+                        endtime,
+                        widget.mode);
                   },
                   child: Container(
                     width: MediaQuery.of(context).size.width / 1.5,

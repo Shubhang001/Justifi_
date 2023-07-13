@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:jusitfi_admin/presentation/widgets/drop_down_button.dart';
 import 'package:jusitfi_admin/utils/constants/textstyles.dart';
 
 class CancelledAdvocateCardTable extends StatelessWidget {
@@ -76,12 +77,8 @@ class CancelledAdvocateCardTable extends StatelessWidget {
                     ' Sub-case Category',
                     style: tableTextNormal,
                   )),
-              Padding(
-                  padding: const EdgeInsets.all(2),
-                  child: Text(
-                    caseSubCategory.toString(),
-                    style: tableTextNormal,
-                  )),
+              const Padding(
+                  padding: EdgeInsets.all(2), child: DropDownMenuButton()),
             ]),
             TableRow(children: [
               Padding(

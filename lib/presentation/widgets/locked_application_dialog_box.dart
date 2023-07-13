@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
+import 'package:jusitfi_admin/utils/constants/coupon_code_constants.dart';
 import 'package:jusitfi_admin/utils/constants/textstyles.dart';
 
+import '../screens/add_credits_page.dart';
 import '../screens/offers_page.dart';
 
 class LockedApplicationDialogBox extends StatefulWidget {
@@ -18,6 +20,32 @@ class _LockedApplicationDialogBox extends State<LockedApplicationDialogBox> {
   bool item1 = false;
   bool item2 = false;
   bool item3 = false;
+  @override
+  void initState() {
+    super.initState();
+    CouponCodeConstant.couponCodeApplied = false;
+  }
+
+  // @override
+  // void initState() {
+  //   // TODO: implement initState
+  //   super.initState();
+  //   WidgetsBinding.instance.addPostFrameCallback((timeStamp) {
+  //     if (CouponCodeConstant.isCouponCardTapped == true) {
+  //       SnackBar snackBar = const SnackBar(
+  //         duration: Duration(seconds: 2),
+  //         content: Text('Coupon applied successfully. Make payment now.'),
+  //       );
+  //       ScaffoldMessenger.of(context).showSnackBar(
+  //         snackBar,
+  //       );
+  //       setState(() {
+  //         CouponCodeConstant.isCouponCardTapped = false;
+  //       });
+  //     }
+  //   });
+  // }
+
   @override
   Widget build(BuildContext context) {
     return Center(
@@ -86,7 +114,7 @@ class _LockedApplicationDialogBox extends State<LockedApplicationDialogBox> {
                       ])
                     ]),
                     const SizedBox(
-                      height: 15,
+                      height: 60,
                     ),
                     Row(mainAxisAlignment: MainAxisAlignment.start, children: [
                       Row(children: [
@@ -94,6 +122,8 @@ class _LockedApplicationDialogBox extends State<LockedApplicationDialogBox> {
                             onTap: () {
                               setState(() {
                                 item1 = !item1;
+                                item2 = false;
+                                item3 = false;
                               });
                             },
                             child: Container(
@@ -111,22 +141,24 @@ class _LockedApplicationDialogBox extends State<LockedApplicationDialogBox> {
                                   size: 15,
                                 ))),
                         const SizedBox(
-                          height: 100,
+                          width: 10,
                         ),
                         Text(
-                          " ₹ 499 / Post credit hiring",
+                          " ₹ 599 / Post credit hiring",
                           style: poppinsW500S15Black,
                         ),
                       ])
                     ]),
                     const SizedBox(
-                      height: 70,
+                      height: 15,
                     ),
                     // Row(children: [
                     //   GestureDetector(
                     //       onTap: () {
                     //         setState(() {
                     //           item2 = !item2;
+                    //           item1 = false;
+                    //           item3 = false;
                     //         });
                     //       },
                     //       child: Container(
@@ -143,7 +175,7 @@ class _LockedApplicationDialogBox extends State<LockedApplicationDialogBox> {
                     //             size: 15,
                     //           ))),
                     //   const SizedBox(
-                    //     width: 10,
+                    //     width: 8,
                     //   ),
                     //   Text(
                     //     "₹ 2999/Month/Unlimited hiring",
@@ -158,6 +190,8 @@ class _LockedApplicationDialogBox extends State<LockedApplicationDialogBox> {
                     //       onTap: () {
                     //         setState(() {
                     //           item3 = !item3;
+                    //           item1 = false;
+                    //           item2 = false;
                     //         });
                     //       },
                     //       child: Container(
@@ -174,62 +208,68 @@ class _LockedApplicationDialogBox extends State<LockedApplicationDialogBox> {
                     //             size: 15,
                     //           ))),
                     //   const SizedBox(
-                    //     width: 10,
+                    //     width: 8,
                     //   ),
                     //   Text(
                     //     "₹ 2999/Year/Unlimited hiring",
                     //     style: poppinsW500S15Black,
                     //   ),
                     // ]),
-                    // const SizedBox(
-                    //   height: 10,
-                    // ),
-                    Column(
-                      crossAxisAlignment: CrossAxisAlignment.start,
-                      children: [
-                        Padding(
-                          padding: const EdgeInsets.symmetric(
-                              horizontal: 8, vertical: 2),
-                          child: Text('Apply Copun Code',
-                              style: kAdvocateCardCountTitle),
-                        ),
-                        GestureDetector(
-                          onTap: () {
-                            Navigator.of(context).push(MaterialPageRoute(
-                                builder: (context) => OffersPage()));
-                          },
-                          child: Container(
-                            height: 32,
-                            width: 220,
-                            decoration: BoxDecoration(
-                                borderRadius: BorderRadius.circular(10),
-                                color: Colors.black),
-                            child: Center(
-                              child: Text(
-                                "Coupon Code",
-                                style: poppinsW500S15White,
-                              ),
-                            ),
+                    const SizedBox(
+                      height: 20,
+                    ),
+                    GestureDetector(
+                      onTap: () {
+                        Navigator.of(context)
+                            .push(MaterialPageRoute(
+                                builder: (context) => OffersPage()))
+                            .then((value) => setState(() {}));
+                      },
+                      child: Container(
+                        height: 32,
+                        width: 220,
+                        decoration: BoxDecoration(
+                            borderRadius: BorderRadius.circular(10),
+                            color: Colors.black),
+                        child: Center(
+                          child: Text(
+                            CouponCodeConstant.couponCodeApplied
+                                ? "Coupon Applied"
+                                : "Coupon Code",
+                            style: poppinsW500S15White,
                           ),
                         ),
-                      ],
+                      ),
                     ),
                     const SizedBox(
                       height: 10,
                     ),
-                    Container(
-                      height: 32,
-                      width: 144,
-                      decoration: BoxDecoration(
-                          borderRadius: BorderRadius.circular(25),
-                          color: Colors.black),
-                      child: Center(
-                        child: Text(
-                          "Pay Now",
-                          style: poppinsW400S14White,
+                    GestureDetector(
+                      onTap: () {
+                        //implement
+                        //profile hiring
+                        Navigator.of(context).push(
+                          MaterialPageRoute(
+                            builder: (context) => AddCreditsPage(
+                              title: "Profile Credits",
+                            ),
+                          ),
+                        );
+                      },
+                      child: Container(
+                        height: 32,
+                        width: 144,
+                        decoration: BoxDecoration(
+                            borderRadius: BorderRadius.circular(25),
+                            color: Colors.black),
+                        child: Center(
+                          child: Text(
+                            "Pay Now",
+                            style: poppinsW400S14White,
+                          ),
                         ),
                       ),
-                    )
+                    ),
                   ]),
             )));
   }

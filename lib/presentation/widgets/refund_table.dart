@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:jusitfi_admin/presentation/widgets/drop_down_button.dart';
 import 'package:jusitfi_admin/utils/constants/textstyles.dart';
 
 class RefundTable extends StatelessWidget {
@@ -83,12 +84,8 @@ class RefundTable extends StatelessWidget {
                     ' Sub-case Category',
                     style: tableTextNormal,
                   )),
-              Padding(
-                  padding: const EdgeInsets.all(2),
-                  child: Text(
-                    caseSubCategory.toString(),
-                    style: tableTextNormal,
-                  )),
+              const Padding(
+                  padding: EdgeInsets.all(2), child: DropDownMenuButton()),
             ]),
             TableRow(children: [
               Padding(
@@ -122,14 +119,23 @@ class RefundTable extends StatelessWidget {
               Padding(
                   padding: const EdgeInsets.all(2),
                   child: Text(
-                    ' Refund Amount',
+                    ' Refund Coins',
                     style: tableTextNormal,
                   )),
               Padding(
                   padding: const EdgeInsets.all(2),
-                  child: Text(
-                    "${refundAmount}Rs",
-                    style: tableTextNormal,
+                  child: Row(
+                    children: [
+                      Image.asset(
+                        'assets/icons/coin_symbol.png',
+                        width: 15,
+                        height: 15,
+                      ),
+                      Text(
+                        "$refundAmount",
+                        style: tableTextNormal,
+                      ),
+                    ],
                   )),
             ]),
             TableRow(children: [

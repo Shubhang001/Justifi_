@@ -153,17 +153,20 @@ class ScheduledCancelledAdvocateCard extends StatelessWidget {
                   Row(
                     mainAxisAlignment: MainAxisAlignment.spaceAround,
                     children: [
-                      const Icon(
-                        Icons.currency_rupee,
-                        size: 20,
-                        color: Colors.white,
+                      Padding(
+                        padding: const EdgeInsets.all(2.0),
+                        child: Image.asset(
+                          'assets/icons/coin_symbol.png',
+                          width: 20,
+                          height: 20,
+                        ),
                       ),
                       Text(
                         "Paid :",
                         style: paidTextStyle,
                       ),
                       Text(
-                        "$paidAmount Rs",
+                        "$paidAmount",
                         style: tableTextNormal,
                       )
                     ],
@@ -173,25 +176,21 @@ class ScheduledCancelledAdvocateCard extends StatelessWidget {
                     thickness: 1,
                   ),
                   Container(
-                      child: Row(
-                    mainAxisAlignment: MainAxisAlignment.spaceAround,
+                      child: Column(
+                    //crossAxisAlignment: CrossAxisAlignment.center,
                     children: [
+                      Text(
+                        "Status",
+                        style: tableTextNormal,
+                      ),
                       const Icon(
                         Icons.cancel_rounded,
                         size: 20,
                         color: Colors.white,
                       ),
-                      Column(
-                        children: [
-                          Text(
-                            " Meet Status",
-                            style: tableTextNormal,
-                          ),
-                          Text(
-                            " Canceled",
-                            style: tableTextBold,
-                          )
-                        ],
+                      Text(
+                        " Cancelled",
+                        style: tableTextBold,
                       )
                     ],
                   ))

@@ -7,15 +7,25 @@ import 'package:jusitfi_admin/presentation/screens/wallet_page.dart';
 import 'package:jusitfi_admin/utils/constants/textstyles.dart';
 
 class MainPage extends StatefulWidget {
-  const MainPage({super.key});
+  const MainPage({super.key, this.index = 0});
+  
 
   @override
   // ignore: library_private_types_in_public_api
   _MainPageState createState() => _MainPageState();
+  final int index;
+  
 }
 
 class _MainPageState extends State<MainPage> {
   int _selectedIndex = 0;
+  @override
+  void initState() {
+    // TODO: implement initState
+    super.initState();
+    _selectedIndex = widget.index;
+  }
+  
 
   final List<Widget> _widgetOptions = <Widget>[
     const HomePage(),
@@ -27,6 +37,8 @@ class _MainPageState extends State<MainPage> {
         userLocation: "Mumbai"),
     const MessageScreen(),
   ];
+  
+  
 
   void _onItemTapped(int index) {
     setState(() {
@@ -63,7 +75,7 @@ class _MainPageState extends State<MainPage> {
               width: 40,
               height: 40,
             ),
-            label: 'Float Case',
+            label: 'Post Case',
           ),
           BottomNavigationBarItem(
             icon: Image.asset(

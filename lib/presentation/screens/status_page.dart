@@ -15,8 +15,7 @@ import '../widgets/live_calls_cancelled_vertical_tile.dart';
 import '../widgets/refund_vertical_tile.dart';
 import '../widgets/scheduled_meet_canceled_verticle_tile.dart';
 import '../widgets/scheduled_meet_completed_vertical_tile.dart';
-import '../widgets/statusPageFilterSort.dart';
-import '../widgets/statusPageSearchBar.dart';
+import 'notification_page.dart';
 
 class StatusPage extends StatefulWidget {
   const StatusPage({Key? key}) : super(key: key);
@@ -72,16 +71,29 @@ class _StatusPageState extends State<StatusPage> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
+        centerTitle: true,
+        elevation: 0,
+        backgroundColor: Colors.black,
         actions: [
-          const Padding(
+          Padding(
             padding: EdgeInsets.only(left: 20, right: 30, top: 10, bottom: 10),
             child: Row(
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
-                Icon(
-                  Icons.notifications_outlined,
-                  color: Colors.white,
-                  size: 35,
+                InkWell(
+                  onTap: () {
+                    Navigator.push(
+                      context,
+                      MaterialPageRoute(
+                        builder: (context) => NotificationsPage(),
+                      ),
+                    );
+                  },
+                  child: Icon(
+                    Icons.notifications_outlined,
+                    color: Colors.white,
+                    size: 35,
+                  ),
                 )
               ],
             ),
@@ -96,20 +108,23 @@ class _StatusPageState extends State<StatusPage> {
               ),
             );
           },
-          child: Image.asset(
-            'assets/icons/profile_new.png',
-            color: Colors.white,
-            width: 38,
-            height: 38,
+          child: Padding(
+            padding: const EdgeInsets.all(5.0),
+            child: Image.asset(
+              'assets/icons/profile_new.png',
+              color: Colors.white,
+            ),
           ),
         ),
-        title: Center(
-          child: Text(
-            "Status",
-            style: kHomePageTitle,
-          ),
+        title: Row(
+          mainAxisAlignment: MainAxisAlignment.center,
+          children: [
+            Text(
+              "Status",
+              style: klocationLight,
+            )
+          ],
         ),
-        backgroundColor: kPrimaryBlackColor,
       ),
       body: SafeArea(
           child: Container(
@@ -134,6 +149,8 @@ class _StatusPageState extends State<StatusPage> {
                                 child: Container(
                                     padding: const EdgeInsets.all(8.0),
                                     decoration: BoxDecoration(
+                                      border: Border.all(
+                                          color: Colors.black, width: 1),
                                       borderRadius: BorderRadius.circular(15),
                                       color: _selectedCategoryIndex == index
                                           ? kPrimaryBlackColor
@@ -146,7 +163,7 @@ class _StatusPageState extends State<StatusPage> {
                                         textSize: 16)));
                           })),
                   const SizedBox(
-                    height: 10,
+                    height: 25,
                   ),
                   SizedBox(
                       height: 35,
@@ -167,6 +184,8 @@ class _StatusPageState extends State<StatusPage> {
                                 child: Container(
                                     padding: const EdgeInsets.all(8.0),
                                     decoration: BoxDecoration(
+                                      border: Border.all(
+                                          color: Colors.black, width: 1),
                                       borderRadius: BorderRadius.circular(15),
                                       color: _selectedSubCategoryIndex == index
                                           ? kPrimaryBlackColor

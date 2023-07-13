@@ -12,30 +12,6 @@ class ProfileDetails extends StatelessWidget {
           children: [
             const ProfileNavBar(),
             Container(
-              width: double.infinity,
-              height: 40,
-              color: const Color.fromRGBO(222, 226, 230, 1),
-              child: Row(
-                mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                children: [
-                  IconButton(
-                    icon: const Icon(Icons.arrow_back),
-                    onPressed: () {
-                      Navigator.pop(context);
-                    },
-                  ),
-                  const Text(
-                    "Profile Details",
-                    style: TextStyle(
-                      fontSize: 18,
-                      fontWeight: FontWeight.bold,
-                    ),
-                  ),
-                  Container(),
-                ],
-              ),
-            ),
-            Container(
               margin: const EdgeInsets.only(top: 20),
               child: const CircleAvatar(
                 radius: 50,

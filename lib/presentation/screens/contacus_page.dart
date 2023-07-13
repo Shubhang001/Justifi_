@@ -24,28 +24,8 @@ class _ContactUsPageState extends State<ContactUsPage>
       body: Column(
         children: [
           const ProfileNavBar(),
-          Container(
-            width: double.infinity,
-            color: const Color.fromRGBO(222, 226, 230, 1),
-            height: 60,
-            child: Row(
-              children: [
-                IconButton(
-                  icon: const Icon(Icons.arrow_back),
-                  onPressed: () {
-                    Navigator.pop(context);
-                  },
-                ),
-              ],
-            ),
-          ),
-          Row(
-            children: [
-              Container(
-                  margin: const EdgeInsets.all(20),
-                  child: const Icon(Icons.contact_page_rounded)),
-              const Text("Contact Us")
-            ],
+          SizedBox(
+            height: 10,
           ),
           Expanded(child: Body(tabController: _tabController)),
         ],
@@ -213,7 +193,7 @@ class IssueTile extends StatelessWidget {
                     Navigator.push(
                       context,
                       MaterialPageRoute(
-                        builder: (context) => const IssueChat(),
+                        builder: (context) => IssueChat(),
                       ),
                     );
                   },

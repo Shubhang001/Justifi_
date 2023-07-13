@@ -7,7 +7,7 @@ import '../../utils/constants/colors.dart';
 import '../../utils/constants/textstyles.dart';
 import '../screens/finished_page.dart';
 
-Future<Object?> showScheduleDetails(BuildContext context, String date,int duration, String startTime, String endTime) {
+Future<Object?> showScheduleDetails(BuildContext context, String date,int duration, String startTime, String endTime,String mode) {
   return showGeneralDialog(
     barrierDismissible: true,
     barrierLabel: '',
@@ -134,7 +134,7 @@ Future<Object?> showScheduleDetails(BuildContext context, String date,int durati
                           padding: const EdgeInsets.all(4),
                           child: Center(
                             child: Text(
-                              'Phone Call',
+                              mode,
                               style: kCallQn,
                             ),
                           ),

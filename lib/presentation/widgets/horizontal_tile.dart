@@ -26,8 +26,7 @@ class HorizontalTiles extends StatelessWidget {
                 child: const AdvocateCard(
                   name: 'Priya Sharma',
                   image: 'assets/images/advocate_img.png',
-                  education:
-                      'LL.B - Delhi University\nCyber Law - Indian Law Institue',
+                  education: 'Delhi University \n LL.B',
                   distance: 10,
                   rating: 3.5,
                 ),

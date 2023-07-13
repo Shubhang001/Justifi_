@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:jusitfi_admin/presentation/screens/login_screen.dart';
 import 'package:jusitfi_admin/presentation/screens/onboardingscreen.dart';
 import 'package:jusitfi_admin/presentation/widgets/big_button.dart';
 import 'package:jusitfi_admin/presentation/widgets/dob_picker.dart';
@@ -49,9 +50,6 @@ class _SignupScreenState extends State<SignupScreen> {
   TextEditingController lastNameController = TextEditingController();
 
   TextEditingController emailController = TextEditingController();
-
-  TextEditingController addressController = TextEditingController();
-
   TextEditingController mobileNumberController = TextEditingController();
 
   bool isAccepted = false;
@@ -156,36 +154,6 @@ class _SignupScreenState extends State<SignupScreen> {
                     ],
                   ),
                 ),
-                Padding(
-                  padding: const EdgeInsets.symmetric(vertical: 8),
-                  child: SizedBox(
-                    // height: 70,
-                    child: Column(
-                      crossAxisAlignment: CrossAxisAlignment.start,
-                      children: [
-                        Text(
-                          'Address',
-                          style: ktextFieldTitle,
-                        ),
-                        const SizedBox(
-                          height: 6,
-                        ),
-                        TextFormField(
-                          maxLines: 2,
-                          controller: addressController,
-                          style: kTextFieldValue,
-                          decoration: InputDecoration(
-                              isDense: true,
-                              contentPadding: const EdgeInsets.all(10),
-                              border: OutlineInputBorder(
-                                  borderRadius: BorderRadius.circular(10)),
-                              fillColor: Colors.white,
-                              filled: true),
-                        ),
-                      ],
-                    ),
-                  ),
-                ),
                 MobileInputTextField(
                     validate: validate,
                     title: 'Enter Your Mobile Number',
@@ -208,19 +176,63 @@ class _SignupScreenState extends State<SignupScreen> {
                     ),
                   ],
                 ),
-                Padding(
-                    padding: const EdgeInsets.fromLTRB(0, 6, 0, 38),
-                    child: CustomButton(
-                        function: checkValidation,
-                        removescreens: true,
-                        nextPage: const OnBoardingScreen(),
-                        buttonColor: kbuttonColor,
-                        text: 'Next'))
+                InkWell(
+                  onTap: () {
+                    var status = checkValidation();
+                    if (status == false) {
+                      DialogSuccess.showSuccessDialog(context);
+                    } else {
+                      print('Not Validated');
+                    }
+                  },
+                  child: Container(
+                    height: 50,
+                    width: double.infinity,
+                    decoration: BoxDecoration(
+                        color: kbuttonColor,
+                        borderRadius: BorderRadius.circular(10)),
+                    child: Center(
+                        child: Text(
+                      'Submit',
+                      style: kpageTitle,
+                    )),
+                  ),
+                )
               ],
             ),
           ),
         ),
       ),
+    );
+  }
+}
+
+class DialogSuccess {
+  static void showSuccessDialog(BuildContext context) {
+    showDialog(
+      context: context,
+      builder: (BuildContext context) {
+        return AlertDialog(
+          shape: const RoundedRectangleBorder(
+            borderRadius: BorderRadius.all(
+              Radius.circular(20.0),
+            ),
+          ),
+          title: const Text('User Registered'),
+          content: const Text('User Registered Successfully'),
+          actions: [
+            ElevatedButton(
+              child: const Text('Login Now'),
+              onPressed: () {
+                Navigator.pushReplacement(context,
+                    MaterialPageRoute(builder: (_) {
+                  return LoginScreen();
+                }));
+              },
+            ),
+          ],
+        );
+      },
     );
   }
 }

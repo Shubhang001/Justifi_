@@ -1,11 +1,12 @@
 import 'package:flutter/material.dart';
-import 'package:jusitfi_admin/presentation/screens/wallet_transcation_page.dart';
 import 'package:jusitfi_admin/utils/constants/textstyles.dart';
 import 'package:share_plus/share_plus.dart';
-import 'package:jusitfi_admin/presentation/screens/assignwork_lawyer_profile.dart';
-import 'package:jusitfi_admin/presentation/screens/schedule3.dart';
-import 'package:jusitfi_admin/presentation/widgets/show_call_details.dart';
+
+import '../widgets/show_call_details.dart';
 import '../widgets/show_call_dialog.dart';
+import '../widgets/view_document_dialog_box.dart';
+import 'assignwork_lawyer_profile.dart';
+import 'schedule3.dart';
 
 class LawyerProfileScreen extends StatefulWidget {
   const LawyerProfileScreen({super.key});
@@ -105,12 +106,6 @@ class _LawyerProfileScreenState extends State<LawyerProfileScreen>
         style: lawyerProfileTitle,
       ),
       centerTitle: true,
-      actions: [
-        Container(
-          margin: const EdgeInsets.only(right: 10),
-          child: const Icon(Icons.menu),
-        ),
-      ],
     );
   }
 }
@@ -153,9 +148,9 @@ class _DetailSectionState extends State<DetailSection>
             width: double.maxFinite,
             child: TabBarView(
               controller: _tabController,
-              children: const <Widget>[
-                PracticeArea(),
-                Qualification(),
+              children: <Widget>[
+                const PracticeArea(),
+                const Qualification(),
                 Court(),
               ],
             ),
@@ -167,9 +162,23 @@ class _DetailSectionState extends State<DetailSection>
 }
 
 class Court extends StatelessWidget {
-  const Court({
+  Court({
     super.key,
   });
+  final List<CourtDetails> courts = [
+    CourtDetails(
+        title: 'Supreme Court',
+        image: 'assets/images/court0.png',
+        subtitle: 'Supreme Court of India'),
+    CourtDetails(
+        title: 'High Court',
+        image: "assets/images/court1.png",
+        subtitle: 'High Court of India'),
+    CourtDetails(
+        title: 'District Court',
+        image: "assets/images/court2.png",
+        subtitle: 'Mumbai District Court')
+  ];
 
   @override
   Widget build(BuildContext context) {
@@ -180,7 +189,7 @@ class Court extends StatelessWidget {
       itemCount: 3,
       itemBuilder: (context, index) {
         return Container(
-          margin: const EdgeInsets.all(20),
+          margin: const EdgeInsets.all(10),
           padding: const EdgeInsets.all(20),
           decoration: const BoxDecoration(
             color: Color.fromRGBO(169, 169, 169, 1),
@@ -206,9 +215,25 @@ class Court extends StatelessWidget {
             ),
           ),
           child: Column(
+            mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
-              Image.asset("assets/images/court$index.png"),
-              const Text("Supreme Court"),
+              Text(
+                courts[index].title,
+                style: kpageTitleBlack,
+              ),
+              Padding(
+                padding: const EdgeInsets.all(4.0),
+                child: Image.asset(
+                  courts[index].image,
+                  width: 80,
+                  height: 80,
+                ),
+              ),
+              Text(
+                courts[index].subtitle,
+                textAlign: TextAlign.center,
+                style: ksubCatText,
+              ),
             ],
           ),
         );
@@ -217,81 +242,117 @@ class Court extends StatelessWidget {
   }
 }
 
+class CourtDetails {
+  final String title;
+  final String image;
+  final String subtitle;
+
+  CourtDetails({
+    required this.title,
+    required this.image,
+    required this.subtitle,
+  });
+}
+
 class Qualification extends StatelessWidget {
   const Qualification({
     super.key,
   });
 
   static List<String> college = [
-    "LLB University Delhi",
-    "Cyber Law - Indian Law Institute",
-    "Diploma - NALSAR University"
+    "Delhi University\nLLB ",
+    "Indian Law Institute\nCyber Law",
+    "NALSAR University\nDiploma"
   ];
 
   @override
   Widget build(BuildContext context) {
-    return Column(
-      children: [
-        Expanded(
-          child: ListView.builder(
-            itemCount: 3,
-            itemBuilder: (context, index) {
-              return Container(
-                padding: const EdgeInsets.all(20),
-                margin: const EdgeInsets.symmetric(
-                  horizontal: 10,
-                  vertical: 10,
-                ),
-                height: 135,
-                width: double.infinity,
-                decoration: const BoxDecoration(
-                  color: Color.fromRGBO(169, 169, 169, 1),
-                  borderRadius: BorderRadius.all(
-                    Radius.circular(20),
+    return SizedBox(
+      height: 500,
+      child: ListView.builder(
+        itemCount: 3,
+        itemBuilder: (context, index) {
+          return Container(
+            padding: const EdgeInsets.all(10),
+            margin: const EdgeInsets.symmetric(
+              horizontal: 10,
+              vertical: 15,
+            ),
+            height: 135,
+            width: double.infinity,
+            decoration: const BoxDecoration(
+              color: Color.fromRGBO(169, 169, 169, 1),
+              boxShadow: [
+                BoxShadow(
+                  color: Colors.black,
+                  offset: Offset(
+                    0.0,
+                    2.0,
                   ),
                 ),
-                child: Row(
-                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                BoxShadow(color: Colors.black),
+              ],
+              borderRadius: BorderRadius.all(
+                Radius.circular(20),
+              ),
+            ),
+            child: Row(
+              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+              children: [
+                Row(
                   children: [
-                    Row(
-                      children: [
-                        Image.asset("assets/images/college3.png"),
-                        Container(
-                          margin: const EdgeInsets.all(20),
-                          child: Column(
-                            children: [
-                              Expanded(
-                                child: Text(
-                                  college[index],
-                                  style: const TextStyle(
-                                    fontWeight: FontWeight.bold,
-                                    fontSize: 16,
-                                  ),
-                                  softWrap: false,
-                                  overflow: TextOverflow.ellipsis,
-                                  maxLines: 1,
-                                ),
-                              ),
-                              Container(
-                                margin: const EdgeInsets.only(top: 15),
-                                child: const Text(
-                                  "October 2021- October2022",
-                                ),
-                              )
-                            ],
+                    Image.asset("assets/images/college3.png"),
+                    Container(
+                      margin: const EdgeInsets.all(20),
+                      child: Column(
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        children: [
+                          Text(
+                            college[index],
+                            style: const TextStyle(
+                              fontWeight: FontWeight.bold,
+                              fontSize: 18,
+                            ),
                           ),
-                        )
-                      ],
-                    ),
-                    Image.asset("assets/images/documnet.png"),
+                          Container(
+                            margin: const EdgeInsets.only(top: 15),
+                            child: const Text(
+                              "October 2021- October2022",
+                            ),
+                          )
+                        ],
+                      ),
+                    )
                   ],
                 ),
-              );
-            },
-          ),
-        ),
-        const ShareProfile()
-      ],
+                InkWell(
+                  onTap: () {
+                    showDialog(
+                        context: context,
+                        builder: (BuildContext context) {
+                          return const ViewDocumentDialogBox();
+                        });
+                  },
+                  child: Column(
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    crossAxisAlignment: CrossAxisAlignment.center,
+                    children: [
+                      Image.asset("assets/images/documnet.png"),
+                      const SizedBox(height: 10),
+                      const Text(
+                        "View",
+                        style: TextStyle(
+                          color: Colors.white,
+                        ),
+                      ),
+                    ],
+                  ),
+                ),
+              ],
+            ),
+          );
+        },
+      ),
     );
   }
 }
@@ -305,6 +366,7 @@ class PracticeArea extends StatelessWidget {
   Widget build(BuildContext context) {
     return SingleChildScrollView(
       child: Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
         children: [
           const SizedBox(height: 10),
           const Divider(thickness: 2, color: Colors.black),
@@ -319,12 +381,10 @@ class PracticeArea extends StatelessWidget {
             titlecard: "Past Experience",
             holdertext: "Full Time",
           ),
-          PastExperience(
+          CertificateSection(
             imageAsset: "certificate.jpg",
-            date: "Oct 2021 - Oct 2022",
-            jobType: "Full Time",
-            positionName: "Advocate",
-            subPositionName: "Seniore",
+            date: "Issued Jan 2022 - No expiration date",
+            positionName: "Certification Course in \nCyber Law",
             titlecard: "Certifications",
             holdertext: "Certificate Id - 15646",
           ),
@@ -803,6 +863,115 @@ class PastExperience extends StatelessWidget {
   }
 }
 
+class CertificateSection extends StatelessWidget {
+  CertificateSection({
+    super.key,
+    required this.titlecard,
+    required this.positionName,
+    required this.date,
+    required this.imageAsset,
+    required this.holdertext,
+  });
+
+  final String titlecard;
+  final String positionName;
+  final String date;
+  final String holdertext;
+  final String imageAsset;
+
+  final List<String> expertise = [
+    "HealthCare",
+    "Tax",
+    "Intellectual Property",
+    "Buisness Law",
+    "Civil Rights",
+    "Family Issues"
+  ];
+
+  @override
+  Widget build(BuildContext context) {
+    return Column(
+      children: [
+        TitleCard(
+          title: titlecard,
+          icon: Icons.bubble_chart,
+        ),
+        Container(
+          margin: const EdgeInsets.only(top: 2, bottom: 10),
+          height: 180,
+          child: ListView.builder(
+            scrollDirection: Axis.horizontal,
+            itemCount: 3,
+            itemBuilder: (context, index) {
+              return Container(
+                padding: const EdgeInsets.all(25),
+                margin: const EdgeInsets.symmetric(horizontal: 5),
+                decoration: const BoxDecoration(
+                  color: Colors.black,
+                  borderRadius: BorderRadius.all(
+                    Radius.circular(20),
+                  ),
+                ),
+                child: Column(
+                  children: [
+                    Row(
+                      children: [
+                        Container(
+                          margin: const EdgeInsets.only(right: 10),
+                          child: Image.asset(
+                            height: 45,
+                            "assets/images/$imageAsset",
+                          ),
+                        ),
+                        Container(
+                          margin: const EdgeInsets.only(
+                            top: 2,
+                            left: 8,
+                          ),
+                          child: Column(
+                            crossAxisAlignment: CrossAxisAlignment.start,
+                            children: [
+                              Text(
+                                positionName,
+                                style: const TextStyle(
+                                  color: Colors.white,
+                                  fontSize: 18,
+                                  fontWeight: FontWeight.bold,
+                                ),
+                              ),
+                              const ExperienceTitles(
+                                  content: "Stanford Online"),
+                              ExperienceTitles(content: date),
+                              ExperienceTitles(content: holdertext),
+                              const SizedBox(height: 10),
+                              Container(
+                                padding: const EdgeInsets.all(5),
+                                decoration: const BoxDecoration(
+                                  borderRadius:
+                                      BorderRadius.all(Radius.circular(25)),
+                                  color: Colors.green,
+                                ),
+                                child: const Text(
+                                  "View Certiffications",
+                                  style: TextStyle(color: Colors.white),
+                                ),
+                              ),
+                            ],
+                          ),
+                        ),
+                      ],
+                    )
+                  ],
+                ),
+              );
+            },
+          ),
+        ),
+      ],
+    );
+  }
+}
+
 class ExperienceTitles extends StatelessWidget {
   const ExperienceTitles({
     super.key,
@@ -860,39 +1029,51 @@ class Expertise extends StatelessWidget {
     "Intellectual Property",
     "Buisness Law",
     "Civil Rights",
-    "Family Issues"
+    "Family Issues",
+    'Criminal',
+    'Cybercrime',
   ];
 
   @override
   Widget build(BuildContext context) {
     return Column(
       children: [
-        Row(
-          mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-          children: [
-            for (int i = 0; i < 3; i++)
-              Container(
-                padding: const EdgeInsets.all(10),
-                color: const Color.fromRGBO(30, 30, 30, 1),
-                child: Text(
-                  expertise[i],
-                  style: const TextStyle(color: Colors.white),
-                ),
-              ),
-          ],
-        ),
-        Container(
-          margin: const EdgeInsets.only(top: 6),
+        SingleChildScrollView(
+          scrollDirection: Axis.horizontal,
           child: Row(
-            mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+            mainAxisAlignment: MainAxisAlignment.spaceAround,
             children: [
-              for (int i = 3; i < 6; i++)
-                Container(
-                  padding: const EdgeInsets.all(10),
-                  color: const Color.fromRGBO(30, 30, 30, 1),
-                  child: Text(
-                    expertise[i],
-                    style: const TextStyle(color: Colors.white),
+              for (int i = 0; i < (expertise.length / 2).toInt(); i++)
+                Padding(
+                  padding: const EdgeInsets.all(2.0),
+                  child: Container(
+                    padding: const EdgeInsets.all(10),
+                    color: const Color.fromRGBO(30, 30, 30, 1),
+                    child: Text(
+                      expertise[i],
+                      style: const TextStyle(color: Colors.white),
+                    ),
+                  ),
+                ),
+            ],
+          ),
+        ),
+        SingleChildScrollView(
+          scrollDirection: Axis.horizontal,
+          child: Row(
+            children: [
+              for (int i = (expertise.length / 2).toInt();
+                  i < expertise.length;
+                  i++)
+                Padding(
+                  padding: const EdgeInsets.all(2.0),
+                  child: Container(
+                    padding: const EdgeInsets.all(10),
+                    color: const Color.fromRGBO(30, 30, 30, 1),
+                    child: Text(
+                      expertise[i],
+                      style: const TextStyle(color: Colors.white),
+                    ),
                   ),
                 ),
             ],
@@ -991,26 +1172,59 @@ class CallToAction extends StatelessWidget {
                       builder: (BuildContext context) {
                         return CustomDialog(
                           onCallNowPressed: () {
-                            print("Call Now Pressed");
-
-                            showCallDetails(context);
+                            showCallDetails(context, 'Phone Call');
                           },
                           onScheduleNowPressed: () {
                             Navigator.pop(context);
                             Navigator.push(
                                 context,
                                 MaterialPageRoute(
-                                    builder: (context) => Schedule3()));
+                                    builder: (context) => const Schedule3(
+                                          mode: 'Phone Call',
+                                        )));
                           },
                         );
                       },
                     );
                   },
-                  child: LawyerCTA(
-                      icon: "assets/images/call.png", price: "20 Rs")),
-              LawyerCTA(icon: "assets/images/message.png", price: "10 Rs"),
-              LawyerCTA(icon: "assets/images/video_call.png", price: "30 Rs"),
-              LawyerCTA(icon: "assets/images/hand_shake.png", price: "600 Rs"),
+                  child: const LawyerCTA(
+                      icon: "assets/images/call.png", price: "20")),
+              InkWell(
+                  onTap: () {
+                    DialogService.showNotAvailableDialog(context);
+                  },
+                  child: const LawyerCTA(
+                      icon: "assets/images/chat.png", price: "10")),
+              InkWell(
+                  onTap: () {
+                    showDialog(
+                      context: context,
+                      builder: (BuildContext context) {
+                        return CustomDialog(
+                          onCallNowPressed: () {
+                            showCallDetails(context, 'Video Call');
+                          },
+                          onScheduleNowPressed: () {
+                            Navigator.pop(context);
+                            Navigator.push(
+                                context,
+                                MaterialPageRoute(
+                                    builder: (context) => const Schedule3(
+                                          mode: 'Video Call',
+                                        )));
+                          },
+                        );
+                      },
+                    );
+                  },
+                  child: const LawyerCTA(
+                      icon: "assets/images/video_call.png", price: "30")),
+              InkWell(
+                  onTap: () {
+                    DialogService.showNotAvailableDialog(context);
+                  },
+                  child: const LawyerCTA(
+                      icon: "assets/images/hand_shake.png", price: "600")),
             ],
           ),
           InkWell(
@@ -1028,6 +1242,33 @@ class CallToAction extends StatelessWidget {
           ),
         ],
       ),
+    );
+  }
+}
+
+class DialogService {
+  static void showNotAvailableDialog(BuildContext context) {
+    showDialog(
+      context: context,
+      builder: (BuildContext context) {
+        return AlertDialog(
+          shape: const RoundedRectangleBorder(
+            borderRadius: BorderRadius.all(
+              Radius.circular(20.0),
+            ),
+          ),
+          title: const Text('Service Not Available'),
+          content: const Text('Sorry, the service is not available yet.'),
+          actions: [
+            ElevatedButton(
+              child: const Text('OK'),
+              onPressed: () {
+                Navigator.of(context).pop();
+              },
+            ),
+          ],
+        );
+      },
     );
   }
 }
@@ -1165,22 +1406,34 @@ class LawyerCTA extends StatelessWidget {
       padding: const EdgeInsets.all(4.0),
       child: Column(
         children: [
-          Container(
-            margin: const EdgeInsets.only(left: 8),
-            decoration: const BoxDecoration(
-              shape: BoxShape.circle,
-              color: Colors.black,
-            ),
-            child: Image.asset(
-              icon,
-              width: 30,
-              height: 30,
+          CircleAvatar(
+            backgroundColor: Colors.black,
+            child: Padding(
+              padding: const EdgeInsets.all(8.0),
+              child: Image.asset(
+                icon,
+                width: 30,
+                height: 30,
+              ),
             ),
           ),
           const SizedBox(
             height: 5,
           ),
-          Text(price)
+          Row(
+            children: [
+              Image.asset(
+                'assets/icons/coin_symbol.png',
+                color: Colors.black,
+                width: 20,
+                height: 20,
+              ),
+              Text(
+                price,
+                style: const TextStyle(fontWeight: FontWeight.bold),
+              )
+            ],
+          ),
         ],
       ),
     );
@@ -1194,52 +1447,43 @@ class _ImageContainer extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return GestureDetector(
-      onTap: () {
-        Navigator.push(
-            context,
-            MaterialPageRoute(
-              builder: (context) => const WalletTransactionPage(),
-            ));
-      },
-      child: Stack(
-        children: [
-          Container(
-            margin: const EdgeInsets.only(
-              top: 10,
-              left: 5,
-            ),
-            height: height,
-            width: width,
-            decoration: const BoxDecoration(
-              image: DecorationImage(
-                fit: BoxFit.cover,
-                image: AssetImage(
-                  "assets/images/advocate_img.png",
-                ),
+    return Stack(
+      children: [
+        Container(
+          margin: const EdgeInsets.only(
+            top: 10,
+            left: 5,
+          ),
+          height: height,
+          width: width,
+          decoration: const BoxDecoration(
+            image: DecorationImage(
+              fit: BoxFit.cover,
+              image: AssetImage(
+                "assets/images/advocate_img.png",
               ),
-              color: Colors.black,
+            ),
+            color: Colors.black,
+            borderRadius: BorderRadius.all(
+              Radius.circular(20),
+            ),
+          ),
+        ),
+        Positioned(
+          top: 15,
+          left: 140,
+          child: Container(
+            height: 15,
+            width: 15,
+            decoration: const BoxDecoration(
+              color: Colors.greenAccent,
               borderRadius: BorderRadius.all(
                 Radius.circular(20),
               ),
             ),
           ),
-          Positioned(
-            top: 15,
-            left: 140,
-            child: Container(
-              height: 15,
-              width: 15,
-              decoration: const BoxDecoration(
-                color: Colors.greenAccent,
-                borderRadius: BorderRadius.all(
-                  Radius.circular(20),
-                ),
-              ),
-            ),
-          )
-        ],
-      ),
+        )
+      ],
     );
   }
 }

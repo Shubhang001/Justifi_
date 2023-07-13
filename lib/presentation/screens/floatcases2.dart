@@ -3,6 +3,8 @@ import 'package:file_picker/file_picker.dart';
 import 'package:flutter/material.dart';
 import 'package:jusitfi_admin/presentation/screens/finished_page.dart';
 import 'package:jusitfi_admin/presentation/screens/float_cases4.dart';
+import 'package:jusitfi_admin/presentation/screens/notification_page.dart';
+import 'package:jusitfi_admin/presentation/screens/profile_page.dart';
 import 'package:jusitfi_admin/utils/constants/textstyles.dart';
 
 // ignore: must_be_immutable
@@ -35,6 +37,68 @@ class _FloatCases2State extends State<FloatCases2> {
   Widget build(BuildContext context) {
     return SafeArea(
       child: Scaffold(
+        appBar: AppBar(
+          centerTitle: true,
+          elevation: 0,
+          backgroundColor: Colors.black,
+          actions: [
+            Padding(
+              padding:
+                  EdgeInsets.only(left: 20, right: 30, top: 10, bottom: 10),
+              child: Row(
+                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                children: [
+                  InkWell(
+                    onTap: () {
+                      Navigator.push(
+                        context,
+                        MaterialPageRoute(
+                          builder: (context) => NotificationsPage(),
+                        ),
+                      );
+                    },
+                    child: Icon(
+                      Icons.notifications_outlined,
+                      color: Colors.white,
+                      size: 35,
+                    ),
+                  )
+                ],
+              ),
+            ),
+          ],
+          leading: GestureDetector(
+            onTap: () {
+              Navigator.push(
+                context,
+                MaterialPageRoute(
+                  builder: (context) => const ProfileScreen(),
+                ),
+              );
+            },
+            child: Padding(
+              padding: const EdgeInsets.all(5.0),
+              child: Image.asset(
+                'assets/icons/profile_new.png',
+                color: Colors.white,
+              ),
+            ),
+          ),
+          title: Row(
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: [
+              Icon(
+                Icons.pin_drop_rounded,
+                size: 35,
+                color: Colors.white,
+              ),
+              Text(
+                "Mumbai",
+                style: klocationLight,
+              )
+            ],
+          ),
+        ),
         body: SingleChildScrollView(
           child: SizedBox(
             height: 800,
@@ -51,22 +115,6 @@ class _FloatCases2State extends State<FloatCases2> {
                               bottomLeft: Radius.circular(150),
                               bottomRight: Radius.circular(150))),
                       width: double.infinity,
-                    ),
-                    Positioned(
-                      top: 0,
-                      left: MediaQuery.of(context).size.width / 3,
-                      child: Row(
-                        children: [
-                          const Icon(
-                            Icons.pin_drop,
-                            color: Colors.white,
-                          ),
-                          Text(
-                            'Mumbai',
-                            style: kHomePageTitle,
-                          )
-                        ],
-                      ),
                     ),
                     Positioned(
                       top: 30,

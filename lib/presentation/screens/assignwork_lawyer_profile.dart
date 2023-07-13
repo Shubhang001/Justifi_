@@ -37,12 +37,6 @@ class _AssignWorkLawyerProfileState extends State<AssignWorkLawyerProfile> {
         backgroundColor: Colors.black,
         centerTitle: true,
         title: const Text('Lawyer Profile'),
-        actions: [
-          IconButton(
-            onPressed: () {},
-            icon: const Icon(Icons.menu),
-          )
-        ],
       ),
       body: SingleChildScrollView(
         child: Column(
@@ -64,7 +58,7 @@ class _AssignWorkLawyerProfileState extends State<AssignWorkLawyerProfile> {
                   top: 30,
                   child: Row(
                     children: [
-                      const _ImageContainer(130, 130),
+                      const _ImageContainer(110, 110),
                       Column(
                         children: [
                           Container(
@@ -564,7 +558,7 @@ class LawyerInfo extends StatelessWidget {
                   "80",
                   style: TextStyle(
                     color: Colors.white,
-                    fontSize: 25,
+                    fontSize: 20,
                     fontWeight: FontWeight.bold,
                   ),
                 ),
@@ -588,7 +582,7 @@ class LawyerInfo extends StatelessWidget {
                   "100",
                   style: TextStyle(
                     color: Colors.white,
-                    fontSize: 25,
+                    fontSize: 20,
                     fontWeight: FontWeight.bold,
                   ),
                 ),
@@ -612,7 +606,7 @@ class LawyerInfo extends StatelessWidget {
                   "8 yrs",
                   style: TextStyle(
                     color: Colors.white,
-                    fontSize: 25,
+                    fontSize: 20,
                     fontWeight: FontWeight.bold,
                   ),
                 ),

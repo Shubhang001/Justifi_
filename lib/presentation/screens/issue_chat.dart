@@ -1,8 +1,15 @@
 import 'package:flutter/material.dart';
+import 'package:image_picker/image_picker.dart';
 
-class IssueChat extends StatelessWidget {
+class IssueChat extends StatefulWidget {
   const IssueChat({super.key});
 
+  @override
+  State<IssueChat> createState() => _IssueChatState();
+}
+
+class _IssueChatState extends State<IssueChat> {
+  bool cancelled = false;
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -10,7 +17,9 @@ class IssueChat extends StatelessWidget {
         elevation: 0,
         backgroundColor: Colors.transparent,
         leading: IconButton(
-          onPressed: () {},
+          onPressed: () {
+            Navigator.pop(context);
+          },
           icon: const Icon(
             Icons.arrow_back,
             color: Colors.black,
@@ -72,8 +81,12 @@ class IssueChat extends StatelessWidget {
                         style: const ButtonStyle(
                           backgroundColor: MaterialStatePropertyAll(Colors.red),
                         ),
-                        onPressed: () {},
-                        child: const Text("Cancel"))
+                        onPressed: () {
+                          setState(() {
+                            cancelled = true;
+                          });
+                        },
+                        child: Text(cancelled == true ? 'Cancelled' : "Cancel"))
                   ],
                 ),
               ],
@@ -104,7 +117,11 @@ class IssueChat extends StatelessWidget {
                   Radius.circular(50),
                 )),
             child: IconButton(
-              onPressed: () {},
+              onPressed: () async {
+                final ImagePicker picker = ImagePicker();
+                final XFile? image =
+                    await picker.pickImage(source: ImageSource.gallery);
+              },
               icon: const Icon(
                 Icons.add,
                 color: Colors.white,
@@ -115,17 +132,24 @@ class IssueChat extends StatelessWidget {
             child: Container(
               padding: const EdgeInsets.all(8),
               margin: const EdgeInsets.symmetric(vertical: 10, horizontal: 2),
-              height: 50,
+              // height: 50,
               decoration: const BoxDecoration(
                 color: Colors.black,
                 borderRadius: BorderRadius.all(
                   Radius.circular(25),
                 ),
               ),
-              child: const TextField(),
+              child: const TextField(
+                style: TextStyle(color: Colors.white),
+                decoration: InputDecoration(
+                  suffixIcon: Icon(
+                    Icons.send,
+                    color: Colors.white,
+                  ),
+                ),
+              ),
             ),
           ),
-          const Icon(Icons.send)
         ],
       ),
     );
