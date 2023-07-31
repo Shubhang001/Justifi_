@@ -1,5 +1,10 @@
 import 'package:flutter/material.dart';
+import 'package:jusitfi_admin/presentation/screens/assignwork_lawyer_profile.dart';
+import 'package:jusitfi_admin/presentation/screens/schedule3.dart';
+import 'package:jusitfi_admin/presentation/widgets/show_call_details.dart';
 import 'package:jusitfi_admin/utils/constants/textstyles.dart';
+
+import '../widgets/show_call_dialog.dart';
 
 class LawyerProfileScreen extends StatefulWidget {
   const LawyerProfileScreen({super.key});
@@ -11,12 +16,13 @@ class LawyerProfileScreen extends StatefulWidget {
 class _LawyerProfileScreenState extends State<LawyerProfileScreen>
     with TickerProviderStateMixin {
   TabController? _tabController;
+  final GlobalKey<ScaffoldState> _scaffoldKey = GlobalKey<ScaffoldState>();
 
   @override
   void initState() {
     super.initState();
     _tabController = TabController(
-      initialIndex: 1,
+      initialIndex: 0,
       vsync: this,
       length: 3,
     );
@@ -25,6 +31,7 @@ class _LawyerProfileScreenState extends State<LawyerProfileScreen>
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      key: _scaffoldKey,
       appBar: buildAppBar(),
       body: Column(
         children: [
@@ -464,7 +471,7 @@ class ReviewSection extends StatelessWidget {
                   ],
                 ),
                 Column(
-                  children: const [
+                  children: [
                     ProgressBar(number: 5, val: .4),
                     ProgressBar(number: 4, val: .2),
                     ProgressBar(number: 3, val: .15),
@@ -929,7 +936,7 @@ class Details extends StatelessWidget {
   Widget build(BuildContext context) {
     return Row(
       mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-      children: const [
+      children: [
         RoundedButton(
           text: "Practice Area",
           padding: 6,
@@ -962,7 +969,7 @@ class TopNav extends StatelessWidget {
   Widget build(BuildContext context) {
     return Row(
       mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-      children: const [
+      children: [
         RoundedButton(
           text: "Details",
           color: Color.fromRGBO(217, 217, 217, 1),
@@ -1000,20 +1007,50 @@ class CallToAction extends StatelessWidget {
         children: [
           Row(
             mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-            children: const [
-              LawyerCTA(icon: "assets/images/call.png", price: "20 Rs"),
+            children: [
+              InkWell(
+                  onTap: () {
+                    showDialog(
+                      context: context,
+                      builder: (BuildContext context) {
+                        return CustomDialog(
+                          onCallNowPressed: () {
+                            print("Call Now Pressed");
+
+                            showCallDetails(context);
+                          },
+                          onScheduleNowPressed: () {
+                            Navigator.pop(context);
+                            Navigator.push(
+                                context,
+                                MaterialPageRoute(
+                                    builder: (context) => Schedule3()));
+                          },
+                        );
+                      },
+                    );
+                  },
+                  child: LawyerCTA(
+                      icon: "assets/images/call.png", price: "20 Rs")),
               LawyerCTA(icon: "assets/images/message.png", price: "10 Rs"),
               LawyerCTA(icon: "assets/images/video_call.png", price: "30 Rs"),
               LawyerCTA(icon: "assets/images/hand_shake.png", price: "600 Rs"),
             ],
           ),
           Row(
-            children: const [
-              RoundedButton(
-                text: "Assign Work",
-                color: Colors.black,
-                textColor: Colors.white,
-                padding: 15,
+            children: [
+              InkWell(
+                onTap: () {
+                  Navigator.push(context, MaterialPageRoute(builder: (_) {
+                    return AssignWorkLawyerProfile();
+                  }));
+                },
+                child: RoundedButton(
+                  text: "Assign Work",
+                  color: Colors.black,
+                  textColor: Colors.white,
+                  padding: 15,
+                ),
               ),
             ],
           ),
@@ -1070,7 +1107,7 @@ class LawyerInfo extends StatelessWidget {
           Container(
             margin: const EdgeInsets.only(right: 15, left: 10),
             child: Column(
-              children: const [
+              children: [
                 Text(
                   "80",
                   style: TextStyle(
@@ -1092,7 +1129,7 @@ class LawyerInfo extends StatelessWidget {
           Container(
             margin: const EdgeInsets.only(left: 8, right: 10),
             child: Column(
-              children: const [
+              children: [
                 Text(
                   "100",
                   style: TextStyle(
@@ -1114,7 +1151,7 @@ class LawyerInfo extends StatelessWidget {
           Container(
             margin: const EdgeInsets.only(left: 8),
             child: Column(
-              children: const [
+              children: [
                 Text(
                   "8 yrs",
                   style: TextStyle(
@@ -1147,15 +1184,16 @@ class LawyerCTA extends StatelessWidget {
   Widget build(BuildContext context) {
     return Column(
       children: [
-        GestureDetector(
-          onTap: () {},
-          child: Container(
-            margin: const EdgeInsets.only(left: 8),
-            decoration: const BoxDecoration(
-              shape: BoxShape.circle,
-              color: Colors.black,
-            ),
-            child: IconButton(onPressed: () {}, icon: Image.asset(icon)),
+        Container(
+          margin: const EdgeInsets.only(left: 8),
+          decoration: const BoxDecoration(
+            shape: BoxShape.circle,
+            color: Colors.black,
+          ),
+          child: Image.asset(
+            icon,
+            width: 35,
+            height: 35,
           ),
         ),
         const SizedBox(

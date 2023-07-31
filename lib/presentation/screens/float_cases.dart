@@ -16,7 +16,7 @@ class _FloatCasesState extends State<FloatCases> {
       Navigator.push(
           context,
           MaterialPageRoute(
-            builder: (_) => const FloatCases2(),
+            builder: (_) =>  FloatCases2(),
           ));
     });
     super.initState();

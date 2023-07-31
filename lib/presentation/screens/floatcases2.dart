@@ -1,17 +1,36 @@
+import 'dart:io';
+import 'package:file_picker/file_picker.dart';
 import 'package:flutter/material.dart';
 import 'package:jusitfi_admin/presentation/screens/finished_page.dart';
 import 'package:jusitfi_admin/presentation/screens/float_cases4.dart';
-import 'package:jusitfi_admin/presentation/screens/floatcases5.dart';
 import 'package:jusitfi_admin/utils/constants/textstyles.dart';
 
+// ignore: must_be_immutable
 class FloatCases2 extends StatefulWidget {
-  const FloatCases2({super.key});
+  FloatCases2({super.key});
+  String _filePath = '';
 
   @override
   State<FloatCases2> createState() => _FloatCases2State();
 }
 
 class _FloatCases2State extends State<FloatCases2> {
+  Future<void> _pickDocument() async {
+    FilePickerResult? result = await FilePicker.platform.pickFiles(
+      type: FileType.custom,
+      allowedExtensions: ['pdf', 'doc', 'docx'],
+    );
+
+    if (result != null) {
+      File file = File(result.files.single.path!);
+      setState(() {
+        widget._filePath = file.path;
+      });
+    } else {
+      // User canceled the picker
+    }
+  }
+
   @override
   Widget build(BuildContext context) {
     return SafeArea(
@@ -359,26 +378,36 @@ class _FloatCases2State extends State<FloatCases2> {
                                     style: kpageTitle,
                                   ),
                                 ),
-                                Container(
-                                    width: 250,
-                                    height: 30,
-                                    decoration: BoxDecoration(
-                                      color: Colors.grey[200],
-                                      borderRadius: BorderRadius.circular(8.0),
-                                    ),
-                                    child: Row(
-                                      children: [
-                                        const Icon(Icons.upload),
-                                        const SizedBox(
-                                          width: 10,
-                                        ),
-                                        Text(
-                                          'Name of Document',
-                                          style: kCallQn,
-                                          overflow: TextOverflow.fade,
-                                        )
-                                      ],
-                                    )),
+                                InkWell(
+                                  onTap: () {
+                                    _pickDocument();
+                                  },
+                                  child: Container(
+                                      width: 250,
+                                      height: 30,
+                                      decoration: BoxDecoration(
+                                        color: Colors.grey[200],
+                                        borderRadius:
+                                            BorderRadius.circular(8.0),
+                                      ),
+                                      child: Row(
+                                        children: [
+                                          const Icon(Icons.upload),
+                                          const SizedBox(
+                                            width: 10,
+                                          ),
+                                          Text(
+                                            widget._filePath == ''
+                                                ? 'Name of the document uploaded'
+                                                : widget._filePath
+                                                    .split('/')
+                                                    .last,
+                                            style: kCallQn,
+                                            overflow: TextOverflow.fade,
+                                          )
+                                        ],
+                                      )),
+                                ),
                               ],
                             ),
                           ),

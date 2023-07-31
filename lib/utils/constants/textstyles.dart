@@ -399,8 +399,19 @@ TextStyle lawyerName = GoogleFonts.inter(
   fontWeight: FontWeight.bold,
 );
 
+TextStyle lawyerNameWhite = GoogleFonts.inter(
+  color: Colors.white,
+  fontSize: 25,
+  fontWeight: FontWeight.bold,
+);
+
 TextStyle locationName = GoogleFonts.inter(
   color: Colors.black,
+  fontSize: 15,
+);
+
+TextStyle locationNameWhite = GoogleFonts.inter(
+  color: Colors.white,
   fontSize: 15,
 );
 TextStyle todayTextStyle = GoogleFonts.mukta(
