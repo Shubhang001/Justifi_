@@ -11,7 +11,9 @@ class ChatPage extends StatelessWidget {
         elevation: 0,
         backgroundColor: Colors.transparent,
         leading: IconButton(
-          onPressed: () {},
+          onPressed: () {
+            Navigator.pop(context);
+          },
           icon: const Icon(
             Icons.arrow_back,
             color: Colors.black,
@@ -31,11 +33,11 @@ class ChatPage extends StatelessWidget {
           Container(
             padding: const EdgeInsets.all(10),
             color: Colors.black,
-            child: Row(
+            child: const Row(
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
                 Column(
-                  children: const [
+                  children: [
                     CircleAvatar(
                       radius: 35,
                       backgroundImage: AssetImage(
@@ -52,7 +54,7 @@ class ChatPage extends StatelessWidget {
                   ],
                 ),
                 Column(
-                  children: const [
+                  children: [
                     Text(
                       "Case Title : ABC",
                       style: TextStyle(

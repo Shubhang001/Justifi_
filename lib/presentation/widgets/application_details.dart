@@ -9,11 +9,13 @@ class ApplicantsDetails extends StatelessWidget {
     required this.images,
     required this.status,
     required this.applications,
+    required this.isLocked,
   });
 
   final List<String> images;
   final String status;
   final int applications;
+  final bool isLocked;
 
   @override
   Widget build(BuildContext context) {
@@ -52,7 +54,18 @@ class ApplicantsDetails extends StatelessWidget {
                   color: Colors.black,
                 ),
               ),
-            )
+            ),
+            isLocked
+                ? const Positioned(
+                    left: 0,
+                    top: 20,
+                    child: Icon(
+                      Icons.lock,
+                      size: 15,
+                      color: Colors.white,
+                    ),
+                  )
+                : SizedBox(),
           ]),
         ),
         Row(

@@ -7,6 +7,7 @@ import 'package:jusitfi_admin/presentation/screens/float_cases.dart';
 import 'package:jusitfi_admin/presentation/screens/float_cases4.dart';
 import 'package:jusitfi_admin/presentation/screens/floatcases2.dart';
 import 'package:jusitfi_admin/presentation/screens/homepage.dart';
+import 'package:jusitfi_admin/presentation/screens/lawyer_profile.dart';
 import 'package:jusitfi_admin/presentation/screens/login_screen.dart';
 import 'package:jusitfi_admin/presentation/screens/more_page.dart';
 import 'package:jusitfi_admin/presentation/screens/onboardingscreen.dart';
@@ -30,7 +31,7 @@ void main() {
       // ));
       const MyApp());
 }
-
+    
 class MyApp extends StatelessWidget {
   const MyApp({super.key});
   @override
@@ -42,7 +43,7 @@ class MyApp extends StatelessWidget {
           bottomSheetTheme:
               const BottomSheetThemeData(backgroundColor: Colors.transparent),
           primarySwatch: createMaterialColor(kobbuttonColor)),
-      home: const LoginScreen(),
+      home: MainPage(),
     );
   }
 }

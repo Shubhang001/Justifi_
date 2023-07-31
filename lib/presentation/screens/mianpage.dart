@@ -52,23 +52,41 @@ class _MainPageState extends State<MainPage> {
           BottomNavigationBarItem(
             icon: Image.asset(
               'assets/nav_icons/home.png',
+              width: 40,
+              height: 40,
             ),
             label: 'Home',
           ),
           BottomNavigationBarItem(
-            icon: Image.asset('assets/nav_icons/floatcase.png'),
+            icon: Image.asset(
+              'assets/nav_icons/floatcase.png',
+              width: 40,
+              height: 40,
+            ),
             label: 'Float Case',
           ),
           BottomNavigationBarItem(
-            icon: Image.asset('assets/nav_icons/status.png'),
+            icon: Image.asset(
+              'assets/nav_icons/status.png',
+              width: 40,
+              height: 40,
+            ),
             label: 'Status',
           ),
           BottomNavigationBarItem(
-            icon: Image.asset('assets/nav_icons/wallet.png'),
+            icon: Image.asset(
+              'assets/nav_icons/wallet.png',
+              width: 40,
+              height: 40,
+            ),
             label: 'Wallet',
           ),
           BottomNavigationBarItem(
-            icon: Image.asset('assets/nav_icons/message.png'),
+            icon: Image.asset(
+              'assets/nav_icons/message.png',
+              width: 40,
+              height: 40,
+            ),
             label: 'Message',
           ),
         ],

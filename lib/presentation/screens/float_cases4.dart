@@ -1,41 +1,49 @@
 import 'package:flutter/material.dart';
 import 'package:jusitfi_admin/presentation/screens/floatcases5.dart';
 import 'package:jusitfi_admin/presentation/screens/mianpage.dart';
+import 'package:jusitfi_admin/presentation/screens/profile_page.dart';
 import 'package:jusitfi_admin/presentation/widgets/application_details.dart';
+import 'package:jusitfi_admin/presentation/widgets/locked_application_dialog_box.dart';
+import 'package:jusitfi_admin/presentation/widgets/view_description_dialog_box.dart';
 import 'package:jusitfi_admin/utils/constants/textstyles.dart';
+
+import '../../utils/constants/colors.dart';
 
 class FloatCases4 extends StatelessWidget {
   final List<Map<String, dynamic>> _sampleData = [
     {
       'Case Title': 'Case Title',
-      'Date': 'Date',
-      'Case Category': 'Case Category',
+      'isLocked': true,
+      'Date': '12/05/2023',
+      'Case Category': 'Cyber Crime',
       'Location': 'Location',
       'status': 'Pending',
       'images': [
-        "https://images.unsplash.com/photo-1458071103673-6a6e4c4a3413?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=750&q=80",
         "https://images.unsplash.com/photo-1518806118471-f28b20a1d79d?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=400&q=80",
+        "https://images.unsplash.com/photo-1458071103673-6a6e4c4a3413?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=750&q=80",
         "https://images.unsplash.com/photo-1470406852800-b97e5d92e2aa?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=750&q=80",
         "https://images.unsplash.com/photo-1473700216830-7e08d47f858e?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=750&q=80"
       ]
     },
     {
       'Case Title': 'Case Title',
+      'isLocked': true,
       'Date': 'Date',
-      'Case Category': 'Case Category',
+      'Case Category': 'Cyber Crime of Fake Document',
       'Location': 'Location',
       'status': 'Pending',
       'images': [
+        "https://images.unsplash.com/photo-1470406852800-b97e5d92e2aa?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=750&q=80",
         "https://images.unsplash.com/photo-1458071103673-6a6e4c4a3413?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=750&q=80",
         "https://images.unsplash.com/photo-1518806118471-f28b20a1d79d?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=400&q=80",
-        "https://images.unsplash.com/photo-1470406852800-b97e5d92e2aa?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=750&q=80",
         "https://images.unsplash.com/photo-1473700216830-7e08d47f858e?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=750&q=80"
       ]
     },
     {
       'Case Title': 'Case Title',
+      'isLocked': false,
       'Date': 'Date',
-      'Case Category': 'Case Category',
+      'Case Category': '',
       'Location': 'Location',
       'status': 'Hired',
       'images': [
@@ -48,20 +56,22 @@ class FloatCases4 extends StatelessWidget {
     {
       'Case Title': 'Case Title',
       'Date': 'Date',
-      'Case Category': 'Case Category',
+      'isLocked': true,
+      'Case Category': '',
       'Location': 'Location',
       'status': 'Cancelled',
       'images': [
-        "https://images.unsplash.com/photo-1458071103673-6a6e4c4a3413?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=750&q=80",
+        "https://images.unsplash.com/photo-1473700216830-7e08d47f858e?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=750&q=80"
+            "https://images.unsplash.com/photo-1458071103673-6a6e4c4a3413?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=750&q=80",
         "https://images.unsplash.com/photo-1518806118471-f28b20a1d79d?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=400&q=80",
         "https://images.unsplash.com/photo-1470406852800-b97e5d92e2aa?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=750&q=80",
-        "https://images.unsplash.com/photo-1473700216830-7e08d47f858e?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=750&q=80"
       ]
     },
     {
       'Case Title': 'Case Title',
       'Date': 'Date',
-      'Case Category': 'Case Category',
+      'isLocked': false,
+      'Case Category': '',
       'Location': 'Location',
       'status': 'Pending',
       'images': [
@@ -77,37 +87,62 @@ class FloatCases4 extends StatelessWidget {
   Widget build(BuildContext context) {
     return SafeArea(
       child: Scaffold(
-        backgroundColor: Colors.white,
+        appBar: AppBar(
+          actions: [
+            const Padding(
+              padding:
+                  EdgeInsets.only(left: 20, right: 30, top: 10, bottom: 10),
+              child: Row(
+                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                children: [
+                  Icon(
+                    Icons.notifications_outlined,
+                    color: Colors.white,
+                    size: 35,
+                  )
+                ],
+              ),
+            ),
+          ],
+          leading: GestureDetector(
+            onTap: () {
+              Navigator.push(
+                context,
+                MaterialPageRoute(
+                  builder: (context) => const ProfileScreen(),
+                ),
+              );
+            },
+            child: Image.asset(
+              'assets/icons/profile_new.png',
+              color: Colors.white,
+              width: 38,
+              height: 38,
+            ),
+          ),
+          title: Center(
+            child: Text(
+              "Applications",
+              style: kTitle,
+            ),
+          ),
+          backgroundColor: kPrimaryBlackColor,
+        ),
+        backgroundColor: Colors.black,
         body: SingleChildScrollView(
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
-              IconButton(
-                  onPressed: () {
-                    Navigator.push(context, MaterialPageRoute(builder: (_) {
-                      return MainPage();
-                    }));
-                  },
-                  icon: const Icon(
-                    Icons.arrow_back,
-                    size: 30,
-                  )),
               Container(
                 color: Colors.black,
                 child: Center(
                   child: Column(
                     children: [
-                      const SizedBox(
-                        height: 25,
-                      ),
-                      Text(
-                        'Applications',
-                        style: kTitle,
-                      ),
-                      const SizedBox(
-                        height: 25,
+                      SizedBox(
+                        height: 20,
                       ),
                       DataTable(
+                        horizontalMargin: 0,
                         dataRowHeight: 150,
                         columnSpacing: 30,
                         border: TableBorder.all(
@@ -119,7 +154,7 @@ class FloatCases4 extends StatelessWidget {
                           DataColumn(
                               label: Center(
                             child: Text(
-                              'Case Details',
+                              ' Case Details',
                               style: kNavLabel,
                             ),
                           )),
@@ -140,46 +175,89 @@ class FloatCases4 extends StatelessWidget {
                                           MaterialPageRoute(
                                               builder: (_) => FloatCases5()));
                                     },
-                                    child: Row(
+                                    child: Column(
                                       crossAxisAlignment:
-                                          CrossAxisAlignment.center,
+                                          CrossAxisAlignment.start,
                                       children: [
-                                        Image.asset(
-                                          'assets/images/document.png',
-                                          width: 55,
-                                          height: 55,
+                                        Padding(
+                                          padding: const EdgeInsets.symmetric(
+                                              vertical: 4, horizontal: 8.0),
+                                          child: Text(
+                                            data['Case Title'],
+                                            style: kApplicationDetails,
+                                          ),
                                         ),
-                                        Column(
-                                          mainAxisAlignment:
-                                              MainAxisAlignment.center,
+                                        Divider(
+                                          height: 1,
+                                          color: Colors.white,
+                                        ),
+                                        Padding(
+                                          padding: const EdgeInsets.all(4.0),
+                                          child: Align(
+                                            alignment: Alignment.topRight,
+                                            child: Text(data['Date'],
+                                                style: kApplicationDetails),
+                                          ),
+                                        ),
+                                        Row(
+                                          crossAxisAlignment:
+                                              CrossAxisAlignment.center,
                                           children: [
-                                            Text(
-                                              data['Case Title'],
-                                              style: kApplicationDetails,
+                                            Image.asset(
+                                              'assets/images/document.png',
+                                              width: 55,
+                                              height: 55,
                                             ),
-                                            Text(data['Date'],
-                                                style: kApplicationDetails),
-                                            Text(data['Case Category'],
-                                                style: kApplicationDetails),
-                                            Text(data['Location'],
-                                                style: kApplicationDetails),
+                                            Column(
+                                              mainAxisAlignment:
+                                                  MainAxisAlignment.center,
+                                              children: [
+                                                SizedBox(
+                                                  width: 150,
+                                                  child: Text(
+                                                      '  Case Category : ${data['Case Category']}',
+                                                      style:
+                                                          kApplicationDetails),
+                                                ),
+                                              ],
+                                            )
                                           ],
-                                        )
+                                        ),
+                                        SizedBox(
+                                          height: 15,
+                                        ),
+                                        Padding(
+                                          padding: const EdgeInsets.symmetric(
+                                              horizontal: 8.0),
+                                          child: Text(data['Location'],
+                                              style: kApplicationDetails),
+                                        ),
                                       ],
                                     ),
                                   )),
                                   DataCell(InkWell(
-                                    onTap: () {
-                                      Navigator.push(
-                                          context,
-                                          MaterialPageRoute(
-                                              builder: (_) => FloatCases5()));
-                                    },
+                                    onTap: data['isLocked']
+                                        ? () {
+                                            showDialog(
+                                                context: context,
+                                                builder:
+                                                    (BuildContext context) {
+                                                  return const LockedApplicationDialogBox();
+                                                });
+                                          }
+                                        : () {
+                                            Navigator.push(
+                                                context,
+                                                MaterialPageRoute(
+                                                    builder: (_) =>
+                                                        FloatCases5()));
+                                          },
                                     child: Center(
                                       child: ApplicantsDetails(
                                         applications: 10,
                                         images: data['images'],
                                         status: data['status'],
+                                        isLocked: data['isLocked'],
                                       ),
                                     ),
                                   )),

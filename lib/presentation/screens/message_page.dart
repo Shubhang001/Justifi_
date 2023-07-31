@@ -1,5 +1,9 @@
 import 'package:flutter/material.dart';
-import 'package:jusitfi_admin/presentation/screens/chat_page.dart';
+import 'package:jusitfi_admin/presentation/screens/chatpage.dart';
+import 'package:jusitfi_admin/presentation/screens/profile_page.dart';
+
+import '../../utils/constants/colors.dart';
+import '../../utils/constants/textstyles.dart';
 
 class MessageScreen extends StatelessWidget {
   const MessageScreen({super.key});
@@ -9,13 +13,41 @@ class MessageScreen extends StatelessWidget {
     return Scaffold(
       appBar: AppBar(
         elevation: 0,
-        backgroundColor: Colors.transparent,
-        title: const Text(
-          "Message",
-          style: TextStyle(
-            color: Colors.black,
-            fontWeight: FontWeight.bold,
+        backgroundColor: kPrimaryBlackColor,
+        actions: [
+          const Padding(
+            padding: EdgeInsets.only(left: 20, right: 30, top: 10, bottom: 10),
+            child: Row(
+              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+              children: [
+                Icon(
+                  Icons.notifications_outlined,
+                  color: Colors.white,
+                  size: 35,
+                )
+              ],
+            ),
           ),
+        ],
+        leading: GestureDetector(
+          onTap: () {
+            Navigator.push(
+              context,
+              MaterialPageRoute(
+                builder: (context) => const ProfileScreen(),
+              ),
+            );
+          },
+          child: Image.asset(
+            'assets/icons/profile_new.png',
+            color: Colors.white,
+            width: 38,
+            height: 38,
+          ),
+        ),
+        title: Text(
+          "Message",
+          style: kHomePageTitle,
         ),
         centerTitle: true,
       ),
