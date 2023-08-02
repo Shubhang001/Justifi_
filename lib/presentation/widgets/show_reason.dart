@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:jusitfi_admin/utils/constants/colors.dart';
 import 'package:jusitfi_admin/utils/constants/textstyles.dart';
 
 class ReasonDialogBox extends StatefulWidget {

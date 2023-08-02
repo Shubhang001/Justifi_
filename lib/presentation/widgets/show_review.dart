@@ -13,6 +13,7 @@ class RatingDialog extends StatefulWidget {
 
 class _RatingDialogState extends State<RatingDialog> {
   double _rating = 0;
+  // ignore: unused_field
   String _review = '';
 
   @override

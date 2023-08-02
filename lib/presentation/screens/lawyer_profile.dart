@@ -1169,10 +1169,10 @@ class CallToAction extends StatelessWidget {
                   onTap: () {
                     showDialog(
                       context: context,
-                      builder: (BuildContext context) {
+                      builder: (BuildContext context2) {
                         return CustomDialog(
                           onCallNowPressed: () {
-                            showCallDetails(context, 'Phone Call');
+                            showCallDetails(context, 'Audio Call');
                           },
                           onScheduleNowPressed: () {
                             Navigator.pop(context);
@@ -1199,7 +1199,7 @@ class CallToAction extends StatelessWidget {
                   onTap: () {
                     showDialog(
                       context: context,
-                      builder: (BuildContext context) {
+                      builder: (BuildContext context2) {
                         return CustomDialog(
                           onCallNowPressed: () {
                             showCallDetails(context, 'Video Call');

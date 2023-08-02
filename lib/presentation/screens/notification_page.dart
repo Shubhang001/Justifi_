@@ -1,7 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:jusitfi_admin/data/models/notification.dart';
-import 'package:jusitfi_admin/presentation/screens/profile_page.dart';
-import 'package:jusitfi_admin/utils/constants/colors.dart';
 import 'package:jusitfi_admin/utils/constants/textstyles.dart';
 import 'package:intl/intl.dart';
 

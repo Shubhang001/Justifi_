@@ -4,7 +4,6 @@ import 'package:jusitfi_admin/presentation/screens/notification_page.dart';
 import 'package:jusitfi_admin/presentation/screens/profile_page.dart';
 import 'package:jusitfi_admin/presentation/screens/view_all.dart';
 import 'package:jusitfi_admin/presentation/widgets/home_nav_bar.dart';
-import 'package:jusitfi_admin/utils/constants/colors.dart';
 import 'package:jusitfi_admin/utils/constants/textstyles.dart';
 import '../widgets/category_tile.dart';
 import '../widgets/filter_sort.dart';
@@ -30,7 +29,7 @@ class _HomePageState extends State<HomePage> {
           actions: [
             Padding(
               padding:
-                  EdgeInsets.only(left: 20, right: 30, top: 10, bottom: 10),
+                  const EdgeInsets.only(left: 20, right: 30, top: 10, bottom: 10),
               child: Row(
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
@@ -39,11 +38,11 @@ class _HomePageState extends State<HomePage> {
                       Navigator.push(
                         context,
                         MaterialPageRoute(
-                          builder: (context) => NotificationsPage(),
+                          builder: (context) => const NotificationsPage(),
                         ),
                       );
                     },
-                    child: Icon(
+                    child: const Icon(
                       Icons.notifications_outlined,
                       color: Colors.black,
                       size: 35,

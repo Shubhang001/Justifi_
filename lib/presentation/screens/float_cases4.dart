@@ -1,11 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:jusitfi_admin/presentation/screens/floatcases5.dart';
-import 'package:jusitfi_admin/presentation/screens/mianpage.dart';
 import 'package:jusitfi_admin/presentation/screens/notification_page.dart';
 import 'package:jusitfi_admin/presentation/screens/profile_page.dart';
 import 'package:jusitfi_admin/presentation/widgets/application_details.dart';
 import 'package:jusitfi_admin/presentation/widgets/locked_application_dialog_box.dart';
-import 'package:jusitfi_admin/presentation/widgets/view_description_dialog_box.dart';
 import 'package:jusitfi_admin/utils/constants/textstyles.dart';
 
 import '../../utils/constants/colors.dart';

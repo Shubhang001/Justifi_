@@ -18,6 +18,7 @@ class AddCoinPage extends StatefulWidget {
 
 class _AddCoinPage extends State<AddCoinPage> {
   final TextEditingController _addMoneyController = TextEditingController();
+  // ignore: unused_field
   final TextEditingController _couponTextController =
       TextEditingController(text: "Coupon Code");
   int price = 499;

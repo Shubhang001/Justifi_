@@ -2,12 +2,10 @@ import 'package:flutter/material.dart';
 import 'package:jusitfi_admin/presentation/screens/aboustus_page.dart';
 import 'package:jusitfi_admin/presentation/screens/contacus_page.dart';
 import 'package:jusitfi_admin/presentation/screens/faq_page.dart';
-import 'package:jusitfi_admin/presentation/screens/homepage.dart';
 import 'package:jusitfi_admin/presentation/screens/login_screen.dart';
 import 'package:jusitfi_admin/presentation/screens/profile_details.dart';
 import 'package:share_plus/share_plus.dart';
 
-import '../../utils/constants/colors.dart';
 import '../../utils/constants/textstyles.dart';
 import 'notification_page.dart';
 

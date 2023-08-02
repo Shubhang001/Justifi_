@@ -105,6 +105,9 @@ class ChatPage extends StatelessWidget {
                 final ImagePicker picker = ImagePicker();
                 final XFile? image =
                     await picker.pickImage(source: ImageSource.gallery);
+                if (image != null) {
+                  debugPrint(image.path);
+                }
               },
               icon: const Icon(
                 Icons.add,
