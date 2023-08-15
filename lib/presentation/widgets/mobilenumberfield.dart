@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:google_fonts/google_fonts.dart';
 
 import '../../utils/constants/textstyles.dart';
 
@@ -65,7 +66,11 @@ class MobileInputTextField extends StatelessWidget {
                   prefixIconConstraints:
                       BoxConstraints.tight(const Size(35, 35)),
                   hintText: '9999999999',
-                  hintStyle: kTextFieldValue,
+                  hintStyle: GoogleFonts.poppins(
+                    color: Colors.grey,
+                    fontWeight: FontWeight.w400,
+                    fontSize: 18,
+                  ),
                   border: OutlineInputBorder(
                       borderRadius: BorderRadius.circular(10)),
                   fillColor: Colors.white,

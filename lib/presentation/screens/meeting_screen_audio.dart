@@ -132,7 +132,7 @@ class _MeetingScreenAudioState extends State<MeetingScreenAudio> {
               ),
             ),
           ),
-          participants.length != 1
+          participants.isEmpty
               ? Padding(
                   padding: const EdgeInsets.only(bottom: 100.0, right: 10),
                   child: Align(
@@ -154,7 +154,7 @@ class _MeetingScreenAudioState extends State<MeetingScreenAudio> {
                     child: Container(
                       height: 200,
                       width: 150,
-                      color: Colors.grey.shade800,
+                      color: const Color.fromARGB(255, 33, 32, 32),
                       child: const Center(
                         child: Icon(
                           Icons.person,

@@ -3,6 +3,8 @@ import 'package:jusitfi_admin/presentation/screens/login_screen.dart';
 import 'package:jusitfi_admin/presentation/widgets/dob_picker.dart';
 import 'package:jusitfi_admin/presentation/widgets/img_picker_container.dart';
 import 'package:jusitfi_admin/utils/constants/colors.dart';
+import 'package:jusitfi_admin/utils/models/usermodel.dart';
+import 'package:jusitfi_admin/utils/services/rest_apis.dart';
 import '../../utils/constants/textstyles.dart';
 import '../widgets/drop_down.dart';
 import '../widgets/importanttext.dart';
@@ -40,6 +42,31 @@ class _SignupScreenState extends State<SignupScreen> {
     setState(() {
       values.contains(true) ? validate = true : validate = false;
     });
+
+    if (!validate) {
+      try {
+        UserEmailModel userEmailModel =
+            registerUserWithPhone(emailController.text, "1");
+        if (userEmailModel.success == true) {
+          ScaffoldMessenger.of(context).showSnackBar(SnackBar(
+            content: Text(userEmailModel.message),
+          ));
+        }
+
+        UserPhoneModel userPhoneModel =
+            registerUserWithEmail(mobileNumberController.text, "1");
+        if (userPhoneModel.success == true) {
+          ScaffoldMessenger.of(context).showSnackBar(SnackBar(
+            content: Text(userPhoneModel.message),
+          ));
+        }
+      } catch (e) {
+        ScaffoldMessenger.of(context).showSnackBar(const SnackBar(
+          content: Text('Something went wrong'),
+        ));
+      }
+    }
+
     return validate;
   }
 
