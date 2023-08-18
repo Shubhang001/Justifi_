@@ -3,7 +3,7 @@ import 'package:jusitfi_admin/presentation/screens/login_screen.dart';
 import 'package:jusitfi_admin/presentation/widgets/dob_picker.dart';
 import 'package:jusitfi_admin/presentation/widgets/img_picker_container.dart';
 import 'package:jusitfi_admin/utils/constants/colors.dart';
-import 'package:jusitfi_admin/utils/models/usermodel.dart';
+import 'package:jusitfi_admin/utils/dynamic/dynamic_values.dart';
 import 'package:jusitfi_admin/utils/services/rest_apis.dart';
 import '../../utils/constants/textstyles.dart';
 import '../widgets/drop_down.dart';
@@ -30,7 +30,6 @@ class _SignupScreenState extends State<SignupScreen> {
   }
 
   bool checkValidation() {
-    print(mobileNumberController.text.length);
     List values = [
       mobileNumberController.text.isEmpty ||
           mobileNumberController.text.length != 10 ||
@@ -42,30 +41,6 @@ class _SignupScreenState extends State<SignupScreen> {
     setState(() {
       values.contains(true) ? validate = true : validate = false;
     });
-
-    if (!validate) {
-      try {
-        UserEmailModel userEmailModel =
-            registerUserWithPhone(emailController.text, "1");
-        if (userEmailModel.success == true) {
-          ScaffoldMessenger.of(context).showSnackBar(SnackBar(
-            content: Text(userEmailModel.message),
-          ));
-        }
-
-        UserPhoneModel userPhoneModel =
-            registerUserWithEmail(mobileNumberController.text, "1");
-        if (userPhoneModel.success == true) {
-          ScaffoldMessenger.of(context).showSnackBar(SnackBar(
-            content: Text(userPhoneModel.message),
-          ));
-        }
-      } catch (e) {
-        ScaffoldMessenger.of(context).showSnackBar(const SnackBar(
-          content: Text('Something went wrong'),
-        ));
-      }
-    }
 
     return validate;
   }
@@ -202,10 +177,41 @@ class _SignupScreenState extends State<SignupScreen> {
                   ],
                 ),
                 InkWell(
-                  onTap: () {
-                    var status = checkValidation();
-                    if (status == false) {
-                      DialogSuccess.showSuccessDialog(context);
+                  onTap: () async {
+                    bool status = checkValidation();
+                    if (!status) {
+                      try {
+                        userEmailModel = await registerUserWithEmail(
+                            emailController.text, "1");
+                        if (userEmailModel.email != '' &&
+                            userEmailModel.success == true) {
+                          if (mounted) {
+                            ScaffoldMessenger.of(context).showSnackBar(SnackBar(
+                              content: Text(userEmailModel.message),
+                            ));
+                          }
+                        }
+
+                        userPhoneModel = await registerUserWithPhone(
+                            mobileNumberController.text, "1");
+                        if (userPhoneModel.phone != '' &&
+                            userPhoneModel.success == true) {
+                          if (mounted) {
+                            ScaffoldMessenger.of(context).showSnackBar(SnackBar(
+                              content: Text(userPhoneModel.message),
+                            ));
+                          }
+                        }
+                      } catch (e) {
+                        if (mounted) {
+                          ScaffoldMessenger.of(context).showSnackBar(SnackBar(
+                            content: Text(e.toString()),
+                          ));
+                        }
+                      }
+                      if (mounted) {
+                        DialogSuccess.showSuccessDialog(context);
+                      }
                     } else {
                       print('Not Validated');
                     }

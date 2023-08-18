@@ -1,7 +1,7 @@
 class UserEmailModel {
   final bool success;
   final String message;
-  final String id;
+  final int id;
   final String email;
   final int role;
   final String token;
@@ -31,7 +31,7 @@ class UserEmailModel {
 class UserPhoneModel {
   final bool success;
   final String message;
-  final String id;
+  final int id;
   final String phone;
   final int role;
   final String token;

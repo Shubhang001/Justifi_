@@ -5,6 +5,7 @@ import 'package:jusitfi_admin/presentation/widgets/mobilenumberfield.dart';
 import 'package:jusitfi_admin/presentation/widgets/text_with_line.dart';
 import 'package:jusitfi_admin/utils/constants/textstyles.dart';
 import 'package:flutter_otp_text_field/flutter_otp_text_field.dart';
+import 'package:jusitfi_admin/utils/dynamic/dynamic_values.dart';
 import 'package:jusitfi_admin/utils/services/rest_apis.dart';
 import '../../utils/constants/colors.dart';
 import '../widgets/big_button.dart';
@@ -28,8 +29,9 @@ class _LoginScreenState extends State<LoginScreen> {
   bool validate = false;
   TextEditingController mobileNumber = TextEditingController();
   String otp = "";
+  int otpCount = 0;
 
-  bool checkValidation() {
+  Future<bool> checkValidation() async {
     setState(() {
       mobileNumber.text.isEmpty ||
               !isNumeric(mobileNumber.text) ||
@@ -40,31 +42,22 @@ class _LoginScreenState extends State<LoginScreen> {
     if (!validate) {
       if (otp != "") {
         try {
-          // This API requires user id but how can we get that in frontend ?
-          // That needs to be fetched from backedn first.
-          var response = verifyUserSignUp(mobileNumber.text, otp);
+          var response =
+              await verifyUserLogin(userPhoneModel.id.toString(), otp);
           if (response['success'] == true) {
-            ScaffoldMessenger.of(context).showSnackBar(SnackBar(
-              content: Text(response["message"]),
-            ));
+            if (mounted) {
+              ScaffoldMessenger.of(context).showSnackBar(SnackBar(
+                content: Text(response["message"]),
+              ));
+              validate = false;
+            }
           }
         } catch (e) {
-          ScaffoldMessenger.of(context).showSnackBar(const SnackBar(
-            content: Text('Something went wrong'),
-          ));
-        }
-      }
-      try {
-        var response = loginUserWithPhone(mobileNumber.text);
-        if (response['success'] == true) {
+          validate = true;
           ScaffoldMessenger.of(context).showSnackBar(SnackBar(
-            content: Text(response["message"]),
+            content: Text(e.toString()),
           ));
         }
-      } catch (e) {
-        ScaffoldMessenger.of(context).showSnackBar(const SnackBar(
-          content: Text('Something went wrong'),
-        ));
       }
     }
     return validate;
@@ -107,10 +100,32 @@ class _LoginScreenState extends State<LoginScreen> {
                             title: 'Enter Your Mobile Number',
                             txtController: mobileNumber),
                         InkWell(
-                          onTap: () {},
-                          child: const Text(
-                            'Resend otp',
-                            style: TextStyle(
+                          onTap: () async {
+                            setState(() {
+                              otpCount++;
+                            });
+                            try {
+                              var response =
+                                  await loginUserWithPhone(mobileNumber.text);
+                              if (response != null &&
+                                  response['success'] == true) {
+                                if (mounted) {
+                                  ScaffoldMessenger.of(context)
+                                      .showSnackBar(SnackBar(
+                                    content: Text(response["message"]),
+                                  ));
+                                }
+                              }
+                            } catch (e) {
+                              ScaffoldMessenger.of(context)
+                                  .showSnackBar(SnackBar(
+                                content: Text(e.toString()),
+                              ));
+                            }
+                          },
+                          child: Text(
+                            otpCount == 0 ? 'Send otp' : 'Resend otp',
+                            style: const TextStyle(
                                 color: Colors.white,
                                 fontSize: 16,
                                 fontWeight: FontWeight.bold),
@@ -133,7 +148,7 @@ class _LoginScreenState extends State<LoginScreen> {
                           fieldWidth: 35,
                           decoration:
                               const InputDecoration(fillColor: Colors.white),
-                          numberOfFields: 5,
+                          numberOfFields: 6,
                           showFieldAsBox: false,
                           onSubmit: (String verificationCode) {
                             setState(() {
