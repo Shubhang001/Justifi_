@@ -81,7 +81,11 @@ Future verifyUserSignUp(String id, String otp) async {
     };
     return user;
   } else {
-    return Exception(res['message']);
+    final user = {
+      "success": res['success'],
+      "message": res['error']['non_field_errors'],
+    };
+    return user;
   }
 }
 
@@ -101,7 +105,11 @@ Future verifyUserLogin(String id, String otp) async {
     };
     return user;
   } else {
-    return Exception(res['message']);
+    final user = {
+      "success": res['success'],
+      "message": res['error']['non_field_errors'][0],
+    };
+    return user;
   }
 }
 

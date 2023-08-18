@@ -201,6 +201,13 @@ class _LoginScreenState extends State<LoginScreen> {
                                         ),
                                         ((route) => false));
                                   }
+                                } else {
+                                  if (mounted) {
+                                    ScaffoldMessenger.of(context)
+                                        .showSnackBar(SnackBar(
+                                      content: Text(response["message"]),
+                                    ));
+                                  }
                                 }
                               } catch (e) {
                                 ScaffoldMessenger.of(context)
