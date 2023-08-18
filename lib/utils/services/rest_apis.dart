@@ -72,8 +72,8 @@ Future verifyUserSignUp(String id, String otp) async {
       headers: {"Content-Type": "application/json"},
       body: jsonEncode(body));
 
-  if (response.statusCode == 200) {
-    var res = json.decode(response.body);
+  var res = json.decode(response.body);
+  if (response.statusCode == 201) {
     final user = {
       "success": res['success'],
       "message": res['message'],
@@ -81,7 +81,7 @@ Future verifyUserSignUp(String id, String otp) async {
     };
     return user;
   } else {
-    return Exception("Error verifying User");
+    return Exception(res['message']);
   }
 }
 
@@ -92,8 +92,8 @@ Future verifyUserLogin(String id, String otp) async {
       headers: {"Content-Type": "application/json"},
       body: jsonEncode(body));
 
-  if (response.statusCode == 200) {
-    var res = json.decode(response.body);
+  var res = json.decode(response.body);
+  if (response.statusCode == 201) {
     final user = {
       "success": res['success'],
       "message": res['message'],
@@ -101,7 +101,7 @@ Future verifyUserLogin(String id, String otp) async {
     };
     return user;
   } else {
-    return Exception("Error verifying User");
+    return Exception(res['message']);
   }
 }
 

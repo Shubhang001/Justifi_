@@ -49,11 +49,20 @@ class _LoginScreenState extends State<LoginScreen> {
               ScaffoldMessenger.of(context).showSnackBar(SnackBar(
                 content: Text(response["message"]),
               ));
-              validate = false;
+              setState(() {
+                validate = false;
+              });
+              Navigator.push(
+                  context,
+                  MaterialPageRoute(
+                    builder: (context) => const MainPage(),
+                  ));
             }
           }
         } catch (e) {
-          validate = true;
+          setState(() {
+            validate = true;
+          });
           ScaffoldMessenger.of(context).showSnackBar(SnackBar(
             content: Text(e.toString()),
           ));
@@ -163,15 +172,58 @@ class _LoginScreenState extends State<LoginScreen> {
                     height: 20,
                   ),
                   Padding(
-                    padding: const EdgeInsets.fromLTRB(60, 20, 60, 20),
-                    child: CustomButton(
-                      function: checkValidation,
-                      removescreens: true,
-                      nextPage: const MainPage(),
-                      buttonColor: kmainButtonColor,
-                      text: 'Login',
-                    ),
-                  ),
+                      padding: const EdgeInsets.fromLTRB(60, 20, 60, 20),
+                      child: InkWell(
+                        onTap: () async {
+                          setState(() {
+                            mobileNumber.text.isEmpty ||
+                                    !isNumeric(mobileNumber.text) ||
+                                    mobileNumber.text.length != 10
+                                ? validate = true
+                                : validate = false;
+                          });
+                          if (!validate) {
+                            if (otp != "") {
+                              try {
+                                var response = await verifyUserLogin(
+                                    userPhoneModel.id.toString(), otp);
+                                if (response['success'] == true) {
+                                  if (mounted) {
+                                    ScaffoldMessenger.of(context)
+                                        .showSnackBar(SnackBar(
+                                      content: Text(response["message"]),
+                                    ));
+                                    Navigator.pushAndRemoveUntil(
+                                        context,
+                                        MaterialPageRoute(
+                                          builder: (context) =>
+                                              const MainPage(),
+                                        ),
+                                        ((route) => false));
+                                  }
+                                }
+                              } catch (e) {
+                                ScaffoldMessenger.of(context)
+                                    .showSnackBar(SnackBar(
+                                  content: Text(e.toString()),
+                                ));
+                              }
+                            }
+                          }
+                        },
+                        child: Container(
+                          height: 50,
+                          width: double.infinity,
+                          decoration: BoxDecoration(
+                              color: kmainButtonColor,
+                              borderRadius: BorderRadius.circular(10)),
+                          child: Center(
+                              child: Text(
+                            'Login',
+                            style: kpageTitle,
+                          )),
+                        ),
+                      )),
                   const TextWithLine(label: 'New User', height: 1),
                   Padding(
                       padding: const EdgeInsets.fromLTRB(60, 20, 60, 13),
