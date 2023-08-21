@@ -1,10 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:jusitfi_admin/presentation/screens/floatcases5.dart';
-import 'package:jusitfi_admin/presentation/screens/mianpage.dart';
+import 'package:jusitfi_admin/presentation/screens/notification_page.dart';
 import 'package:jusitfi_admin/presentation/screens/profile_page.dart';
 import 'package:jusitfi_admin/presentation/widgets/application_details.dart';
 import 'package:jusitfi_admin/presentation/widgets/locked_application_dialog_box.dart';
-import 'package:jusitfi_admin/presentation/widgets/view_description_dialog_box.dart';
 import 'package:jusitfi_admin/utils/constants/textstyles.dart';
 
 import '../../utils/constants/colors.dart';
@@ -89,16 +88,26 @@ class FloatCases4 extends StatelessWidget {
       child: Scaffold(
         appBar: AppBar(
           actions: [
-            const Padding(
-              padding:
-                  EdgeInsets.only(left: 20, right: 30, top: 10, bottom: 10),
+            Padding(
+              padding: const EdgeInsets.only(
+                  left: 20, right: 30, top: 10, bottom: 10),
               child: Row(
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
-                  Icon(
-                    Icons.notifications_outlined,
-                    color: Colors.white,
-                    size: 35,
+                  InkWell(
+                    onTap: () {
+                      Navigator.push(
+                        context,
+                        MaterialPageRoute(
+                          builder: (context) => const NotificationsPage(),
+                        ),
+                      );
+                    },
+                    child: const Icon(
+                      Icons.notifications_outlined,
+                      color: Colors.white,
+                      size: 35,
+                    ),
                   )
                 ],
               ),
@@ -113,11 +122,12 @@ class FloatCases4 extends StatelessWidget {
                 ),
               );
             },
-            child: Image.asset(
-              'assets/icons/profile_new.png',
-              color: Colors.white,
-              width: 38,
-              height: 38,
+            child: Padding(
+              padding: const EdgeInsets.all(5.0),
+              child: Image.asset(
+                'assets/icons/profile_new.png',
+                color: Colors.white,
+              ),
             ),
           ),
           title: Center(
@@ -138,7 +148,7 @@ class FloatCases4 extends StatelessWidget {
                 child: Center(
                   child: Column(
                     children: [
-                      SizedBox(
+                      const SizedBox(
                         height: 20,
                       ),
                       DataTable(
@@ -169,12 +179,22 @@ class FloatCases4 extends StatelessWidget {
                         rows: _sampleData
                             .map((data) => DataRow(cells: [
                                   DataCell(InkWell(
-                                    onTap: () {
-                                      Navigator.push(
-                                          context,
-                                          MaterialPageRoute(
-                                              builder: (_) => FloatCases5()));
-                                    },
+                                    onTap: data['isLocked']
+                                        ? () {
+                                            showDialog(
+                                                context: context,
+                                                builder:
+                                                    (BuildContext context) {
+                                                  return const LockedApplicationDialogBox();
+                                                });
+                                          }
+                                        : () {
+                                            Navigator.push(
+                                                context,
+                                                MaterialPageRoute(
+                                                    builder: (_) =>
+                                                        const FloatCases5()));
+                                          },
                                     child: Column(
                                       crossAxisAlignment:
                                           CrossAxisAlignment.start,
@@ -187,7 +207,7 @@ class FloatCases4 extends StatelessWidget {
                                             style: kApplicationDetails,
                                           ),
                                         ),
-                                        Divider(
+                                        const Divider(
                                           height: 1,
                                           color: Colors.white,
                                         ),
@@ -223,7 +243,7 @@ class FloatCases4 extends StatelessWidget {
                                             )
                                           ],
                                         ),
-                                        SizedBox(
+                                        const SizedBox(
                                           height: 15,
                                         ),
                                         Padding(
@@ -250,7 +270,7 @@ class FloatCases4 extends StatelessWidget {
                                                 context,
                                                 MaterialPageRoute(
                                                     builder: (_) =>
-                                                        FloatCases5()));
+                                                        const FloatCases5()));
                                           },
                                     child: Center(
                                       child: ApplicantsDetails(

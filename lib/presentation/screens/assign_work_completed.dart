@@ -23,7 +23,7 @@ class AssignWorkCompleted extends StatelessWidget {
             ),
             const CustomButton(
               removescreens: true,
-              nextPage: MainPage(),
+              nextPage: MainPage(index: 2,),
               buttonColor: Colors.black,
               text: 'View Status',
               width: 200,

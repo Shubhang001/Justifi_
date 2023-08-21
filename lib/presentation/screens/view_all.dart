@@ -5,16 +5,14 @@ import 'package:jusitfi_admin/presentation/widgets/filter_sort.dart';
 import 'package:jusitfi_admin/presentation/widgets/searchbar.dart';
 import 'package:jusitfi_admin/utils/constants/textstyles.dart';
 
-import '../widgets/category_tile.dart';
-
 class ViewAllPage extends StatelessWidget {
-  ViewAllPage({super.key,required this.title});
+  ViewAllPage({super.key, required this.title});
   final String title;
   final List<Lawyer> items = [
     Lawyer(
         name: 'Priya Sharma',
         image: 'assets/images/advocate_img.png',
-        education: 'LL.B - Delhi University\nCyber Law - Indian Law Institue',
+        education: 'Delhi University\nLL.B',
         distance: 10,
         rating: 3.5,
         clients: 80,
@@ -23,7 +21,7 @@ class ViewAllPage extends StatelessWidget {
     Lawyer(
         name: 'Priya Sharma',
         image: 'assets/images/advocate_img.png',
-        education: 'LL.B - Delhi University\nCyber Law - Indian Law Institue',
+        education: 'Delhi University\nLL.B',
         distance: 10,
         rating: 3.5,
         clients: 80,
@@ -32,7 +30,7 @@ class ViewAllPage extends StatelessWidget {
     Lawyer(
         name: 'Priya Sharma',
         image: 'assets/images/advocate_img.png',
-        education: 'LL.B - Delhi University\nCyber Law - Indian Law Institue',
+        education: 'Delhi University\nLL.B',
         distance: 10,
         rating: 3.5,
         clients: 80,
@@ -41,7 +39,7 @@ class ViewAllPage extends StatelessWidget {
     Lawyer(
         name: 'Priya Sharma',
         image: 'assets/images/advocate_img.png',
-        education: 'LL.B - Delhi University\nCyber Law - Indian Law Institue',
+        education: 'Delhi University\nLL.B',
         distance: 10,
         rating: 3.5,
         clients: 80,
@@ -50,7 +48,7 @@ class ViewAllPage extends StatelessWidget {
     Lawyer(
         name: 'Priya Sharma',
         image: 'assets/images/advocate_img.png',
-        education: 'LL.B - Delhi University\nCyber Law - Indian Law Institue',
+        education: 'Delhi University\nLL.B',
         distance: 10,
         rating: 3.5,
         clients: 80,
@@ -59,7 +57,7 @@ class ViewAllPage extends StatelessWidget {
     Lawyer(
         name: 'Priya Sharma',
         image: 'assets/images/advocate_img.png',
-        education: 'LL.B - Delhi University\nCyber Law - Indian Law Institue',
+        education: 'Delhi University\nLL.B',
         distance: 10,
         rating: 3.5,
         clients: 80,
@@ -68,7 +66,7 @@ class ViewAllPage extends StatelessWidget {
     Lawyer(
         name: 'Priya Sharma',
         image: 'assets/images/advocate_img.png',
-        education: 'LL.B - Delhi University\nCyber Law - Indian Law Institue',
+        education: 'Delhi University\nLL.B',
         distance: 10,
         rating: 3.5,
         clients: 80,
@@ -77,7 +75,7 @@ class ViewAllPage extends StatelessWidget {
     Lawyer(
         name: 'Priya Sharma',
         image: 'assets/images/advocate_img.png',
-        education: 'LL.B - Delhi University\nCyber Law - Indian Law Institue',
+        education: 'Delhi University\nLL.B',
         distance: 10,
         rating: 3.5,
         clients: 80,
@@ -86,7 +84,7 @@ class ViewAllPage extends StatelessWidget {
     Lawyer(
         name: 'Priya Sharma',
         image: 'assets/images/advocate_img.png',
-        education: 'LL.B - Delhi University\nCyber Law - Indian Law Institue',
+        education: 'Delhi University\nLL.B',
         distance: 10,
         rating: 3.5,
         clients: 80,
@@ -95,7 +93,7 @@ class ViewAllPage extends StatelessWidget {
     Lawyer(
         name: 'Priya Sharma',
         image: 'assets/images/advocate_img.png',
-        education: 'LL.B - Delhi University\nCyber Law - Indian Law Institue',
+        education: 'Delhi University\nLL.B',
         distance: 10,
         rating: 3.5,
         clients: 80,
@@ -104,7 +102,7 @@ class ViewAllPage extends StatelessWidget {
     Lawyer(
         name: 'Priya Sharma',
         image: 'assets/images/advocate_img.png',
-        education: 'LL.B - Delhi University\nCyber Law - Indian Law Institue',
+        education: 'Delhi University\nLL.B',
         distance: 10,
         rating: 3.5,
         clients: 80,
@@ -113,7 +111,7 @@ class ViewAllPage extends StatelessWidget {
     Lawyer(
         name: 'Priya Sharma',
         image: 'assets/images/advocate_img.png',
-        education: 'LL.B - Delhi University\nCyber Law - Indian Law Institue',
+        education: 'Delhi University\nLL.B',
         distance: 10,
         rating: 3.5,
         clients: 80,

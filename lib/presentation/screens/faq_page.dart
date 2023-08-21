@@ -13,31 +13,6 @@ class FaqPage extends StatelessWidget {
         child: Column(
           children: [
             const ProfileNavBar(),
-            Container(
-              width: double.infinity,
-              height: 40,
-              color: const Color.fromRGBO(222, 226, 230, 1),
-              child: Row(
-                mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                children: [
-                  IconButton(
-                    icon: const Icon(Icons.arrow_back),
-                    onPressed: () {
-                      Navigator.pop(context);
-                    },
-                  ),
-                  const Text(
-                    "FAQ",
-                    style: TextStyle(
-                      fontSize: 18,
-                      fontWeight: FontWeight.bold,
-                    ),
-                  ),
-                  Container(),
-                  Container(),
-                ],
-              ),
-            ),
             const QnaWidget(
               question: "How does payment work",
             ),

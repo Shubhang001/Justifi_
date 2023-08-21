@@ -1,9 +1,37 @@
 import 'dart:ui';
 import 'package:flutter/material.dart';
+import 'package:jusitfi_admin/presentation/screens/meeting_screen.dart';
+import 'package:jusitfi_admin/presentation/screens/meeting_screen_audio.dart';
+import 'package:jusitfi_admin/utils/services/api_call.dart';
 import '../../utils/constants/colors.dart';
 import '../../utils/constants/textstyles.dart';
 
-Future<Object?> showCallDetails(BuildContext context) {
+void onCreateButtonPressed(BuildContext context, String mode) async {
+  // call api to create meeting and then navigate to MeetingScreen with meetingId,token
+  await createMeeting().then((meetingId) {
+    if (!context.mounted) return;
+    mode == "Audio Call"
+        ? Navigator.of(context).push(
+            MaterialPageRoute(
+              builder: (context) => MeetingScreenAudio(
+                meetingId: meetingId,
+                token: token,
+              ),
+            ),
+          )
+        : Navigator.of(context).push(
+            MaterialPageRoute(
+              builder: (context) => MeetingScreen(
+                meetingId: meetingId,
+                token: token,
+                mode: mode,
+              ),
+            ),
+          );
+  });
+}
+
+Future<Object?> showCallDetails(BuildContext context, String mode) {
   return showGeneralDialog(
     barrierDismissible: true,
     barrierLabel: '',
@@ -40,7 +68,10 @@ Future<Object?> showCallDetails(BuildContext context) {
               child: Padding(
                 padding: const EdgeInsets.fromLTRB(4, 8, 8, 8),
                 child: InkWell(
-                  onTap: () => Navigator.pop(context),
+                  onTap: () {
+                    Navigator.pop(context);
+                    onCreateButtonPressed(context, mode);
+                  },
                   child: Container(
                     decoration: BoxDecoration(
                         color: kprimaryTextColor,
@@ -108,7 +139,7 @@ Future<Object?> showCallDetails(BuildContext context) {
                           padding: const EdgeInsets.all(4),
                           child: Center(
                             child: Text(
-                              'Phone Call',
+                              mode,
                               style: kCallAns,
                             ),
                           ),

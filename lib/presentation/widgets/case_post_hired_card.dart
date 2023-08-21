@@ -1,24 +1,29 @@
 import 'package:flutter/material.dart';
+import 'package:jusitfi_admin/presentation/widgets/drop_down_button.dart';
+import 'package:jusitfi_admin/presentation/widgets/notes.dart';
 import 'package:jusitfi_admin/presentation/widgets/view_description_dialog_box.dart';
 import 'package:jusitfi_admin/presentation/widgets/view_document_dialog_box.dart';
 import '../../utils/constants/textstyles.dart';
+import '../screens/chat_page.dart';
 
-class CasePostHiredCard extends StatelessWidget {
-  const CasePostHiredCard({
-    super.key,
-    required this.name,
-    required this.image,
-    required this.caseTitle,
-    required this.courtType,
-    required this.caseCategory,
-    required this.caseSubCategory,
-    required this.postingDate,
-    required this.noOfApplication,
-    required this.feeType,
-    required this.viewApplication,
-  });
+class CasePostHiredCard extends StatefulWidget {
+  const CasePostHiredCard(
+      {super.key,
+      required this.name,
+      required this.image,
+      required this.caseTitle,
+      required this.courtType,
+      required this.caseCategory,
+      required this.caseSubCategory,
+      required this.postingDate,
+      required this.noOfApplication,
+      required this.feeType,
+      required this.viewApplication,
+      required this.courtName,
+      required this.fees});
 
   final String image;
+  final String fees;
   final String name;
   final String caseTitle;
   final String courtType;
@@ -28,7 +33,13 @@ class CasePostHiredCard extends StatelessWidget {
   final int noOfApplication;
   final String feeType;
   final bool viewApplication;
+  final String courtName;
 
+  @override
+  State<CasePostHiredCard> createState() => _CasePostHiredCardState();
+}
+
+class _CasePostHiredCardState extends State<CasePostHiredCard> {
   @override
   Widget build(BuildContext context) {
     return Padding(
@@ -41,50 +52,67 @@ class CasePostHiredCard extends StatelessWidget {
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
               Row(
-                mainAxisAlignment: MainAxisAlignment.end,
                 children: [
+                  SizedBox(
+                      height: 16,
+                      width: 16,
+                      child: Image.asset(
+                        "assets/icons/document_icon.png",
+                        fit: BoxFit.cover,
+                      )),
+                  const SizedBox(
+                    width: 10,
+                  ),
                   Text(
-                    "Post Date : $postingDate",
-                    style: poppinsW400S9White,
-                  )
+                    widget.caseTitle.toString(),
+                    style: poppinsW500S12White,
+                  ),
                 ],
               ),
+              const Divider(
+                color: Colors.white,
+                thickness: 1,
+              ),
+
               Row(
                 children: [
                   Row(
                     mainAxisAlignment: MainAxisAlignment.spaceAround,
                     children: [
-                      Column(
-                        children: [
-                          Image.asset(image),
-                          const SizedBox(
-                            height: 2,
-                          ),
-                          Text(
-                            name,
-                            style: poppinsW600S7White,
-                          )
-                        ],
-                      ),
+                      widget.viewApplication
+                          ? Row(
+                              children: [
+                                SizedBox(
+                                    height: 30,
+                                    width: 30,
+                                    child: Image.asset(
+                                      "assets/icons/court_icon.png",
+                                      fit: BoxFit.cover,
+                                    )),
+                              ],
+                            )
+                          : Column(
+                              children: [
+                                SizedBox(
+                                  height: 30,
+                                  width: 30,
+                                  child: Image.asset(widget.image),
+                                ),
+                                const SizedBox(
+                                  height: 2,
+                                ),
+                                Text(
+                                  widget.name,
+                                  style: poppinsW600S7White,
+                                )
+                              ],
+                            ),
                       const SizedBox(
-                        width: 4,
+                        width: 12,
                       ),
                       Column(
                         crossAxisAlignment: CrossAxisAlignment.start,
                         children: [
-                          Row(
-                            mainAxisAlignment: MainAxisAlignment.start,
-                            children: [
-                              Text(
-                                "Case Title : ",
-                                style: poppinsW500S12Grey,
-                              ),
-                              Text(
-                                caseTitle,
-                                style: poppinsW500S12White,
-                              )
-                            ],
-                          ),
                           Row(
                             children: [
                               Text(
@@ -92,10 +120,13 @@ class CasePostHiredCard extends StatelessWidget {
                                 style: poppinsW500S10Grey,
                               ),
                               Text(
-                                caseCategory,
+                                widget.caseCategory,
                                 style: poppinsW500S10White,
                               )
                             ],
+                          ),
+                          SizedBox(
+                            height: 10,
                           ),
                           Row(
                             children: [
@@ -103,36 +134,53 @@ class CasePostHiredCard extends StatelessWidget {
                                 "Case Subcategory : ",
                                 style: poppinsW500S10Grey,
                               ),
-                              Text(
-                                caseSubCategory,
-                                style: poppinsW500S10White,
-                              )
+                              const DropDownMenuButton(),
                             ],
                           ),
                         ],
                       )
                     ],
                   ),
-                  const Spacer(),
-                  Row(
-                    children: [
-                      Column(
-                        children: [
-                          SizedBox(
-                              height: 28,
-                              width: 28,
-                              child: Image.asset(
-                                "assets/icons/court_icon.png",
-                                fit: BoxFit.contain,
-                              )),
-                          Text(
-                            courtType,
-                            style: poppinsW500S10White,
-                          )
-                        ],
-                      )
-                    ],
-                  )
+                ],
+              ),
+              const SizedBox(
+                height: 8,
+              ),
+              Row(
+                children: [
+                  widget.viewApplication
+                      ? const SizedBox()
+                      : SizedBox(
+                          height: 28,
+                          width: 28,
+                          child: Image.asset(
+                            "assets/icons/court_icon.png",
+                            fit: BoxFit.contain,
+                          ),
+                        ),
+                  widget.viewApplication
+                      ? const SizedBox()
+                      : const VerticalDivider(
+                          color: Colors.white,
+                          thickness: 1,
+                        ),
+                  Text(
+                    widget.courtType,
+                    style: poppinsW500S10White,
+                  ),
+                  Text(
+                    " : ",
+                    style: poppinsW500S10White,
+                  ),
+                  Flexible(
+                    child: Container(
+                      child: Text(
+                        widget.courtName.toString(),
+                        style: poppinsW500S10White,
+                        overflow: TextOverflow.ellipsis,
+                      ),
+                    ),
+                  ),
                 ],
               ),
               const SizedBox(
@@ -142,11 +190,11 @@ class CasePostHiredCard extends StatelessWidget {
                 child: Row(
                   mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                   children: [
-                    viewApplication
+                    widget.viewApplication
                         ? Column(
                             children: [
                               Text(
-                                noOfApplication.toString(),
+                                widget.noOfApplication.toString(),
                                 style: poppinsW500S12White,
                               ),
                               Text(
@@ -157,14 +205,6 @@ class CasePostHiredCard extends StatelessWidget {
                           )
                         : Column(
                             children: [
-                              Row(
-                                children: [
-                                  Text(
-                                    "Description",
-                                    style: poppinsW400S9White,
-                                  )
-                                ],
-                              ),
                               GestureDetector(
                                   onTap: () {
                                     //show alert dialo
@@ -178,16 +218,24 @@ class CasePostHiredCard extends StatelessWidget {
                                       padding: const EdgeInsets.all(2),
                                       child: Container(
                                           padding: const EdgeInsets.only(
-                                              left: 8, right: 8),
+                                              right: 8, left: 8),
                                           decoration: BoxDecoration(
                                             color: Colors.white,
                                             borderRadius:
                                                 BorderRadius.circular(10),
                                           ),
                                           child: Text(
-                                            " View",
+                                            " Description",
                                             style: poppinsW400S9Black,
                                           )))),
+                              Text(
+                                '4',
+                                style: poppinsW500S12White,
+                              ),
+                              Text(
+                                "Weeks",
+                                style: poppinsW400S9White,
+                              )
                             ],
                           ),
                     const VerticalDivider(
@@ -198,10 +246,6 @@ class CasePostHiredCard extends StatelessWidget {
                       children: [
                         Row(
                           children: [
-                            const Icon(
-                              Icons.currency_rupee,
-                              color: Colors.white,
-                            ),
                             Text(
                               " Fee Type ",
                               style: poppinsW400S9White,
@@ -209,16 +253,22 @@ class CasePostHiredCard extends StatelessWidget {
                           ],
                         ),
                         Text(
-                          feeType,
+                          widget.feeType,
                           style: poppinsW400S9White,
-                        )
+                        ),
+                        widget.viewApplication
+                            ? SizedBox()
+                            : Text(
+                                '₹ ${widget.fees}',
+                                style: poppinsW400S9White,
+                              )
                       ],
                     ),
                     const VerticalDivider(
                       color: Colors.white,
                       thickness: 1,
                     ),
-                    viewApplication
+                    widget.viewApplication
                         ? Column(
                             children: [
                               GestureDetector(
@@ -270,20 +320,8 @@ class CasePostHiredCard extends StatelessWidget {
                             ],
                           )
                         : Column(
+                            mainAxisAlignment: MainAxisAlignment.center,
                             children: [
-                              Row(
-                                children: [
-                                  SizedBox(
-                                      height: 8,
-                                      width: 8,
-                                      child: Image.asset(
-                                          "assets/icons/document_icon.png")),
-                                  Text(
-                                    "Document",
-                                    style: poppinsW400S9White,
-                                  )
-                                ],
-                              ),
                               GestureDetector(
                                   onTap: () {
                                     //show alert dialo
@@ -304,7 +342,30 @@ class CasePostHiredCard extends StatelessWidget {
                                                 BorderRadius.circular(10),
                                           ),
                                           child: Text(
-                                            " View",
+                                            " Document",
+                                            style: poppinsW400S9Black,
+                                          )))),
+                              SizedBox(
+                                height: 5,
+                              ),
+                              GestureDetector(
+                                  onTap: () {
+                                    //show alert dialo
+
+                                    showNotes(context);
+                                  },
+                                  child: Padding(
+                                      padding: const EdgeInsets.all(2),
+                                      child: Container(
+                                          padding: const EdgeInsets.only(
+                                              right: 8, left: 8),
+                                          decoration: BoxDecoration(
+                                            color: Colors.white,
+                                            borderRadius:
+                                                BorderRadius.circular(10),
+                                          ),
+                                          child: Text(
+                                            " Notes",
                                             style: poppinsW400S9Black,
                                           )))),
                             ],
@@ -334,7 +395,8 @@ class CasePostHiredCard extends StatelessWidget {
                 children: [
                   GestureDetector(
                       onTap: () {
-                        //direct to message page
+                        Navigator.of(context).push(MaterialPageRoute(
+                            builder: (context) =>  ChatPage()));
                       },
                       child: Padding(
                           padding: const EdgeInsets.all(16),

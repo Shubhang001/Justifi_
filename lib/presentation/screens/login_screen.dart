@@ -5,6 +5,8 @@ import 'package:jusitfi_admin/presentation/widgets/mobilenumberfield.dart';
 import 'package:jusitfi_admin/presentation/widgets/text_with_line.dart';
 import 'package:jusitfi_admin/utils/constants/textstyles.dart';
 import 'package:flutter_otp_text_field/flutter_otp_text_field.dart';
+import 'package:jusitfi_admin/utils/dynamic/dynamic_values.dart';
+import 'package:jusitfi_admin/utils/services/rest_apis.dart';
 import '../../utils/constants/colors.dart';
 import '../widgets/big_button.dart';
 
@@ -26,7 +28,10 @@ class _LoginScreenState extends State<LoginScreen> {
 
   bool validate = false;
   TextEditingController mobileNumber = TextEditingController();
-  bool checkValidation() {
+  String otp = "";
+  int otpCount = 0;
+
+  Future<bool> checkValidation() async {
     setState(() {
       mobileNumber.text.isEmpty ||
               !isNumeric(mobileNumber.text) ||
@@ -34,6 +39,36 @@ class _LoginScreenState extends State<LoginScreen> {
           ? validate = true
           : validate = false;
     });
+    if (!validate) {
+      if (otp != "") {
+        try {
+          var response =
+              await verifyUserLogin(userPhoneModel.id.toString(), otp);
+          if (response['success'] == true) {
+            if (mounted) {
+              ScaffoldMessenger.of(context).showSnackBar(SnackBar(
+                content: Text(response["message"]),
+              ));
+              setState(() {
+                validate = false;
+              });
+              Navigator.push(
+                  context,
+                  MaterialPageRoute(
+                    builder: (context) => const MainPage(),
+                  ));
+            }
+          }
+        } catch (e) {
+          setState(() {
+            validate = true;
+          });
+          ScaffoldMessenger.of(context).showSnackBar(SnackBar(
+            content: Text(e.toString()),
+          ));
+        }
+      }
+    }
     return validate;
   }
 
@@ -66,10 +101,47 @@ class _LoginScreenState extends State<LoginScreen> {
                 children: [
                   Padding(
                     padding: const EdgeInsets.fromLTRB(60, 80, 60, 0),
-                    child: MobileInputTextField(
-                        validate: validate,
-                        title: 'Enter Your Mobile Number',
-                        txtController: mobileNumber),
+                    child: Column(
+                      crossAxisAlignment: CrossAxisAlignment.end,
+                      children: [
+                        MobileInputTextField(
+                            validate: validate,
+                            title: 'Enter Your Mobile Number',
+                            txtController: mobileNumber),
+                        InkWell(
+                          onTap: () async {
+                            setState(() {
+                              otpCount++;
+                            });
+                            try {
+                              var response =
+                                  await loginUserWithPhone(mobileNumber.text);
+                              if (response != null &&
+                                  response['success'] == true) {
+                                if (mounted) {
+                                  ScaffoldMessenger.of(context)
+                                      .showSnackBar(SnackBar(
+                                    content: Text(response["message"]),
+                                  ));
+                                }
+                              }
+                            } catch (e) {
+                              ScaffoldMessenger.of(context)
+                                  .showSnackBar(SnackBar(
+                                content: Text(e.toString()),
+                              ));
+                            }
+                          },
+                          child: Text(
+                            otpCount == 0 ? 'Send otp' : 'Resend otp',
+                            style: const TextStyle(
+                                color: Colors.white,
+                                fontSize: 16,
+                                fontWeight: FontWeight.bold),
+                          ),
+                        )
+                      ],
+                    ),
                   ),
                   Padding(
                     padding: const EdgeInsets.fromLTRB(60, 0, 60, 0),
@@ -85,9 +157,13 @@ class _LoginScreenState extends State<LoginScreen> {
                           fieldWidth: 35,
                           decoration:
                               const InputDecoration(fillColor: Colors.white),
-                          numberOfFields: 5,
+                          numberOfFields: 6,
                           showFieldAsBox: false,
-                          onSubmit: (String verificationCode) {},
+                          onSubmit: (String verificationCode) {
+                            setState(() {
+                              otp = verificationCode;
+                            });
+                          },
                         ),
                       ],
                     ),
@@ -96,18 +172,68 @@ class _LoginScreenState extends State<LoginScreen> {
                     height: 20,
                   ),
                   Padding(
-                    padding: const EdgeInsets.fromLTRB(60, 20, 60, 20),
-                    child: CustomButton(
-                      function: checkValidation,
-                      removescreens: true,
-                      nextPage: const MainPage(),
-                      buttonColor: kmainButtonColor,
-                      text: 'Login',
-                    ),
-                  ),
+                      padding: const EdgeInsets.fromLTRB(60, 20, 60, 20),
+                      child: InkWell(
+                        onTap: () async {
+                          setState(() {
+                            mobileNumber.text.isEmpty ||
+                                    !isNumeric(mobileNumber.text) ||
+                                    mobileNumber.text.length != 10
+                                ? validate = true
+                                : validate = false;
+                          });
+                          if (!validate) {
+                            if (otp != "") {
+                              try {
+                                var response = await verifyUserLogin(
+                                    userPhoneModel.id.toString(), otp);
+                                if (response['success'] == true) {
+                                  if (mounted) {
+                                    ScaffoldMessenger.of(context)
+                                        .showSnackBar(SnackBar(
+                                      content: Text(response["message"]),
+                                    ));
+                                    Navigator.pushAndRemoveUntil(
+                                        context,
+                                        MaterialPageRoute(
+                                          builder: (context) =>
+                                              const MainPage(),
+                                        ),
+                                        ((route) => false));
+                                  }
+                                } else {
+                                  if (mounted) {
+                                    ScaffoldMessenger.of(context)
+                                        .showSnackBar(SnackBar(
+                                      content: Text(response["message"]),
+                                    ));
+                                  }
+                                }
+                              } catch (e) {
+                                ScaffoldMessenger.of(context)
+                                    .showSnackBar(SnackBar(
+                                  content: Text(e.toString()),
+                                ));
+                              }
+                            }
+                          }
+                        },
+                        child: Container(
+                          height: 50,
+                          width: double.infinity,
+                          decoration: BoxDecoration(
+                              color: kmainButtonColor,
+                              borderRadius: BorderRadius.circular(10)),
+                          child: Center(
+                              child: Text(
+                            'Login',
+                            style: kpageTitle,
+                          )),
+                        ),
+                      )),
                   const TextWithLine(label: 'New User', height: 1),
                   Padding(
-                      padding: const EdgeInsets.fromLTRB(60, 20, 60, 20),
+                      padding: const EdgeInsets.fromLTRB(60, 20, 60, 13),
                       child: CustomButton(
                         removescreens: false,
                         nextPage: const SignupScreen(),

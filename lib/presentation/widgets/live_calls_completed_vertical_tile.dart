@@ -48,6 +48,8 @@ class _LiveCallsCompletedVerticleTile
                         children: [
                           Container(
                               decoration: BoxDecoration(
+                                border:
+                                    Border.all(color: Colors.black, width: 1),
                                 borderRadius: BorderRadius.circular(15),
                                 color: _selectedIndex == 0
                                     ? const Color.fromRGBO(0, 0, 0, 1)
@@ -75,6 +77,8 @@ class _LiveCallsCompletedVerticleTile
                         children: [
                           Container(
                               decoration: BoxDecoration(
+                                border:
+                                    Border.all(color: Colors.black, width: 1),
                                 borderRadius: BorderRadius.circular(15),
                                 color: _selectedIndex == 1
                                     ? Colors.black

@@ -1,9 +1,10 @@
 import 'package:flutter/material.dart';
-import 'package:jusitfi_admin/presentation/screens/chatpage.dart';
+import 'package:jusitfi_admin/presentation/screens/chat_page.dart';
 import 'package:jusitfi_admin/presentation/screens/profile_page.dart';
+import 'package:jusitfi_admin/presentation/widgets/filter_sort.dart';
 
-import '../../utils/constants/colors.dart';
 import '../../utils/constants/textstyles.dart';
+import 'notification_page.dart';
 
 class MessageScreen extends StatelessWidget {
   const MessageScreen({super.key});
@@ -12,18 +13,29 @@ class MessageScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
+        centerTitle: true,
         elevation: 0,
-        backgroundColor: kPrimaryBlackColor,
+        backgroundColor: Colors.black,
         actions: [
-          const Padding(
+          Padding(
             padding: EdgeInsets.only(left: 20, right: 30, top: 10, bottom: 10),
             child: Row(
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
-                Icon(
-                  Icons.notifications_outlined,
-                  color: Colors.white,
-                  size: 35,
+                InkWell(
+                  onTap: () {
+                    Navigator.push(
+                      context,
+                      MaterialPageRoute(
+                        builder: (context) => NotificationsPage(),
+                      ),
+                    );
+                  },
+                  child: Icon(
+                    Icons.notifications_outlined,
+                    color: Colors.white,
+                    size: 35,
+                  ),
                 )
               ],
             ),
@@ -38,18 +50,23 @@ class MessageScreen extends StatelessWidget {
               ),
             );
           },
-          child: Image.asset(
-            'assets/icons/profile_new.png',
-            color: Colors.white,
-            width: 38,
-            height: 38,
+          child: Padding(
+            padding: const EdgeInsets.all(5.0),
+            child: Image.asset(
+              'assets/icons/profile_new.png',
+              color: Colors.white,
+            ),
           ),
         ),
-        title: Text(
-          "Message",
-          style: kHomePageTitle,
+        title: Row(
+          mainAxisAlignment: MainAxisAlignment.center,
+          children: [
+            Text(
+              "Messages",
+              style: klocationLight,
+            )
+          ],
         ),
-        centerTitle: true,
       ),
       body: SingleChildScrollView(
         child: Column(
@@ -59,36 +76,11 @@ class MessageScreen extends StatelessWidget {
               child: Row(
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
-                  const SearchBar(),
-                  Container(
-                    padding: const EdgeInsets.all(2),
-                    decoration: const BoxDecoration(
-                        color: Colors.grey,
-                        borderRadius: BorderRadius.all(
-                          Radius.circular(10),
-                        )),
-                    margin: const EdgeInsets.only(right: 20),
-                    child: Row(
-                      children: [
-                        const Icon(
-                          Icons.arrow_upward_rounded,
-                          color: Colors.black,
-                        ),
-                        const SizedBox(width: 5),
-                        Container(
-                          color: Colors.black,
-                          height: 40,
-                          width: 2,
-                        ),
-                        const SizedBox(width: 5),
-                        const Icon(
-                          Icons.menu,
-                          color: Colors.black,
-                        ),
-                        const SizedBox(width: 5),
-                      ],
-                    ),
+                  Padding(
+                    padding: const EdgeInsets.all(4.0),
+                    child: const SearchBar(),
                   ),
+                  FilterSort(bgColor: Colors.grey, dividerColor: Colors.black),
                 ],
               ),
             ),
@@ -160,7 +152,7 @@ class CaseTile extends StatelessWidget {
               Navigator.push(
                   context,
                   MaterialPageRoute(
-                    builder: (context) => const ChatPage(),
+                    builder: (context) =>ChatPage(),
                   ));
             },
             child: Row(

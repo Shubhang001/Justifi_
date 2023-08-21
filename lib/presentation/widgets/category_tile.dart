@@ -3,8 +3,6 @@ import 'package:google_fonts/google_fonts.dart';
 import 'package:jusitfi_admin/presentation/screens/more_page.dart';
 import 'package:jusitfi_admin/presentation/widgets/show_sub_cat.dart';
 
-import '../../utils/constants/textstyles.dart';
-
 class CategoryTile extends StatelessWidget {
   CategoryTile(
       {super.key,

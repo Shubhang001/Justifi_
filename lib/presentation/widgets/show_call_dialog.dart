@@ -4,7 +4,8 @@ class CustomDialog extends StatelessWidget {
   final Function onCallNowPressed;
   final Function onScheduleNowPressed;
 
-  CustomDialog({
+  const CustomDialog({
+    super.key,
     required this.onCallNowPressed,
     required this.onScheduleNowPressed,
   });
@@ -15,7 +16,7 @@ class CustomDialog extends StatelessWidget {
       backgroundColor: Colors.transparent,
       elevation: 0.0,
       child: Container(
-        padding: EdgeInsets.all(16.0),
+        padding: const EdgeInsets.all(16.0),
         decoration: BoxDecoration(
           color: Colors.transparent,
           borderRadius: BorderRadius.circular(8.0),
@@ -24,14 +25,13 @@ class CustomDialog extends StatelessWidget {
           mainAxisSize: MainAxisSize.min,
           children: [
             ElevatedButton(
-              
               onPressed: onCallNowPressed as void Function()?,
-              child: Text('Call Now'),
+              child: const Text('Call Now'),
             ),
-            SizedBox(height: 8.0),
+            const SizedBox(height: 8.0),
             ElevatedButton(
               onPressed: onScheduleNowPressed as void Function()?,
-              child: Text('Schedule Now'),
+              child: const Text('Schedule Now'),
             ),
           ],
         ),

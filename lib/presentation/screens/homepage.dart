@@ -1,7 +1,9 @@
+import 'package:flutter_typeahead/flutter_typeahead.dart';
 import 'package:jusitfi_admin/presentation/screens/more_page.dart';
+import 'package:jusitfi_admin/presentation/screens/notification_page.dart';
 import 'package:jusitfi_admin/presentation/screens/profile_page.dart';
 import 'package:jusitfi_admin/presentation/screens/view_all.dart';
-import 'package:jusitfi_admin/utils/constants/colors.dart';
+import 'package:jusitfi_admin/presentation/widgets/home_nav_bar.dart';
 import 'package:jusitfi_admin/utils/constants/textstyles.dart';
 import '../widgets/category_tile.dart';
 import '../widgets/filter_sort.dart';
@@ -25,16 +27,26 @@ class _HomePageState extends State<HomePage> {
           elevation: 0,
           backgroundColor: Colors.white,
           actions: [
-            const Padding(
-              padding: EdgeInsets.only(
-                  left: 20, right: 30, top: 10, bottom: 10),
+            Padding(
+              padding:
+                  const EdgeInsets.only(left: 20, right: 30, top: 10, bottom: 10),
               child: Row(
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
-                  Icon(
-                    Icons.notifications_outlined,
-                    color: Colors.black,
-                    size: 35,
+                  InkWell(
+                    onTap: () {
+                      Navigator.push(
+                        context,
+                        MaterialPageRoute(
+                          builder: (context) => const NotificationsPage(),
+                        ),
+                      );
+                    },
+                    child: const Icon(
+                      Icons.notifications_outlined,
+                      color: Colors.black,
+                      size: 35,
+                    ),
                   )
                 ],
               ),
@@ -49,24 +61,70 @@ class _HomePageState extends State<HomePage> {
                 ),
               );
             },
-            child: Image.asset(
-              'assets/icons/profile_new.png',
-              width: 38,
-              height: 38,
+            child: Padding(
+              padding: const EdgeInsets.all(5.0),
+              child: Image.asset(
+                'assets/icons/profile_new.png',
+              ),
             ),
           ),
           title: Row(
-            mainAxisAlignment: MainAxisAlignment.center,
+            mainAxisSize: MainAxisSize.min,
             children: [
-              Icon(
+              const Icon(
                 Icons.pin_drop_rounded,
                 size: 35,
-                color: kobbuttonColor,
+                color: Colors.black,
               ),
-              Text(
-                "Mumbai",
-                style: klocation,
-              )
+              SizedBox(
+                width: 150,
+                child: TypeAheadField(
+                  animationStart: 0,
+                  animationDuration: Duration.zero,
+                  textFieldConfiguration: TextFieldConfiguration(
+                      //onChanged: ,
+
+                      controller: searchTextController,
+                      textAlign: TextAlign.start,
+                      autofocus: false,
+                      style: const TextStyle(
+                          fontSize: 24,
+                          fontWeight: FontWeight.w400,
+                          color: Colors.black),
+                      decoration: const InputDecoration(
+                        focusColor: Colors.white,
+                        hintText: "Mumbai",
+                        hintStyle: TextStyle(
+                            color: Colors.black,
+                            fontWeight: FontWeight.w400,
+                            fontSize: 24),
+                        enabledBorder: InputBorder.none,
+                        disabledBorder: OutlineInputBorder(),
+                      )),
+                  suggestionsBoxDecoration:
+                      SuggestionsBoxDecoration(color: Colors.lightBlue[50]),
+                  suggestionsCallback: (pattern) {
+                    List<String> matches = <String>[];
+                    matches.addAll(suggestons);
+
+                    matches.retainWhere((s) {
+                      return s.toLowerCase().contains(pattern.toLowerCase());
+                    });
+                    return matches;
+                  },
+                  itemBuilder: (context, sone) {
+                    return Card(
+                        child: Container(
+                      padding: const EdgeInsets.all(10),
+                      child: Text(sone.toString()),
+                    ));
+                  },
+                  onSuggestionSelected: (suggestion) {
+                    //
+                    searchTextController.text = suggestion.toString();
+                  },
+                ),
+              ),
             ],
           ),
         ),

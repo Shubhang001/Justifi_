@@ -2,6 +2,9 @@ import 'package:flutter/material.dart';
 import 'package:jusitfi_admin/presentation/screens/offers_page.dart';
 import 'package:jusitfi_admin/utils/constants/textstyles.dart';
 
+import '../../utils/constants/coupon_code_constants.dart';
+import '../screens/add_credits_page.dart';
+
 class LockedHireAdvocateDialogBox extends StatefulWidget {
   const LockedHireAdvocateDialogBox({
     Key? key,
@@ -18,7 +21,27 @@ class _LockedHireAdvocateDialogBox extends State<LockedHireAdvocateDialogBox> {
   bool item2 = false;
   bool item3 = false;
   @override
+  void initState() {
+    super.initState();
+    CouponCodeConstant.couponCodeApplied = false;
+  }
+
+  @override
   Widget build(BuildContext context) {
+    // WidgetsBinding.instance.addPostFrameCallback((timeStamp) {
+    //   if (CouponCodeConstant.isCouponCardTapped == true) {
+    //     SnackBar snackBar = const SnackBar(
+    //       duration: Duration(seconds: 2),
+    //       content: Text('Coupon applied successfully. Make payment now.'),
+    //     );
+    //     ScaffoldMessenger.of(context).showSnackBar(
+    //       snackBar,
+    //     );
+    //     setState(() {
+    //       CouponCodeConstant.isCouponCardTapped = false;
+    //     });
+    //   }
+    // });
     return Center(
         child: Dialog(
             shape: RoundedRectangleBorder(
@@ -39,7 +62,7 @@ class _LockedHireAdvocateDialogBox extends State<LockedHireAdvocateDialogBox> {
                           height: 60,
                           width: 64,
                           child: Image.asset(
-                            "assets/images/advocate_image.png",
+                            "assets/images/advocate_img.png",
                             fit: BoxFit.cover,
                           )),
                       const Icon(
@@ -128,7 +151,7 @@ class _LockedHireAdvocateDialogBox extends State<LockedHireAdvocateDialogBox> {
                       ])
                     ]),
                     const SizedBox(
-                      height: 10,
+                      height: 60,
                     ),
                     Row(mainAxisAlignment: MainAxisAlignment.start, children: [
                       Row(children: [
@@ -136,6 +159,8 @@ class _LockedHireAdvocateDialogBox extends State<LockedHireAdvocateDialogBox> {
                             onTap: () {
                               setState(() {
                                 item1 = !item1;
+                                item2 = false;
+                                item3 = false;
                               });
                             },
                             child: Container(
@@ -156,80 +181,86 @@ class _LockedHireAdvocateDialogBox extends State<LockedHireAdvocateDialogBox> {
                           width: 10,
                         ),
                         Text(
-                          " ₹ 199 / One Time hiring",
+                          " ₹ 199 / Profile hiring",
                           style: poppinsW500S15Black,
                         ),
                       ])
                     ]),
                     const SizedBox(
-                      height: 15,
+                      height: 30,
                     ),
-                    Row(children: [
-                      GestureDetector(
-                          onTap: () {
-                            setState(() {
-                              item2 = !item2;
-                            });
-                          },
-                          child: Container(
-                              decoration: BoxDecoration(
-                                borderRadius: BorderRadius.circular(20),
-                                color: Colors.black,
-                              ),
-                              height: 15,
-                              width: 15,
-                              child: Icon(
-                                Icons.circle,
-                                color:
-                                    item2 == true ? Colors.black : Colors.white,
-                                size: 15,
-                              ))),
-                      const SizedBox(
-                        width: 10,
-                      ),
-                      Text(
-                        "₹ 1999/Month/Unlimited hiring",
-                        style: poppinsW500S15Black,
-                      ),
-                    ]),
+                    // Row(children: [
+                    //   GestureDetector(
+                    //       onTap: () {
+                    //         setState(() {
+                    //           item2 = !item2;
+                    //           item1 = false;
+                    //           item3 = false;
+                    //         });
+                    //       },
+                    //       child: Container(
+                    //           decoration: BoxDecoration(
+                    //             borderRadius: BorderRadius.circular(20),
+                    //             color: Colors.black,
+                    //           ),
+                    //           height: 15,
+                    //           width: 15,
+                    //           child: Icon(
+                    //             Icons.circle,
+                    //             color:
+                    //                 item2 == true ? Colors.black : Colors.white,
+                    //             size: 15,
+                    //           ))),
+                    //   const SizedBox(
+                    //     width: 10,
+                    //   ),
+                    //   Text(
+                    //     "₹ 1999/Month/Unlimited hiring",
+                    //     style: poppinsW500S15Black,
+                    //   ),
+                    // ]),
+                    // const SizedBox(
+                    //   height: 15,
+                    // ),
+                    // Row(children: [
+                    //   GestureDetector(
+                    //       onTap: () {
+                    //         setState(() {
+                    //           item3 = !item3;
+                    //           item1 = false;
+                    //           item2 = false;
+                    //         });
+                    //       },
+                    //       child: Container(
+                    //           decoration: BoxDecoration(
+                    //             borderRadius: BorderRadius.circular(25),
+                    //             color: Colors.black,
+                    //           ),
+                    //           height: 15,
+                    //           width: 15,
+                    //           child: Icon(
+                    //             Icons.circle,
+                    //             color:
+                    //                 item3 == true ? Colors.black : Colors.white,
+                    //             size: 15,
+                    //           ))),
+                    //   const SizedBox(
+                    //     width: 10,
+                    //   ),
+                    //   Text(
+                    //     "₹ 5999/Year/Unlimited hiring",
+                    //     style: poppinsW500S15Black,
+                    //   ),
+                    // ]),
                     const SizedBox(
-                      height: 15,
-                    ),
-                    Row(children: [
-                      GestureDetector(
-                          onTap: () {
-                            setState(() {
-                              item3 = !item3;
-                            });
-                          },
-                          child: Container(
-                              decoration: BoxDecoration(
-                                borderRadius: BorderRadius.circular(25),
-                                color: Colors.black,
-                              ),
-                              height: 15,
-                              width: 15,
-                              child: Icon(
-                                Icons.circle,
-                                color:
-                                    item3 == true ? Colors.black : Colors.white,
-                                size: 15,
-                              ))),
-                      const SizedBox(
-                        width: 10,
-                      ),
-                      Text(
-                        "₹ 5999/Year/Unlimited hiring",
-                        style: poppinsW500S15Black,
-                      ),
-                    ]),
-                    const SizedBox(
-                      height: 10,
+                      height: 20,
                     ),
                     GestureDetector(
                         onTap: () {
-                          Navigator.of(context).push(MaterialPageRoute(
-                              builder: (context) => const OffersPage()));
+                          Navigator.of(context)
+                              .push(MaterialPageRoute(
+                                  builder: (context) => OffersPage()))
+                              .then((value) => setState(() {}));
                         },
                         child: Container(
                           height: 32,
@@ -239,7 +270,9 @@ class _LockedHireAdvocateDialogBox extends State<LockedHireAdvocateDialogBox> {
                               color: Colors.black),
                           child: Center(
                             child: Text(
-                              "Coupon Code",
+                              CouponCodeConstant.couponCodeApplied
+                                  ? "Coupon Applied"
+                                  : "Coupon Code",
                               style: poppinsW500S15White,
                             ),
                           ),
@@ -247,19 +280,31 @@ class _LockedHireAdvocateDialogBox extends State<LockedHireAdvocateDialogBox> {
                     const SizedBox(
                       height: 10,
                     ),
-                    Container(
-                      height: 32,
-                      width: 144,
-                      decoration: BoxDecoration(
-                          borderRadius: BorderRadius.circular(25),
-                          color: Colors.black),
-                      child: Center(
-                        child: Text(
-                          "Pay Now",
-                          style: poppinsW400S14White,
+                    GestureDetector(
+                      onTap: () {
+                        //postt hiring
+                        Navigator.of(context).push(
+                          MaterialPageRoute(
+                            builder: (context) => AddCreditsPage(
+                              title: "Post Credits",
+                            ),
+                          ),
+                        );
+                      },
+                      child: Container(
+                        height: 32,
+                        width: 144,
+                        decoration: BoxDecoration(
+                            borderRadius: BorderRadius.circular(25),
+                            color: Colors.black),
+                        child: Center(
+                          child: Text(
+                            "Pay Now",
+                            style: poppinsW400S14White,
+                          ),
                         ),
                       ),
-                    )
+                    ),
                   ]),
             )));
   }

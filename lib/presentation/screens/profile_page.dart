@@ -2,9 +2,12 @@ import 'package:flutter/material.dart';
 import 'package:jusitfi_admin/presentation/screens/aboustus_page.dart';
 import 'package:jusitfi_admin/presentation/screens/contacus_page.dart';
 import 'package:jusitfi_admin/presentation/screens/faq_page.dart';
-import 'package:jusitfi_admin/presentation/screens/homepage.dart';
+import 'package:jusitfi_admin/presentation/screens/login_screen.dart';
 import 'package:jusitfi_admin/presentation/screens/profile_details.dart';
-import 'package:jusitfi_admin/presentation/widgets/profile_appbar.dart';
+import 'package:share_plus/share_plus.dart';
+
+import '../../utils/constants/textstyles.dart';
+import 'notification_page.dart';
 
 class ProfileScreen extends StatelessWidget {
   const ProfileScreen({super.key});
@@ -12,10 +15,48 @@ class ProfileScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      appBar: AppBar(
+        centerTitle: true,
+        elevation: 0,
+        backgroundColor: Colors.black,
+        actions: [
+          Padding(
+            padding: EdgeInsets.only(left: 20, right: 30, top: 10, bottom: 10),
+            child: Row(
+              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+              children: [
+                InkWell(
+                  onTap: () {
+                    Navigator.push(
+                      context,
+                      MaterialPageRoute(
+                        builder: (context) => NotificationsPage(),
+                      ),
+                    );
+                  },
+                  child: Icon(
+                    Icons.notifications_outlined,
+                    color: Colors.white,
+                    size: 35,
+                  ),
+                )
+              ],
+            ),
+          ),
+        ],
+        title: Row(
+          mainAxisAlignment: MainAxisAlignment.center,
+          children: [
+            Text(
+              "Profile",
+              style: klocationLight,
+            )
+          ],
+        ),
+      ),
       body: SingleChildScrollView(
         child: Column(
           children: [
-            const ProfileNavBar(),
             Container(
               margin: const EdgeInsets.only(top: 20),
               child: const Center(
@@ -54,31 +95,80 @@ class ProfileScreen extends StatelessWidget {
               route: AboutUsPAge(),
             ),
             Container(
-              padding: const EdgeInsets.all(20),
-              decoration: const BoxDecoration(color: Colors.white, boxShadow: [
-                BoxShadow(
-                  color: Colors.grey,
-                ),
-                BoxShadow(
-                  color: Colors.grey,
-                )
-              ]),
-              margin: const EdgeInsets.only(top: 2),
-              child: Row(
-                mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+              margin: const EdgeInsets.all(10),
+              child: Column(
                 children: [
-                  Image.asset("assets/images/tw.png"),
-                  Image.asset("assets/images/fb.png"),
-                  Image.asset("assets/images/in.png"),
-                  Image.asset("assets/images/li.png"),
-                  Image.asset("assets/images/yt.png"),
+                  Container(
+                    decoration: const BoxDecoration(
+                      color: Colors.white,
+                      boxShadow: [
+                        BoxShadow(color: Colors.grey),
+                        BoxShadow(color: Colors.grey),
+                      ],
+                    ),
+                    child: Material(
+                      color: Colors.white,
+                      child: GestureDetector(
+                        onTap: () {},
+                        child: ListTile(
+                            iconColor: Colors.black,
+                            leading: Icon(Icons.share),
+                            title: Text('Invite and Share the App'),
+                            trailing: IconButton(
+                              icon: const Icon(Icons.share),
+                              onPressed: () {
+                                Share.share(
+                                    'Share Justifi with your friends & family',
+                                    subject: 'Share Justifi App');
+                              },
+                            )),
+                      ),
+                    ),
+                  ),
                 ],
               ),
             ),
-            const CustomTile(
-              icon: Icons.logout,
-              title: "LogOut",
-              route: HomePage(),
+            Container(
+              margin: const EdgeInsets.all(10),
+              child: Column(
+                children: [
+                  Container(
+                    decoration: const BoxDecoration(
+                      color: Colors.white,
+                      boxShadow: [
+                        BoxShadow(color: Colors.grey),
+                        BoxShadow(color: Colors.grey),
+                      ],
+                    ),
+                    child: Material(
+                      color: Colors.white,
+                      child: GestureDetector(
+                        onTap: () {
+                          Navigator.pushAndRemoveUntil(
+                              context,
+                              MaterialPageRoute(
+                                  builder: (context) => LoginScreen()),
+                              (Route<dynamic> route) => false);
+                        },
+                        child: ListTile(
+                            iconColor: Colors.black,
+                            leading: Icon(Icons.logout),
+                            title: Text("LogOut"),
+                            trailing: IconButton(
+                              icon: const Icon(Icons.keyboard_arrow_right),
+                              onPressed: () {
+                                Navigator.pushAndRemoveUntil(
+                                    context,
+                                    MaterialPageRoute(
+                                        builder: (context) => LoginScreen()),
+                                    (Route<dynamic> route) => false);
+                              },
+                            )),
+                      ),
+                    ),
+                  ),
+                ],
+              ),
             ),
             const ListTile(
               title: Center(child: Text("App Version 4.087")),
@@ -121,9 +211,7 @@ class CustomTile extends StatelessWidget {
               child: GestureDetector(
                 onTap: () {
                   Navigator.push(
-                    context,
-                    MaterialPageRoute(builder: (context) => route),
-                  );
+                      context, MaterialPageRoute(builder: (context) => route));
                 },
                 child: ListTile(
                     iconColor: Colors.black,

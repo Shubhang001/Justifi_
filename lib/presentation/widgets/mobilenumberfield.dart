@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:google_fonts/google_fonts.dart';
 
 import '../../utils/constants/textstyles.dart';
 
@@ -9,7 +10,8 @@ class MobileInputTextField extends StatelessWidget {
       required this.txtController,
       required this.validate});
 
-    bool isNumeric(String s) {
+  bool isNumeric(String s) {
+    // ignore: unnecessary_null_comparison
     if (s == null) {
       return false;
     }
@@ -22,57 +24,60 @@ class MobileInputTextField extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Padding(
-      padding: const EdgeInsets.symmetric(vertical: 8),
-      child: SizedBox(
-        child: Column(
-          crossAxisAlignment: CrossAxisAlignment.start,
-          children: [
-            RichText(
-              text:
-                  TextSpan(text: title, style: ktextFieldMainTitle, children: [
-                TextSpan(
-                    text: ' *',
-                    style: TextStyle(
-                        color: Colors.red,
-                        fontWeight: ktextFieldTitle.fontWeight,
-                        fontSize: ktextFieldTitle.fontSize))
-              ]),
-            ),
-            const SizedBox(
-              height: 16,
-            ),
-            SizedBox(
-              height: 60,
-              child: TextField(
-                maxLength: 10,
-                keyboardType: TextInputType.phone,
-                controller: txtController,
-                style: kTextFieldValue,
-                decoration: InputDecoration(
-                    errorText: validate && (txtController.text.length < 10 || !isNumeric(txtController.text) ) 
-                        ? 'Enter a Valid Mobile Number'
-                        : null,
-                    isDense: true,
-                    contentPadding: const EdgeInsets.all(10),
-                    prefixIcon: Padding(
-                      padding: const EdgeInsets.only(top: 2.5),
-                      child: Text(
-                        '+91',
-                        style: kTextFieldValue,
-                      ),
+    return SizedBox(
+      child: Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: [
+          RichText(
+            text: TextSpan(text: title, style: ktextFieldMainTitle, children: [
+              TextSpan(
+                  text: ' *',
+                  style: TextStyle(
+                      color: Colors.red,
+                      fontWeight: ktextFieldTitle.fontWeight,
+                      fontSize: ktextFieldTitle.fontSize))
+            ]),
+          ),
+          const SizedBox(
+            height: 16,
+          ),
+          SizedBox(
+            height: 60,
+            child: TextField(
+              maxLength: 10,
+              keyboardType: TextInputType.phone,
+              controller: txtController,
+              style: kTextFieldValue,
+              decoration: InputDecoration(
+                  errorText: validate &&
+                          (txtController.text.length < 10 ||
+                              !isNumeric(txtController.text))
+                      ? 'Enter a Valid Mobile Number'
+                      : null,
+                  isDense: true,
+                  contentPadding: const EdgeInsets.all(10),
+                  prefixIcon: Padding(
+                    padding: const EdgeInsets.only(top: 2.5),
+                    child: Text(
+                      '+91',
+                      style: kTextFieldValue,
                     ),
-                    prefixIconConstraints: BoxConstraints.tight(const Size(35, 35)),
-                    hintText: '9999999999',
-                    hintStyle: kTextFieldValue,
-                    border: OutlineInputBorder(
-                        borderRadius: BorderRadius.circular(10)),
-                    fillColor: Colors.white,
-                    filled: true),
-              ),
+                  ),
+                  prefixIconConstraints:
+                      BoxConstraints.tight(const Size(35, 35)),
+                  hintText: '9999999999',
+                  hintStyle: GoogleFonts.poppins(
+                    color: Colors.grey,
+                    fontWeight: FontWeight.w400,
+                    fontSize: 18,
+                  ),
+                  border: OutlineInputBorder(
+                      borderRadius: BorderRadius.circular(10)),
+                  fillColor: Colors.white,
+                  filled: true),
             ),
-          ],
-        ),
+          ),
+        ],
       ),
     );
   }

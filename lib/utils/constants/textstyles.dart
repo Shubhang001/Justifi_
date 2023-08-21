@@ -203,6 +203,17 @@ TextStyle klocation = GoogleFonts.inter(
   fontWeight: FontWeight.w400,
   fontSize: 24,
 );
+TextStyle alegreyaW700S24Black = GoogleFonts.alegreya(
+  color: Colors.black,
+  fontSize: 24,
+  fontWeight: FontWeight.w700,
+);
+
+TextStyle klocationLight = GoogleFonts.inter(
+  color: Colors.white,
+  fontWeight: FontWeight.w400,
+  fontSize: 24,
+);
 
 TextStyle ksubCatText = GoogleFonts.inter(
   color: Colors.black,
@@ -361,6 +372,18 @@ TextStyle kAdvocateCardCountTitle = GoogleFonts.poppins(
   color: Colors.black,
   fontSize: 10,
   fontWeight: FontWeight.w400,
+);
+
+TextStyle robotoW500S30Black = GoogleFonts.roboto(
+  color: Colors.black,
+  fontSize: 30,
+  fontWeight: FontWeight.w500,
+);
+
+TextStyle inriaSerifW700S30Black = GoogleFonts.inriaSerif(
+  color: Colors.black,
+  fontSize: 30,
+  fontWeight: FontWeight.w700,
 );
 
 TextStyle kAdvocateCardCountTitleDark = GoogleFonts.poppins(

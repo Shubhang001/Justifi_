@@ -3,10 +3,8 @@ import 'dart:ui';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:jusitfi_admin/presentation/screens/floatcases5.dart';
 import 'package:jusitfi_admin/presentation/screens/floatcases8.dart';
-import 'package:jusitfi_admin/presentation/screens/homepage.dart';
 import 'package:jusitfi_admin/presentation/widgets/float_cases_profile.dart';
 import '../../utils/constants/textstyles.dart';
-import '../widgets/advocate_card_extended.dart';
 import '../widgets/smallButton.dart';
 
 Future<Object?> floatCases9(
