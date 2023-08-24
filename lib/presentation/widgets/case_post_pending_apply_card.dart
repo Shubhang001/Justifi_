@@ -131,7 +131,7 @@ class _CasePostPendingApplyCardState extends State<CasePostPendingApplyCard> {
                               )
                             ],
                           ),
-                          SizedBox(
+                          const SizedBox(
                             height: 10,
                           ),
                           Row(

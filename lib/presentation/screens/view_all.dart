@@ -142,10 +142,11 @@ class ViewAllPage extends StatelessWidget {
                 const SizedBox(
                   height: 10,
                 ),
-                Row(
-                  children: const [
+                const Row(
+                  children: [
                     SearchBarUpdated(
                       backgroundColor: Colors.white,
+                      color: Colors.black,
                     ),
                     SizedBox(
                       width: 10,
@@ -155,9 +156,6 @@ class ViewAllPage extends StatelessWidget {
                       dividerColor: Colors.black,
                     )
                   ],
-                ),
-                const SizedBox(
-                  height: 30,
                 ),
                 Padding(
                   padding: const EdgeInsets.only(top: 40, bottom: 40),
@@ -172,7 +170,7 @@ class ViewAllPage extends StatelessWidget {
                 Center(
                   child: SizedBox(
                     height: 500,
-                    width: 270,
+                    width: 300,
                     child: ListView.builder(
                       itemCount: items.length,
                       itemBuilder: (context, index) {

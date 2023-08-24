@@ -83,7 +83,7 @@ class LawyerHireDetails extends StatelessWidget {
           children: [
             Row(
               children: [
-                SizedBox(
+                const SizedBox(
                   width: 10,
                 ),
                 Container(
@@ -99,7 +99,7 @@ class LawyerHireDetails extends StatelessWidget {
                     ],
                   ),
                 ),
-                SizedBox(
+                const SizedBox(
                   width: 15,
                 ),
                 Column(
@@ -123,19 +123,19 @@ class LawyerHireDetails extends StatelessWidget {
                           'Rating: ',
                           style: kCallAns,
                         ),
-                        StarRating(rating: 3)
+                        const StarRating(rating: 3)
                       ],
                     ),
                   ],
                 ),
               ],
             ),
-            SizedBox(
+            const SizedBox(
               height: 10,
             ),
             Row(
               children: [
-                SizedBox(
+                const SizedBox(
                   width: 80,
                 ),
                 Text(

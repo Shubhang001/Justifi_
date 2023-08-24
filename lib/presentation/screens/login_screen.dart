@@ -17,6 +17,8 @@ class LoginScreen extends StatefulWidget {
 }
 
 class _LoginScreenState extends State<LoginScreen> {
+  //bool _showResendButton = false;
+  String buttonText = "Send OTP";
   bool isNumeric(String s) {
     // ignore: unnecessary_null_comparison
     if (s == null) {
@@ -38,6 +40,12 @@ class _LoginScreenState extends State<LoginScreen> {
     return validate;
   }
 
+  void changeButtonText() {
+    setState(() {
+      buttonText = "Resend OTP";
+    });
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -49,7 +57,7 @@ class _LoginScreenState extends State<LoginScreen> {
             Container(
               transform: Matrix4.translationValues(0.0, 15.0, 0.0),
               child: Image.asset(
-                'assets/images/login.png',
+                'assets/images/login1.png',
                 height: 200,
                 width: 200,
               ),
@@ -66,7 +74,7 @@ class _LoginScreenState extends State<LoginScreen> {
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
                   Padding(
-                    padding: const EdgeInsets.fromLTRB(60, 80, 60, 0),
+                    padding: const EdgeInsets.fromLTRB(40, 70, 60, 0),
                     child: Column(
                       crossAxisAlignment: CrossAxisAlignment.end,
                       children: [
@@ -74,14 +82,22 @@ class _LoginScreenState extends State<LoginScreen> {
                             validate: validate,
                             title: 'Enter Your Mobile Number',
                             txtController: mobileNumber),
-                        InkWell(
-                          onTap: () {},
-                          child: Text(
-                            'Resend otp',
-                            style: TextStyle(
-                                color: Colors.white,
-                                fontSize: 16,
-                                fontWeight: FontWeight.bold),
+                        Container(
+                          color: Colors.black,
+                          height: 35,
+                          child: TextButton(
+                            onPressed: () {
+                              // _showResendButton = true;
+                              changeButtonText();
+                            },
+                            child: Text(
+                              buttonText,
+                              // _showResendButton ? "Reseend OTP" : "Send OTP",
+                              style: const TextStyle(
+                                  color: Colors.white,
+                                  fontSize: 16,
+                                  fontWeight: FontWeight.bold),
+                            ),
                           ),
                         )
                       ],

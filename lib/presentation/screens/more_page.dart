@@ -62,6 +62,7 @@ class MorePage extends StatelessWidget {
                 children: const [
                   SearchBarUpdated(
                     backgroundColor: Colors.black,
+                    color: Colors.white,
                   ),
                   SizedBox(
                     width: 10,

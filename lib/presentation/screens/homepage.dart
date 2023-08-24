@@ -39,11 +39,11 @@ class _HomePageState extends State<HomePage> {
                       Navigator.push(
                         context,
                         MaterialPageRoute(
-                          builder: (context) => NotificationsPage(),
+                          builder: (context) => const NotificationsPage(),
                         ),
                       );
                     },
-                    child: Icon(
+                    child: const Icon(
                       Icons.notifications_outlined,
                       color: Colors.black,
                       size: 35,
@@ -143,6 +143,7 @@ class _HomePageState extends State<HomePage> {
                       children: [
                         SearchBarUpdated(
                           backgroundColor: Colors.black,
+                          color: Colors.white,
                         ),
                         SizedBox(
                           width: 10,

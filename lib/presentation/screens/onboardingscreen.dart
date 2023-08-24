@@ -28,31 +28,37 @@ class _OnBoardingScreenState extends State<OnBoardingScreen> {
     return SafeArea(
       child: Scaffold(
         backgroundColor: Colors.black,
-        body: SingleChildScrollView(
-          child: Column(
-            crossAxisAlignment: CrossAxisAlignment.start,
-            children: [
-              Align(
-                  alignment: Alignment.center,
-                  child: Image.asset('assets/images/onboarding.png')),
-              const SizedBox(
-                height: 32,
-              ),
-              Padding(
-                padding: const EdgeInsets.only(left: 19),
-                child: Text(
-                  'Welcome to Justifi!',
-                  style: konboardingTitle,
+        body: Align(
+          alignment: AlignmentDirectional.topCenter,
+          child: SingleChildScrollView(
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.center,
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: [
+                SizedBox(
+                  height: 280,
+                  width: 280,
+                  child: Align(
+                      alignment: Alignment.center,
+                      child: Image.asset('assets/images/justify_logo.png')),
                 ),
-              ),
-              Padding(
-                padding: const EdgeInsets.only(left: 19),
-                child: Text(
-                  'Lorem ipsum dolor sit',
-                  style: konboardingSubtitleTitle,
+                Padding(
+                  padding: const EdgeInsets.only(left: 19),
+                  child: Text(
+                    'Welcome to Justify Spark!',
+                    style: konboardingTitle,
+                  ),
                 ),
-              )
-            ],
+                Padding(
+                  padding: const EdgeInsets.only(left: 19),
+                  child: Text(
+                    'Matching advocates with the right clients,effortlessly',
+                    style: konboardingSubtitleTitle,
+                    textScaleFactor: 0.75,
+                  ),
+                )
+              ],
+            ),
           ),
         ),
         bottomSheet: Container(

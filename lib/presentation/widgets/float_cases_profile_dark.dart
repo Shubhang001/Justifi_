@@ -36,16 +36,39 @@ class AdvocateCardFloatCasesDark extends StatelessWidget {
           crossAxisAlignment: CrossAxisAlignment.start,
           mainAxisAlignment: MainAxisAlignment.spaceBetween,
           children: [
-            Image.asset(
-              image,
-              width: 250,
-              height: 120,
-              fit: BoxFit.fill,
+            Padding(
+              padding: const EdgeInsets.all(3.0),
+              child: Row(
+                children: [
+                  CircleAvatar(
+                    radius: 65.0,
+                    backgroundColor: Colors.transparent,
+                    child: ClipOval(
+                      child: Image.asset(
+                        image,
+                        width: 120,
+                        height: 120,
+                      ),
+                    ),
+                  ),
+                  CircleAvatar(
+                    radius: 55.0,
+                    backgroundColor: Colors.transparent,
+                    child: ClipOval(
+                      child: Image.asset(
+                        "assets/images/justify_logo.png",
+                        width: 130,
+                        height: 130,
+                      ),
+                    ),
+                  ),
+                ],
+              ),
             ),
             Row(
               mainAxisAlignment: MainAxisAlignment.spaceAround,
               children: [
-                SizedBox(
+                const SizedBox(
                   width: 3,
                 ),
                 Column(
@@ -102,7 +125,7 @@ class AdvocateCardFloatCasesDark extends StatelessWidget {
                       )
                     ],
                   ),
-                  VerticalDivider(
+                  const VerticalDivider(
                     color: Colors.white,
                   ),
                   Column(
@@ -117,7 +140,7 @@ class AdvocateCardFloatCasesDark extends StatelessWidget {
                       )
                     ],
                   ),
-                  VerticalDivider(
+                  const VerticalDivider(
                     color: Colors.white,
                   ),
                   Column(
@@ -135,7 +158,7 @@ class AdvocateCardFloatCasesDark extends StatelessWidget {
                 ],
               ),
             ),
-            SizedBox(
+            const SizedBox(
               height: 10,
             )
           ],
