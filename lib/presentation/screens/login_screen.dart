@@ -88,167 +88,174 @@ class _LoginScreenState extends State<LoginScreen> {
                 width: 200,
               ),
             ),
-            Container(
-              height: 500,
-              width: double.infinity,
-              decoration: const BoxDecoration(
-                  color: Colors.black,
-                  borderRadius: BorderRadius.only(
-                      topLeft: Radius.circular(200),
-                      topRight: Radius.circular(200))),
-              child: Column(
-                mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                children: [
-                  Padding(
-                    padding: const EdgeInsets.fromLTRB(60, 80, 60, 0),
-                    child: Column(
-                      crossAxisAlignment: CrossAxisAlignment.end,
-                      children: [
-                        MobileInputTextField(
-                            validate: validate,
-                            title: 'Enter Your Mobile Number',
-                            txtController: mobileNumber),
-                        InkWell(
-                          onTap: () async {
-                            setState(() {
-                              otpCount++;
-                            });
-                            try {
-                              var response =
-                                  await loginUserWithPhone(mobileNumber.text);
-                              if (response != null &&
-                                  response['success'] == true) {
-                                if (mounted) {
+            Expanded(
+              child: SingleChildScrollView(
+                child: Container(
+                  width: double.infinity,
+                  decoration: const BoxDecoration(
+                      color: Colors.black,
+                      borderRadius: BorderRadius.only(
+                          topLeft: Radius.circular(200),
+                          topRight: Radius.circular(200))),
+                  child: Column(
+                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                    children: [
+                      Padding(
+                        padding: const EdgeInsets.fromLTRB(60, 80, 60, 0),
+                        child: Column(
+                          crossAxisAlignment: CrossAxisAlignment.end,
+                          children: [
+                            MobileInputTextField(
+                                validate: validate,
+                                title: 'Enter Your Mobile Number',
+                                txtController: mobileNumber),
+                            InkWell(
+                              onTap: () async {
+                                setState(() {
+                                  otpCount++;
+                                });
+                                try {
+                                  var response = await loginUserWithPhone(
+                                      mobileNumber.text);
+                                  if (response != null &&
+                                      response['success'] == true) {
+                                    if (mounted) {
+                                      ScaffoldMessenger.of(context)
+                                          .showSnackBar(SnackBar(
+                                        content: Text(response["message"]),
+                                      ));
+                                    }
+                                  }
+                                } catch (e) {
                                   ScaffoldMessenger.of(context)
                                       .showSnackBar(SnackBar(
-                                    content: Text(response["message"]),
+                                    content: Text(e.toString()),
                                   ));
                                 }
-                              }
-                            } catch (e) {
-                              ScaffoldMessenger.of(context)
-                                  .showSnackBar(SnackBar(
-                                content: Text(e.toString()),
-                              ));
-                            }
-                          },
-                          child: Text(
-                            otpCount == 0 ? 'Send otp' : 'Resend otp',
-                            style: const TextStyle(
-                                color: Colors.white,
-                                fontSize: 16,
-                                fontWeight: FontWeight.bold),
-                          ),
-                        )
-                      ],
-                    ),
-                  ),
-                  Padding(
-                    padding: const EdgeInsets.fromLTRB(60, 0, 60, 0),
-                    child: Column(
-                      crossAxisAlignment: CrossAxisAlignment.start,
-                      children: [
-                        Text(
-                          'Enter OTP',
-                          style: ktextFieldMainTitle,
+                              },
+                              child: Text(
+                                otpCount == 0 ? 'Send otp' : 'Resend otp',
+                                style: const TextStyle(
+                                    color: Colors.white,
+                                    fontSize: 16,
+                                    fontWeight: FontWeight.bold),
+                              ),
+                            )
+                          ],
                         ),
-                        OtpTextField(
-                          textStyle: kotp,
-                          fieldWidth: 35,
-                          decoration:
-                              const InputDecoration(fillColor: Colors.white),
-                          numberOfFields: 6,
-                          showFieldAsBox: false,
-                          onSubmit: (String verificationCode) {
-                            setState(() {
-                              otp = verificationCode;
-                            });
-                          },
+                      ),
+                      Padding(
+                        padding: const EdgeInsets.fromLTRB(60, 0, 60, 0),
+                        child: Column(
+                          crossAxisAlignment: CrossAxisAlignment.start,
+                          children: [
+                            Text(
+                              'Enter OTP',
+                              style: ktextFieldMainTitle,
+                            ),
+                            OtpTextField(
+                              textStyle: kotp,
+                              fieldWidth: 30,
+                              decoration: const InputDecoration(
+                                  fillColor: Colors.white),
+                              numberOfFields: 6,
+                              showFieldAsBox: false,
+                              onSubmit: (String verificationCode) {
+                                setState(() {
+                                  otp = verificationCode;
+                                });
+                              },
+                            ),
+                          ],
                         ),
-                      ],
-                    ),
-                  ),
-                  const SizedBox(
-                    height: 20,
-                  ),
-                  Padding(
-                      padding: const EdgeInsets.fromLTRB(60, 20, 60, 20),
-                      child: InkWell(
-                        onTap: () async {
-                          setState(() {
-                            mobileNumber.text.isEmpty ||
-                                    !isNumeric(mobileNumber.text) ||
-                                    mobileNumber.text.length != 10
-                                ? validate = true
-                                : validate = false;
-                          });
-                          if (!validate) {
-                            if (otp != "") {
-                              try {
-                                var response = await verifyUserLogin(
-                                    userPhoneModel.id.toString(), otp);
-                                if (response['success'] == true) {
-                                  if (mounted) {
+                      ),
+                      const SizedBox(
+                        height: 20,
+                      ),
+                      Padding(
+                          padding: const EdgeInsets.fromLTRB(60, 20, 60, 20),
+                          child: InkWell(
+                            onTap: () async {
+                              setState(() {
+                                mobileNumber.text.isEmpty ||
+                                        !isNumeric(mobileNumber.text) ||
+                                        mobileNumber.text.length != 10
+                                    ? validate = true
+                                    : validate = false;
+                              });
+                              if (!validate) {
+                                if (otp != "") {
+                                  try {
+                                    var response = await verifyUserLogin(
+                                        userPhoneModel.id.toString(), otp);
+                                    if (response['success'] == true) {
+                                      if (mounted) {
+                                        ScaffoldMessenger.of(context)
+                                            .showSnackBar(SnackBar(
+                                          content: Text(response["message"]),
+                                        ));
+                                        Navigator.pushAndRemoveUntil(
+                                            context,
+                                            MaterialPageRoute(
+                                              builder: (context) =>
+                                                  const MainPage(),
+                                            ),
+                                            ((route) => false));
+                                      }
+                                    } else {
+                                      if (mounted) {
+                                        ScaffoldMessenger.of(context)
+                                            .showSnackBar(SnackBar(
+                                          content: Text(response["message"]),
+                                        ));
+                                      }
+                                    }
+                                  } catch (e) {
                                     ScaffoldMessenger.of(context)
                                         .showSnackBar(SnackBar(
-                                      content: Text(response["message"]),
-                                    ));
-                                    Navigator.pushAndRemoveUntil(
-                                        context,
-                                        MaterialPageRoute(
-                                          builder: (context) =>
-                                              const MainPage(),
-                                        ),
-                                        ((route) => false));
-                                  }
-                                } else {
-                                  if (mounted) {
-                                    ScaffoldMessenger.of(context)
-                                        .showSnackBar(SnackBar(
-                                      content: Text(response["message"]),
+                                      content: Text(e.toString()),
                                     ));
                                   }
                                 }
-                              } catch (e) {
-                                ScaffoldMessenger.of(context)
-                                    .showSnackBar(SnackBar(
-                                  content: Text(e.toString()),
-                                ));
                               }
-                            }
-                          }
-                        },
-                        child: Container(
-                          height: 50,
-                          width: double.infinity,
-                          decoration: BoxDecoration(
-                              color: kmainButtonColor,
-                              borderRadius: BorderRadius.circular(10)),
-                          child: Center(
-                              child: Text(
-                            'Login',
-                            style: kpageTitle,
+                            },
+                            child: Container(
+                              height: 50,
+                              width: double.infinity,
+                              decoration: BoxDecoration(
+                                  color: kmainButtonColor,
+                                  borderRadius: BorderRadius.circular(10)),
+                              child: Center(
+                                  child: Text(
+                                'Login',
+                                style: kpageTitle,
+                              )),
+                            ),
                           )),
-                        ),
-                      )),
-                  const TextWithLine(label: 'New User', height: 1),
-                  Padding(
-                      padding: const EdgeInsets.fromLTRB(60, 20, 60, 13),
-                      child: CustomButton(
-                        removescreens: false,
-                        nextPage: const SignupScreen(),
-                        buttonColor: kbuttonColor,
-                        text: 'Sign Up',
-                        width: 150,
-                        height: 40,
-                      )),
-                ],
+                      const TextWithLine(label: 'New User', height: 1),
+                      Column(
+                        children: [
+                          Padding(
+                              padding:
+                                  const EdgeInsets.fromLTRB(60, 20, 60, 13),
+                              child: CustomButton(
+                                removescreens: false,
+                                nextPage: const SignupScreen(),
+                                buttonColor: kbuttonColor,
+                                text: 'Sign Up',
+                                width: 150,
+                                height: 40,
+                              )),
+                        ],
+                      ),
+                    ],
+                  ),
+                ),
               ),
             ),
-            Expanded(
-                child: Container(
+            Container(
               color: Colors.black,
-            ))
+            )
           ],
         ),
       ),
