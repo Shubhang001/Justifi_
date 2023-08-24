@@ -38,7 +38,7 @@ Future<Object?> floatCases8(
                   ),
                 ),
               ),
-              Divider(
+              const Divider(
                 thickness: 1,
                 color: Colors.black,
               ),
