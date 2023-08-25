@@ -6,6 +6,7 @@ import 'package:jusitfi_admin/presentation/widgets/text_with_line.dart';
 import 'package:jusitfi_admin/utils/constants/textstyles.dart';
 import 'package:flutter_otp_text_field/flutter_otp_text_field.dart';
 import 'package:jusitfi_admin/utils/dynamic/dynamic_values.dart';
+import 'package:jusitfi_admin/utils/models/usermodel.dart';
 import 'package:jusitfi_admin/utils/services/rest_apis.dart';
 import '../../utils/constants/colors.dart';
 import '../widgets/big_button.dart';
@@ -30,6 +31,33 @@ class _LoginScreenState extends State<LoginScreen> {
   TextEditingController mobileNumber = TextEditingController();
   String otp = "";
   int otpCount = 0;
+  int receivedUserId = 0;
+
+  Future<void> registerUserPhoneId() async {
+    try {
+      var response = await loginUserWithPhone(mobileNumber.text);
+      print("Response: $response");
+      if (response != null && response['success'] == true) {
+        final id = response['id'];
+        if (id != null) {
+          if (mounted) {
+            ScaffoldMessenger.of(context).showSnackBar(SnackBar(
+              content: Text(response["message"]),
+            ));
+            setState(() {
+              receivedUserId = id;
+              otpCount++;
+            });
+          }
+        }
+      }
+    } catch (e) {
+      ScaffoldMessenger.of(context).showSnackBar(SnackBar(
+        content: Text(e.toString()),
+      ));
+      print("$e");
+    }
+  }
 
   Future<bool> checkValidation() async {
     setState(() {
@@ -39,16 +67,17 @@ class _LoginScreenState extends State<LoginScreen> {
           ? validate = true
           : validate = false;
     });
+
     if (!validate) {
       if (otp != "") {
         try {
-          var response =
-              await verifyUserLogin(userPhoneModel.id.toString(), otp);
+          var response = await verifyUserLogin(receivedUserId.toString(), otp);
           if (response['success'] == true) {
             if (mounted) {
               ScaffoldMessenger.of(context).showSnackBar(SnackBar(
                 content: Text(response["message"]),
               ));
+              print(response["message"]);
               setState(() {
                 validate = false;
               });
@@ -66,6 +95,7 @@ class _LoginScreenState extends State<LoginScreen> {
           ScaffoldMessenger.of(context).showSnackBar(SnackBar(
             content: Text(e.toString()),
           ));
+          print("Error: $e");
         }
       }
     }
@@ -75,7 +105,7 @@ class _LoginScreenState extends State<LoginScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      resizeToAvoidBottomInset: false,
+      resizeToAvoidBottomInset: true,
       backgroundColor: Colors.white,
       body: SafeArea(
         child: Column(
@@ -115,22 +145,13 @@ class _LoginScreenState extends State<LoginScreen> {
                                   otpCount++;
                                 });
                                 try {
-                                  var response = await loginUserWithPhone(
-                                      mobileNumber.text);
-                                  if (response != null &&
-                                      response['success'] == true) {
-                                    if (mounted) {
-                                      ScaffoldMessenger.of(context)
-                                          .showSnackBar(SnackBar(
-                                        content: Text(response["message"]),
-                                      ));
-                                    }
-                                  }
+                                  await registerUserPhoneId();
                                 } catch (e) {
                                   ScaffoldMessenger.of(context)
                                       .showSnackBar(SnackBar(
                                     content: Text(e.toString()),
                                   ));
+                                  print("Error: $e");
                                 }
                               },
                               child: Text(
@@ -187,13 +208,14 @@ class _LoginScreenState extends State<LoginScreen> {
                                 if (otp != "") {
                                   try {
                                     var response = await verifyUserLogin(
-                                        userPhoneModel.id.toString(), otp);
+                                        receivedUserId.toString(), otp);
                                     if (response['success'] == true) {
                                       if (mounted) {
                                         ScaffoldMessenger.of(context)
                                             .showSnackBar(SnackBar(
                                           content: Text(response["message"]),
                                         ));
+                                        print('$response["message"]');
                                         Navigator.pushAndRemoveUntil(
                                             context,
                                             MaterialPageRoute(
@@ -215,6 +237,7 @@ class _LoginScreenState extends State<LoginScreen> {
                                         .showSnackBar(SnackBar(
                                       content: Text(e.toString()),
                                     ));
+                                    print("Error: $e");
                                   }
                                 }
                               }
