@@ -24,7 +24,8 @@ class _LoginScreenState extends State<LoginScreen> {
     if (s == null) {
       return false;
     }
-    return double.tryParse(s) != null;
+    double? value = double.tryParse(s);
+    return value != null && value >= 0;
   }
 
   bool validate = false;
@@ -142,16 +143,22 @@ class _LoginScreenState extends State<LoginScreen> {
                             InkWell(
                               onTap: () async {
                                 setState(() {
-                                  otpCount++;
+                                  mobileNumber.text.isEmpty ||
+                                          !isNumeric(mobileNumber.text) ||
+                                          mobileNumber.text.length != 10
+                                      ? validate = true
+                                      : validate = false;
                                 });
-                                try {
-                                  await registerUserPhoneId();
-                                } catch (e) {
-                                  ScaffoldMessenger.of(context)
-                                      .showSnackBar(SnackBar(
-                                    content: Text(e.toString()),
-                                  ));
-                                  print("Error: $e");
+                                if (!validate) {
+                                  try {
+                                    await registerUserPhoneId();
+                                  } catch (e) {
+                                    ScaffoldMessenger.of(context)
+                                        .showSnackBar(SnackBar(
+                                      content: Text(e.toString()),
+                                    ));
+                                    print("Error: $e");
+                                  }
                                 }
                               },
                               child: Text(
