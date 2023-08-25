@@ -3,8 +3,10 @@ import 'package:flutter/material.dart';
 import 'package:jusitfi_admin/presentation/screens/floatcases9.dart';
 import 'package:jusitfi_admin/presentation/widgets/notes.dart';
 import 'package:jusitfi_admin/presentation/widgets/starrating.dart';
+import 'package:jusitfi_admin/utils/constants/colors.dart';
 
 import '../../utils/constants/textstyles.dart';
+import '../widgets/filter_sort.dart';
 
 class FloatCases5 extends StatefulWidget {
   const FloatCases5({super.key});
@@ -81,7 +83,7 @@ class LawyerHireDetails extends StatelessWidget {
           children: [
             Row(
               children: [
-                SizedBox(
+                const SizedBox(
                   width: 10,
                 ),
                 Container(
@@ -97,7 +99,7 @@ class LawyerHireDetails extends StatelessWidget {
                     ],
                   ),
                 ),
-                SizedBox(
+                const SizedBox(
                   width: 15,
                 ),
                 Column(
@@ -121,19 +123,19 @@ class LawyerHireDetails extends StatelessWidget {
                           'Rating: ',
                           style: kCallAns,
                         ),
-                        StarRating(rating: 3)
+                        const StarRating(rating: 3)
                       ],
                     ),
                   ],
                 ),
               ],
             ),
-            SizedBox(
+            const SizedBox(
               height: 10,
             ),
             Row(
               children: [
-                SizedBox(
+                const SizedBox(
                   width: 80,
                 ),
                 Text(
