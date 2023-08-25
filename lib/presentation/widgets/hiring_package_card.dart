@@ -46,7 +46,7 @@ class HiringPackageCard extends StatelessWidget {
                   height: 220,
                   //width: 164,
                   child: Image.asset(image.toString())),
-              SizedBox(
+              const SizedBox(
                 width: 10,
               ),
               Expanded(

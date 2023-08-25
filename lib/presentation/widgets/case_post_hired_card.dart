@@ -125,7 +125,7 @@ class _CasePostHiredCardState extends State<CasePostHiredCard> {
                               )
                             ],
                           ),
-                          SizedBox(
+                          const SizedBox(
                             height: 10,
                           ),
                           Row(
@@ -257,7 +257,7 @@ class _CasePostHiredCardState extends State<CasePostHiredCard> {
                           style: poppinsW400S9White,
                         ),
                         widget.viewApplication
-                            ? SizedBox()
+                            ? const SizedBox()
                             : Text(
                                 '₹ ${widget.fees}',
                                 style: poppinsW400S9White,
@@ -345,7 +345,7 @@ class _CasePostHiredCardState extends State<CasePostHiredCard> {
                                             " Document",
                                             style: poppinsW400S9Black,
                                           )))),
-                              SizedBox(
+                              const SizedBox(
                                 height: 5,
                               ),
                               GestureDetector(
@@ -396,7 +396,7 @@ class _CasePostHiredCardState extends State<CasePostHiredCard> {
                   GestureDetector(
                       onTap: () {
                         Navigator.of(context).push(MaterialPageRoute(
-                            builder: (context) =>  ChatPage()));
+                            builder: (context) => const ChatPage()));
                       },
                       child: Padding(
                           padding: const EdgeInsets.all(16),

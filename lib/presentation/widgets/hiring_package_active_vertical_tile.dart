@@ -6,13 +6,13 @@ class HiringPackageActiveVerticalTile extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Column(
+    return const Column(
       children: [
         SizedBox(
           child: SingleChildScrollView(
             scrollDirection: Axis.vertical,
             child: Column(
-              children: const [
+              children: [
                 HiringPackageCard(
                   image: 'assets/images/hiring_image.png',
                   hiringType: "Profile Hiring",

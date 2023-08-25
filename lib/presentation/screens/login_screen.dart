@@ -83,7 +83,7 @@ class _LoginScreenState extends State<LoginScreen> {
             Container(
               transform: Matrix4.translationValues(0.0, 15.0, 0.0),
               child: Image.asset(
-                'assets/images/login.png',
+                'assets/images/login1.png',
                 height: 200,
                 width: 200,
               ),
@@ -101,7 +101,7 @@ class _LoginScreenState extends State<LoginScreen> {
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
                     children: [
                       Padding(
-                        padding: const EdgeInsets.fromLTRB(60, 80, 60, 0),
+                        padding: const EdgeInsets.fromLTRB(50, 80, 60, 0),
                         child: Column(
                           crossAxisAlignment: CrossAxisAlignment.end,
                           children: [
@@ -145,7 +145,7 @@ class _LoginScreenState extends State<LoginScreen> {
                         ),
                       ),
                       Padding(
-                        padding: const EdgeInsets.fromLTRB(60, 0, 60, 0),
+                        padding: const EdgeInsets.fromLTRB(50, 0, 60, 0),
                         child: Column(
                           crossAxisAlignment: CrossAxisAlignment.start,
                           children: [

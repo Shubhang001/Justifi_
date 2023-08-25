@@ -1,4 +1,6 @@
+import 'package:dropdown_button2/custom_dropdown_button2.dart';
 import 'package:flutter/material.dart';
+import 'package:jusitfi_admin/presentation/widgets/cancellation_dialog_box.dart';
 import 'package:jusitfi_admin/presentation/widgets/drop_down_button.dart';
 import 'package:jusitfi_admin/presentation/widgets/locked_application_dialog_box.dart';
 import 'package:jusitfi_admin/presentation/widgets/view_cancel_reason_dialog.dart';
@@ -129,7 +131,7 @@ class _CasePostPendingApplyCardState extends State<CasePostPendingApplyCard> {
                               )
                             ],
                           ),
-                          SizedBox(
+                          const SizedBox(
                             height: 10,
                           ),
                           Row(

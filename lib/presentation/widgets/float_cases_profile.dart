@@ -40,112 +40,140 @@ class AdvocateCardFloatCases extends StatelessWidget {
           height: 270,
           width: 250,
           decoration: BoxDecoration(
-              color: Colors.white,
+              color: Colors.black,
               borderRadius: BorderRadius.circular(8),
               border: Border.all(color: Colors.grey, width: 2)),
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
-              Image.asset(
-                image,
-                width: 250,
-                height: 120,
-                fit: BoxFit.fill,
+              Padding(
+                padding: const EdgeInsets.all(3.0),
+                child: Row(
+                  children: [
+                    CircleAvatar(
+                      radius: 65.0,
+                      backgroundColor: Colors.transparent,
+                      child: ClipOval(
+                        child: Image.asset(
+                          image,
+                          width: 120,
+                          height: 120,
+                        ),
+                      ),
+                    ),
+                    CircleAvatar(
+                      radius: 55.0,
+                      backgroundColor: Colors.transparent,
+                      child: ClipOval(
+                        child: Image.asset(
+                          "assets/images/justify_logo.png",
+                          width: 130,
+                          height: 130,
+                        ),
+                      ),
+                    ),
+                  ],
+                ),
               ),
-              Row(
-                mainAxisAlignment: MainAxisAlignment.spaceAround,
-                children: [
-                  Column(
-                    crossAxisAlignment: CrossAxisAlignment.start,
+              Container(
+                color: Colors.white,
+                child: Column(children: [
+                  Row(
+                    mainAxisAlignment: MainAxisAlignment.spaceAround,
                     children: [
-                      Text(
-                        name,
-                        style: kAdvocateCardName,
-                      ),
-                      Text(
-                        location,
-                        style: kAdvocateCardSubTitle,
-                      ),
-                      Row(
+                      Column(
+                        crossAxisAlignment: CrossAxisAlignment.start,
                         children: [
-                          const Icon(
-                            Icons.pin_drop,
-                            color: Colors.red,
-                            size: 10,
+                          Text(
+                            name,
+                            style: kAdvocateCardName,
                           ),
                           Text(
-                            '$distance kms from your location',
-                            style: kAdvocateCardLocation,
+                            location,
+                            style: kAdvocateCardSubTitle,
+                          ),
+                          Row(
+                            children: [
+                              const Icon(
+                                Icons.pin_drop,
+                                color: Colors.red,
+                                size: 10,
+                              ),
+                              Text(
+                                '$distance kms from your location',
+                                style: kAdvocateCardLocation,
+                              )
+                            ],
                           )
+                        ],
+                      ),
+                      Column(
+                        mainAxisAlignment: MainAxisAlignment.spaceAround,
+                        children: [
+                          Text(
+                            rating.toString(),
+                            style: kAdvocateCardRating,
+                          ),
+                          StarRating(rating: rating)
                         ],
                       )
                     ],
                   ),
-                  Column(
-                    mainAxisAlignment: MainAxisAlignment.spaceAround,
-                    children: [
-                      Text(
-                        rating.toString(),
-                        style: kAdvocateCardRating,
-                      ),
-                      StarRating(rating: rating)
-                    ],
+                  IntrinsicHeight(
+                    child: Row(
+                      mainAxisAlignment: MainAxisAlignment.spaceAround,
+                      children: [
+                        Column(
+                          children: [
+                            Text(
+                              '80',
+                              style: kAdvocateCardCount,
+                            ),
+                            Text(
+                              'Clients',
+                              style: kAdvocateCardCountTitle,
+                            )
+                          ],
+                        ),
+                        const VerticalDivider(
+                          color: Colors.black,
+                        ),
+                        Column(
+                          children: [
+                            Text(
+                              '80',
+                              style: kAdvocateCardCount,
+                            ),
+                            Text(
+                              'Cases',
+                              style: kAdvocateCardCountTitle,
+                            )
+                          ],
+                        ),
+                        const VerticalDivider(
+                          color: Colors.black,
+                        ),
+                        Column(
+                          children: [
+                            Text(
+                              '80',
+                              style: kAdvocateCardCount,
+                            ),
+                            Text(
+                              'Experiences',
+                              style: kAdvocateCardCountTitle,
+                            )
+                          ],
+                        )
+                      ],
+                    ),
+                  ),
+                  const SizedBox(
+                    height: 20,
                   )
-                ],
+                ]),
               ),
-              IntrinsicHeight(
-                child: Row(
-                  mainAxisAlignment: MainAxisAlignment.spaceAround,
-                  children: [
-                    Column(
-                      children: [
-                        Text(
-                          '80',
-                          style: kAdvocateCardCount,
-                        ),
-                        Text(
-                          'Clients',
-                          style: kAdvocateCardCountTitle,
-                        )
-                      ],
-                    ),
-                    const VerticalDivider(
-                      color: Colors.black,
-                    ),
-                    Column(
-                      children: [
-                        Text(
-                          '80',
-                          style: kAdvocateCardCount,
-                        ),
-                        Text(
-                          'Cases',
-                          style: kAdvocateCardCountTitle,
-                        )
-                      ],
-                    ),
-                    const VerticalDivider(
-                      color: Colors.black,
-                    ),
-                    Column(
-                      children: [
-                        Text(
-                          '80',
-                          style: kAdvocateCardCount,
-                        ),
-                        Text(
-                          'Experiences',
-                          style: kAdvocateCardCountTitle,
-                        )
-                      ],
-                    )
-                  ],
-                ),
-              ),
-              SizedBox(
-                height: 10,
-              )
               // Padding(
               //   padding: const EdgeInsets.symmetric(horizontal: 8, vertical: 5),
               //   child: Align(

@@ -65,7 +65,7 @@ class ApplicantsDetails extends StatelessWidget {
                       color: Colors.white,
                     ),
                   )
-                : SizedBox(),
+                : const SizedBox(),
           ]),
         ),
         Row(

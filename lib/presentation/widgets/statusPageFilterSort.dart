@@ -18,9 +18,9 @@ class StatusPageFilterSort extends StatelessWidget {
         child: Row(
           mainAxisAlignment: MainAxisAlignment.spaceAround,
           children: [
-            SizedBox(
+            const SizedBox(
               height: 50,
-              child: Row(children: const [
+              child: Row(children: [
                 Icon(
                   Icons.arrow_upward_rounded,
                   color: Colors.black,
