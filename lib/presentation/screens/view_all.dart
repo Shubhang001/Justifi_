@@ -1,14 +1,23 @@
+import 'dart:isolate';
+
 import 'package:flutter/material.dart';
+import 'package:jusitfi_admin/api/lawyers/nearest_advocate.dart';
 import 'package:jusitfi_admin/data/models/lawyer_model.dart';
 import 'package:jusitfi_admin/presentation/widgets/advocate_card_extended.dart';
 import 'package:jusitfi_admin/presentation/widgets/filter_sort.dart';
 import 'package:jusitfi_admin/presentation/widgets/searchbar.dart';
 import 'package:jusitfi_admin/utils/constants/textstyles.dart';
 
-class ViewAllPage extends StatelessWidget {
-  ViewAllPage({super.key, required this.title});
+class ViewAllPage extends StatefulWidget {
+  const ViewAllPage({super.key, required this.title});
   final String title;
-  final List<Lawyer> items = [
+  @override
+  State<ViewAllPage> createState() => _ViewAllPageState(title: title);
+}
+
+class _ViewAllPageState extends State<ViewAllPage> {
+  final String title;
+  /*final List<Lawyer> items = [
     Lawyer(
         name: 'Priya Sharma',
         image: 'assets/images/advocate_img.png',
@@ -118,7 +127,11 @@ class ViewAllPage extends StatelessWidget {
         cases: 80,
         experience: 80),
   ];*/
-  List<NearestAdvocate>? items;
+  var json;
+
+  var results;
+  List<dynamic> results1 = [];
+  _ViewAllPageState({required this.title});
 
   @override
   void initState() {
@@ -127,7 +140,9 @@ class ViewAllPage extends StatelessWidget {
   }
 
   getData() async {
-    items = (await RemoteService().getNearestAdvocate())!;
+    json = await RemoteService().getNearestAdvocate();
+    results = nearestAdvocateFromJson(json);
+    results1 = results['results'];
   }
 
   @override
@@ -183,17 +198,26 @@ class ViewAllPage extends StatelessWidget {
                     height: 500,
                     width: 300,
                     child: ListView.builder(
-                      itemCount: items?.length,
+                      itemCount: results1.length,
                       itemBuilder: (context, index) {
+                        var res = results1[index];
+                        var fullname = res['full_name'];
+                        var profileimage = res['profile_image'];
+                        var qualification = res['qualification'];
+                        var distance = res['distance'];
+                        var rating = res['rating'];
+                        var totalclientshandled = res['total_client_handled'];
+                        var totalcaseshandled = res['total_case_handled'];
+                        var experience = res['total_experience'];
                         return AdvocateCardExtended(
-                          name: items![index].name,
-                          image: items![index].image,
-                          education: items![index].education,
-                          distance: items![index].distance,
-                          rating: items![index].rating,
-                          clients: items![index].clients,
-                          cases: items![index].cases,
-                          experience: items![index].experience,
+                          name: fullname,
+                          image: profileimage,
+                          education: qualification,
+                          distance: distance,
+                          rating: rating,
+                          clients: totalclientshandled,
+                          cases: totalcaseshandled,
+                          experience: experience,
                         );
                       },
                     ),

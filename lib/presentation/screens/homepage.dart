@@ -226,7 +226,7 @@ class _HomePageState extends State<HomePage> {
                             onPressed: () {
                               Navigator.of(context)
                                   .push(MaterialPageRoute(builder: (_) {
-                                return ViewAllPage(
+                                return const ViewAllPage(
                                   title: 'Lawyers Near Me',
                                 );
                               }));
@@ -248,7 +248,7 @@ class _HomePageState extends State<HomePage> {
                             onPressed: () {
                               Navigator.of(context)
                                   .push(MaterialPageRoute(builder: (_) {
-                                return ViewAllPage(
+                                return const ViewAllPage(
                                   title: 'Popular Lawyers',
                                 );
                               }));
