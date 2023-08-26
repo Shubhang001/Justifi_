@@ -8,8 +8,10 @@ import 'package:flutter_otp_text_field/flutter_otp_text_field.dart';
 import 'package:jusitfi_admin/utils/dynamic/dynamic_values.dart';
 import 'package:jusitfi_admin/utils/models/usermodel.dart';
 import 'package:jusitfi_admin/utils/services/rest_apis.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 import '../../utils/constants/colors.dart';
 import '../widgets/big_button.dart';
+import 'package:flutter/services.dart';
 
 class LoginScreen extends StatefulWidget {
   const LoginScreen({super.key});
@@ -58,6 +60,11 @@ class _LoginScreenState extends State<LoginScreen> {
       ));
       print("$e");
     }
+  }
+
+  void _storeToken(String token) async {
+    SharedPreferences prefs = await SharedPreferences.getInstance();
+    prefs.setString('token', token);
   }
 
   Future<bool> checkValidation() async {
@@ -184,6 +191,10 @@ class _LoginScreenState extends State<LoginScreen> {
                             OtpTextField(
                               textStyle: kotp,
                               fieldWidth: 30,
+                              inputFormatters: [
+                                FilteringTextInputFormatter
+                                    .digitsOnly, // Allow only numbers
+                              ],
                               decoration: const InputDecoration(
                                   fillColor: Colors.white),
                               numberOfFields: 6,
