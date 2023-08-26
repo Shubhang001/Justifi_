@@ -5,7 +5,7 @@
 import 'dart:convert';
 import 'package:http/http.dart' as http;
 
-NearestAdvocate nearestAdvocateFromJson(String str) =>
+/*NearestAdvocate nearestAdvocateFromJson(String str) =>
     NearestAdvocate.fromJson(json.decode(str));
 
 String nearestAdvocateToJson(NearestAdvocate data) =>
@@ -102,4 +102,16 @@ class RemoteService {
     }
     return null;
   }
-}
+}*/
+
+/*class RemoteService {
+  Future<void> fetchUsers() async {
+    var uri = Uri.parse("http://15.206.28.255:8000/v1/popular-advocates/");
+    var response = await http.get(uri);
+    final body = response.body;
+    final json = jsonDecode(body);
+    if (response.statusCode == 200) {
+      return json;
+    }
+  }
+}*/
