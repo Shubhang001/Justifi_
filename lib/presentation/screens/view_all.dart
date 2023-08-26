@@ -117,7 +117,18 @@ class ViewAllPage extends StatelessWidget {
         clients: 80,
         cases: 80,
         experience: 80),
-  ];
+  ];*/
+  List<NearestAdvocate>? items;
+
+  @override
+  void initState() {
+    super.initState();
+    getData();
+  }
+
+  getData() async {
+    items = (await RemoteService().getNearestAdvocate())!;
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -172,17 +183,17 @@ class ViewAllPage extends StatelessWidget {
                     height: 500,
                     width: 300,
                     child: ListView.builder(
-                      itemCount: items.length,
+                      itemCount: items?.length,
                       itemBuilder: (context, index) {
                         return AdvocateCardExtended(
-                          name: items[index].name,
-                          image: items[index].image,
-                          education: items[index].education,
-                          distance: items[index].distance,
-                          rating: items[index].rating,
-                          clients: items[index].clients,
-                          cases: items[index].cases,
-                          experience: items[index].experience,
+                          name: items![index].name,
+                          image: items![index].image,
+                          education: items![index].education,
+                          distance: items![index].distance,
+                          rating: items![index].rating,
+                          clients: items![index].clients,
+                          cases: items![index].cases,
+                          experience: items![index].experience,
                         );
                       },
                     ),
