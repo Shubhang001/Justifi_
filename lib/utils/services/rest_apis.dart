@@ -58,7 +58,9 @@ Future loginUserWithPhone(String phone) async {
     final user = {
       "success": res['success'],
       "message": res['message'],
+      "id": res['data']['id'],
     };
+
     return user;
   } else {
     return Exception(response.reasonPhrase);

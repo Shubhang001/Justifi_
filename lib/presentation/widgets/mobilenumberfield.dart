@@ -15,7 +15,8 @@ class MobileInputTextField extends StatelessWidget {
     if (s == null) {
       return false;
     }
-    return double.tryParse(s) != null;
+    double? value = double.tryParse(s);
+    return value != null && value >= 0; // Allow only positive numbers
   }
 
   final String title;
