@@ -29,13 +29,19 @@ class _SignupScreenState extends State<SignupScreen> {
     return double.tryParse(s) != null;
   }
 
+  bool isNameValid(String name) {
+    // This function will check if the name contains only letters.
+    return RegExp(r'^[a-zA-Z]+$').hasMatch(name);
+  }
+
   bool checkValidation() {
     List values = [
       mobileNumberController.text.isEmpty ||
           mobileNumberController.text.length != 10 ||
           !isNumeric(mobileNumberController.text),
-      firstNameController.text.isEmpty,
-      lastNameController.text.isEmpty,
+      firstNameController.text.isEmpty ||
+          !isNameValid(firstNameController.text),
+      lastNameController.text.isEmpty || !isNameValid(lastNameController.text),
       emailController.text.isEmpty,
     ];
     setState(() {
@@ -89,13 +95,15 @@ class _SignupScreenState extends State<SignupScreen> {
                 ),
                 ImagePickerContainer(),
                 InputTextField(
-                  errorText: 'First Name Should Be Filled',
+                  errorText:
+                      'First Name Should Be Filled and Contain Only Letters',
                   validate: validate,
                   title: 'First Name',
                   txtController: firstNameController,
                 ),
                 InputTextField(
-                  errorText: 'Second Name Should Be Filled',
+                  errorText:
+                      'Second Name Should Be Filled and Contain Only Letters',
                   validate: validate,
                   title: 'Last Name',
                   txtController: lastNameController,
