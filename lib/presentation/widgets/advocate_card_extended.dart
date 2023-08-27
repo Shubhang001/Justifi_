@@ -18,11 +18,11 @@ class AdvocateCardExtended extends StatelessWidget {
   final String image;
   final String name;
   final String education;
-  final double distance;
+  final num distance;
   final double rating;
-  final int cases;
-  final int clients;
-  final int experience;
+  final num cases;
+  final num clients;
+  final num experience;
 
   @override
   Widget build(BuildContext context) {
@@ -37,129 +37,164 @@ class AdvocateCardExtended extends StatelessWidget {
               ));
         },
         child: Container(
-          height: 270,
-          width: 250,
+          height: 300,
+          width: 300,
           decoration: BoxDecoration(
-              color: Colors.white, borderRadius: BorderRadius.circular(8)),
+              border: Border.all(color: Colors.white, width: 2.0),
+              color: Colors.black,
+              borderRadius: BorderRadius.circular(8)),
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
-              Image.asset(
-                image,
-                width: 250,
-                height: 120,
-                fit: BoxFit.fill,
-              ),
               Row(
-                mainAxisAlignment: MainAxisAlignment.spaceAround,
                 children: [
-                  Column(
-                    crossAxisAlignment: CrossAxisAlignment.start,
-                    children: [
-                      Text(
-                        name,
-                        style: kAdvocateCardName,
+                  CircleAvatar(
+                    radius: 75.0,
+                    backgroundColor: Colors.transparent,
+                    child: ClipOval(
+                      child: Image.network(
+                        image,
+                        width: 120,
+                        height: 120,
                       ),
-                      Text(
-                        education,
-                        style: kAdvocateCardSubTitle,
-                      ),
-                      Row(
-                        children: [
-                          const Icon(
-                            Icons.pin_drop,
-                            color: Colors.red,
-                            size: 10,
-                          ),
-                          Text(
-                            '$distance kms from your location',
-                            style: kAdvocateCardLocation,
-                          )
-                        ],
-                      )
-                    ],
+                    ),
                   ),
-                  Column(
-                    mainAxisAlignment: MainAxisAlignment.spaceAround,
-                    children: [
-                      Text(
-                        rating.toString(),
-                        style: kAdvocateCardRating,
+                  CircleAvatar(
+                    radius: 60.0,
+                    backgroundColor: Colors.transparent,
+                    child: ClipOval(
+                      child: Image.asset(
+                        "assets/images/justify_logo.png",
+                        width: 130,
+                        height: 130,
                       ),
-                      StarRating(rating: rating)
-                    ],
-                  )
+                    ),
+                  ),
                 ],
               ),
-              IntrinsicHeight(
-                child: Row(
-                  mainAxisAlignment: MainAxisAlignment.spaceAround,
+              Container(
+                color: Colors.white,
+                child: Column(
                   children: [
-                    Column(
-                      children: [
-                        Text(
-                          '80',
-                          style: kAdvocateCardCount,
+                    Container(
+                      color: Colors.white,
+                      child: Row(
+                        mainAxisAlignment: MainAxisAlignment.spaceAround,
+                        children: [
+                          Column(
+                            crossAxisAlignment: CrossAxisAlignment.start,
+                            children: [
+                              Text(
+                                name,
+                                style: kAdvocateCardName,
+                              ),
+                              Text(
+                                education,
+                                style: kAdvocateCardSubTitle,
+                              ),
+                              Row(
+                                children: [
+                                  const Icon(
+                                    Icons.pin_drop,
+                                    color: Colors.red,
+                                    size: 10,
+                                  ),
+                                  Text(
+                                    '$distance kms from your location',
+                                    style: kAdvocateCardLocation,
+                                  )
+                                ],
+                              ),
+                            ],
+                          ),
+                          Column(
+                            mainAxisAlignment: MainAxisAlignment.spaceAround,
+                            children: [
+                              Text(
+                                rating.toString(),
+                                style: kAdvocateCardRating,
+                              ),
+                              StarRating(rating: rating)
+                            ],
+                          )
+                        ],
+                      ),
+                    ),
+                    Container(
+                      color: Colors.white,
+                      child: IntrinsicHeight(
+                        child: Row(
+                          mainAxisAlignment: MainAxisAlignment.spaceAround,
+                          children: [
+                            Column(
+                              children: [
+                                Text(
+                                  clients.toString(),
+                                  style: kAdvocateCardCount,
+                                ),
+                                Text(
+                                  'Clients',
+                                  style: kAdvocateCardCountTitle,
+                                )
+                              ],
+                            ),
+                            const VerticalDivider(
+                              color: Colors.black,
+                            ),
+                            Column(
+                              children: [
+                                Text(
+                                  cases.toString(),
+                                  style: kAdvocateCardCount,
+                                ),
+                                Text(
+                                  'Cases',
+                                  style: kAdvocateCardCountTitle,
+                                )
+                              ],
+                            ),
+                            const VerticalDivider(
+                              color: Colors.black,
+                            ),
+                            Column(
+                              children: [
+                                Text(
+                                  experience.toString(),
+                                  style: kAdvocateCardCount,
+                                ),
+                                Text(
+                                  'Experiences',
+                                  style: kAdvocateCardCountTitle,
+                                )
+                              ],
+                            )
+                          ],
                         ),
-                        Text(
-                          'Clients',
-                          style: kAdvocateCardCountTitle,
-                        )
-                      ],
+                      ),
                     ),
-                    const VerticalDivider(
-                      color: Colors.black,
-                    ),
-                    Column(
-                      children: [
-                        Text(
-                          '80',
-                          style: kAdvocateCardCount,
+                    Padding(
+                      padding: const EdgeInsets.all(8.0),
+                      child: Align(
+                        alignment: Alignment.bottomRight,
+                        child: Container(
+                          height: 20,
+                          width: 80,
+                          decoration: BoxDecoration(
+                              color: Colors.green,
+                              borderRadius: BorderRadius.circular(2)),
+                          child: Center(
+                            child: Text(
+                              'View Profile',
+                              style: kProfileButtonText,
+                            ),
+                          ),
                         ),
-                        Text(
-                          'Cases',
-                          style: kAdvocateCardCountTitle,
-                        )
-                      ],
+                      ),
                     ),
-                    const VerticalDivider(
-                      color: Colors.black,
-                    ),
-                    Column(
-                      children: [
-                        Text(
-                          '80',
-                          style: kAdvocateCardCount,
-                        ),
-                        Text(
-                          'Experiences',
-                          style: kAdvocateCardCountTitle,
-                        )
-                      ],
-                    )
                   ],
                 ),
               ),
-              Padding(
-                padding: const EdgeInsets.symmetric(horizontal: 8, vertical: 5),
-                child: Align(
-                  alignment: Alignment.bottomRight,
-                  child: Container(
-                    height: 20,
-                    width: 80,
-                    decoration: BoxDecoration(
-                        color: Colors.green,
-                        borderRadius: BorderRadius.circular(2)),
-                    child: Center(
-                      child: Text(
-                        'View Profile',
-                        style: kProfileButtonText,
-                      ),
-                    ),
-                  ),
-                ),
-              )
             ],
           ),
         ),

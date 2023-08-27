@@ -43,8 +43,8 @@ class _FloatCases2State extends State<FloatCases2> {
           backgroundColor: Colors.black,
           actions: [
             Padding(
-              padding:
-                  EdgeInsets.only(left: 20, right: 30, top: 10, bottom: 10),
+              padding: const EdgeInsets.only(
+                  left: 20, right: 30, top: 10, bottom: 10),
               child: Row(
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
@@ -53,11 +53,11 @@ class _FloatCases2State extends State<FloatCases2> {
                       Navigator.push(
                         context,
                         MaterialPageRoute(
-                          builder: (context) => NotificationsPage(),
+                          builder: (context) => const NotificationsPage(),
                         ),
                       );
                     },
-                    child: Icon(
+                    child: const Icon(
                       Icons.notifications_outlined,
                       color: Colors.white,
                       size: 35,

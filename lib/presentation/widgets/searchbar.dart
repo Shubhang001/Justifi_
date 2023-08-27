@@ -3,8 +3,10 @@ import '../../utils/constants/colors.dart';
 import '../../utils/constants/textstyles.dart';
 
 class SearchBarUpdated extends StatelessWidget {
-  const SearchBarUpdated({super.key, required this.backgroundColor});
+  const SearchBarUpdated(
+      {super.key, required this.backgroundColor, required this.color});
   final Color backgroundColor;
+  final Color color;
 
   @override
   Widget build(BuildContext context) {
@@ -28,7 +30,11 @@ class SearchBarUpdated extends StatelessWidget {
           ),
           Expanded(
             child: TextField(
-              style: kotp,
+              style: TextStyle(
+                color: color,
+                fontWeight: FontWeight.w400,
+                fontSize: 18,
+              ),
               decoration: InputDecoration(
                 border: InputBorder.none,
                 hintText: 'Search....',

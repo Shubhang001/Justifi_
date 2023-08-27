@@ -1,123 +1,28 @@
+import 'dart:convert';
+
 import 'package:flutter/material.dart';
-import 'package:jusitfi_admin/data/models/lawyer_model.dart';
 import 'package:jusitfi_admin/presentation/widgets/advocate_card_extended.dart';
 import 'package:jusitfi_admin/presentation/widgets/filter_sort.dart';
 import 'package:jusitfi_admin/presentation/widgets/searchbar.dart';
 import 'package:jusitfi_admin/utils/constants/textstyles.dart';
+import 'package:http/http.dart' as http;
 
-class ViewAllPage extends StatelessWidget {
-  ViewAllPage({super.key, required this.title});
+class ViewAllPage extends StatefulWidget {
+  const ViewAllPage({super.key, required this.title});
   final String title;
-  final List<Lawyer> items = [
-    Lawyer(
-        name: 'Priya Sharma',
-        image: 'assets/images/advocate_img.png',
-        education: 'Delhi University\nLL.B',
-        distance: 10,
-        rating: 3.5,
-        clients: 80,
-        cases: 80,
-        experience: 80),
-    Lawyer(
-        name: 'Priya Sharma',
-        image: 'assets/images/advocate_img.png',
-        education: 'Delhi University\nLL.B',
-        distance: 10,
-        rating: 3.5,
-        clients: 80,
-        cases: 80,
-        experience: 80),
-    Lawyer(
-        name: 'Priya Sharma',
-        image: 'assets/images/advocate_img.png',
-        education: 'Delhi University\nLL.B',
-        distance: 10,
-        rating: 3.5,
-        clients: 80,
-        cases: 80,
-        experience: 80),
-    Lawyer(
-        name: 'Priya Sharma',
-        image: 'assets/images/advocate_img.png',
-        education: 'Delhi University\nLL.B',
-        distance: 10,
-        rating: 3.5,
-        clients: 80,
-        cases: 80,
-        experience: 80),
-    Lawyer(
-        name: 'Priya Sharma',
-        image: 'assets/images/advocate_img.png',
-        education: 'Delhi University\nLL.B',
-        distance: 10,
-        rating: 3.5,
-        clients: 80,
-        cases: 80,
-        experience: 80),
-    Lawyer(
-        name: 'Priya Sharma',
-        image: 'assets/images/advocate_img.png',
-        education: 'Delhi University\nLL.B',
-        distance: 10,
-        rating: 3.5,
-        clients: 80,
-        cases: 80,
-        experience: 80),
-    Lawyer(
-        name: 'Priya Sharma',
-        image: 'assets/images/advocate_img.png',
-        education: 'Delhi University\nLL.B',
-        distance: 10,
-        rating: 3.5,
-        clients: 80,
-        cases: 80,
-        experience: 80),
-    Lawyer(
-        name: 'Priya Sharma',
-        image: 'assets/images/advocate_img.png',
-        education: 'Delhi University\nLL.B',
-        distance: 10,
-        rating: 3.5,
-        clients: 80,
-        cases: 80,
-        experience: 80),
-    Lawyer(
-        name: 'Priya Sharma',
-        image: 'assets/images/advocate_img.png',
-        education: 'Delhi University\nLL.B',
-        distance: 10,
-        rating: 3.5,
-        clients: 80,
-        cases: 80,
-        experience: 80),
-    Lawyer(
-        name: 'Priya Sharma',
-        image: 'assets/images/advocate_img.png',
-        education: 'Delhi University\nLL.B',
-        distance: 10,
-        rating: 3.5,
-        clients: 80,
-        cases: 80,
-        experience: 80),
-    Lawyer(
-        name: 'Priya Sharma',
-        image: 'assets/images/advocate_img.png',
-        education: 'Delhi University\nLL.B',
-        distance: 10,
-        rating: 3.5,
-        clients: 80,
-        cases: 80,
-        experience: 80),
-    Lawyer(
-        name: 'Priya Sharma',
-        image: 'assets/images/advocate_img.png',
-        education: 'Delhi University\nLL.B',
-        distance: 10,
-        rating: 3.5,
-        clients: 80,
-        cases: 80,
-        experience: 80),
-  ];
+
+  @override
+  State<ViewAllPage> createState() => _ViewAllPageState();
+}
+
+class _ViewAllPageState extends State<ViewAllPage> {
+  List<dynamic> result = [];
+  var baseurl = "http://15.206.28.255:8000";
+  @override
+  void initState() {
+    super.initState();
+    fetchUsers();
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -142,10 +47,11 @@ class ViewAllPage extends StatelessWidget {
                 const SizedBox(
                   height: 10,
                 ),
-                Row(
-                  children: const [
+                const Row(
+                  children: [
                     SearchBarUpdated(
                       backgroundColor: Colors.white,
+                      color: Colors.black,
                     ),
                     SizedBox(
                       width: 10,
@@ -156,15 +62,12 @@ class ViewAllPage extends StatelessWidget {
                     )
                   ],
                 ),
-                const SizedBox(
-                  height: 30,
-                ),
                 Padding(
                   padding: const EdgeInsets.only(top: 40, bottom: 40),
                   child: Align(
                     alignment: Alignment.center,
                     child: Text(
-                      title,
+                      widget.title,
                       style: kHomePageTitle,
                     ),
                   ),
@@ -172,19 +75,31 @@ class ViewAllPage extends StatelessWidget {
                 Center(
                   child: SizedBox(
                     height: 500,
-                    width: 270,
+                    width: 300,
                     child: ListView.builder(
-                      itemCount: items.length,
+                      itemCount: result.length,
                       itemBuilder: (context, index) {
+                        var res = result[index];
+                        var fullname = res['full_name'];
+                        var profileimage = baseurl + res['profile_image'];
+                        var qualification = res['qualification'];
+                        var distance = res['distance'];
+                        double rating = res['rating'].toDouble();
+                        var totalclientshandled = res['total_client_handled'];
+                        var totalcaseshandled = res['total_case_handled'];
+                        var experience = 0;
+                        if (res['total_experience'] != null) {
+                          experience = res['total_experience'];
+                        }
                         return AdvocateCardExtended(
-                          name: items[index].name,
-                          image: items[index].image,
-                          education: items[index].education,
-                          distance: items[index].distance,
-                          rating: items[index].rating,
-                          clients: items[index].clients,
-                          cases: items[index].cases,
-                          experience: items[index].experience,
+                          name: fullname,
+                          image: profileimage,
+                          education: qualification,
+                          distance: distance,
+                          rating: rating,
+                          clients: totalclientshandled,
+                          cases: totalcaseshandled,
+                          experience: experience,
                         );
                       },
                     ),
@@ -196,5 +111,20 @@ class ViewAllPage extends StatelessWidget {
         ),
       ),
     );
+  }
+
+  Future<void> fetchUsers() async {
+    print('fetchUser called');
+    var uri = Uri.parse("http://15.206.28.255:8000/v1/popular-advocates/");
+    var response = await http.get(uri);
+    if (response.statusCode == 200) {
+      final body = response.body;
+      final json = jsonDecode(body);
+
+      setState(() {
+        result = json['results'];
+      });
+      print('fetchUser complete');
+    }
   }
 }

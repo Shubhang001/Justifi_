@@ -451,7 +451,7 @@ class _AssignWorkLawyerProfileState extends State<AssignWorkLawyerProfile> {
                                 ],
                               ),
                             ),
-                            SizedBox(
+                            const SizedBox(
                               height: 15,
                             ),
                             InkWell(
