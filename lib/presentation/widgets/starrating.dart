@@ -8,7 +8,6 @@ class StarRating extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    num rating1 = rating;
     return RatingBar.builder(
       ignoreGestures: true,
       initialRating: rating,

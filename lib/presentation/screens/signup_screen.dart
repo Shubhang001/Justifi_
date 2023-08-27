@@ -1,7 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:jusitfi_admin/presentation/screens/login_screen.dart';
-import 'package:jusitfi_admin/presentation/screens/onboardingscreen.dart';
-import 'package:jusitfi_admin/presentation/widgets/big_button.dart';
 import 'package:jusitfi_admin/presentation/widgets/dob_picker.dart';
 import 'package:jusitfi_admin/presentation/widgets/img_picker_container.dart';
 import 'package:jusitfi_admin/utils/constants/colors.dart';

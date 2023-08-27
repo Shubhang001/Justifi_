@@ -4,7 +4,6 @@ import 'package:jusitfi_admin/presentation/screens/notification_page.dart';
 import 'package:jusitfi_admin/presentation/screens/profile_page.dart';
 import 'package:jusitfi_admin/presentation/screens/view_all.dart';
 import 'package:jusitfi_admin/presentation/widgets/home_nav_bar.dart';
-import 'package:jusitfi_admin/utils/constants/colors.dart';
 import 'package:jusitfi_admin/utils/constants/textstyles.dart';
 import '../widgets/category_tile.dart';
 import '../widgets/filter_sort.dart';
