@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:jusitfi_admin/presentation/screens/mianpage.dart';
-import 'package:jusitfi_admin/presentation/screens/status_page.dart';
 import 'package:jusitfi_admin/presentation/widgets/big_button.dart';
 import 'package:jusitfi_admin/utils/constants/textstyles.dart';
 

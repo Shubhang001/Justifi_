@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:jusitfi_admin/presentation/screens/add_coin_page.dart';
 import 'package:jusitfi_admin/presentation/screens/add_credits_page.dart';
-import 'package:jusitfi_admin/presentation/screens/freezed_balance_page.dart';
 import 'package:jusitfi_admin/presentation/screens/hiring_credits_page.dart';
 import 'package:jusitfi_admin/presentation/screens/notification_page.dart';
 import 'package:jusitfi_admin/presentation/screens/offers_page.dart';
@@ -9,7 +8,6 @@ import 'package:jusitfi_admin/presentation/screens/profile_page.dart';
 import 'package:jusitfi_admin/utils/constants/textstyles.dart';
 
 import '../../testing_transaction_page.dart';
-import '../../utils/constants/colors.dart';
 import 'frozen_coin.dart';
 
 class WalletPage extends StatefulWidget {

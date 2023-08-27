@@ -18,6 +18,7 @@ class AddMoneyPage extends StatefulWidget {
 }
 
 class _AddMoneyPageState extends State<AddMoneyPage> {
+  // ignore: unused_field
   int _selectedIndex = -1;
   bool _paymentOpt1 = false;
   bool _paymentOpt2 = false;

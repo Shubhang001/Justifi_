@@ -17,51 +17,49 @@ class FrozenCoinBalanceScreen extends StatelessWidget {
         ),
         backgroundColor: kPrimaryBlackColor,
       ),
-      body: SafeArea(
-        child: Container(
-          child: const Column(
-            children: [
-              Expanded(
-                child: GenerateView(
-                  count: 2,
-                  widgetList: [
-                    [
-                      TransactionType(
-                        msgHolder: "Voice Call",
-                        suffixMsg: "100 \nmins",
-                        assetName: "voice_call.png",
-                      ),
-                      TransactionType(
-                        msgHolder: "Voice Call",
-                        suffixMsg: "100 \nmins",
-                        assetName: "video_call.png",
-                      ),
-                    ],
-                    StatusReflectColumn(
-                      list: [
-                        [
-                          "dash.png",
-                          "Payment status",
-                          "Frozen",
-                        ],
-                        [
-                          "connect.png",
-                          "Connect Type",
-                          "Scheduled          ",
-                        ],
-                        [
-                          "coin.png",
-                          "Coins Frozen",
-                          "12345    ",
-                        ],
-                      ],
+      body: const SafeArea(
+        child: Column(
+          children: [
+            Expanded(
+              child: GenerateView(
+                count: 2,
+                widgetList: [
+                  [
+                    TransactionType(
+                      msgHolder: "Voice Call",
+                      suffixMsg: "100 \nmins",
+                      assetName: "voice_call.png",
                     ),
-                    ImageHolder(),
+                    TransactionType(
+                      msgHolder: "Voice Call",
+                      suffixMsg: "100 \nmins",
+                      assetName: "video_call.png",
+                    ),
                   ],
-                ),
+                  StatusReflectColumn(
+                    list: [
+                      [
+                        "dash.png",
+                        "Payment status",
+                        "Frozen",
+                      ],
+                      [
+                        "connect.png",
+                        "Connect Type",
+                        "Scheduled          ",
+                      ],
+                      [
+                        "coin.png",
+                        "Coins Frozen",
+                        "12345    ",
+                      ],
+                    ],
+                  ),
+                  ImageHolder(),
+                ],
               ),
-            ],
-          ),
+            ),
+          ],
         ),
       ),
     );
@@ -130,14 +128,17 @@ class GenerateView extends StatelessWidget {
                     thickness: 2,
                   ),
                   const SizedBox(height: 10),
-                  Row(
-                    mainAxisAlignment: MainAxisAlignment.spaceAround,
-                    crossAxisAlignment: CrossAxisAlignment.start,
-                    children: [
-                      widgetList[0][index],
-                      widgetList[1],
-                      widgetList[2],
-                    ],
+                  SingleChildScrollView(
+                    scrollDirection: Axis.horizontal,
+                    child: Row(
+                      mainAxisAlignment: MainAxisAlignment.spaceAround,
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: [
+                        widgetList[0][index],
+                        widgetList[1],
+                        widgetList[2],
+                      ],
+                    ),
                   )
                 ],
               ),
@@ -310,6 +311,7 @@ class HorizontalStats extends StatelessWidget {
   }
 
   bool isNumeric(String s) {
+    // ignore: unnecessary_null_comparison
     if (s == null) {
       return false;
     }
