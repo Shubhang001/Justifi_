@@ -21,7 +21,6 @@ class _MainPageState extends State<MainPage> {
   int _selectedIndex = 0;
   @override
   void initState() {
-    // TODO: implement initState
     super.initState();
     _selectedIndex = widget.index;
   }

@@ -1,10 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:jusitfi_admin/presentation/screens/login_screen.dart';
-import 'package:jusitfi_admin/presentation/screens/onboardingscreen.dart';
-import 'package:jusitfi_admin/presentation/widgets/big_button.dart';
 import 'package:jusitfi_admin/presentation/widgets/dob_picker.dart';
 import 'package:jusitfi_admin/presentation/widgets/img_picker_container.dart';
 import 'package:jusitfi_admin/utils/constants/colors.dart';
+import 'package:jusitfi_admin/utils/dynamic/dynamic_values.dart';
+import 'package:jusitfi_admin/utils/services/rest_apis.dart';
 import '../../utils/constants/textstyles.dart';
 import '../widgets/drop_down.dart';
 import '../widgets/importanttext.dart';
@@ -29,19 +29,25 @@ class _SignupScreenState extends State<SignupScreen> {
     return double.tryParse(s) != null;
   }
 
+  bool isNameValid(String name) {
+    // This function will check if the name contains only letters.
+    return RegExp(r'^[a-zA-Z]+$').hasMatch(name);
+  }
+
   bool checkValidation() {
-    print(mobileNumberController.text.length);
     List values = [
       mobileNumberController.text.isEmpty ||
           mobileNumberController.text.length != 10 ||
           !isNumeric(mobileNumberController.text),
-      firstNameController.text.isEmpty,
-      lastNameController.text.isEmpty,
+      firstNameController.text.isEmpty ||
+          !isNameValid(firstNameController.text),
+      lastNameController.text.isEmpty || !isNameValid(lastNameController.text),
       emailController.text.isEmpty,
     ];
     setState(() {
       values.contains(true) ? validate = true : validate = false;
     });
+
     return validate;
   }
 
@@ -89,13 +95,15 @@ class _SignupScreenState extends State<SignupScreen> {
                 ),
                 ImagePickerContainer(),
                 InputTextField(
-                  errorText: 'First Name Should Be Filled',
+                  errorText:
+                      'First Name Should Be Filled and Contain Only Letters',
                   validate: validate,
                   title: 'First Name',
                   txtController: firstNameController,
                 ),
                 InputTextField(
-                  errorText: 'Second Name Should Be Filled',
+                  errorText:
+                      'Second Name Should Be Filled and Contain Only Letters',
                   validate: validate,
                   title: 'Last Name',
                   txtController: lastNameController,
@@ -177,10 +185,41 @@ class _SignupScreenState extends State<SignupScreen> {
                   ],
                 ),
                 InkWell(
-                  onTap: () {
-                    var status = checkValidation();
-                    if (status == false) {
-                      DialogSuccess.showSuccessDialog(context);
+                  onTap: () async {
+                    bool status = checkValidation();
+                    if (!status) {
+                      try {
+                        userEmailModel = await registerUserWithEmail(
+                            emailController.text, "1");
+                        if (userEmailModel.email != '' &&
+                            userEmailModel.success == true) {
+                          if (mounted) {
+                            ScaffoldMessenger.of(context).showSnackBar(SnackBar(
+                              content: Text(userEmailModel.message),
+                            ));
+                          }
+                        }
+
+                        userPhoneModel = await registerUserWithPhone(
+                            mobileNumberController.text, "1");
+                        if (userPhoneModel.phone != '' &&
+                            userPhoneModel.success == true) {
+                          if (mounted) {
+                            ScaffoldMessenger.of(context).showSnackBar(SnackBar(
+                              content: Text(userPhoneModel.message),
+                            ));
+                          }
+                        }
+                      } catch (e) {
+                        if (mounted) {
+                          ScaffoldMessenger.of(context).showSnackBar(SnackBar(
+                            content: Text(e.toString()),
+                          ));
+                        }
+                      }
+                      if (mounted) {
+                        DialogSuccess.showSuccessDialog(context);
+                      }
                     } else {
                       print('Not Validated');
                     }

@@ -1,12 +1,8 @@
 import 'package:flutter/material.dart';
 import 'dart:ui';
 import 'package:google_fonts/google_fonts.dart';
-import 'package:jusitfi_admin/presentation/screens/homepage.dart';
-import 'package:jusitfi_admin/presentation/widgets/advocate_extended_dark.dart';
 import 'package:jusitfi_admin/presentation/widgets/float_cases_profile_dark.dart';
 import 'package:jusitfi_admin/utils/constants/textstyles.dart';
-import '../widgets/advocate_card_extended.dart';
-import '../widgets/smallButton.dart';
 
 Future<Object?> floatCases8(
   BuildContext context,

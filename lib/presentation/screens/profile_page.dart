@@ -2,17 +2,21 @@ import 'package:flutter/material.dart';
 import 'package:jusitfi_admin/presentation/screens/aboustus_page.dart';
 import 'package:jusitfi_admin/presentation/screens/contacus_page.dart';
 import 'package:jusitfi_admin/presentation/screens/faq_page.dart';
-import 'package:jusitfi_admin/presentation/screens/homepage.dart';
 import 'package:jusitfi_admin/presentation/screens/login_screen.dart';
 import 'package:jusitfi_admin/presentation/screens/profile_details.dart';
 import 'package:share_plus/share_plus.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 
-import '../../utils/constants/colors.dart';
 import '../../utils/constants/textstyles.dart';
 import 'notification_page.dart';
 
 class ProfileScreen extends StatelessWidget {
   const ProfileScreen({super.key});
+
+  void _removeToken() async {
+    SharedPreferences prefs = await SharedPreferences.getInstance();
+    prefs.remove('token');
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -146,6 +150,7 @@ class ProfileScreen extends StatelessWidget {
                       color: Colors.white,
                       child: GestureDetector(
                         onTap: () {
+                          _removeToken(); // Remove token on logout
                           Navigator.pushAndRemoveUntil(
                               context,
                               MaterialPageRoute(

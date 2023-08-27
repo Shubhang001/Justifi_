@@ -1,11 +1,12 @@
 import 'package:flutter/material.dart';
-import 'package:jusitfi_admin/presentation/screens/login_screen.dart';
+import 'package:flutter_dotenv/flutter_dotenv.dart';
 import 'package:jusitfi_admin/presentation/screens/onboardingscreen.dart';
 import 'package:jusitfi_admin/presentation/screens/splash_screen.dart';
 import 'package:jusitfi_admin/presentation/widgets/material_color_builder.dart';
 import 'package:jusitfi_admin/utils/constants/colors.dart';
 
-void main() {
+
+void main() async {
   runApp(
       // DevicePreview(
       //   enabled: true,
@@ -15,6 +16,7 @@ void main() {
       //   builder: (context) => const MyApp(),
       // ));
       const MyApp());
+  await dotenv.load(fileName: "lib/.env");
 }
 
 class MyApp extends StatelessWidget {

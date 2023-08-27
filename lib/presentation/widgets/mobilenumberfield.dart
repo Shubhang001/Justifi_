@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
-
+import 'package:google_fonts/google_fonts.dart';
+import 'package:flutter/services.dart';
 import '../../utils/constants/textstyles.dart';
 
 class MobileInputTextField extends StatelessWidget {
@@ -10,10 +11,12 @@ class MobileInputTextField extends StatelessWidget {
       required this.validate});
 
   bool isNumeric(String s) {
+    // ignore: unnecessary_null_comparison
     if (s == null) {
       return false;
     }
-    return double.tryParse(s) != null;
+    double? value = double.tryParse(s);
+    return value != null && value >= 0; // Allow only positive numbers
   }
 
   final String title;
@@ -46,6 +49,9 @@ class MobileInputTextField extends StatelessWidget {
               keyboardType: TextInputType.phone,
               controller: txtController,
               style: kTextFieldValue,
+              inputFormatters: [
+                FilteringTextInputFormatter.digitsOnly, // Allow only numbers
+              ],
               decoration: InputDecoration(
                   errorText: validate &&
                           (txtController.text.length < 10 ||
@@ -64,7 +70,11 @@ class MobileInputTextField extends StatelessWidget {
                   prefixIconConstraints:
                       BoxConstraints.tight(const Size(35, 35)),
                   hintText: '9999999999',
-                  hintStyle: kTextFieldValue,
+                  hintStyle: GoogleFonts.poppins(
+                    color: Colors.grey,
+                    fontWeight: FontWeight.w400,
+                    fontSize: 18,
+                  ),
                   border: OutlineInputBorder(
                       borderRadius: BorderRadius.circular(10)),
                   fillColor: Colors.white,

@@ -1043,7 +1043,7 @@ class Expertise extends StatelessWidget {
           child: Row(
             mainAxisAlignment: MainAxisAlignment.spaceAround,
             children: [
-              for (int i = 0; i < (expertise.length / 2).toInt(); i++)
+              for (int i = 0; i < expertise.length ~/ 2; i++)
                 Padding(
                   padding: const EdgeInsets.all(2.0),
                   child: Container(
@@ -1062,7 +1062,7 @@ class Expertise extends StatelessWidget {
           scrollDirection: Axis.horizontal,
           child: Row(
             children: [
-              for (int i = (expertise.length / 2).toInt();
+              for (int i = expertise.length ~/ 2;
                   i < expertise.length;
                   i++)
                 Padding(
@@ -1169,10 +1169,10 @@ class CallToAction extends StatelessWidget {
                   onTap: () {
                     showDialog(
                       context: context,
-                      builder: (BuildContext context) {
+                      builder: (BuildContext context2) {
                         return CustomDialog(
                           onCallNowPressed: () {
-                            showCallDetails(context, 'Phone Call');
+                            showCallDetails(context, 'Audio Call');
                           },
                           onScheduleNowPressed: () {
                             Navigator.pop(context);
@@ -1199,7 +1199,7 @@ class CallToAction extends StatelessWidget {
                   onTap: () {
                     showDialog(
                       context: context,
-                      builder: (BuildContext context) {
+                      builder: (BuildContext context2) {
                         return CustomDialog(
                           onCallNowPressed: () {
                             showCallDetails(context, 'Video Call');

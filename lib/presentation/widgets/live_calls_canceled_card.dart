@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:jusitfi_admin/presentation/widgets/rating_box.dart';
-import 'package:jusitfi_admin/presentation/widgets/review_alert_dialog.dart';
 import 'package:jusitfi_admin/presentation/widgets/show_reason.dart';
 import '../../utils/constants/textstyles.dart';
 

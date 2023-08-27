@@ -1,11 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
-import 'package:jusitfi_admin/presentation/screens/offers_page.dart';
-import 'package:jusitfi_admin/presentation/screens/proceed_page.dart';
 import 'package:jusitfi_admin/presentation/screens/wallet_proceed_page.dart';
 
 import '../../utils/constants/colors.dart';
-import '../../utils/constants/coupon_code_constants.dart';
 import '../../utils/constants/textstyles.dart';
 
 class PayNowPage extends StatefulWidget {

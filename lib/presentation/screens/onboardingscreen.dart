@@ -2,7 +2,6 @@ import 'package:flutter/material.dart';
 import 'package:jusitfi_admin/presentation/screens/login_screen.dart';
 import 'package:jusitfi_admin/utils/constants/textstyles.dart';
 import '../widgets/nav_indicator.dart';
-import 'mianpage.dart';
 
 class OnBoardingScreen extends StatefulWidget {
   const OnBoardingScreen({super.key});

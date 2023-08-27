@@ -1,7 +1,7 @@
+import '../../utils/constants/textstyles.dart';
 import 'package:flutter/material.dart';
 import 'package:jusitfi_admin/presentation/screens/lawyer_profile.dart';
 import 'package:jusitfi_admin/presentation/widgets/starrating.dart';
-import '../../utils/constants/textstyles.dart';
 
 class AdvocateCardExtended extends StatelessWidget {
   const AdvocateCardExtended(
