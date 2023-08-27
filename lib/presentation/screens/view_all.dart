@@ -1,9 +1,6 @@
 import 'dart:convert';
-import 'dart:isolate';
 
 import 'package:flutter/material.dart';
-import 'package:jusitfi_admin/api/lawyers/nearest_advocate.dart';
-import 'package:jusitfi_admin/data/models/lawyer_model.dart';
 import 'package:jusitfi_admin/presentation/widgets/advocate_card_extended.dart';
 import 'package:jusitfi_admin/presentation/widgets/filter_sort.dart';
 import 'package:jusitfi_admin/presentation/widgets/searchbar.dart';
