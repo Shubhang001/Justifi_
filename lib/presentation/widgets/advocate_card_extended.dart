@@ -18,11 +18,11 @@ class AdvocateCardExtended extends StatelessWidget {
   final String image;
   final String name;
   final String education;
-  final double distance;
+  final num distance;
   final double rating;
-  final int cases;
-  final int clients;
-  final int experience;
+  final num cases;
+  final num clients;
+  final num experience;
 
   @override
   Widget build(BuildContext context) {
@@ -53,7 +53,7 @@ class AdvocateCardExtended extends StatelessWidget {
                     radius: 75.0,
                     backgroundColor: Colors.transparent,
                     child: ClipOval(
-                      child: Image.asset(
+                      child: Image.network(
                         image,
                         width: 120,
                         height: 120,
@@ -130,7 +130,7 @@ class AdvocateCardExtended extends StatelessWidget {
                             Column(
                               children: [
                                 Text(
-                                  '80',
+                                  clients.toString(),
                                   style: kAdvocateCardCount,
                                 ),
                                 Text(
@@ -145,7 +145,7 @@ class AdvocateCardExtended extends StatelessWidget {
                             Column(
                               children: [
                                 Text(
-                                  '80',
+                                  cases.toString(),
                                   style: kAdvocateCardCount,
                                 ),
                                 Text(
@@ -160,7 +160,7 @@ class AdvocateCardExtended extends StatelessWidget {
                             Column(
                               children: [
                                 Text(
-                                  '80',
+                                  experience.toString(),
                                   style: kAdvocateCardCount,
                                 ),
                                 Text(

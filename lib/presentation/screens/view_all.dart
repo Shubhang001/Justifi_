@@ -1,10 +1,11 @@
+import 'dart:convert';
+
 import 'package:flutter/material.dart';
-import 'package:jusitfi_admin/api/lawyers/nearest_advocate.dart';
-import 'package:jusitfi_admin/data/models/lawyer_model.dart';
 import 'package:jusitfi_admin/presentation/widgets/advocate_card_extended.dart';
 import 'package:jusitfi_admin/presentation/widgets/filter_sort.dart';
 import 'package:jusitfi_admin/presentation/widgets/searchbar.dart';
 import 'package:jusitfi_admin/utils/constants/textstyles.dart';
+import 'package:http/http.dart' as http;
 
 class ViewAllPage extends StatefulWidget {
   const ViewAllPage({super.key, required this.title});
@@ -15,126 +16,12 @@ class ViewAllPage extends StatefulWidget {
 }
 
 class _ViewAllPageState extends State<ViewAllPage> {
-  /*final List<Lawyer> items = [
-    Lawyer(
-        name: 'Priya Sharma',
-        image: 'assets/images/advocate_img.png',
-        education: 'Delhi University\nLL.B',
-        distance: 10,
-        rating: 3.5,
-        clients: 80,
-        cases: 80,
-        experience: 80),
-    Lawyer(
-        name: 'Priya Sharma',
-        image: 'assets/images/advocate_img.png',
-        education: 'Delhi University\nLL.B',
-        distance: 10,
-        rating: 3.5,
-        clients: 80,
-        cases: 80,
-        experience: 80),
-    Lawyer(
-        name: 'Priya Sharma',
-        image: 'assets/images/advocate_img.png',
-        education: 'Delhi University\nLL.B',
-        distance: 10,
-        rating: 3.5,
-        clients: 80,
-        cases: 80,
-        experience: 80),
-    Lawyer(
-        name: 'Priya Sharma',
-        image: 'assets/images/advocate_img.png',
-        education: 'Delhi University\nLL.B',
-        distance: 10,
-        rating: 3.5,
-        clients: 80,
-        cases: 80,
-        experience: 80),
-    Lawyer(
-        name: 'Priya Sharma',
-        image: 'assets/images/advocate_img.png',
-        education: 'Delhi University\nLL.B',
-        distance: 10,
-        rating: 3.5,
-        clients: 80,
-        cases: 80,
-        experience: 80),
-    Lawyer(
-        name: 'Priya Sharma',
-        image: 'assets/images/advocate_img.png',
-        education: 'Delhi University\nLL.B',
-        distance: 10,
-        rating: 3.5,
-        clients: 80,
-        cases: 80,
-        experience: 80),
-    Lawyer(
-        name: 'Priya Sharma',
-        image: 'assets/images/advocate_img.png',
-        education: 'Delhi University\nLL.B',
-        distance: 10,
-        rating: 3.5,
-        clients: 80,
-        cases: 80,
-        experience: 80),
-    Lawyer(
-        name: 'Priya Sharma',
-        image: 'assets/images/advocate_img.png',
-        education: 'Delhi University\nLL.B',
-        distance: 10,
-        rating: 3.5,
-        clients: 80,
-        cases: 80,
-        experience: 80),
-    Lawyer(
-        name: 'Priya Sharma',
-        image: 'assets/images/advocate_img.png',
-        education: 'Delhi University\nLL.B',
-        distance: 10,
-        rating: 3.5,
-        clients: 80,
-        cases: 80,
-        experience: 80),
-    Lawyer(
-        name: 'Priya Sharma',
-        image: 'assets/images/advocate_img.png',
-        education: 'Delhi University\nLL.B',
-        distance: 10,
-        rating: 3.5,
-        clients: 80,
-        cases: 80,
-        experience: 80),
-    Lawyer(
-        name: 'Priya Sharma',
-        image: 'assets/images/advocate_img.png',
-        education: 'Delhi University\nLL.B',
-        distance: 10,
-        rating: 3.5,
-        clients: 80,
-        cases: 80,
-        experience: 80),
-    Lawyer(
-        name: 'Priya Sharma',
-        image: 'assets/images/advocate_img.png',
-        education: 'Delhi University\nLL.B',
-        distance: 10,
-        rating: 3.5,
-        clients: 80,
-        cases: 80,
-        experience: 80),
-  ];*/
-  List<NearestAdvocate>? items;
-
+  List<dynamic> result = [];
+  var baseurl = "http://15.206.28.255:8000";
   @override
   void initState() {
     super.initState();
-    getData();
-  }
-
-  getData() async {
-    items = (await RemoteService().getNearestAdvocate())!;
+    fetchUsers();
   }
 
   @override
@@ -190,17 +77,29 @@ class _ViewAllPageState extends State<ViewAllPage> {
                     height: 500,
                     width: 300,
                     child: ListView.builder(
-                      itemCount: items?.length,
+                      itemCount: result.length,
                       itemBuilder: (context, index) {
+                        var res = result[index];
+                        var fullname = res['full_name'];
+                        var profileimage = baseurl + res['profile_image'];
+                        var qualification = res['qualification'];
+                        var distance = res['distance'];
+                        double rating = res['rating'].toDouble();
+                        var totalclientshandled = res['total_client_handled'];
+                        var totalcaseshandled = res['total_case_handled'];
+                        var experience = 0;
+                        if (res['total_experience'] != null) {
+                          experience = res['total_experience'];
+                        }
                         return AdvocateCardExtended(
-                          name: items![index].name,
-                          image: items![index].image,
-                          education: items![index].education,
-                          distance: items![index].distance,
-                          rating: items![index].rating,
-                          clients: items![index].clients,
-                          cases: items![index].cases,
-                          experience: items![index].experience,
+                          name: fullname,
+                          image: profileimage,
+                          education: qualification,
+                          distance: distance,
+                          rating: rating,
+                          clients: totalclientshandled,
+                          cases: totalcaseshandled,
+                          experience: experience,
                         );
                       },
                     ),
@@ -212,5 +111,20 @@ class _ViewAllPageState extends State<ViewAllPage> {
         ),
       ),
     );
+  }
+
+  Future<void> fetchUsers() async {
+    print('fetchUser called');
+    var uri = Uri.parse("http://15.206.28.255:8000/v1/popular-advocates/");
+    var response = await http.get(uri);
+    if (response.statusCode == 200) {
+      final body = response.body;
+      final json = jsonDecode(body);
+
+      setState(() {
+        result = json['results'];
+      });
+      print('fetchUser complete');
+    }
   }
 }
