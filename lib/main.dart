@@ -5,7 +5,6 @@ import 'package:jusitfi_admin/presentation/screens/splash_screen.dart';
 import 'package:jusitfi_admin/presentation/widgets/material_color_builder.dart';
 import 'package:jusitfi_admin/utils/constants/colors.dart';
 
-
 void main() async {
   runApp(
       // DevicePreview(
