@@ -137,6 +137,7 @@ class _LoginScreenState extends State<LoginScreen> {
             Expanded(
               child: SingleChildScrollView(
                 child: Container(
+                  height: 500,
                   width: double.infinity,
                   decoration: const BoxDecoration(
                       color: Colors.black,
@@ -147,7 +148,7 @@ class _LoginScreenState extends State<LoginScreen> {
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
                     children: [
                       Padding(
-                        padding: const EdgeInsets.fromLTRB(50, 80, 60, 0),
+                        padding: const EdgeInsets.fromLTRB(40, 70, 60, 0),
                         child: Column(
                           crossAxisAlignment: CrossAxisAlignment.end,
                           children: [
@@ -155,40 +156,29 @@ class _LoginScreenState extends State<LoginScreen> {
                                 validate: validate,
                                 title: 'Enter Your Mobile Number',
                                 txtController: mobileNumber),
-                            InkWell(
-                              onTap: () async {
-                                setState(() {
-                                  mobileNumber.text.isEmpty ||
-                                          !isNumeric(mobileNumber.text) ||
-                                          mobileNumber.text.length != 10
-                                      ? validate = true
-                                      : validate = false;
-                                });
-                                if (!validate) {
-                                  try {
-                                    await registerUserPhoneId();
-                                  } catch (e) {
-                                    ScaffoldMessenger.of(context)
-                                        .showSnackBar(SnackBar(
-                                      content: Text(e.toString()),
-                                    ));
-                                    print("Error: $e");
-                                  }
-                                }
-                              },
-                              child: Text(
-                                otpCount == 0 ? 'Send otp' : 'Resend otp',
-                                style: const TextStyle(
-                                    color: Colors.white,
-                                    fontSize: 16,
-                                    fontWeight: FontWeight.bold),
+                            Container(
+                              color: Colors.black,
+                              height: 35,
+                              child: TextButton(
+                                onPressed: () {
+                                  // _showResendButton = true;
+                                  changeButtonText();
+                                },
+                                child: Text(
+                                  buttonText,
+                                  // _showResendButton ? "Reseend OTP" : "Send OTP",
+                                  style: const TextStyle(
+                                      color: Colors.white,
+                                      fontSize: 16,
+                                      fontWeight: FontWeight.bold),
+                                ),
                               ),
                             )
                           ],
                         ),
                       ),
                       Padding(
-                        padding: const EdgeInsets.fromLTRB(50, 0, 60, 0),
+                        padding: const EdgeInsets.fromLTRB(60, 0, 60, 0),
                         child: Column(
                           crossAxisAlignment: CrossAxisAlignment.start,
                           children: [
@@ -302,9 +292,6 @@ class _LoginScreenState extends State<LoginScreen> {
                 ),
               ),
             ),
-            Container(
-              color: Colors.black,
-            )
           ],
         ),
       ),
