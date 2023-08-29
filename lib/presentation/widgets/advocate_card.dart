@@ -31,6 +31,7 @@ class AdvocateCard extends StatelessWidget {
           }));
         },
         child: Container(
+          height: 200,
           width: 275,
           decoration: BoxDecoration(
             border: Border.all(color: Colors.white, width: 2.0),
@@ -45,7 +46,7 @@ class AdvocateCard extends StatelessWidget {
                     radius: 75.0,
                     backgroundColor: Colors.transparent,
                     child: ClipOval(
-                      child: Image.asset(
+                      child: Image.network(
                         image,
                         width: 120,
                         height: 120,
@@ -66,6 +67,7 @@ class AdvocateCard extends StatelessWidget {
                 ],
               ),
               Container(
+                height: 77,
                 decoration: BoxDecoration(
                   color: Colors.white,
                   borderRadius: BorderRadius.circular(8.0),
