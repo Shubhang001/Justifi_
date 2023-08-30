@@ -1,10 +1,11 @@
 import 'dart:ui';
+import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:jusitfi_admin/presentation/screens/homepage.dart';
 import '../../utils/constants/colors.dart';
 import '../../utils/constants/textstyles.dart';
 
-Future<Object?> ShowSubCat(BuildContext context, List subCatItems) {
+Future<Object?> ShowSubCat(BuildContext context, Future<List<dynamic>> subCatItems) {
   List selectedCats = [];
   return showGeneralDialog(
     barrierDismissible: false,
@@ -35,7 +36,8 @@ Future<Object?> ShowSubCat(BuildContext context, List subCatItems) {
               ))
         ],
       ),
-      content: StatefulBuilder(builder: (context, StateSetter setState) {
+      content: StatefulBuilder(builder: (context,StateSetter setState) {
+        
         return SizedBox(
           width: 300,
           height: 500,
@@ -44,42 +46,62 @@ Future<Object?> ShowSubCat(BuildContext context, List subCatItems) {
               SizedBox(
                 width: 300,
                 height: 350,
-                child: GridView.builder(
-                    itemCount: subCatItems.length,
-                    gridDelegate:
-                        const SliverGridDelegateWithFixedCrossAxisCount(
-                      childAspectRatio: (110 / 40),
-                      crossAxisCount: 2,
-                      mainAxisSpacing: 16,
-                      crossAxisSpacing: 16,
-                    ),
-                    itemBuilder: (context, index) {
-                      return InkWell(
-                        onTap: () {
-                          setState(() {
-                            if (selectedCats.contains(index)) {
-                              selectedCats.remove(index);
-                            } else {
-                              selectedCats.add(index);
-                            }
-                          });
-                        },
-                        child: Container(
-                          decoration: BoxDecoration(
-                              color: selectedCats.contains(index)
-                                  ? Colors.white
-                                  : kSearchBarColor,
-                              borderRadius: BorderRadius.circular(4)),
-                          child: Center(
-                            child: Text(
-                              subCatItems[index],
-                              textAlign: TextAlign.center,
-                              style: ksubCatText,
+                child:FutureBuilder<List<dynamic>>(
+
+
+                  future: subCatItems,
+                  builder: (context,snapshot){
+                    if(snapshot.hasData)
+                      {
+
+                        return GridView.builder(
+                            itemCount: snapshot.data!.length,
+                            gridDelegate:
+                            const SliverGridDelegateWithFixedCrossAxisCount(
+                              childAspectRatio: (110 / 40),
+                              crossAxisCount: 2,
+                              mainAxisSpacing: 16,
+                              crossAxisSpacing: 16,
                             ),
-                          ),
-                        ),
-                      );
-                    }),
+                            itemBuilder: (context, index) {
+                              return InkWell(
+                                onTap: () {
+                                  setState(() {
+                                    if (selectedCats.contains(index)) {
+                                      selectedCats.remove(index);
+                                    } else {
+                                      selectedCats.add(index);
+                                    }
+                                  });
+                                },
+                                child: Container(
+                                  decoration: BoxDecoration(
+                                      color: selectedCats.contains(index)
+                                          ? Colors.white
+                                          : kSearchBarColor,
+                                      borderRadius: BorderRadius.circular(4)),
+                                  child: Center(
+                                    child: Text(
+                                      snapshot.data![index]['name'],
+                                      textAlign: TextAlign.center,
+                                      style: ksubCatText,
+                                    ),
+                                  ),
+                                ),
+                              );
+                            });
+
+                      }else if(snapshot.hasError){
+                      if (kDebugMode) {
+                        print(snapshot.error);
+                      }
+                    }
+                    return Center(child: CircularProgressIndicator(),);
+                  }
+                )
+                //
+                //
+
               ),
               SizedBox(
                 height: 60,

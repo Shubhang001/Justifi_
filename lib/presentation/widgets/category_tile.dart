@@ -40,7 +40,7 @@ class CategoryTile extends StatelessWidget {
                 ? Navigator.of(context).push(MaterialPageRoute(builder: (_) {
                     return MorePage();
                   }))
-                : ShowSubCat(context, subCatItems)
+                : ShowSubCat(context, subCatItems as Future<List>)
             : null;
       },
       child: Column(
