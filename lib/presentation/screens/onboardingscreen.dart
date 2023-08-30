@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:jusitfi_admin/presentation/screens/login_screen.dart';
+import 'package:jusitfi_admin/presentation/screens/more_page.dart';
 import 'package:jusitfi_admin/utils/constants/textstyles.dart';
 import '../widgets/nav_indicator.dart';
 import 'mianpage.dart';
@@ -100,7 +101,7 @@ class _OnBoardingScreenState extends State<OnBoardingScreen> {
                       onPressed: () {
                         Navigator.of(context).pushAndRemoveUntil(
                             MaterialPageRoute(
-                                builder: (context) => const LoginScreen()),
+                                builder: (context) => const MorePage()),
                             (Route<dynamic> route) => false);
                       },
                       child: Text(
