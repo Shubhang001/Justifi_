@@ -43,6 +43,13 @@ class _HorizontalTilesState extends State<HorizontalTiles> {
               var qualification = res['qualification'];
               var distance = res['distance'];
               double rating = res['rating'].toDouble();
+              var place = res['practice_place'];
+              var clients = res['total_client_handled'];
+              var cases = res['total_case_handled'];
+              var experience = 0;
+              if (res['total_experience'] != null) {
+                experience = res['total_experience'];
+              }
 
               return Padding(
                 padding: const EdgeInsets.all(8.0),
@@ -52,6 +59,10 @@ class _HorizontalTilesState extends State<HorizontalTiles> {
                   education: qualification,
                   distance: distance,
                   rating: rating,
+                  place: place,
+                  clients: clients,
+                  cases: cases,
+                  experience: experience,
                 ),
               );
             },

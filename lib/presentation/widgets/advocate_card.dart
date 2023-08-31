@@ -12,13 +12,21 @@ class AdvocateCard extends StatelessWidget {
       required this.image,
       required this.education,
       required this.distance,
-      required this.rating});
+      required this.rating,
+      required this.place,
+      required this.clients,
+      required this.cases,
+      required this.experience});
 
   final String image;
   final String name;
   final String education;
   final double distance;
   final double rating;
+  final num cases;
+  final num clients;
+  final num experience;
+  final String place;
 
   @override
   Widget build(BuildContext context) {
@@ -27,7 +35,16 @@ class AdvocateCard extends StatelessWidget {
       child: InkWell(
         onTap: () {
           Navigator.of(context).push(MaterialPageRoute(builder: (_) {
-            return const LawyerProfileScreen();
+            return LawyerProfileScreen(
+              name: name,
+              image: image,
+              education: education,
+              rating: rating,
+              cases: cases,
+              clients: clients,
+              experience: experience,
+              place: place,
+            );
           }));
         },
         child: Container(
