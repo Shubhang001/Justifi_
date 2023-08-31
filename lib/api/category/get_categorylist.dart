@@ -15,7 +15,7 @@ Future<List<dynamic>>getCategories() async {
   if (response.statusCode == 200) {
 
 
-    for(var i=1;i<(count/10).ceil();i++){
+    for(var i=1;i<=(count/10).ceil();i++){
       final response = await http.get(Uri.parse("$baseURL/v1/categories?page=$i"));
       final List<dynamic> data=jsonDecode(response.body)['results'];
       for(var j in data){
