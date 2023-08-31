@@ -6,17 +6,30 @@ import 'package:jusitfi_admin/api/base_url.dart';
 Future<List<dynamic>>getCategories() async {
 
   final response = await http.get(Uri.parse("$baseURL/v1/categories"));
- final List<dynamic> data=jsonDecode(response.body)['results'];
+  final int count=jsonDecode(response.body)['count'];
+  List<dynamic> alldata=[];
+
+
 
 
   if (response.statusCode == 200) {
 
 
+    for(var i=1;i<=(count/10).ceil();i++){
+      final response = await http.get(Uri.parse("$baseURL/v1/categories?page=$i"));
+      final List<dynamic> data=jsonDecode(response.body)['results'];
+      for(var j in data){
+        alldata.add(j);
+      }
+
+
+
+    }
 
 
 
 
-    return data;
+    return alldata;
   } else {
     throw Exception("Failed to load");
   }
