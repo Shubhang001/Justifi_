@@ -51,6 +51,8 @@ Future<Object?> floatCases9(
                 clients: 100,
                 cases: 100,
                 experience: 15,
+                education: "LLB-Delhi University",
+                place: "Mumbai",
               ),
               Expanded(
                   child: Container(

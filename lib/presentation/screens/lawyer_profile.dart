@@ -9,8 +9,24 @@ import 'assignwork_lawyer_profile.dart';
 import 'schedule3.dart';
 
 class LawyerProfileScreen extends StatefulWidget {
-  const LawyerProfileScreen({super.key});
-
+  const LawyerProfileScreen(
+      {super.key,
+      required this.name,
+      required this.image,
+      required this.education,
+      required this.rating,
+      required this.cases,
+      required this.clients,
+      required this.experience,
+      required this.place});
+  final String name;
+  final String image;
+  final String education;
+  final double rating;
+  final num cases;
+  final num clients;
+  final num experience;
+  final String place;
   @override
   State<LawyerProfileScreen> createState() => _LawyerProfileScreenState();
 }
@@ -37,15 +53,18 @@ class _LawyerProfileScreenState extends State<LawyerProfileScreen>
         children: [
           Row(
             children: [
-              const _ImageContainer(160, 150),
+              _ImageContainer(160, 145, widget.image),
               Container(
                 margin: const EdgeInsets.only(left: 10),
                 child: Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
-                    Text(
-                      "Priya sharma",
-                      style: lawyerName,
+                    SizedBox(
+                      width: 200,
+                      child: Text(
+                        widget.name,
+                        style: lawyerName,
+                      ),
                     ),
                     const SizedBox(
                       height: 10,
@@ -57,12 +76,16 @@ class _LawyerProfileScreenState extends State<LawyerProfileScreen>
                           Icons.location_on_outlined,
                         ),
                         Text(
-                          "Mumbai",
+                          widget.place,
                           style: locationName,
                         ),
                       ],
                     ),
-                    const LawyerInfo(),
+                    LawyerInfo(
+                      cases: widget.cases,
+                      clients: widget.clients,
+                      experience: widget.experience,
+                    ),
                   ],
                 ),
               ),
@@ -84,10 +107,14 @@ class _LawyerProfileScreenState extends State<LawyerProfileScreen>
               width: double.maxFinite,
               child: TabBarView(
                 controller: _tabController,
-                children: const [
-                  DetailSection(),
-                  ReviewSection(),
-                  WorkingHours()
+                children: [
+                  DetailSection(
+                    education: widget.education,
+                  ),
+                  ReviewSection(
+                    rating: widget.rating,
+                  ),
+                  const WorkingHours()
                 ],
               ),
             ),
@@ -113,7 +140,9 @@ class _LawyerProfileScreenState extends State<LawyerProfileScreen>
 class DetailSection extends StatefulWidget {
   const DetailSection({
     super.key,
+    required this.education,
   });
+  final String education;
 
   @override
   State<DetailSection> createState() => _DetailSectionState();
@@ -150,7 +179,9 @@ class _DetailSectionState extends State<DetailSection>
               controller: _tabController,
               children: <Widget>[
                 const PracticeArea(),
-                const Qualification(),
+                Qualification(
+                  education: widget.education,
+                ),
                 Court(),
               ],
             ),
@@ -257,20 +288,15 @@ class CourtDetails {
 class Qualification extends StatelessWidget {
   const Qualification({
     super.key,
+    required this.education,
   });
-
-  static List<String> college = [
-    "Delhi University\nLLB ",
-    "Indian Law Institute\nCyber Law",
-    "NALSAR University\nDiploma"
-  ];
-
+  final String education;
   @override
   Widget build(BuildContext context) {
     return SizedBox(
       height: 500,
       child: ListView.builder(
-        itemCount: 3,
+        itemCount: 1,
         itemBuilder: (context, index) {
           return Container(
             padding: const EdgeInsets.all(10),
@@ -307,11 +333,15 @@ class Qualification extends StatelessWidget {
                       child: Column(
                         crossAxisAlignment: CrossAxisAlignment.start,
                         children: [
-                          Text(
-                            college[index],
-                            style: const TextStyle(
-                              fontWeight: FontWeight.bold,
-                              fontSize: 18,
+                          SizedBox(
+                            width: 210,
+                            child: Text(
+                              education,
+                              maxLines: 2,
+                              style: const TextStyle(
+                                fontWeight: FontWeight.bold,
+                                fontSize: 18,
+                              ),
                             ),
                           ),
                           Container(
@@ -432,7 +462,9 @@ class ShareProfile extends StatelessWidget {
 class ReviewSection extends StatelessWidget {
   const ReviewSection({
     super.key,
+    required this.rating,
   });
+  final double rating;
 
   @override
   Widget build(BuildContext context) {
@@ -462,10 +494,10 @@ class ReviewSection extends StatelessWidget {
                       height: 35,
                       width: 120,
                       color: const Color.fromRGBO(223, 178, 0, 1),
-                      child: const Center(
+                      child: Center(
                         child: Text(
-                          "3.5 / 5",
-                          style: TextStyle(color: Colors.white),
+                          "$rating /5",
+                          style: const TextStyle(color: Colors.white),
                         ),
                       ),
                     ),
@@ -1062,9 +1094,7 @@ class Expertise extends StatelessWidget {
           scrollDirection: Axis.horizontal,
           child: Row(
             children: [
-              for (int i = expertise.length ~/ 2;
-                  i < expertise.length;
-                  i++)
+              for (int i = expertise.length ~/ 2; i < expertise.length; i++)
                 Padding(
                   padding: const EdgeInsets.all(2.0),
                   child: Container(
@@ -1308,7 +1338,13 @@ class RoundedButton extends StatelessWidget {
 class LawyerInfo extends StatelessWidget {
   const LawyerInfo({
     super.key,
+    required this.clients,
+    required this.cases,
+    required this.experience,
   });
+  final num clients;
+  final num cases;
+  final num experience;
 
   @override
   Widget build(BuildContext context) {
@@ -1325,16 +1361,16 @@ class LawyerInfo extends StatelessWidget {
                 right: 10,
                 left: 2,
               ),
-              child: const Column(
+              child: Column(
                 children: [
                   Text(
-                    "80",
-                    style: TextStyle(
+                    clients.toString(),
+                    style: const TextStyle(
                       fontSize: 25,
                       fontWeight: FontWeight.bold,
                     ),
                   ),
-                  Text(
+                  const Text(
                     "clients",
                   ),
                 ],
@@ -1347,16 +1383,16 @@ class LawyerInfo extends StatelessWidget {
             ),
             Container(
               margin: const EdgeInsets.only(left: 10, right: 10),
-              child: const Column(
+              child: Column(
                 children: [
                   Text(
-                    "100",
-                    style: TextStyle(
+                    cases.toString(),
+                    style: const TextStyle(
                       fontSize: 25,
                       fontWeight: FontWeight.bold,
                     ),
                   ),
-                  Text(
+                  const Text(
                     "Cases",
                   ),
                 ],
@@ -1369,16 +1405,16 @@ class LawyerInfo extends StatelessWidget {
             ),
             Container(
               margin: const EdgeInsets.only(left: 8),
-              child: const Column(
+              child: Column(
                 children: [
                   Text(
-                    "8 yrs",
-                    style: TextStyle(
+                    experience.toString(),
+                    style: const TextStyle(
                       fontSize: 25,
                       fontWeight: FontWeight.bold,
                     ),
                   ),
-                  Text(
+                  const Text(
                     "Experience",
                   ),
                 ],
@@ -1441,9 +1477,10 @@ class LawyerCTA extends StatelessWidget {
 }
 
 class _ImageContainer extends StatelessWidget {
-  const _ImageContainer(this.height, this.width);
+  const _ImageContainer(this.height, this.width, this.image);
   final double height;
   final double width;
+  final String image;
 
   @override
   Widget build(BuildContext context) {
@@ -1456,15 +1493,13 @@ class _ImageContainer extends StatelessWidget {
           ),
           height: height,
           width: width,
-          decoration: const BoxDecoration(
+          decoration: BoxDecoration(
             image: DecorationImage(
               fit: BoxFit.cover,
-              image: AssetImage(
-                "assets/images/advocate_img.png",
-              ),
+              image: NetworkImage(image),
             ),
             color: Colors.black,
-            borderRadius: BorderRadius.all(
+            borderRadius: const BorderRadius.all(
               Radius.circular(20),
             ),
           ),

@@ -84,6 +84,7 @@ class _ViewAllPageState extends State<ViewAllPage> {
                         var profileimage = baseurl + res['profile_image'];
                         var qualification = res['qualification'];
                         var distance = res['distance'];
+                        var place = res['practice_place'];
                         double rating = res['rating'].toDouble();
                         var totalclientshandled = res['total_client_handled'];
                         var totalcaseshandled = res['total_case_handled'];
@@ -100,6 +101,7 @@ class _ViewAllPageState extends State<ViewAllPage> {
                           clients: totalclientshandled,
                           cases: totalcaseshandled,
                           experience: experience,
+                          place: place,
                         );
                       },
                     ),
