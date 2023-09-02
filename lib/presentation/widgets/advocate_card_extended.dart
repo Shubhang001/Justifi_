@@ -13,7 +13,8 @@ class AdvocateCardExtended extends StatelessWidget {
       required this.rating,
       required this.clients,
       required this.cases,
-      required this.experience});
+      required this.experience,
+      required this.place});
 
   final String image;
   final String name;
@@ -23,6 +24,7 @@ class AdvocateCardExtended extends StatelessWidget {
   final num cases;
   final num clients;
   final num experience;
+  final String place;
 
   @override
   Widget build(BuildContext context) {
@@ -33,7 +35,16 @@ class AdvocateCardExtended extends StatelessWidget {
           Navigator.push(
               context,
               MaterialPageRoute(
-                builder: (context) => const LawyerProfileScreen(),
+                builder: (context) => LawyerProfileScreen(
+                  name: name,
+                  image: image,
+                  education: education,
+                  rating: rating,
+                  cases: cases,
+                  clients: clients,
+                  experience: experience,
+                  place: place,
+                ),
               ));
         },
         child: Container(
