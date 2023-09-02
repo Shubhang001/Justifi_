@@ -45,60 +45,62 @@ Future<Object?> ShowSubCat(BuildContext context, Future<List<dynamic>> subCatIte
             children: [
               SizedBox(
                 width: 300,
-                height: 350,
-                child:FutureBuilder<List<dynamic>>(
+                height: 300,
+
+                  child: FutureBuilder<List<dynamic>>(
 
 
-                  future: subCatItems,
-                  builder: (context,snapshot){
-                    if(snapshot.hasData)
-                      {
+                    future: subCatItems,
+                    builder: (context,snapshot){
+                      if(snapshot.hasData)
+                        {
 
-                        return GridView.builder(
-                            itemCount: snapshot.data!.length,
-                            gridDelegate:
-                            const SliverGridDelegateWithFixedCrossAxisCount(
-                              childAspectRatio: (110 / 40),
-                              crossAxisCount: 2,
-                              mainAxisSpacing: 16,
-                              crossAxisSpacing: 16,
-                            ),
-                            itemBuilder: (context, index) {
-                              return InkWell(
-                                onTap: () {
-                                  setState(() {
-                                    if (selectedCats.contains(index)) {
-                                      selectedCats.remove(index);
-                                    } else {
-                                      selectedCats.add(index);
-                                    }
-                                  });
-                                },
-                                child: Container(
-                                  decoration: BoxDecoration(
-                                      color: selectedCats.contains(index)
-                                          ? Colors.white
-                                          : kSearchBarColor,
-                                      borderRadius: BorderRadius.circular(4)),
-                                  child: Center(
-                                    child: Text(
-                                      snapshot.data![index]['name'],
-                                      textAlign: TextAlign.center,
-                                      style: ksubCatText,
+                          return GridView.builder(
+                              itemCount: snapshot.data!.length,
+                              gridDelegate:
+                              const SliverGridDelegateWithFixedCrossAxisCount(
+                                childAspectRatio: (110 / 40),
+                                crossAxisCount: 2,
+                                mainAxisSpacing: 16,
+                                crossAxisSpacing: 16,
+                              ),
+                              itemBuilder: (context, index) {
+                                return InkWell(
+                                  onTap: () {
+                                    setState(() {
+                                      if (selectedCats.contains(index)) {
+                                        selectedCats.remove(index);
+                                      } else {
+                                        selectedCats.add(index);
+                                      }
+                                    });
+                                  },
+                                  child: Container(
+                                    decoration: BoxDecoration(
+                                        color: selectedCats.contains(index)
+                                            ? Colors.white
+                                            : kSearchBarColor,
+                                        borderRadius: BorderRadius.circular(4)),
+                                    child: Center(
+                                      child: Text(
+                                        snapshot.data![index]['name'],
+                                        textAlign: TextAlign.center,
+                                        style: ksubCatText,
+                                      ),
                                     ),
                                   ),
-                                ),
-                              );
-                            });
+                                );
+                              });
 
-                      }else if(snapshot.hasError){
-                      if (kDebugMode) {
-                        print(snapshot.error);
+                        }else if(snapshot.hasError){
+                        if (kDebugMode) {
+                          print(snapshot.error);
+                        }
                       }
+                      return Center(child: CircularProgressIndicator(),);
                     }
-                    return Center(child: CircularProgressIndicator(),);
-                  }
-                )
+                  ),
+
                 //
                 //
 
