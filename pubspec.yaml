@@ -51,6 +51,7 @@ dependencies:
   smooth_star_rating_null_safety: ^1.0.4+2
   syncfusion_flutter_calendar: ^21.1.38
   table_calendar: ^3.0.8
+  url_launcher: ^6.1.14
   videosdk: ^1.1.4
 
 dev_dependencies:

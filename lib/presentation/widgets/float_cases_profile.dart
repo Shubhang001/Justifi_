@@ -15,6 +15,7 @@ class AdvocateCardFloatCases extends StatelessWidget {
       required this.clients,
       required this.cases,
       required this.experience,
+      required this.userid,
       required this.place});
 
   final String image;
@@ -27,6 +28,7 @@ class AdvocateCardFloatCases extends StatelessWidget {
   final int clients;
   final int experience;
   final String place;
+  final int userid;
 
   @override
   Widget build(BuildContext context) {
@@ -39,6 +41,7 @@ class AdvocateCardFloatCases extends StatelessWidget {
               MaterialPageRoute(
                 builder: (context) => LawyerProfileScreen(
                   name: name,
+                  userid: userid,
                   image: image,
                   education: education,
                   rating: rating,

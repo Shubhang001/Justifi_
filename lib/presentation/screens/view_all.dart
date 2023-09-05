@@ -83,6 +83,7 @@ class _ViewAllPageState extends State<ViewAllPage> {
                         var fullname = res['full_name'];
                         var profileimage = baseurl + res['profile_image'];
                         var qualification = res['qualification'];
+                        var userid = res['user_id'];
                         var distance = res['distance'];
                         var place = res['practice_place'];
                         double rating = res['rating'].toDouble();
@@ -92,9 +93,11 @@ class _ViewAllPageState extends State<ViewAllPage> {
                         if (res['total_experience'] != null) {
                           experience = res['total_experience'];
                         }
+                        qualification ??= "No qulification";
                         return AdvocateCardExtended(
                           name: fullname,
                           image: profileimage,
+                          userid: userid,
                           education: qualification,
                           distance: distance,
                           rating: rating,
