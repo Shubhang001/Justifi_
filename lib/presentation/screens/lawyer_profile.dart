@@ -120,6 +120,7 @@ class _LawyerProfileScreenState extends State<LawyerProfileScreen>
                   ),
                   ReviewSection(
                     rating: widget.rating,
+                    userid: widget.userid,
                   ),
                   const WorkingHours(),
                 ],
@@ -552,12 +553,28 @@ class ShareProfile extends StatelessWidget {
   }
 }
 
-class ReviewSection extends StatelessWidget {
+class ReviewSection extends StatefulWidget {
   const ReviewSection({
     super.key,
     required this.rating,
+    required this.userid,
   });
   final double rating;
+  final int userid;
+
+  @override
+  State<ReviewSection> createState() => _ReviewSectionState();
+}
+
+class _ReviewSectionState extends State<ReviewSection> {
+  List<dynamic> result3 = [];
+  var count = 0;
+
+  @override
+  void initState() {
+    super.initState();
+    fetchUsers(widget.userid);
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -589,7 +606,7 @@ class ReviewSection extends StatelessWidget {
                       color: const Color.fromRGBO(223, 178, 0, 1),
                       child: Center(
                         child: Text(
-                          "$rating /5",
+                          "${widget.rating} /5",
                           style: const TextStyle(color: Colors.white),
                         ),
                       ),
@@ -599,9 +616,9 @@ class ReviewSection extends StatelessWidget {
                         top: 5,
                         left: 10,
                       ),
-                      child: const Text(
-                        "20 Reviews and 4 comments",
-                        style: TextStyle(
+                      child: Text(
+                        "$count Reviews and $count comments",
+                        style: const TextStyle(
                           fontWeight: FontWeight.bold,
                           color: Colors.black,
                         ),
@@ -634,10 +651,29 @@ class ReviewSection extends StatelessWidget {
               ],
             ),
           ),
-          const Review(),
+          Review(
+            result: result3,
+          ),
         ],
       ),
     );
+  }
+
+  Future<void> fetchUsers(int userid) async {
+    print('fetchUser called');
+    var uri =
+        Uri.parse("http://15.206.28.255:8000/v1/advocate/$userid/reviews");
+    var response = await http.get(uri);
+    if (response.statusCode == 200) {
+      final body = response.body;
+      final json = jsonDecode(body);
+
+      setState(() {
+        result3 = json['results'];
+        count = json['count'];
+      });
+      print('fetchUser complete');
+    }
   }
 }
 
@@ -692,7 +728,9 @@ class WorkingHours extends StatelessWidget {
 class Review extends StatelessWidget {
   const Review({
     super.key,
+    required this.result,
   });
+  final List<dynamic> result;
 
   @override
   Widget build(BuildContext context) {
@@ -727,9 +765,15 @@ class Review extends StatelessWidget {
             ),
             Expanded(
               child: ListView.builder(
-                itemCount: 8,
+                itemCount: result.length,
                 itemBuilder: (context, index) {
-                  return const ReviewContainer();
+                  var res = result[index];
+                  double rating = res['rating'].toDouble();
+                  var review = res['review'];
+                  return ReviewContainer(
+                    rating: rating,
+                    review: review,
+                  );
                 },
               ),
             )
@@ -743,7 +787,11 @@ class Review extends StatelessWidget {
 class ReviewContainer extends StatelessWidget {
   const ReviewContainer({
     super.key,
+    required this.rating,
+    required this.review,
   });
+  final double rating;
+  final String review;
 
   @override
   Widget build(BuildContext context) {
@@ -784,9 +832,9 @@ class ReviewContainer extends StatelessWidget {
                       width: 2,
                     ),
                   ),
-                  child: const Text(
-                    "⭐ 5",
-                    style: TextStyle(
+                  child: Text(
+                    "⭐ $rating",
+                    style: const TextStyle(
                       color: Colors.white,
                     ),
                   ),
@@ -796,9 +844,9 @@ class ReviewContainer extends StatelessWidget {
           ),
           Container(
             padding: const EdgeInsets.all(10),
-            child: const Text(
-              "Lorem ipsum dolor sit amet, consectetur adipisicing elit. Cum, veritatis. Commodi voluptates ea minus exercitationem reiciendis natus at corporis hic dignissimos alias. Repudiandae odio neque, dignissimos libero reprehenderit id esse.",
-              style: TextStyle(color: Colors.white),
+            child: Text(
+              review,
+              style: const TextStyle(color: Colors.white),
             ),
           ),
           Row(
