@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:jusitfi_admin/presentation/screens/chat_page.dart';
 import 'package:jusitfi_admin/presentation/screens/homepage.dart';
 import 'package:jusitfi_admin/presentation/screens/login_screen.dart';
 import 'package:jusitfi_admin/presentation/screens/more_page.dart';
@@ -95,15 +96,25 @@ class _OnBoardingScreenState extends State<OnBoardingScreen> {
                   textAlign: TextAlign.center,
                 ),
               ),
+
+
+
               Row(
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
                   TextButton(
                       onPressed: () {
-                        Navigator.of(context).pushAndRemoveUntil(
+                        // Navigator.of(context).pushAndRemoveUntil(
+                        //     MaterialPageRoute(
+                        //         builder: (context) => const ChatPage()),
+                        //     (Route<dynamic> route) => false);
+
+
+                        Navigator.of(context).push(
                             MaterialPageRoute(
-                                builder: (context) => const MorePage()),
-                            (Route<dynamic> route) => false);
+                                builder: (context) => const ChatPage()),);
+
+
                       },
                       child: Text(
                         'Skip',
