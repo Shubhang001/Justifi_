@@ -4,8 +4,6 @@
 
 import 'dart:convert';
 
-import 'package:http/http.dart';
-
 ClientListModel clientListFromJson(String str) =>
     ClientListModel.fromJson(json.decode(str));
 
