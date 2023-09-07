@@ -193,6 +193,7 @@ class _DetailSectionState extends State<DetailSection>
                 ),
                 Qualification(
                   education: widget.education,
+                  userid: widget.userid,
                 ),
                 Court(),
               ],
@@ -297,26 +298,47 @@ class CourtDetails {
   });
 }
 
-class Qualification extends StatelessWidget {
+class Qualification extends StatefulWidget {
   const Qualification({
     super.key,
     required this.education,
+    required this.userid,
   });
   final String education;
+  final int userid;
+  @override
+  State<Qualification> createState() => _QualificationState();
+}
+
+class _QualificationState extends State<Qualification> {
+  List<dynamic> result4 = [];
+
+  @override
+  void initState() {
+    super.initState();
+    fetchUsers(widget.userid);
+  }
+
   @override
   Widget build(BuildContext context) {
     return SizedBox(
       height: 500,
       child: ListView.builder(
-        itemCount: 1,
+        itemCount: result4.length,
         itemBuilder: (context, index) {
+          var res = result4[index];
+          var university = res['university'];
+          var degree = res['type'];
+          var studyfield = res['study_field'];
+          var startdate = res['start_date'];
+          var enddate = res['end_date'];
           return Container(
-            padding: const EdgeInsets.all(10),
+            padding: const EdgeInsets.only(right: 10, left: 10),
             margin: const EdgeInsets.symmetric(
               horizontal: 10,
               vertical: 15,
             ),
-            height: 135,
+            height: 200,
             width: double.infinity,
             decoration: const BoxDecoration(
               color: Color.fromRGBO(169, 169, 169, 1),
@@ -340,15 +362,15 @@ class Qualification extends StatelessWidget {
                 Row(
                   children: [
                     Image.asset("assets/images/college3.png"),
-                    Container(
-                      margin: const EdgeInsets.all(20),
+                    Padding(
+                      padding: const EdgeInsets.all(20.0),
                       child: Column(
                         crossAxisAlignment: CrossAxisAlignment.start,
                         children: [
                           SizedBox(
                             width: 210,
                             child: Text(
-                              education,
+                              university,
                               maxLines: 2,
                               style: const TextStyle(
                                 fontWeight: FontWeight.bold,
@@ -356,10 +378,30 @@ class Qualification extends StatelessWidget {
                               ),
                             ),
                           ),
-                          Container(
-                            margin: const EdgeInsets.only(top: 15),
-                            child: const Text(
-                              "October 2021- October2022",
+                          Padding(
+                            padding: const EdgeInsets.only(top: 10.0),
+                            child: Text(
+                              "Course: $degree",
+                            ),
+                          ),
+                          Padding(
+                            padding: const EdgeInsets.only(top: 10.0),
+                            child: SizedBox(
+                              width: 210,
+                              child: Text(
+                                "Study Field: $studyfield",
+                                maxLines: 2,
+                              ),
+                            ),
+                          ),
+                          Padding(
+                            padding: const EdgeInsets.only(top: 10.0),
+                            child: SizedBox(
+                              width: 210,
+                              child: Text(
+                                "Duration: $startdate to $enddate",
+                                maxLines: 2,
+                              ),
                             ),
                           )
                         ],
@@ -396,6 +438,22 @@ class Qualification extends StatelessWidget {
         },
       ),
     );
+  }
+
+  Future<void> fetchUsers(int userid) async {
+    print('fetchUser called');
+    var uri = Uri.parse(
+        "http://15.206.28.255:8000/v1/advocate/$userid/qualifications");
+    var response = await http.get(uri);
+    if (response.statusCode == 200) {
+      final body = response.body;
+      final json = jsonDecode(body);
+
+      setState(() {
+        result4 = json['results'];
+      });
+      print('fetchUser complete');
+    }
   }
 }
 
