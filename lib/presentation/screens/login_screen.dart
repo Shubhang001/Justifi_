@@ -40,6 +40,7 @@ class _LoginScreenState extends State<LoginScreen> {
     try {
       var response = await loginUserWithPhone(mobileNumber.text);
       print("Response: $response");
+
       if (response != null && response['success'] == true) {
         final id = response['id'];
         if (id != null) {
@@ -49,16 +50,20 @@ class _LoginScreenState extends State<LoginScreen> {
             ));
             setState(() {
               receivedUserId = id;
-              otpCount++;
+              otpCount++; // Increment otpCount here
             });
           }
         }
+      } else {
+        ScaffoldMessenger.of(context).showSnackBar(SnackBar(
+          content: Text("Failed to send OTP"),
+        ));
       }
     } catch (e) {
       ScaffoldMessenger.of(context).showSnackBar(SnackBar(
-        content: Text(e.toString()),
+        content: Text("Error: $e"),
       ));
-      print("$e");
+      print("Error: $e");
     }
   }
 
@@ -121,7 +126,7 @@ class _LoginScreenState extends State<LoginScreen> {
             Container(
               transform: Matrix4.translationValues(0.0, 15.0, 0.0),
               child: Image.asset(
-                'assets/images/login.png',
+                'assets/images/login1.png',
                 height: 200,
                 width: 200,
               ),

@@ -12,6 +12,7 @@ class AdvocateCardExtended extends StatelessWidget {
       required this.distance,
       required this.rating,
       required this.clients,
+      required this.userid,
       required this.cases,
       required this.experience,
       required this.place});
@@ -25,6 +26,7 @@ class AdvocateCardExtended extends StatelessWidget {
   final num clients;
   final num experience;
   final String place;
+  final int userid;
 
   @override
   Widget build(BuildContext context) {
@@ -36,6 +38,7 @@ class AdvocateCardExtended extends StatelessWidget {
               context,
               MaterialPageRoute(
                 builder: (context) => LawyerProfileScreen(
+                  userid: userid,
                   name: name,
                   image: image,
                   education: education,
