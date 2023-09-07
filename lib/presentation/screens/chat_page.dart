@@ -19,7 +19,55 @@ class _ChatPageState extends State<ChatPage> {
 
   TextEditingController messagecontroller =new TextEditingController();
 
-  makeconnection()  {
+  makeconnection()  async {
+    var resp= await getchat(1);
+    print(resp);
+    for(Map<String,dynamic> i in resp){
+
+      if(i['sender']=='36'){
+        setState(() {
+          message.add(
+              Row(
+                mainAxisAlignment: MainAxisAlignment.start,
+                mainAxisSize: MainAxisSize.min,
+                children: [
+                  Container(
+                      padding: EdgeInsets.symmetric(vertical: 5,horizontal: 9),
+                      decoration: BoxDecoration(border: Border.all(width: 1,color: Colors.black,),
+                          borderRadius: BorderRadius.circular(5)
+
+                      ),
+                      child: Text(i['content']['text'],style: TextStyle(color: Colors.black),)),
+
+                ],
+              )
+
+
+
+          );
+        });
+      }
+      else{
+        setState(() {
+          message.add(Row(
+            mainAxisAlignment: MainAxisAlignment.end,
+            mainAxisSize: MainAxisSize.min,
+            children: [
+              Container(
+                padding: EdgeInsets.symmetric(vertical: 5,horizontal: 10),
+                decoration: BoxDecoration(
+                    borderRadius: BorderRadius.circular(5),color: Colors.black
+                ),
+                child: Text(i['content']['text'],style: TextStyle(color: Colors.white),),),
+            ],
+          ));
+        });
+
+
+      }
+
+
+    }
  channel = IOWebSocketChannel.connect('ws://15.206.28.255:8000/ws/client_advocate/sender/36/receiver/42/', headers: {
       'Content-type': 'application/json',
       'Accept': 'application/json',
@@ -60,6 +108,7 @@ class _ChatPageState extends State<ChatPage> {
 
 @override
   initState(){
+
 super.initState();
 yourtoken='0f464ab809733c1e19c02d50a1e7be04c86d74a0';
 
@@ -251,14 +300,7 @@ channel.sink.close();
 super.dispose();
  }
 
-  Widget getthechatview() {
 
-
-
-
-    return ListView(children: message,);
-
-  }
 }
 
 
