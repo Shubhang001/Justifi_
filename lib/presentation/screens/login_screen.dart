@@ -70,6 +70,7 @@ class _LoginScreenState extends State<LoginScreen> {
   void _storeToken(String token) async {
     SharedPreferences prefs = await SharedPreferences.getInstance();
     prefs.setString('token', token);
+    print('Token: $token');
   }
 
   Future<bool> checkValidation() async {
@@ -90,7 +91,13 @@ class _LoginScreenState extends State<LoginScreen> {
               ScaffoldMessenger.of(context).showSnackBar(SnackBar(
                 content: Text(response["message"]),
               ));
+
+              // Store and print the token
               print(response["message"]);
+              final token = response["token"];
+
+              _storeToken(token);
+
               setState(() {
                 validate = false;
               });
