@@ -40,6 +40,7 @@ class _HorizontalTilesState extends State<HorizontalTiles> {
               var res = result[index];
               var fullname = res['full_name'];
               var profileimage = baseurl + res['profile_image'];
+              var userid = res['user_id'];
               var qualification = res['qualification'];
               var distance = res['distance'];
               double rating = res['rating'].toDouble();
@@ -50,7 +51,7 @@ class _HorizontalTilesState extends State<HorizontalTiles> {
               if (res['total_experience'] != null) {
                 experience = res['total_experience'];
               }
-
+              qualification ??= "No qulification";
               return Padding(
                 padding: const EdgeInsets.all(8.0),
                 child: AdvocateCard(
