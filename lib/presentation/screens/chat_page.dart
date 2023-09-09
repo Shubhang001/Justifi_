@@ -1,5 +1,6 @@
 import 'dart:convert';
 
+
 import 'package:flutter/material.dart';
 import 'package:image_picker/image_picker.dart';
 import 'package:jusitfi_admin/api/chat/get_chat.dart';
@@ -18,6 +19,8 @@ class _ChatPageState extends State<ChatPage> {
  var channel;
 
   TextEditingController messagecontroller =new TextEditingController();
+
+  ScrollController chatlistcontroller = ScrollController();
 
   makeconnection()  async {
     var resp= await getchat(1);
@@ -45,9 +48,10 @@ class _ChatPageState extends State<ChatPage> {
 
 
           );
+          message.add(SizedBox(height: 10,));
         });
       }
-      else{
+      else {
         setState(() {
           message.add(Row(
             mainAxisAlignment: MainAxisAlignment.end,
@@ -61,6 +65,7 @@ class _ChatPageState extends State<ChatPage> {
                 child: Text(i['content']['text'],style: TextStyle(color: Colors.white),),),
             ],
           ));
+          message.add(SizedBox(height: 10,));
         });
 
 
@@ -68,6 +73,7 @@ class _ChatPageState extends State<ChatPage> {
 
 
     }
+    chatlistcontroller.jumpTo(chatlistcontroller.position.maxScrollExtent);
  channel = IOWebSocketChannel.connect('ws://15.206.28.255:8000/ws/client_advocate/sender/36/receiver/42/', headers: {
       'Content-type': 'application/json',
       'Accept': 'application/json',
@@ -94,9 +100,11 @@ class _ChatPageState extends State<ChatPage> {
          )
 
 
-
        );
+       message.add(SizedBox(height: 10,));
+       chatlistcontroller.jumpTo(chatlistcontroller.position.maxScrollExtent);
      });
+
 
 
    });
@@ -193,12 +201,18 @@ yourtoken='0f464ab809733c1e19c02d50a1e7be04c86d74a0';
 
        Expanded(
          child: Padding(
-           padding: EdgeInsets.all(10),
-           child: ListView.builder(
-             itemCount: message.length,
-             itemBuilder: (BuildContext context, int index) {
-             return message[index];
-           },),
+           padding: EdgeInsets.only(top: 10,bottom: 75,right: 10,left: 10),
+           child: Container(
+
+             child: ListView.builder(
+             shrinkWrap: true,
+
+               controller: chatlistcontroller,
+               itemCount: message.length,
+               itemBuilder: (BuildContext context, int index) {
+               return message[index];
+             },),
+           ),
          ),
        )
 
@@ -277,6 +291,10 @@ yourtoken='0f464ab809733c1e19c02d50a1e7be04c86d74a0';
                               child: Text(messagecontroller.text,style: TextStyle(color: Colors.white),),),
                           ],
                         ));
+                        message.add(SizedBox(height: 10,));
+                        messagecontroller.text="";
+                        chatlistcontroller.jumpTo(chatlistcontroller.position.maxScrollExtent);
+
                       });
 
                     }

@@ -83,26 +83,23 @@ getchat(caseid) async {
 
   if (response1.statusCode == 200) {
 
-    for(var i=1;i<=(count/10).ceil();i++) {
-      print(count);
+  for(var i=0;i<=(count/10).ceil();i++) {
+    var response =
+    await http.get(Uri.parse(
+        "http://15.206.28.255:8000/v1/chats/client-advocate/${caseid}/?page=${i}"));
 
-      final response =
-      await http.get(Uri.parse(
-          "http://15.206.28.255:8000/v1/chats/client-advocate/${caseid}?page=$i"));
+    if (response.statusCode==200){
+     List<dynamic> data = jsonDecode(response.body)['results'];
+      for(Map<String,dynamic> j in data){
 
-      if (response.statusCode == 200) {
-        final List<dynamic> data = jsonDecode(response.body)['results'];
-        print(data);
-        for (var j in data) {
-
-            alldata.add(j);
-
-        }
-
-        return alldata;
+        alldata.add(j);
       }
 
-      else {
-        return "Operation Failed";
-      }
-    }}}
+    }
+  }
+
+
+  return alldata;
+
+
+  }}
