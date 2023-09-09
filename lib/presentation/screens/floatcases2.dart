@@ -1,11 +1,15 @@
+import 'dart:convert';
 import 'dart:io';
 import 'package:file_picker/file_picker.dart';
 import 'package:flutter/material.dart';
+import 'package:http/http.dart';
+import 'package:http/http.dart' as http;
 import 'package:jusitfi_admin/presentation/screens/finished_page.dart';
 import 'package:jusitfi_admin/presentation/screens/float_cases4.dart';
 import 'package:jusitfi_admin/presentation/screens/notification_page.dart';
 import 'package:jusitfi_admin/presentation/screens/profile_page.dart';
 import 'package:jusitfi_admin/utils/constants/textstyles.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 
 // ignore: must_be_immutable
 class FloatCases2 extends StatefulWidget {
@@ -32,6 +36,9 @@ class _FloatCases2State extends State<FloatCases2> {
       // User canceled the picker
     }
   }
+
+  TextEditingController title = TextEditingController();
+  TextEditingController description = TextEditingController();
 
   @override
   Widget build(BuildContext context) {
@@ -158,6 +165,7 @@ class _FloatCases2State extends State<FloatCases2> {
                                   ),
                                   child: Center(
                                     child: TextField(
+                                      controller: title,
                                       decoration: const InputDecoration(
                                         border: InputBorder.none,
                                       ),
@@ -291,6 +299,7 @@ class _FloatCases2State extends State<FloatCases2> {
                                   ),
                                   child: Center(
                                     child: TextField(
+                                      controller: description,
                                       maxLines: 10,
                                       decoration: const InputDecoration(
                                         border: InputBorder.none,
@@ -493,17 +502,22 @@ class _FloatCases2State extends State<FloatCases2> {
                                 nextPageName: 'View Status'),
                           ));
                     },
-                    child: Container(
-                      width: 160,
-                      height: 40,
-                      decoration: BoxDecoration(
-                          color: Colors.black,
-                          borderRadius: BorderRadius.circular(18)),
-                      child: Center(
-                          child: Text(
-                        'Launch',
-                        style: kpageTitle,
-                      )),
+                    child: InkWell(
+                      onTap: () {
+                        saveData();
+                      },
+                      child: Container(
+                        width: 160,
+                        height: 40,
+                        decoration: BoxDecoration(
+                            color: Colors.black,
+                            borderRadius: BorderRadius.circular(18)),
+                        child: Center(
+                            child: Text(
+                          'Launch',
+                          style: kpageTitle,
+                        )),
+                      ),
                     ),
                   ),
                 ),
@@ -531,5 +545,40 @@ class _FloatCases2State extends State<FloatCases2> {
         ),
       ),
     );
+  }
+
+  void saveData() async {
+    try {
+      var url = "http://15.206.28.255:8000/v1/case-connect";
+
+      
+
+      var data = {
+        "title": title.text,
+        "description": description.text,
+        "amount_offer": "500",
+        "deadline": "2023-08-31:12:12:12",
+        "case_type": "127",
+       
+      };
+
+      var headers = {
+        "Content-Type": "application/json",
+        "Authorization": "Token 0f464ab809733c1e19c02d50a1e7be04c86d74a0",
+      };
+
+      var bodyy = json.encode(data);
+      var urlParse = Uri.parse(url);
+      Response response = await http.post(
+        urlParse,
+        body: bodyy,
+        headers: headers,
+      );
+
+      var dataa = jsonDecode(response.body);
+      print(dataa);
+    } catch (e) {
+      print(e.toString());
+    }
   }
 }
