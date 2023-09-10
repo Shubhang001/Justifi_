@@ -1,11 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:jusitfi_admin/presentation/screens/offers_page.dart';
-import 'package:jusitfi_admin/presentation/screens/pay_now_page.dart';
 
 import '../../utils/constants/colors.dart';
 import '../../utils/constants/coupon_code_constants.dart';
 import '../../utils/constants/textstyles.dart';
+import 'package:razorpay_flutter/razorpay_flutter.dart';
 
 class AddCreditsPage extends StatefulWidget {
   String title;
@@ -22,6 +22,56 @@ int discount = 150;
 int total = 390;
 
 class _AddCreditsPageState extends State<AddCreditsPage> {
+  void handlePaymentErrorResponse(PaymentFailureResponse response) {
+    /*
+    * PaymentFailureResponse contains three values:
+    * 1. Error Code
+    * 2. Error Description
+    * 3. Metadata
+    * */
+    showAlertDialog(context as BuildContext, "Payment Failed",
+        "Code: ${response.code}\nDescription: ${response.message}\nMetadata:${response.error.toString()}");
+  }
+
+  void handlePaymentSuccessResponse(PaymentSuccessResponse response) {
+    /*
+    * Payment Success Response contains three values:
+    * 1. Order ID
+    * 2. Payment ID
+    * 3. Signature
+    * */
+    showAlertDialog(context as BuildContext, "Payment Successful",
+        "Payment ID: ${response.paymentId}");
+  }
+
+  void handleExternalWalletSelected(ExternalWalletResponse response) {
+    showAlertDialog(context as BuildContext, "External Wallet Selected",
+        "${response.walletName}");
+  }
+
+  void showAlertDialog(BuildContext context, String title, String message) {
+    // set up the buttons
+    Widget continueButton = ElevatedButton(
+      child: const Text("Continue"),
+      onPressed: () {},
+    );
+    // set up the AlertDialog
+    AlertDialog alert = AlertDialog(
+      title: Text(title),
+      content: Text(message),
+      actions: [
+        continueButton,
+      ],
+    );
+    // show the dialog
+    showDialog(
+      context: context,
+      builder: (BuildContext context) {
+        return alert;
+      },
+    );
+  }
+
   @override
   void initState() {
     super.initState();
@@ -172,11 +222,29 @@ class _AddCreditsPageState extends State<AddCreditsPage> {
                   Center(
                     child: GestureDetector(
                       onTap: () {
-                        Navigator.of(context).pushReplacement(MaterialPageRoute(
-                            builder: (context) => PayNowPage(
-                                  title: widget.title.toString(),
-                                  total: total.toString(),
-                                )));
+                        Razorpay razorpay = Razorpay();
+                        var options = {
+                          'key': 'rzp_live_ILgsfZCZoFIKMb',
+                          'amount': 10000000,
+                          'name': 'Justifi Corp.',
+                          'description': 'Advocate Hire',
+                          'retry': {'enabled': true, 'max_count': 1},
+                          'send_sms_hash': true,
+                          'prefill': {
+                            'contact': '8888888888',
+                            'email': 'test@razorpay.com'
+                          },
+                          'external': {
+                            'wallets': ['paytm']
+                          }
+                        };
+                        razorpay.on(Razorpay.EVENT_PAYMENT_ERROR,
+                            handlePaymentErrorResponse);
+                        razorpay.on(Razorpay.EVENT_PAYMENT_SUCCESS,
+                            handlePaymentSuccessResponse);
+                        razorpay.on(Razorpay.EVENT_EXTERNAL_WALLET,
+                            handleExternalWalletSelected);
+                        razorpay.open(options);
                       },
                       child: CButton(
                         b_title: "Pay Now",
