@@ -458,7 +458,7 @@ class _AssignWorkLawyerProfileState extends State<AssignWorkLawyerProfile> {
                               onTap: () {
                                 Navigator.push(context,
                                     MaterialPageRoute(builder: (_) {
-                                  return AssignWorkCompleted();
+                                  return const AssignWorkCompleted();
                                 }));
                               },
                               child: Container(
