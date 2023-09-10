@@ -1,5 +1,6 @@
 import 'dart:convert';
 
+
 import 'package:flutter/material.dart';
 import 'package:image_picker/image_picker.dart';
 import 'package:jusitfi_admin/api/chat/get_chat.dart';
@@ -19,7 +20,60 @@ class _ChatPageState extends State<ChatPage> {
 
   TextEditingController messagecontroller =new TextEditingController();
 
-  makeconnection()  {
+  ScrollController chatlistcontroller = ScrollController();
+
+  makeconnection()  async {
+    var resp= await getchat(1);
+    print(resp);
+    for(Map<String,dynamic> i in resp){
+
+      if(i['sender']=='36'){
+        setState(() {
+          message.add(
+              Row(
+                mainAxisAlignment: MainAxisAlignment.start,
+                mainAxisSize: MainAxisSize.min,
+                children: [
+                  Container(
+                      padding: EdgeInsets.symmetric(vertical: 5,horizontal: 9),
+                      decoration: BoxDecoration(border: Border.all(width: 1,color: Colors.black,),
+                          borderRadius: BorderRadius.circular(5)
+
+                      ),
+                      child: Text(i['content']['text'],style: TextStyle(color: Colors.black),)),
+
+                ],
+              )
+
+
+
+          );
+          message.add(SizedBox(height: 10,));
+        });
+      }
+      else {
+        setState(() {
+          message.add(Row(
+            mainAxisAlignment: MainAxisAlignment.end,
+            mainAxisSize: MainAxisSize.min,
+            children: [
+              Container(
+                padding: EdgeInsets.symmetric(vertical: 5,horizontal: 10),
+                decoration: BoxDecoration(
+                    borderRadius: BorderRadius.circular(5),color: Colors.black
+                ),
+                child: Text(i['content']['text'],style: TextStyle(color: Colors.white),),),
+            ],
+          ));
+          message.add(SizedBox(height: 10,));
+        });
+
+
+      }
+
+
+    }
+    chatlistcontroller.jumpTo(chatlistcontroller.position.maxScrollExtent);
  channel = IOWebSocketChannel.connect('ws://15.206.28.255:8000/ws/client_advocate/sender/36/receiver/42/', headers: {
       'Content-type': 'application/json',
       'Accept': 'application/json',
@@ -46,9 +100,11 @@ class _ChatPageState extends State<ChatPage> {
          )
 
 
-
        );
+       message.add(SizedBox(height: 10,));
+       chatlistcontroller.jumpTo(chatlistcontroller.position.maxScrollExtent);
      });
+
 
 
    });
@@ -60,6 +116,7 @@ class _ChatPageState extends State<ChatPage> {
 
 @override
   initState(){
+
 super.initState();
 yourtoken='0f464ab809733c1e19c02d50a1e7be04c86d74a0';
 
@@ -144,12 +201,18 @@ yourtoken='0f464ab809733c1e19c02d50a1e7be04c86d74a0';
 
        Expanded(
          child: Padding(
-           padding: EdgeInsets.all(10),
-           child: ListView.builder(
-             itemCount: message.length,
-             itemBuilder: (BuildContext context, int index) {
-             return message[index];
-           },),
+           padding: EdgeInsets.only(top: 10,bottom: 75,right: 10,left: 10),
+           child: Container(
+
+             child: ListView.builder(
+             shrinkWrap: true,
+
+               controller: chatlistcontroller,
+               itemCount: message.length,
+               itemBuilder: (BuildContext context, int index) {
+               return message[index];
+             },),
+           ),
          ),
        )
 
@@ -228,6 +291,10 @@ yourtoken='0f464ab809733c1e19c02d50a1e7be04c86d74a0';
                               child: Text(messagecontroller.text,style: TextStyle(color: Colors.white),),),
                           ],
                         ));
+                        message.add(SizedBox(height: 10,));
+                        messagecontroller.text="";
+                        chatlistcontroller.jumpTo(chatlistcontroller.position.maxScrollExtent);
+
                       });
 
                     }
@@ -251,14 +318,7 @@ channel.sink.close();
 super.dispose();
  }
 
-  Widget getthechatview() {
 
-
-
-
-    return ListView(children: message,);
-
-  }
 }
 
 

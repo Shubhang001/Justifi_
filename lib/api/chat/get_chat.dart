@@ -1,5 +1,5 @@
-
-import 'package:web_socket_channel/io.dart';
+import 'dart:convert';
+import 'package:http/http.dart' as http;
 class Chatmodel {
   String type;
   Data data;
@@ -73,16 +73,33 @@ class Content {
   }
 
 }
-// getchat(){
-//
-//  var channel = IOWebSocketChannel.connect('ws://15.206.28.255:8000/ws/client_advocate/sender/36/receiver/42/', headers: {
-//     'Content-type': 'application/json',
-//     'Accept': 'application/json',
-//     'Authorization': 'Bearer $yourtoken',
-//     'token':yourtoken
-//   });
-//   if(channel!=null){
-//     print("connection succeed");
-//   }
-//
-// }
+getchat(caseid) async {
+
+  List<dynamic> alldata=[];
+  final response1 =
+      await http.get(Uri.parse("http://15.206.28.255:8000/v1/chats/client-advocate/${caseid}/"));
+  final int count=jsonDecode(response1.body)['count'];
+
+
+  if (response1.statusCode == 200) {
+
+  for(var i=0;i<=(count/10).ceil();i++) {
+    var response =
+    await http.get(Uri.parse(
+        "http://15.206.28.255:8000/v1/chats/client-advocate/${caseid}/?page=${i}"));
+
+    if (response.statusCode==200){
+     List<dynamic> data = jsonDecode(response.body)['results'];
+      for(Map<String,dynamic> j in data){
+
+        alldata.add(j);
+      }
+
+    }
+  }
+
+
+  return alldata;
+
+
+  }}
