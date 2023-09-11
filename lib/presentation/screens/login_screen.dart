@@ -8,10 +8,8 @@ import 'package:flutter_otp_text_field/flutter_otp_text_field.dart';
 import 'package:jusitfi_admin/utils/dynamic/dynamic_values.dart';
 import 'package:jusitfi_admin/utils/models/usermodel.dart';
 import 'package:jusitfi_admin/utils/services/rest_apis.dart';
-import 'package:shared_preferences/shared_preferences.dart';
 import '../../utils/constants/colors.dart';
 import '../widgets/big_button.dart';
-import 'package:flutter/services.dart';
 
 class LoginScreen extends StatefulWidget {
   const LoginScreen({super.key});
@@ -26,8 +24,7 @@ class _LoginScreenState extends State<LoginScreen> {
     if (s == null) {
       return false;
     }
-    double? value = double.tryParse(s);
-    return value != null && value >= 0;
+    return double.tryParse(s) != null;
   }
 
   bool validate = false;
@@ -65,12 +62,6 @@ class _LoginScreenState extends State<LoginScreen> {
       ));
       print("Error: $e");
     }
-  }
-
-  void _storeToken(String token) async {
-    SharedPreferences prefs = await SharedPreferences.getInstance();
-    prefs.setString('token', token);
-    print('Token: $token');
   }
 
   Future<bool> checkValidation() async {
@@ -133,7 +124,7 @@ class _LoginScreenState extends State<LoginScreen> {
             Container(
               transform: Matrix4.translationValues(0.0, 15.0, 0.0),
               child: Image.asset(
-                'assets/images/login1.png',
+                'assets/images/login.png',
                 height: 200,
                 width: 200,
               ),
@@ -162,22 +153,16 @@ class _LoginScreenState extends State<LoginScreen> {
                             InkWell(
                               onTap: () async {
                                 setState(() {
-                                  mobileNumber.text.isEmpty ||
-                                          !isNumeric(mobileNumber.text) ||
-                                          mobileNumber.text.length != 10
-                                      ? validate = true
-                                      : validate = false;
+                                  otpCount++;
                                 });
-                                if (!validate) {
-                                  try {
-                                    await registerUserPhoneId();
-                                  } catch (e) {
-                                    ScaffoldMessenger.of(context)
-                                        .showSnackBar(SnackBar(
-                                      content: Text(e.toString()),
-                                    ));
-                                    print("Error: $e");
-                                  }
+                                try {
+                                  await registerUserPhoneId();
+                                } catch (e) {
+                                  ScaffoldMessenger.of(context)
+                                      .showSnackBar(SnackBar(
+                                    content: Text(e.toString()),
+                                  ));
+                                  print("Error: $e");
                                 }
                               },
                               child: Text(
@@ -203,10 +188,6 @@ class _LoginScreenState extends State<LoginScreen> {
                             OtpTextField(
                               textStyle: kotp,
                               fieldWidth: 30,
-                              inputFormatters: [
-                                FilteringTextInputFormatter
-                                    .digitsOnly, // Allow only numbers
-                              ],
                               decoration: const InputDecoration(
                                   fillColor: Colors.white),
                               numberOfFields: 6,
