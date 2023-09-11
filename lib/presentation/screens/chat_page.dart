@@ -1,11 +1,133 @@
+import 'dart:convert';
+
+
 import 'package:flutter/material.dart';
 import 'package:image_picker/image_picker.dart';
-
-class ChatPage extends StatelessWidget {
+import 'package:jusitfi_admin/api/chat/get_chat.dart';
+import 'package:jusitfi_admin/presentation/widgets/drop_down_button.dart';
+import 'package:web_socket_channel/io.dart';
+class ChatPage extends StatefulWidget {
   const ChatPage({super.key});
 
   @override
+  State<ChatPage> createState() => _ChatPageState();
+}
+
+class _ChatPageState extends State<ChatPage> {
+  List<Widget> message=[];
+ var yourtoken="";
+ var channel;
+
+  TextEditingController messagecontroller =new TextEditingController();
+
+  ScrollController chatlistcontroller = ScrollController();
+
+  makeconnection()  async {
+    var resp= await getchat(1);
+    print(resp);
+    for(Map<String,dynamic> i in resp){
+
+      if(i['sender']=='36'){
+        setState(() {
+          message.add(
+              Row(
+                mainAxisAlignment: MainAxisAlignment.start,
+                mainAxisSize: MainAxisSize.min,
+                children: [
+                  Container(
+                      padding: EdgeInsets.symmetric(vertical: 5,horizontal: 9),
+                      decoration: BoxDecoration(border: Border.all(width: 1,color: Colors.black,),
+                          borderRadius: BorderRadius.circular(5)
+
+                      ),
+                      child: Text(i['content']['text'],style: TextStyle(color: Colors.black),)),
+
+                ],
+              )
+
+
+
+          );
+          message.add(SizedBox(height: 10,));
+        });
+      }
+      else {
+        setState(() {
+          message.add(Row(
+            mainAxisAlignment: MainAxisAlignment.end,
+            mainAxisSize: MainAxisSize.min,
+            children: [
+              Container(
+                padding: EdgeInsets.symmetric(vertical: 5,horizontal: 10),
+                decoration: BoxDecoration(
+                    borderRadius: BorderRadius.circular(5),color: Colors.black
+                ),
+                child: Text(i['content']['text'],style: TextStyle(color: Colors.white),),),
+            ],
+          ));
+          message.add(SizedBox(height: 10,));
+        });
+
+
+      }
+
+
+    }
+    chatlistcontroller.jumpTo(chatlistcontroller.position.maxScrollExtent);
+ channel = IOWebSocketChannel.connect('ws://15.206.28.255:8000/ws/client_advocate/sender/36/receiver/42/', headers: {
+      'Content-type': 'application/json',
+      'Accept': 'application/json',
+      'Authorization': 'Bearer $yourtoken',
+   'token':yourtoken
+    });
+ if(channel!=null){
+   channel.stream.listen((msg){
+     msg=jsonDecode(msg);
+     setState(() {
+       message.add(
+         Row(
+           mainAxisAlignment: MainAxisAlignment.start,
+           mainAxisSize: MainAxisSize.min,
+           children: [
+             Container(
+               padding: EdgeInsets.symmetric(vertical: 5,horizontal: 9),
+               decoration: BoxDecoration(border: Border.all(width: 1,color: Colors.black,),
+                 borderRadius: BorderRadius.circular(5)
+
+               ),
+               child: Text(msg['data']['content']['text'],style: TextStyle(color: Colors.black),)),
+           ],
+         )
+
+
+       );
+       message.add(SizedBox(height: 10,));
+       chatlistcontroller.jumpTo(chatlistcontroller.position.maxScrollExtent);
+     });
+
+
+
+   });
+ }
+
+
+  }
+
+
+@override
+  initState(){
+
+super.initState();
+yourtoken='0f464ab809733c1e19c02d50a1e7be04c86d74a0';
+
+  makeconnection();
+  }
+
+  @override
   Widget build(BuildContext context) {
+
+
+
     return Scaffold(
       appBar: AppBar(
         elevation: 0,
@@ -76,18 +198,28 @@ class ChatPage extends StatelessWidget {
               ],
             ),
           ),
-          Expanded(
-            child: Row(
-              mainAxisAlignment: MainAxisAlignment.center,
-              crossAxisAlignment: CrossAxisAlignment.center,
-              children: [
-                Image.asset(
-                  height: 180,
-                  "assets/images/send.png",
-                ),
-              ],
-            ),
-          ),
+
+       Expanded(
+         child: Padding(
+           padding: EdgeInsets.only(top: 10,bottom: 75,right: 10,left: 10),
+           child: Container(
+
+             child: ListView.builder(
+             shrinkWrap: true,
+
+               controller: chatlistcontroller,
+               itemCount: message.length,
+               itemBuilder: (BuildContext context, int index) {
+               return message[index];
+             },),
+           ),
+         ),
+       )
+
+
+
+
+
         ],
       ),
       bottomSheet: Row(
@@ -104,7 +236,7 @@ class ChatPage extends StatelessWidget {
               onPressed: () async {
                 final ImagePicker picker = ImagePicker();
                 final XFile? image =
-                    await picker.pickImage(source: ImageSource.gallery);
+                await picker.pickImage(source: ImageSource.gallery);
                 if (image != null) {
                   debugPrint(image.path);
                 }
@@ -126,19 +258,68 @@ class ChatPage extends StatelessWidget {
                   Radius.circular(25),
                 ),
               ),
-              child: const TextField(
+              child:  TextField(
+
                 style: TextStyle(color: Colors.white),
                 decoration: InputDecoration(
-                  suffixIcon: Icon(
-                    Icons.send,
-                    color: Colors.white,
+                  suffixIcon: IconButton(
+
+                    color: Colors.white, onPressed: () {
+
+                    if (messagecontroller.text.isNotEmpty) {
+                      channel.sink.add(
+                          
+                        
+                        jsonEncode(  {
+    "type":"chat_message",
+    "case_connect_id":1,
+    "content":{
+    "text":messagecontroller.text
+    }})
+                      );
+
+                      setState(() {
+                        message.add(Row(
+                          mainAxisAlignment: MainAxisAlignment.end,
+                          mainAxisSize: MainAxisSize.min,
+                          children: [
+                            Container(
+                              padding: EdgeInsets.symmetric(vertical: 5,horizontal: 10),
+                              decoration: BoxDecoration(
+                                  borderRadius: BorderRadius.circular(5),color: Colors.black
+                              ),
+                              child: Text(messagecontroller.text,style: TextStyle(color: Colors.white),),),
+                          ],
+                        ));
+                        message.add(SizedBox(height: 10,));
+                        messagecontroller.text="";
+                        chatlistcontroller.jumpTo(chatlistcontroller.position.maxScrollExtent);
+
+                      });
+
+                    }
+
+                  }, icon: Icon(Icons.send,),
                   ),
                 ),
+                controller: messagecontroller,
               ),
             ),
           ),
         ],
       ),
     );
+
+
   }
+ @override
+ void dispose(){
+channel.sink.close();
+super.dispose();
+ }
+
+
 }
+
+
+

@@ -28,8 +28,8 @@ class _HomePageState extends State<HomePage> {
           backgroundColor: Colors.white,
           actions: [
             Padding(
-              padding:
-                  const EdgeInsets.only(left: 20, right: 30, top: 10, bottom: 10),
+              padding: const EdgeInsets.only(
+                  left: 20, right: 30, top: 10, bottom: 10),
               child: Row(
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
@@ -184,7 +184,7 @@ class _HomePageState extends State<HomePage> {
                         onTap: () {
                           Navigator.of(context)
                               .push(MaterialPageRoute(builder: (_) {
-                            return MorePage();
+                            return const MorePage();
                           }));
                         },
                         child: CategoryTile(

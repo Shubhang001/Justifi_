@@ -10,19 +10,25 @@ class AdvocateCardFloatCases extends StatelessWidget {
       required this.image,
       required this.location,
       required this.distance,
+      required this.education,
       required this.rating,
       required this.clients,
       required this.cases,
-      required this.experience});
+      required this.experience,
+      required this.userid,
+      required this.place});
 
   final String image;
   final String name;
   final String location;
+  final String education;
   final double distance;
   final double rating;
   final int cases;
   final int clients;
   final int experience;
+  final String place;
+  final int userid;
 
   @override
   Widget build(BuildContext context) {
@@ -33,7 +39,17 @@ class AdvocateCardFloatCases extends StatelessWidget {
           Navigator.push(
               context,
               MaterialPageRoute(
-                builder: (context) => const LawyerProfileScreen(),
+                builder: (context) => LawyerProfileScreen(
+                  name: name,
+                  userid: userid,
+                  image: image,
+                  education: education,
+                  rating: rating,
+                  cases: cases,
+                  clients: clients,
+                  experience: experience,
+                  place: place,
+                ),
               ));
         },
         child: Container(

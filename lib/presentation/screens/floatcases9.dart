@@ -47,10 +47,13 @@ Future<Object?> floatCases9(
                 image: 'assets/images/advocate_img.png',
                 location: 'Mumbai',
                 distance: 10,
+                userid: 42,
                 rating: 3.5,
                 clients: 100,
                 cases: 100,
                 experience: 15,
+                education: "LLB-Delhi University",
+                place: "Mumbai",
               ),
               Expanded(
                   child: Container(

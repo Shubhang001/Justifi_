@@ -1,22 +1,44 @@
+import 'dart:convert';
+
 import 'package:flutter/material.dart';
 import 'package:jusitfi_admin/utils/constants/textstyles.dart';
 import 'package:share_plus/share_plus.dart';
-
+import 'package:http/http.dart' as http;
 import '../widgets/show_call_details.dart';
 import '../widgets/show_call_dialog.dart';
 import '../widgets/view_document_dialog_box.dart';
 import 'assignwork_lawyer_profile.dart';
 import 'schedule3.dart';
+import 'package:url_launcher/url_launcher.dart';
 
 class LawyerProfileScreen extends StatefulWidget {
-  const LawyerProfileScreen({super.key});
-
+  const LawyerProfileScreen(
+      {super.key,
+      required this.name,
+      required this.userid,
+      required this.image,
+      required this.education,
+      required this.rating,
+      required this.cases,
+      required this.clients,
+      required this.experience,
+      required this.place});
+  final String name;
+  final int userid;
+  final String image;
+  final String education;
+  final double rating;
+  final num cases;
+  final num clients;
+  final num experience;
+  final String place;
   @override
   State<LawyerProfileScreen> createState() => _LawyerProfileScreenState();
 }
 
 class _LawyerProfileScreenState extends State<LawyerProfileScreen>
     with TickerProviderStateMixin {
+  List<dynamic> result1 = [];
   TabController? _tabController;
 
   @override
@@ -37,15 +59,18 @@ class _LawyerProfileScreenState extends State<LawyerProfileScreen>
         children: [
           Row(
             children: [
-              const _ImageContainer(160, 150),
+              _ImageContainer(160, 145, widget.image),
               Container(
                 margin: const EdgeInsets.only(left: 10),
                 child: Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
-                    Text(
-                      "Priya sharma",
-                      style: lawyerName,
+                    SizedBox(
+                      width: 200,
+                      child: Text(
+                        widget.name,
+                        style: lawyerName,
+                      ),
                     ),
                     const SizedBox(
                       height: 10,
@@ -57,12 +82,16 @@ class _LawyerProfileScreenState extends State<LawyerProfileScreen>
                           Icons.location_on_outlined,
                         ),
                         Text(
-                          "Mumbai",
+                          widget.place,
                           style: locationName,
                         ),
                       ],
                     ),
-                    const LawyerInfo(),
+                    LawyerInfo(
+                      cases: widget.cases,
+                      clients: widget.clients,
+                      experience: widget.experience,
+                    ),
                   ],
                 ),
               ),
@@ -84,10 +113,16 @@ class _LawyerProfileScreenState extends State<LawyerProfileScreen>
               width: double.maxFinite,
               child: TabBarView(
                 controller: _tabController,
-                children: const [
-                  DetailSection(),
-                  ReviewSection(),
-                  WorkingHours()
+                children: [
+                  DetailSection(
+                    education: widget.education,
+                    userid: widget.userid,
+                  ),
+                  ReviewSection(
+                    rating: widget.rating,
+                    userid: widget.userid,
+                  ),
+                  const WorkingHours(),
                 ],
               ),
             ),
@@ -113,7 +148,11 @@ class _LawyerProfileScreenState extends State<LawyerProfileScreen>
 class DetailSection extends StatefulWidget {
   const DetailSection({
     super.key,
+    required this.education,
+    required this.userid,
   });
+  final String education;
+  final int userid;
 
   @override
   State<DetailSection> createState() => _DetailSectionState();
@@ -149,8 +188,13 @@ class _DetailSectionState extends State<DetailSection>
             child: TabBarView(
               controller: _tabController,
               children: <Widget>[
-                const PracticeArea(),
-                const Qualification(),
+                PracticeArea(
+                  userid: widget.userid,
+                ),
+                Qualification(
+                  education: widget.education,
+                  userid: widget.userid,
+                ),
                 Court(),
               ],
             ),
@@ -254,31 +298,47 @@ class CourtDetails {
   });
 }
 
-class Qualification extends StatelessWidget {
+class Qualification extends StatefulWidget {
   const Qualification({
     super.key,
+    required this.education,
+    required this.userid,
   });
+  final String education;
+  final int userid;
+  @override
+  State<Qualification> createState() => _QualificationState();
+}
 
-  static List<String> college = [
-    "Delhi University\nLLB ",
-    "Indian Law Institute\nCyber Law",
-    "NALSAR University\nDiploma"
-  ];
+class _QualificationState extends State<Qualification> {
+  List<dynamic> result4 = [];
+
+  @override
+  void initState() {
+    super.initState();
+    fetchUsers(widget.userid);
+  }
 
   @override
   Widget build(BuildContext context) {
     return SizedBox(
       height: 500,
       child: ListView.builder(
-        itemCount: 3,
+        itemCount: result4.length,
         itemBuilder: (context, index) {
+          var res = result4[index];
+          var university = res['university'];
+          var degree = res['type'];
+          var studyfield = res['study_field'];
+          var startdate = res['start_date'];
+          var enddate = res['end_date'];
           return Container(
-            padding: const EdgeInsets.all(10),
+            padding: const EdgeInsets.only(right: 10, left: 10),
             margin: const EdgeInsets.symmetric(
               horizontal: 10,
               vertical: 15,
             ),
-            height: 135,
+            height: 200,
             width: double.infinity,
             decoration: const BoxDecoration(
               color: Color.fromRGBO(169, 169, 169, 1),
@@ -302,22 +362,46 @@ class Qualification extends StatelessWidget {
                 Row(
                   children: [
                     Image.asset("assets/images/college3.png"),
-                    Container(
-                      margin: const EdgeInsets.all(20),
+                    Padding(
+                      padding: const EdgeInsets.all(20.0),
                       child: Column(
                         crossAxisAlignment: CrossAxisAlignment.start,
                         children: [
-                          Text(
-                            college[index],
-                            style: const TextStyle(
-                              fontWeight: FontWeight.bold,
-                              fontSize: 18,
+                          SizedBox(
+                            width: 210,
+                            child: Text(
+                              university,
+                              maxLines: 2,
+                              style: const TextStyle(
+                                fontWeight: FontWeight.bold,
+                                fontSize: 18,
+                              ),
                             ),
                           ),
-                          Container(
-                            margin: const EdgeInsets.only(top: 15),
-                            child: const Text(
-                              "October 2021- October2022",
+                          Padding(
+                            padding: const EdgeInsets.only(top: 10.0),
+                            child: Text(
+                              "Course: $degree",
+                            ),
+                          ),
+                          Padding(
+                            padding: const EdgeInsets.only(top: 10.0),
+                            child: SizedBox(
+                              width: 210,
+                              child: Text(
+                                "Study Field: $studyfield",
+                                maxLines: 2,
+                              ),
+                            ),
+                          ),
+                          Padding(
+                            padding: const EdgeInsets.only(top: 10.0),
+                            child: SizedBox(
+                              width: 210,
+                              child: Text(
+                                "Duration: $startdate to $enddate",
+                                maxLines: 2,
+                              ),
                             ),
                           )
                         ],
@@ -355,43 +439,141 @@ class Qualification extends StatelessWidget {
       ),
     );
   }
+
+  Future<void> fetchUsers(int userid) async {
+    print('fetchUser called');
+    var uri = Uri.parse(
+        "http://15.206.28.255:8000/v1/advocate/$userid/qualifications");
+    var response = await http.get(uri);
+    if (response.statusCode == 200) {
+      final body = response.body;
+      final json = jsonDecode(body);
+
+      setState(() {
+        result4 = json['results'];
+      });
+      print('fetchUser complete');
+    }
+  }
 }
 
-class PracticeArea extends StatelessWidget {
+class PracticeArea extends StatefulWidget {
   const PracticeArea({
     super.key,
+    required this.userid,
   });
+  final int userid;
+  @override
+  State<PracticeArea> createState() => _PracticeAreaState();
+}
+
+class _PracticeAreaState extends State<PracticeArea> {
+  List<dynamic> result = [];
+  List<dynamic> result1 = [];
+  @override
+  void initState() {
+    super.initState();
+    fetchUsers(widget.userid);
+    fetchUsers1(widget.userid);
+  }
 
   @override
   Widget build(BuildContext context) {
     return SingleChildScrollView(
       child: Column(
+        verticalDirection: VerticalDirection.down,
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
           const SizedBox(height: 10),
           const Divider(thickness: 2, color: Colors.black),
           const SizedBox(height: 10),
           Expertise(),
-          PastExperience(
-            imageAsset: "experience.jpg",
-            date: "Oct 2021 - Oct 2022",
-            jobType: "Mumbai, Maharastra,India",
-            positionName: "Legal Associate",
-            subPositionName: "Google Technologies",
-            titlecard: "Past Experience",
-            holdertext: "Full Time",
+          SizedBox(
+            height: 225,
+            child: ListView.builder(
+                itemCount: result.length,
+                itemBuilder: (context, index) {
+                  var res1 = result[index];
+                  var file = res1['file'];
+                  var role = res1['role'];
+                  var firm = res1['firm'];
+                  var location = res1['location'];
+                  var startdate = res1['start_date'];
+                  var enddate = res1['end_date'];
+                  var date = startdate + " to " + enddate;
+                  return PastExperience(
+                    imageAsset: "experience.jpg",
+                    date: date,
+                    jobType: location,
+                    positionName: role,
+                    subPositionName: firm,
+                    titlecard: "Past Experience",
+                    holdertext: "Full Time",
+                    file: file,
+                  );
+                }),
           ),
-          CertificateSection(
-            imageAsset: "certificate.jpg",
-            date: "Issued Jan 2022 - No expiration date",
-            positionName: "Certification Course in \nCyber Law",
-            titlecard: "Certifications",
-            holdertext: "Certificate Id - 15646",
+          SizedBox(
+            height: 230,
+            child: ListView.builder(
+                itemCount: result1.length,
+                itemBuilder: (context, index) {
+                  var res2 = result1[index];
+                  var title = res2['title'];
+                  var file = res2['file'];
+                  var credential = res2['credential'];
+                  var issuedon = res2['2023-06-21'];
+                  return CertificateSection(
+                    imageAsset: "certificate.jpg",
+                    file: file,
+                    date: "Issued $issuedon -No expiration date",
+                    positionName: title,
+                    titlecard: "Certifications",
+                    holdertext: "Certificate Id - $credential",
+                  );
+                }),
           ),
           const ShareProfile()
         ],
       ),
     );
+  }
+
+  Future<void> fetchUsers(int userid) async {
+    print('fetchUser called');
+
+    var uri =
+        Uri.parse("http://15.206.28.255:8000/v1/advocate/$userid/experiances");
+    print(uri.toString());
+    var response = await http.get(uri);
+    print(response.statusCode);
+    if (response.statusCode == 200) {
+      final body = response.body;
+      final json = jsonDecode(body);
+
+      setState(() {
+        result = json['results'];
+      });
+      print('fetchUser complete');
+    }
+  }
+
+  Future<void> fetchUsers1(int userid) async {
+    print('fetchUser called');
+    var url = "http://15.206.28.255:8000/v1/advocate/$userid/certificates";
+    var uri = Uri.parse(url);
+    print(uri.toString());
+    var response = await http.get(uri);
+    print(response.statusCode);
+    if (response.statusCode == 200) {
+      final body = response.body;
+      final json = jsonDecode(body);
+
+      setState(() {
+        result1 = json['results'];
+      });
+      print('fetchUser complete');
+    }
   }
 }
 
@@ -429,10 +611,28 @@ class ShareProfile extends StatelessWidget {
   }
 }
 
-class ReviewSection extends StatelessWidget {
+class ReviewSection extends StatefulWidget {
   const ReviewSection({
     super.key,
+    required this.rating,
+    required this.userid,
   });
+  final double rating;
+  final int userid;
+
+  @override
+  State<ReviewSection> createState() => _ReviewSectionState();
+}
+
+class _ReviewSectionState extends State<ReviewSection> {
+  List<dynamic> result3 = [];
+  var count = 0;
+
+  @override
+  void initState() {
+    super.initState();
+    fetchUsers(widget.userid);
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -462,10 +662,10 @@ class ReviewSection extends StatelessWidget {
                       height: 35,
                       width: 120,
                       color: const Color.fromRGBO(223, 178, 0, 1),
-                      child: const Center(
+                      child: Center(
                         child: Text(
-                          "3.5 / 5",
-                          style: TextStyle(color: Colors.white),
+                          "${widget.rating} /5",
+                          style: const TextStyle(color: Colors.white),
                         ),
                       ),
                     ),
@@ -474,9 +674,9 @@ class ReviewSection extends StatelessWidget {
                         top: 5,
                         left: 10,
                       ),
-                      child: const Text(
-                        "20 Reviews and 4 comments",
-                        style: TextStyle(
+                      child: Text(
+                        "$count Reviews and $count comments",
+                        style: const TextStyle(
                           fontWeight: FontWeight.bold,
                           color: Colors.black,
                         ),
@@ -509,10 +709,29 @@ class ReviewSection extends StatelessWidget {
               ],
             ),
           ),
-          const Review(),
+          Review(
+            result: result3,
+          ),
         ],
       ),
     );
+  }
+
+  Future<void> fetchUsers(int userid) async {
+    print('fetchUser called');
+    var uri =
+        Uri.parse("http://15.206.28.255:8000/v1/advocate/$userid/reviews");
+    var response = await http.get(uri);
+    if (response.statusCode == 200) {
+      final body = response.body;
+      final json = jsonDecode(body);
+
+      setState(() {
+        result3 = json['results'];
+        count = json['count'];
+      });
+      print('fetchUser complete');
+    }
   }
 }
 
@@ -567,7 +786,9 @@ class WorkingHours extends StatelessWidget {
 class Review extends StatelessWidget {
   const Review({
     super.key,
+    required this.result,
   });
+  final List<dynamic> result;
 
   @override
   Widget build(BuildContext context) {
@@ -602,9 +823,15 @@ class Review extends StatelessWidget {
             ),
             Expanded(
               child: ListView.builder(
-                itemCount: 8,
+                itemCount: result.length,
                 itemBuilder: (context, index) {
-                  return const ReviewContainer();
+                  var res = result[index];
+                  double rating = res['rating'].toDouble();
+                  var review = res['review'];
+                  return ReviewContainer(
+                    rating: rating,
+                    review: review,
+                  );
                 },
               ),
             )
@@ -618,7 +845,11 @@ class Review extends StatelessWidget {
 class ReviewContainer extends StatelessWidget {
   const ReviewContainer({
     super.key,
+    required this.rating,
+    required this.review,
   });
+  final double rating;
+  final String review;
 
   @override
   Widget build(BuildContext context) {
@@ -659,9 +890,9 @@ class ReviewContainer extends StatelessWidget {
                       width: 2,
                     ),
                   ),
-                  child: const Text(
-                    "⭐ 5",
-                    style: TextStyle(
+                  child: Text(
+                    "⭐ $rating",
+                    style: const TextStyle(
                       color: Colors.white,
                     ),
                   ),
@@ -671,9 +902,9 @@ class ReviewContainer extends StatelessWidget {
           ),
           Container(
             padding: const EdgeInsets.all(10),
-            child: const Text(
-              "Lorem ipsum dolor sit amet, consectetur adipisicing elit. Cum, veritatis. Commodi voluptates ea minus exercitationem reiciendis natus at corporis hic dignissimos alias. Repudiandae odio neque, dignissimos libero reprehenderit id esse.",
-              style: TextStyle(color: Colors.white),
+            child: Text(
+              review,
+              style: const TextStyle(color: Colors.white),
             ),
           ),
           Row(
@@ -760,6 +991,7 @@ class PastExperience extends StatelessWidget {
     required this.jobType,
     required this.imageAsset,
     required this.holdertext,
+    required this.file,
   });
 
   final String titlecard;
@@ -769,6 +1001,8 @@ class PastExperience extends StatelessWidget {
   final String jobType;
   final String holdertext;
   final String imageAsset;
+  final String file;
+  String baseurl = "http://15.206.28.255:8000";
 
   final List<String> expertise = [
     "HealthCare",
@@ -792,7 +1026,7 @@ class PastExperience extends StatelessWidget {
           height: 175,
           child: ListView.builder(
             scrollDirection: Axis.horizontal,
-            itemCount: 3,
+            itemCount: 1,
             itemBuilder: (context, index) {
               return Container(
                 padding: const EdgeInsets.all(25),
@@ -836,17 +1070,29 @@ class PastExperience extends StatelessWidget {
                               ExperienceTitles(content: holdertext),
                               const SizedBox(height: 10),
                               Container(
-                                padding: const EdgeInsets.all(5),
-                                decoration: const BoxDecoration(
-                                  borderRadius:
-                                      BorderRadius.all(Radius.circular(25)),
-                                  color: Colors.green,
-                                ),
-                                child: const Text(
-                                  "View Certiffications",
-                                  style: TextStyle(color: Colors.white),
-                                ),
-                              ),
+                                  height: 28,
+                                  padding: const EdgeInsets.all(5),
+                                  decoration: const BoxDecoration(
+                                      borderRadius:
+                                          BorderRadius.all(Radius.circular(25)),
+                                      color: Colors.green),
+                                  child: InkWell(
+                                    child: const Text(
+                                      "View Certificate",
+                                      style: TextStyle(color: Colors.white),
+                                    ),
+                                    onTap: () async {
+                                      String url = baseurl + file;
+                                      var urllaunchable = await canLaunch(
+                                          url); //canLaunch is from url_launcher package
+                                      if (urllaunchable) {
+                                        await launch(
+                                            url); //launch is from url_launcher package to launch URL
+                                      } else {
+                                        print("URL can't be launched.");
+                                      }
+                                    },
+                                  )),
                             ],
                           ),
                         ),
@@ -866,18 +1112,20 @@ class PastExperience extends StatelessWidget {
 class CertificateSection extends StatelessWidget {
   CertificateSection({
     super.key,
+    required this.file,
     required this.titlecard,
     required this.positionName,
     required this.date,
     required this.imageAsset,
     required this.holdertext,
   });
-
+  final String file;
   final String titlecard;
   final String positionName;
   final String date;
   final String holdertext;
   final String imageAsset;
+  String baseurl = "http://15.206.28.255:8000";
 
   final List<String> expertise = [
     "HealthCare",
@@ -901,7 +1149,7 @@ class CertificateSection extends StatelessWidget {
           height: 180,
           child: ListView.builder(
             scrollDirection: Axis.horizontal,
-            itemCount: 3,
+            itemCount: 1,
             itemBuilder: (context, index) {
               return Container(
                 padding: const EdgeInsets.all(25),
@@ -924,6 +1172,7 @@ class CertificateSection extends StatelessWidget {
                           ),
                         ),
                         Container(
+                          width: 200,
                           margin: const EdgeInsets.only(
                             top: 2,
                             left: 8,
@@ -933,6 +1182,7 @@ class CertificateSection extends StatelessWidget {
                             children: [
                               Text(
                                 positionName,
+                                maxLines: 2,
                                 style: const TextStyle(
                                   color: Colors.white,
                                   fontSize: 18,
@@ -945,17 +1195,29 @@ class CertificateSection extends StatelessWidget {
                               ExperienceTitles(content: holdertext),
                               const SizedBox(height: 10),
                               Container(
-                                padding: const EdgeInsets.all(5),
-                                decoration: const BoxDecoration(
-                                  borderRadius:
-                                      BorderRadius.all(Radius.circular(25)),
-                                  color: Colors.green,
-                                ),
-                                child: const Text(
-                                  "View Certiffications",
-                                  style: TextStyle(color: Colors.white),
-                                ),
-                              ),
+                                  padding: const EdgeInsets.all(5),
+                                  decoration: const BoxDecoration(
+                                    borderRadius:
+                                        BorderRadius.all(Radius.circular(25)),
+                                    color: Colors.green,
+                                  ),
+                                  child: InkWell(
+                                    onTap: () async {
+                                      String url = baseurl + file;
+                                      var urllaunchable = await canLaunch(
+                                          url); //canLaunch is from url_launcher package
+                                      if (urllaunchable) {
+                                        await launch(
+                                            url); //launch is from url_launcher package to launch URL
+                                      } else {
+                                        print("URL can't be launched.");
+                                      }
+                                    },
+                                    child: const Text(
+                                      "View Certiffications",
+                                      style: TextStyle(color: Colors.white),
+                                    ),
+                                  )),
                             ],
                           ),
                         ),
@@ -1062,9 +1324,7 @@ class Expertise extends StatelessWidget {
           scrollDirection: Axis.horizontal,
           child: Row(
             children: [
-              for (int i = expertise.length ~/ 2;
-                  i < expertise.length;
-                  i++)
+              for (int i = expertise.length ~/ 2; i < expertise.length; i++)
                 Padding(
                   padding: const EdgeInsets.all(2.0),
                   child: Container(
@@ -1308,7 +1568,13 @@ class RoundedButton extends StatelessWidget {
 class LawyerInfo extends StatelessWidget {
   const LawyerInfo({
     super.key,
+    required this.clients,
+    required this.cases,
+    required this.experience,
   });
+  final num clients;
+  final num cases;
+  final num experience;
 
   @override
   Widget build(BuildContext context) {
@@ -1325,16 +1591,16 @@ class LawyerInfo extends StatelessWidget {
                 right: 10,
                 left: 2,
               ),
-              child: const Column(
+              child: Column(
                 children: [
                   Text(
-                    "80",
-                    style: TextStyle(
+                    clients.toString(),
+                    style: const TextStyle(
                       fontSize: 25,
                       fontWeight: FontWeight.bold,
                     ),
                   ),
-                  Text(
+                  const Text(
                     "clients",
                   ),
                 ],
@@ -1347,16 +1613,16 @@ class LawyerInfo extends StatelessWidget {
             ),
             Container(
               margin: const EdgeInsets.only(left: 10, right: 10),
-              child: const Column(
+              child: Column(
                 children: [
                   Text(
-                    "100",
-                    style: TextStyle(
+                    cases.toString(),
+                    style: const TextStyle(
                       fontSize: 25,
                       fontWeight: FontWeight.bold,
                     ),
                   ),
-                  Text(
+                  const Text(
                     "Cases",
                   ),
                 ],
@@ -1369,16 +1635,16 @@ class LawyerInfo extends StatelessWidget {
             ),
             Container(
               margin: const EdgeInsets.only(left: 8),
-              child: const Column(
+              child: Column(
                 children: [
                   Text(
-                    "8 yrs",
-                    style: TextStyle(
+                    experience.toString(),
+                    style: const TextStyle(
                       fontSize: 25,
                       fontWeight: FontWeight.bold,
                     ),
                   ),
-                  Text(
+                  const Text(
                     "Experience",
                   ),
                 ],
@@ -1441,9 +1707,10 @@ class LawyerCTA extends StatelessWidget {
 }
 
 class _ImageContainer extends StatelessWidget {
-  const _ImageContainer(this.height, this.width);
+  const _ImageContainer(this.height, this.width, this.image);
   final double height;
   final double width;
+  final String image;
 
   @override
   Widget build(BuildContext context) {
@@ -1456,15 +1723,13 @@ class _ImageContainer extends StatelessWidget {
           ),
           height: height,
           width: width,
-          decoration: const BoxDecoration(
+          decoration: BoxDecoration(
             image: DecorationImage(
               fit: BoxFit.cover,
-              image: AssetImage(
-                "assets/images/advocate_img.png",
-              ),
+              image: NetworkImage(image),
             ),
             color: Colors.black,
-            borderRadius: BorderRadius.all(
+            borderRadius: const BorderRadius.all(
               Radius.circular(20),
             ),
           ),

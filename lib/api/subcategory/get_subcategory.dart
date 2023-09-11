@@ -2,14 +2,17 @@ import 'dart:convert';
 import 'package:http/http.dart' as http;
 import 'package:jusitfi_admin/api/base_url.dart';
 
-getSubcategory(int categoryType) async {
-  final response = await http
-      .get(Uri.parse("$baseURL/v1/categories/$categoryType/sub_categories/"));
+Future<List<dynamic>>getsubcategories(id) async {
+
+  final response = await http.get(Uri.parse("$baseURL/v1/categories/$id/sub_categories/"));
+  final List<dynamic> data=jsonDecode(response.body)['results'];
+
 
   if (response.statusCode == 200) {
-    return SubCategoryModel.fromJson(jsonDecode(response.body));
+
+    return data;
   } else {
-    return "Failed";
+    throw Exception("Failed to load");
   }
 }
 

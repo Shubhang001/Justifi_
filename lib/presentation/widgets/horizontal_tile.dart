@@ -1,17 +1,33 @@
+import 'dart:convert';
+
 import 'package:flutter/material.dart';
 import '../../utils/constants/textstyles.dart';
 import 'advocate_card.dart';
+import 'package:http/http.dart' as http;
 
-class HorizontalTiles extends StatelessWidget {
+class HorizontalTiles extends StatefulWidget {
   const HorizontalTiles({super.key, required this.title});
   final String title;
+
+  @override
+  State<HorizontalTiles> createState() => _HorizontalTilesState();
+}
+
+class _HorizontalTilesState extends State<HorizontalTiles> {
+  List<dynamic> result = [];
+  var baseurl = "http://15.206.28.255:8000";
+  @override
+  void initState() {
+    super.initState();
+    fetchUsers();
+  }
 
   @override
   Widget build(BuildContext context) {
     return Column(
       children: [
         Text(
-          title,
+          widget.title,
           style: kHomePageTitle,
         ),
         SizedBox(
@@ -19,16 +35,35 @@ class HorizontalTiles extends StatelessWidget {
           height: 270,
           child: ListView.builder(
             scrollDirection: Axis.horizontal,
-            itemCount: 3,
+            itemCount: result.length,
             itemBuilder: (context, index) {
+              var res = result[index];
+              var fullname = res['full_name'];
+              var profileimage = baseurl + res['profile_image'];
+              var userid = res['user_id'];
+              var qualification = res['qualification'];
+              var distance = res['distance'];
+              double rating = res['rating'].toDouble();
+              var place = res['practice_place'];
+              var clients = res['total_client_handled'];
+              var cases = res['total_case_handled'];
+              var experience = 0;
+              if (res['total_experience'] != null) {
+                experience = res['total_experience'];
+              }
+              qualification ??= "No qulification";
               return Padding(
                 padding: const EdgeInsets.all(8.0),
-                child: const AdvocateCard(
-                  name: 'Priya Sharma',
-                  image: 'assets/images/advocate_img.png',
-                  education: 'Delhi University \n LL.B',
-                  distance: 10,
-                  rating: 3.5,
+                child: AdvocateCard(
+                  name: fullname ?? "",
+                  image: profileimage ?? "",
+                  education: qualification ?? "",
+                  distance: distance ?? 0.0,
+                  rating: rating ?? 0.0,
+                  place: place ?? "",
+                  clients: clients ?? 0,
+                  cases: cases ?? 0,
+                  experience: experience ?? 0,
                 ),
               );
             },
@@ -36,5 +71,20 @@ class HorizontalTiles extends StatelessWidget {
         ),
       ],
     );
+  }
+
+  Future<void> fetchUsers() async {
+    print('fetchUser called');
+    var uri = Uri.parse("http://15.206.28.255:8000/v1/popular-advocates/");
+    var response = await http.get(uri);
+    if (response.statusCode == 200) {
+      final body = response.body;
+      final json = jsonDecode(body);
+
+      setState(() {
+        result = json['results'];
+      });
+      print('fetchUser complete');
+    }
   }
 }

@@ -1,7 +1,7 @@
-import '../../utils/constants/textstyles.dart';
 import 'package:flutter/material.dart';
 import 'package:jusitfi_admin/presentation/screens/lawyer_profile.dart';
 import 'package:jusitfi_admin/presentation/widgets/starrating.dart';
+import '../../utils/constants/textstyles.dart';
 
 class AdvocateCardExtended extends StatelessWidget {
   const AdvocateCardExtended(
@@ -12,8 +12,10 @@ class AdvocateCardExtended extends StatelessWidget {
       required this.distance,
       required this.rating,
       required this.clients,
+      required this.userid,
       required this.cases,
-      required this.experience});
+      required this.experience,
+      required this.place});
 
   final String image;
   final String name;
@@ -23,6 +25,8 @@ class AdvocateCardExtended extends StatelessWidget {
   final num cases;
   final num clients;
   final num experience;
+  final String place;
+  final int userid;
 
   @override
   Widget build(BuildContext context) {
@@ -33,7 +37,17 @@ class AdvocateCardExtended extends StatelessWidget {
           Navigator.push(
               context,
               MaterialPageRoute(
-                builder: (context) => const LawyerProfileScreen(),
+                builder: (context) => LawyerProfileScreen(
+                  userid: userid,
+                  name: name,
+                  image: image,
+                  education: education,
+                  rating: rating,
+                  cases: cases,
+                  clients: clients,
+                  experience: experience,
+                  place: place,
+                ),
               ));
         },
         child: Container(

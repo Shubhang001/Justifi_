@@ -32,7 +32,7 @@ class _TransactionPage extends State<TransactionPage> {
                 child: Column(
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
-                      Padding(
+                      const Padding(
                         padding: EdgeInsets.only(
                             left: 20, right: 20, top: 10, bottom: 10),
                         child: Row(
