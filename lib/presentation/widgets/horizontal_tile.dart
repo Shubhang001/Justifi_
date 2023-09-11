@@ -64,6 +64,7 @@ class _HorizontalTilesState extends State<HorizontalTiles> {
                   clients: clients ?? 0,
                   cases: cases ?? 0,
                   experience: experience ?? 0,
+                  userid: userid,
                 ),
               );
             },

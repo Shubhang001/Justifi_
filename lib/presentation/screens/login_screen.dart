@@ -8,6 +8,7 @@ import 'package:flutter_otp_text_field/flutter_otp_text_field.dart';
 import 'package:jusitfi_admin/utils/dynamic/dynamic_values.dart';
 import 'package:jusitfi_admin/utils/models/usermodel.dart';
 import 'package:jusitfi_admin/utils/services/rest_apis.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 import '../../utils/constants/colors.dart';
 import '../widgets/big_button.dart';
 
@@ -64,6 +65,11 @@ class _LoginScreenState extends State<LoginScreen> {
     }
   }
 
+  void _storeToken(String token) async {
+    SharedPreferences prefs = await SharedPreferences.getInstance();
+    prefs.setString('token', token);
+  }
+
   Future<bool> checkValidation() async {
     setState(() {
       mobileNumber.text.isEmpty ||
@@ -82,12 +88,6 @@ class _LoginScreenState extends State<LoginScreen> {
               ScaffoldMessenger.of(context).showSnackBar(SnackBar(
                 content: Text(response["message"]),
               ));
-
-              // Store and print the token
-              print(response["message"]);
-              final token = response["token"];
-
-              _storeToken(token);
 
               setState(() {
                 validate = false;
