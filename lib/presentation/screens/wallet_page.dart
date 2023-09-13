@@ -5,6 +5,7 @@ import 'package:jusitfi_admin/presentation/screens/hiring_credits_page.dart';
 import 'package:jusitfi_admin/presentation/screens/notification_page.dart';
 import 'package:jusitfi_admin/presentation/screens/offers_page.dart';
 import 'package:jusitfi_admin/presentation/screens/profile_page.dart';
+import 'package:jusitfi_admin/presentation/widgets/coindetail.dart';
 import 'package:jusitfi_admin/utils/constants/textstyles.dart';
 
 import '../../testing_transaction_page.dart';
@@ -248,77 +249,6 @@ class _WalletPageState extends State<WalletPage> {
               const SizedBox(
                 height: 10,
               ),
-              Padding(
-                padding: const EdgeInsets.only(right: 10.0),
-                child: Align(
-                  alignment: Alignment.centerRight,
-                  child: SizedBox(
-                    height: 25,
-                    width: 25,
-                    child: FloatingActionButton(
-                      onPressed: () {
-                        showDialog(
-                            context: context,
-                            builder: (BuildContext context) {
-                              return const Center(
-                                child: SizedBox(
-                                  height: 400,
-                                  child: AlertDialog(
-                                    shape: RoundedRectangleBorder(
-                                        borderRadius: BorderRadius.all(
-                                            Radius.circular(16))),
-                                    title: Align(
-                                      alignment: Alignment.center,
-                                      child: Text(
-                                        "Coins Details",
-                                        style: TextStyle(
-                                            fontWeight: FontWeight.bold),
-                                      ),
-                                    ),
-                                    content: Align(
-                                      alignment: Alignment.centerLeft,
-                                      child: Column(
-                                        children: [
-                                          Column(
-                                            children: [
-                                              Text(
-                                                "Frozen Coins :",
-                                                style: TextStyle(
-                                                    fontWeight:
-                                                        FontWeight.bold),
-                                              ),
-                                              Text(
-                                                "Coins used to schedule Calls ",
-                                                maxLines: 2,
-                                              )
-                                            ],
-                                          ),
-                                          SizedBox(
-                                            height: 15,
-                                          ),
-                                          Text(
-                                              "Frozen Coins : Coins used to schedule Calls "),
-                                          SizedBox(
-                                            height: 8,
-                                          ),
-                                          Text(
-                                              "Frozen Coins : Coins used to schedule Calls "),
-                                          SizedBox(
-                                            height: 8,
-                                          ),
-                                        ],
-                                      ),
-                                    ),
-                                  ),
-                                ),
-                              );
-                            });
-                      },
-                      child: const Icon(Icons.info_outline),
-                    ),
-                  ),
-                ),
-              ),
               GestureDetector(
                   onTap: () {
                     Navigator.of(context).push(MaterialPageRoute(
@@ -350,17 +280,44 @@ class _WalletPageState extends State<WalletPage> {
                   Column(
                     crossAxisAlignment: CrossAxisAlignment.center,
                     children: [
-                      Center(
-                        child: Text(
-                          "Profile",
-                          style: interW400S14Black,
-                        ),
+                      Row(
+                        children: [
+                          Center(
+                            child: Text(
+                              "Profile",
+                              style: interW400S14Black,
+                            ),
+                          ),
+                          const SizedBox(
+                            width: 3,
+                          ),
+                          SizedBox(
+                              height: 25,
+                              width: 25,
+                              child: FloatingActionButton(
+                                onPressed: () {
+                                  showDialog(
+                                      context: context,
+                                      builder: (BuildContext context) {
+                                        return const CoinDetail();
+                                      });
+                                },
+                                child: const Icon(Icons.info_outline),
+                              ))
+                        ],
                       ),
-                      Center(
-                        child: Text(
-                          "Credits",
-                          style: interW400S14Black,
-                        ),
+                      Row(
+                        children: [
+                          Center(
+                            child: Text(
+                              "Credits",
+                              style: interW400S14Black,
+                            ),
+                          ),
+                          const SizedBox(
+                            width: 30,
+                          )
+                        ],
                       ),
                       const SizedBox(
                         height: 5,
@@ -402,18 +359,45 @@ class _WalletPageState extends State<WalletPage> {
                     crossAxisAlignment: CrossAxisAlignment.center,
                     children: [
                       Center(
-                        child: Text(
-                          "Post",
-                          textAlign: TextAlign.start,
-                          style: interW400S14Black,
+                        child: Row(
+                          children: [
+                            Text(
+                              "Post",
+                              textAlign: TextAlign.start,
+                              style: interW400S14Black,
+                            ),
+                            const SizedBox(
+                              width: 10,
+                            ),
+                            SizedBox(
+                                height: 25,
+                                width: 25,
+                                child: FloatingActionButton(
+                                  onPressed: () {
+                                    showDialog(
+                                        context: context,
+                                        builder: (BuildContext context) {
+                                          return const CoinDetail();
+                                        });
+                                  },
+                                  child: const Icon(Icons.info_outline),
+                                )),
+                          ],
                         ),
                       ),
-                      Center(
-                        child: Text(
-                          "Credits",
-                          textAlign: TextAlign.center,
-                          style: interW400S14Black,
-                        ),
+                      Row(
+                        children: [
+                          Center(
+                            child: Text(
+                              "Credits",
+                              textAlign: TextAlign.center,
+                              style: interW400S14Black,
+                            ),
+                          ),
+                          const SizedBox(
+                            width: 30,
+                          )
+                        ],
                       ),
                       const SizedBox(
                         height: 5,
@@ -510,9 +494,36 @@ class FrozenCard extends StatelessWidget {
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
               const SizedBox(height: 6),
-              Text(
-                title,
-                style: poppinsW500S18White,
+              Row(
+                children: [
+                  Text(
+                    title,
+                    style: poppinsW500S18White,
+                  ),
+                  const SizedBox(
+                    width: 5,
+                  ),
+                  Padding(
+                    padding: const EdgeInsets.only(right: 10.0),
+                    child: Align(
+                      alignment: Alignment.centerRight,
+                      child: SizedBox(
+                        height: 25,
+                        width: 25,
+                        child: FloatingActionButton(
+                          onPressed: () {
+                            showDialog(
+                                context: context,
+                                builder: (BuildContext context) {
+                                  return const CoinDetail();
+                                });
+                          },
+                          child: const Icon(Icons.info_outline),
+                        ),
+                      ),
+                    ),
+                  ),
+                ],
               ),
               const SizedBox(height: 8),
               Row(children: [
