@@ -108,7 +108,7 @@ class _OnBoardingScreenState extends State<OnBoardingScreen> {
 
                         Navigator.of(context).push(
                           MaterialPageRoute(
-                              builder: (context) => const MainPage()),
+                              builder: (context) => const ChatPage()),
                         );
                       },
                       child: Text(

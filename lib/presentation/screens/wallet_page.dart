@@ -254,15 +254,19 @@ class _WalletPageState extends State<WalletPage> {
                     Navigator.of(context).push(MaterialPageRoute(
                         builder: (context) => const FrozenCoinBalanceScreen()));
                   },
-                  child:
-                      const FrozenCard(title: "Frozen Coin ", value: "8XXX1")),
+                  child: const FrozenCard(
+                      title: "Frozen Coin ",
+                      value: "8XXX1",
+                      detail: " Coins used to schedule Calls")),
               const SizedBox(
                 height: 20,
               ),
               GestureDetector(
                   onTap: () {},
                   child: const FrozenCard(
-                      title: "Available Coin ", value: "8XXX1")),
+                      title: "Available Coin ",
+                      value: "8XXX1",
+                      detail: " Coins available for Live and Schedule calls")),
               const SizedBox(
                 height: 20,
               ),
@@ -299,7 +303,11 @@ class _WalletPageState extends State<WalletPage> {
                                   showDialog(
                                       context: context,
                                       builder: (BuildContext context) {
-                                        return const CoinDetail();
+                                        return const CoinDetail(
+                                          title: "Profile Credit :",
+                                          detail:
+                                              " Used to Hire advocate directly",
+                                        );
                                       });
                                 },
                                 child: const Icon(Icons.info_outline),
@@ -377,7 +385,11 @@ class _WalletPageState extends State<WalletPage> {
                                     showDialog(
                                         context: context,
                                         builder: (BuildContext context) {
-                                          return const CoinDetail();
+                                          return const CoinDetail(
+                                            title: "Post Credit :",
+                                            detail:
+                                                " Used to post cases and Hire best advocate Applied",
+                                          );
                                         });
                                   },
                                   child: const Icon(Icons.info_outline),
@@ -466,7 +478,12 @@ class AddButton extends StatelessWidget {
 class FrozenCard extends StatelessWidget {
   final String title;
   final String value;
-  const FrozenCard({super.key, required this.title, required this.value});
+  final String detail;
+  const FrozenCard(
+      {super.key,
+      required this.title,
+      required this.value,
+      required this.detail});
 
   @override
   Widget build(BuildContext context) {
@@ -515,7 +532,10 @@ class FrozenCard extends StatelessWidget {
                             showDialog(
                                 context: context,
                                 builder: (BuildContext context) {
-                                  return const CoinDetail();
+                                  return CoinDetail(
+                                    title: "$title :",
+                                    detail: "Coins used to schedule Calls ",
+                                  );
                                 });
                           },
                           child: const Icon(Icons.info_outline),

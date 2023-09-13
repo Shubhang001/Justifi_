@@ -1,17 +1,19 @@
 import 'package:flutter/material.dart';
 
 class CoinDetail extends StatelessWidget {
-  const CoinDetail({super.key});
+  const CoinDetail({super.key, required this.title, required this.detail});
+  final String title;
+  final String detail;
 
   @override
   Widget build(BuildContext context) {
-    return const Center(
+    return Center(
       child: SizedBox(
         height: 200,
         child: AlertDialog(
-          shape: RoundedRectangleBorder(
+          shape: const RoundedRectangleBorder(
               borderRadius: BorderRadius.all(Radius.circular(16))),
-          title: Align(
+          title: const Align(
             alignment: Alignment.center,
             child: Text(
               "Coins Details",
@@ -24,14 +26,18 @@ class CoinDetail extends StatelessWidget {
               children: [
                 Row(
                   children: [
-                    Text(
-                      "Frozen Coins :",
-                      style: TextStyle(fontWeight: FontWeight.bold),
+                    SizedBox(
+                      width: 100,
+                      child: Text(
+                        title,
+                        maxLines: 2,
+                        style: const TextStyle(fontWeight: FontWeight.bold),
+                      ),
                     ),
                     SizedBox(
                       width: 130,
                       child: Text(
-                        "Coins used to schedule Calls ",
+                        detail,
                         maxLines: 2,
                       ),
                     )
