@@ -248,6 +248,77 @@ class _WalletPageState extends State<WalletPage> {
               const SizedBox(
                 height: 10,
               ),
+              Padding(
+                padding: const EdgeInsets.only(right: 10.0),
+                child: Align(
+                  alignment: Alignment.centerRight,
+                  child: SizedBox(
+                    height: 25,
+                    width: 25,
+                    child: FloatingActionButton(
+                      onPressed: () {
+                        showDialog(
+                            context: context,
+                            builder: (BuildContext context) {
+                              return const Center(
+                                child: SizedBox(
+                                  height: 400,
+                                  child: AlertDialog(
+                                    shape: RoundedRectangleBorder(
+                                        borderRadius: BorderRadius.all(
+                                            Radius.circular(16))),
+                                    title: Align(
+                                      alignment: Alignment.center,
+                                      child: Text(
+                                        "Coins Details",
+                                        style: TextStyle(
+                                            fontWeight: FontWeight.bold),
+                                      ),
+                                    ),
+                                    content: Align(
+                                      alignment: Alignment.centerLeft,
+                                      child: Column(
+                                        children: [
+                                          Column(
+                                            children: [
+                                              Text(
+                                                "Frozen Coins :",
+                                                style: TextStyle(
+                                                    fontWeight:
+                                                        FontWeight.bold),
+                                              ),
+                                              Text(
+                                                "Coins used to schedule Calls ",
+                                                maxLines: 2,
+                                              )
+                                            ],
+                                          ),
+                                          SizedBox(
+                                            height: 15,
+                                          ),
+                                          Text(
+                                              "Frozen Coins : Coins used to schedule Calls "),
+                                          SizedBox(
+                                            height: 8,
+                                          ),
+                                          Text(
+                                              "Frozen Coins : Coins used to schedule Calls "),
+                                          SizedBox(
+                                            height: 8,
+                                          ),
+                                        ],
+                                      ),
+                                    ),
+                                  ),
+                                ),
+                              );
+                            });
+                      },
+                      child: const Icon(Icons.info_outline),
+                    ),
+                  ),
+                ),
+              ),
               GestureDetector(
                   onTap: () {
                     Navigator.of(context).push(MaterialPageRoute(
@@ -264,13 +335,6 @@ class _WalletPageState extends State<WalletPage> {
                       title: "Available Coin ", value: "8XXX1")),
               const SizedBox(
                 height: 20,
-              ),
-              GestureDetector(
-                  onTap: () {},
-                  child:
-                      const FrozenCard(title: "Total Coin ", value: "8XXX1")),
-              const SizedBox(
-                height: 10,
               ),
               Center(
                   child: Text(
