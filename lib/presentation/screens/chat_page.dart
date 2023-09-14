@@ -2,6 +2,7 @@ import 'dart:convert';
 
 
 import 'package:flutter/material.dart';
+import 'package:flutter_list_view/flutter_list_view.dart';
 import 'package:image_picker/image_picker.dart';
 import 'package:jusitfi_admin/api/chat/get_chat.dart';
 import 'package:jusitfi_admin/presentation/widgets/drop_down_button.dart';
@@ -14,13 +15,16 @@ class ChatPage extends StatefulWidget {
 }
 
 class _ChatPageState extends State<ChatPage> {
+  var w;
+
   List<Widget> message=[];
  var yourtoken="";
  var channel;
+ ScrollController _scrollcontroller=ScrollController();
 
   TextEditingController messagecontroller =new TextEditingController();
 
-  ScrollController chatlistcontroller = ScrollController();
+
 
   makeconnection()  async {
     var resp= await getchat(1);
@@ -35,12 +39,20 @@ class _ChatPageState extends State<ChatPage> {
                 mainAxisSize: MainAxisSize.min,
                 children: [
                   Container(
+
                       padding: EdgeInsets.symmetric(vertical: 5,horizontal: 9),
                       decoration: BoxDecoration(border: Border.all(width: 1,color: Colors.black,),
                           borderRadius: BorderRadius.circular(5)
 
                       ),
-                      child: Text(i['content']['text'],style: TextStyle(color: Colors.black),)),
+                      child:
+                        
+                        
+                        Text(i['content']['text'],style: TextStyle(color: Colors.black),),
+
+                      
+                      
+                      )
 
                 ],
               )
@@ -58,22 +70,36 @@ class _ChatPageState extends State<ChatPage> {
             mainAxisSize: MainAxisSize.min,
             children: [
               Container(
-                padding: EdgeInsets.symmetric(vertical: 5,horizontal: 10),
+
+                padding: EdgeInsets.symmetric(vertical: 10,horizontal: 10),
                 decoration: BoxDecoration(
                     borderRadius: BorderRadius.circular(5),color: Colors.black
                 ),
-                child: Text(i['content']['text'],style: TextStyle(color: Colors.white),),),
+                child:
+                    Row(
+                      children: [
+                        Text(i['content']['text'],textAlign: TextAlign.center,style: TextStyle(height: .5,color: Colors.white),),
+                  SizedBox(width: 10,),
+                  Icon(i['content']['isSeen']=='true'?Icons.done:Icons.done_all,color: Colors.white,size: 10,)
+                      ],
+                    ),
+
+              )
             ],
           ));
           message.add(SizedBox(height: 10,));
         });
 
 
+
       }
 
 
     }
-    chatlistcontroller.jumpTo(chatlistcontroller.position.maxScrollExtent);
+
+
+
+
  channel = IOWebSocketChannel.connect('ws://15.206.28.255:8000/ws/client_advocate/sender/36/receiver/42/', headers: {
       'Content-type': 'application/json',
       'Accept': 'application/json',
@@ -84,25 +110,25 @@ class _ChatPageState extends State<ChatPage> {
    channel.stream.listen((msg){
      msg=jsonDecode(msg);
      setState(() {
-       message.add(
-         Row(
-           mainAxisAlignment: MainAxisAlignment.start,
-           mainAxisSize: MainAxisSize.min,
-           children: [
-             Container(
+       message.insert(0, Row(
+         mainAxisAlignment: MainAxisAlignment.start,
+         mainAxisSize: MainAxisSize.min,
+         children: [
+           Container(
                padding: EdgeInsets.symmetric(vertical: 5,horizontal: 9),
                decoration: BoxDecoration(border: Border.all(width: 1,color: Colors.black,),
-                 borderRadius: BorderRadius.circular(5)
+                   borderRadius: BorderRadius.circular(5)
 
                ),
-               child: Text(msg['data']['content']['text'],style: TextStyle(color: Colors.black),)),
-           ],
-         )
+               child: Column(
+                 children: [
+                   Text(msg['data']['content']['text'],style: TextStyle(color: Colors.black),),
+                 ],
+               )),
+         ],
+       ));
+       message.insert(0,SizedBox(height: 10,));
 
-
-       );
-       message.add(SizedBox(height: 10,));
-       chatlistcontroller.jumpTo(chatlistcontroller.position.maxScrollExtent);
      });
 
 
@@ -125,6 +151,7 @@ yourtoken='0f464ab809733c1e19c02d50a1e7be04c86d74a0';
 
   @override
   Widget build(BuildContext context) {
+    w=MediaQuery.of(context).size.width;
 
 
 
@@ -203,16 +230,13 @@ yourtoken='0f464ab809733c1e19c02d50a1e7be04c86d74a0';
          child: Padding(
            padding: EdgeInsets.only(top: 10,bottom: 75,right: 10,left: 10),
            child: Container(
+child:ListView.builder(
+  reverse: true,
 
-             child: ListView.builder(
-             shrinkWrap: true,
-
-               controller: chatlistcontroller,
-               itemCount: message.length,
-               itemBuilder: (BuildContext context, int index) {
-               return message[index];
-             },),
-           ),
+    itemCount: message.length,
+    itemBuilder: (BuildContext context, int index) {
+  return message[index];
+    },)
          ),
        )
 
@@ -220,7 +244,7 @@ yourtoken='0f464ab809733c1e19c02d50a1e7be04c86d74a0';
 
 
 
-        ],
+       ) ],
       ),
       bottomSheet: Row(
         children: [
@@ -279,21 +303,28 @@ yourtoken='0f464ab809733c1e19c02d50a1e7be04c86d74a0';
                       );
 
                       setState(() {
-                        message.add(Row(
+                        message.insert(0,SizedBox(height: 10,));
+                        message.insert(0,Row(
                           mainAxisAlignment: MainAxisAlignment.end,
                           mainAxisSize: MainAxisSize.min,
                           children: [
                             Container(
-                              padding: EdgeInsets.symmetric(vertical: 5,horizontal: 10),
+                              padding: EdgeInsets.symmetric(vertical: 10,horizontal: 10),
                               decoration: BoxDecoration(
                                   borderRadius: BorderRadius.circular(5),color: Colors.black
                               ),
-                              child: Text(messagecontroller.text,style: TextStyle(color: Colors.white),),),
+                              child:  Row(
+                                children: [
+                                  Text(messagecontroller.text,textAlign: TextAlign.center,style: TextStyle(height: .5,color: Colors.white),),
+                                  SizedBox(width: 10,),
+                                  Icon(Icons.done,color: Colors.white,size: 10,)
+                                ],
+                              ),)
                           ],
                         ));
-                        message.add(SizedBox(height: 10,));
+
                         messagecontroller.text="";
-                        chatlistcontroller.jumpTo(chatlistcontroller.position.maxScrollExtent);
+
 
                       });
 
