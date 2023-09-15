@@ -289,84 +289,96 @@ child:ListView.builder(
           ),
           Expanded(
             child: Container(
-              padding: const EdgeInsets.all(8),
+
+              padding: const EdgeInsets.all(5),
               margin: const EdgeInsets.symmetric(vertical: 10, horizontal: 2),
-              // height: 50,
+               height: 60,
               decoration: const BoxDecoration(
                 color: Colors.black,
                 borderRadius: BorderRadius.all(
                   Radius.circular(25),
                 ),
               ),
-              child:  TextField(
+              child:  Expanded(
+                child: TextField(
 
-                style: TextStyle(color: Colors.white),
-                decoration: InputDecoration(
-                  suffixIcon: IconButton(
+                  minLines: 1,
+                  maxLines: 100,
 
-                    color: Colors.white, onPressed: () {
+                  style: TextStyle(color: Colors.white),
+                  decoration: InputDecoration(
+                    
+                    border: OutlineInputBorder(borderSide: BorderSide.none),
+                    hintText: "message",
+                    hintStyle: TextStyle(color: Colors.grey),
+                    contentPadding: EdgeInsets.all(10),
+                    suffixIcon: IconButton(
 
-                    if (messagecontroller.text.isNotEmpty) {
-                      channel.sink.add(
-                          
-                        
-                        jsonEncode(  {
+                      color: Colors.white, onPressed: () {
+
+                      if (messagecontroller.text.isNotEmpty) {
+                        channel.sink.add(
+
+
+                          jsonEncode(  {
     "type":"chat_message",
     "case_connect_id":1,
     "content":{
     "text":messagecontroller.text
     }})
-                      );
-
-                      setState(() {
-                        message.insert(0,SizedBox(height: 10,));
-                        message.insert(0,Align(
-                          alignment: Alignment.centerRight,
-                          child: Column(
-                            mainAxisAlignment: MainAxisAlignment.end,
-                            children: [
-
-                              Row(
-                                mainAxisAlignment: MainAxisAlignment.end,
-                                mainAxisSize: MainAxisSize.min,
-                                children: [
-                                  Icon(Icons.reply,color: Colors.black,size: 20,),
-                                  Container(
-                                    padding: EdgeInsets.symmetric(vertical: 10,horizontal: 10),
-                                    decoration: BoxDecoration(
-                                        borderRadius: BorderRadius.circular(5),color: Colors.black
-                                    ),
-                                    child:  Row(
-                                      children: [
-                                        Text(messagecontroller.text,textAlign: TextAlign.center,style: TextStyle(height: .5,color: Colors.white),),
-                                        SizedBox(width: 10,),
-                                        Icon(Icons.done,color: Colors.white,size: 10,)
-                                      ],
-                                    ),)
-                                ],
-                              ),
-                              SizedBox(height: 10,),
-                              Text("Just Now",textAlign: TextAlign.center,style: TextStyle(height: .5,color: Colors.black),),
-
-
-                            ],
-                          ),
-                        )
-
-
                         );
 
-                        messagecontroller.text="";
+                        setState(() {
+                          message.insert(0,SizedBox(height: 10,));
+                          message.insert(0,Align(
+                            alignment: Alignment.centerRight,
+                            child: Column(
+                              mainAxisAlignment: MainAxisAlignment.end,
+                              children: [
+
+                                Row(
+                                  mainAxisAlignment: MainAxisAlignment.end,
+                                  mainAxisSize: MainAxisSize.min,
+                                  children: [
+                                    Icon(Icons.reply,color: Colors.black,size: 20,),
+                                    Container(
+                                      padding: EdgeInsets.symmetric(vertical: 10,horizontal: 10),
+                                      decoration: BoxDecoration(
+                                          borderRadius: BorderRadius.circular(5),color: Colors.black
+                                      ),
+                                      child:  Row(
+                                        children: [
+                                          Text(messagecontroller.text,textAlign: TextAlign.center,style: TextStyle(height: .5,color: Colors.white),),
+                                          SizedBox(width: 10,),
+                                          Icon(Icons.done,color: Colors.white,size: 10,)
+                                        ],
+                                      ),)
+                                  ],
+                                ),
+                                SizedBox(height: 10,),
+                                Text("Just Now",textAlign: TextAlign.center,style: TextStyle(height: .5,color: Colors.black),),
 
 
-                      });
+                              ],
+                            ),
+                          )
 
-                    }
 
-                  }, icon: Icon(Icons.send,),
+                          );
+
+                          messagecontroller.text="";
+
+
+                        });
+
+                      }
+
+                    }, icon: Icon(Icons.send,),
+                    ),
+
                   ),
+                  controller: messagecontroller,
                 ),
-                controller: messagecontroller,
               ),
             ),
           ),
