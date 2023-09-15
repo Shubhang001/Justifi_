@@ -4,17 +4,25 @@ import 'package:file_picker/file_picker.dart';
 import 'package:flutter/material.dart';
 import 'package:http/http.dart';
 import 'package:http/http.dart' as http;
+import 'package:jusitfi_admin/api/category/get_categorylist.dart';
+import 'package:jusitfi_admin/api/court/court_type.dart';
+import 'package:jusitfi_admin/api/fee/fee_type.dart';
+import 'package:jusitfi_admin/api/subcategory/get_subcategorydetails.dart';
 import 'package:jusitfi_admin/presentation/screens/finished_page.dart';
 import 'package:jusitfi_admin/presentation/screens/float_cases4.dart';
 import 'package:jusitfi_admin/presentation/screens/notification_page.dart';
 import 'package:jusitfi_admin/presentation/screens/profile_page.dart';
 import 'package:jusitfi_admin/utils/constants/textstyles.dart';
 import 'package:shared_preferences/shared_preferences.dart';
+import 'dart:convert';
 
 // ignore: must_be_immutable
 class FloatCases2 extends StatefulWidget {
   FloatCases2({super.key});
   String _filePath = '';
+  CategoryDetail? selectedCategory;
+  FeeDetail? selectedFees;
+  CourtDetail? selectedCourt;
 
   @override
   State<FloatCases2> createState() => _FloatCases2State();
@@ -39,6 +47,52 @@ class _FloatCases2State extends State<FloatCases2> {
 
   TextEditingController title = TextEditingController();
   TextEditingController description = TextEditingController();
+  List<CategoryDetail> categories = [];
+  List<DropdownMenuItem<String>> subcategoryDropdownItems = [];
+  String? selectedSubcategory;
+  List<FeeDetail> fees = [];
+  List<CourtDetail> courts = [];
+
+  @override
+  void initState() {
+    super.initState();
+    _loadCategories();
+    _loadFees();
+    _loadCourts();
+  }
+
+  Future<void> _loadCategories() async {
+    try {
+      final categoryList = await getCategories();
+      setState(() {
+        categories = categoryList;
+      });
+    } catch (e) {
+      print("Error: $e.toString");
+    }
+  }
+
+  Future<void> _loadFees() async {
+    try {
+      final feesList = await getFees();
+      setState(() {
+        fees = feesList;
+      });
+    } catch (e) {
+      print("Error: $e.toString");
+    }
+  }
+
+  Future<void> _loadCourts() async {
+    try {
+      final courtList = await getCourts();
+      setState(() {
+        courts = courtList;
+      });
+    } catch (e) {
+      print("Error: $e.toString");
+    }
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -197,26 +251,48 @@ class _FloatCases2State extends State<FloatCases2> {
                                     color: Colors.grey[200],
                                     borderRadius: BorderRadius.circular(8.0),
                                   ),
-                                  child: DropdownButton<String>(
+                                  child: DropdownButton<CategoryDetail>(
+                                    // Update to CategoryDetail type
                                     isExpanded: true,
                                     underline: const SizedBox(),
-                                    items: const [
-                                      DropdownMenuItem<String>(
-                                        value: 'Option 1',
-                                        child: Text('Option 1'),
-                                      ),
-                                      DropdownMenuItem<String>(
-                                        value: 'Option 2',
-                                        child: Text('Option 2'),
-                                      ),
-                                      DropdownMenuItem<String>(
-                                        value: 'Option 3',
-                                        child: Text('Option 3'),
-                                      ),
-                                    ],
-                                    onChanged: (value) {},
-                                    hint: const Text(
-                                        '                                         '),
+                                    items: categories.map((category) {
+                                      return DropdownMenuItem<CategoryDetail>(
+                                        // Update to CategoryDetail type
+                                        value: category,
+                                        child: Text(category.categoryName),
+                                      );
+                                    }).toList(),
+                                    onChanged: (CategoryDetail? value) async {
+                                      // Update to CategoryDetail type
+                                      setState(() {
+                                        widget.selectedCategory = value;
+                                      });
+
+                                      // Fetch subcategory names based on the selected category id
+                                      if (value != null) {
+                                        int categoryId = value.id;
+                                        List<String> subcategoryNames =
+                                            await getSubcategoryNames(
+                                                categoryId);
+
+                                        // Update the subcategory dropdown with the fetched names
+                                        setState(() {
+                                          subcategoryDropdownItems =
+                                              subcategoryNames
+                                                  .map((name) =>
+                                                      DropdownMenuItem<String>(
+                                                        value: name,
+                                                        child: Text(name),
+                                                      ))
+                                                  .toList();
+                                        });
+                                      }
+                                    },
+                                    value: widget.selectedCategory,
+                                    hint: const Align(
+                                      alignment: Alignment.centerLeft,
+                                      child: Text('Select Category'),
+                                    ),
                                     dropdownColor: Colors.grey[200],
                                     iconEnabledColor: Colors.grey[600],
                                     style: TextStyle(
@@ -249,24 +325,17 @@ class _FloatCases2State extends State<FloatCases2> {
                                   child: DropdownButton<String>(
                                     isExpanded: true,
                                     underline: const SizedBox(),
-                                    items: const [
-                                      DropdownMenuItem<String>(
-                                        value: 'Option 1',
-                                        child: Text('Option 1'),
-                                      ),
-                                      DropdownMenuItem<String>(
-                                        value: 'Option 2',
-                                        child: Text('Option 2'),
-                                      ),
-                                      DropdownMenuItem<String>(
-                                        value: 'Option 3',
-                                        child: Text('Option 3'),
-                                      ),
-                                    ],
-                                    onChanged: (value) {},
+                                    items: subcategoryDropdownItems,
+                                    onChanged: (value) {
+                                      setState(() {
+                                        // Set the selected subcategory
+                                        selectedSubcategory = value;
+                                      });
+                                    },
+                                    value: selectedSubcategory,
                                     hint: const Align(
                                       alignment: Alignment.centerLeft,
-                                      child: Text(''),
+                                      child: Text('Select SubCategory'),
                                     ),
                                     dropdownColor: Colors.grey[200],
                                     iconEnabledColor: Colors.grey[600],
@@ -338,25 +407,23 @@ class _FloatCases2State extends State<FloatCases2> {
                                               borderRadius:
                                                   BorderRadius.circular(8.0),
                                             ),
-                                            child: DropdownButton<String>(
+                                            child: DropdownButton<CourtDetail>(
                                               isExpanded: true,
                                               underline: const SizedBox(),
-                                              items: const [
-                                                DropdownMenuItem<String>(
-                                                  value: 'Option 1',
-                                                  child: Text('Option 1'),
-                                                ),
-                                                DropdownMenuItem<String>(
-                                                  value: 'Option 2',
-                                                  child: Text('Option 2'),
-                                                ),
-                                                DropdownMenuItem<String>(
-                                                  value: 'Option 3',
-                                                  child: Text('Option 3'),
-                                                ),
-                                              ],
-                                              onChanged: (value) {},
-                                              hint: const Text('          '),
+                                              items: courts.map((court) {
+                                                return DropdownMenuItem<
+                                                    CourtDetail>(
+                                                  value: court,
+                                                  child: Text(court.courtName),
+                                                );
+                                              }).toList(),
+                                              onChanged: (CourtDetail? value) {
+                                                setState(() {
+                                                  widget.selectedCourt = value;
+                                                });
+                                              },
+                                              value: widget.selectedCourt,
+                                              hint: const Text('Select Court'),
                                               dropdownColor: Colors.grey[200],
                                               iconEnabledColor:
                                                   Colors.grey[600],
@@ -390,25 +457,23 @@ class _FloatCases2State extends State<FloatCases2> {
                                               borderRadius:
                                                   BorderRadius.circular(8.0),
                                             ),
-                                            child: DropdownButton<String>(
+                                            child: DropdownButton<FeeDetail>(
                                               isExpanded: true,
                                               underline: const SizedBox(),
-                                              items: const [
-                                                DropdownMenuItem<String>(
-                                                  value: 'Option 1',
-                                                  child: Text('Option 1'),
-                                                ),
-                                                DropdownMenuItem<String>(
-                                                  value: 'Option 2',
-                                                  child: Text('Option 2'),
-                                                ),
-                                                DropdownMenuItem<String>(
-                                                  value: 'Option 3',
-                                                  child: Text('Option 3'),
-                                                ),
-                                              ],
-                                              onChanged: (value) {},
-                                              hint: const Text('      '),
+                                              items: fees.map((fee) {
+                                                return DropdownMenuItem<
+                                                    FeeDetail>(
+                                                  value: fee,
+                                                  child: Text(fee.feeName),
+                                                );
+                                              }).toList(),
+                                              onChanged: (FeeDetail? value) {
+                                                setState(() {
+                                                  widget.selectedFees = value;
+                                                });
+                                              },
+                                              value: widget.selectedFees,
+                                              hint: const Text('Select Fees'),
                                               dropdownColor: Colors.grey[200],
                                               iconEnabledColor:
                                                   Colors.grey[600],
@@ -551,15 +616,16 @@ class _FloatCases2State extends State<FloatCases2> {
     try {
       var url = "http://15.206.28.255:8000/v1/case-connect";
 
-      
-
       var data = {
         "title": title.text,
         "description": description.text,
         "amount_offer": "500",
         "deadline": "2023-08-31:12:12:12",
         "case_type": "127",
-       
+        "category": widget.selectedCategory,
+        "subCategory": selectedSubcategory,
+        "fees": widget.selectedFees,
+        "court": widget.selectedCourt,
       };
 
       var headers = {
