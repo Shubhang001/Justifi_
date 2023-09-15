@@ -1,53 +1,43 @@
 import 'dart:convert';
-
 import 'package:http/http.dart' as http;
-import 'package:jusitfi_admin/api/base_url.dart';
-
-Future<List<dynamic>> getCategories() async {
-  final response = await http.get(Uri.parse("$baseURL/v1/categories"));
-  final int count = jsonDecode(response.body)['count'];
-  List<dynamic> alldata = [];
-
-  if (response.statusCode == 200) {
-    for (var i = 1; i <= (count / 10).ceil(); i++) {
-      final response =
-          await http.get(Uri.parse("$baseURL/v1/categories?page=$i"));
-      final List<dynamic> data = jsonDecode(response.body)['results'];
-      for (var j in data) {
-        alldata.add(j);
-      }
-    }
-
-    return alldata;
-  } else {
-    throw Exception("Failed to load");
-  }
-}
 
 class CategoryDetail {
-  final String id;
+  final int id;
   final String categoryName;
-  final String categoryCode;
-  final String categoryLogo;
-  final String categoryDescription;
-  final bool isActive;
 
-  const CategoryDetail({
+  CategoryDetail({
     required this.id,
     required this.categoryName,
-    required this.categoryCode,
-    required this.categoryLogo,
-    required this.categoryDescription,
-    required this.isActive,
   });
 
   factory CategoryDetail.fromJson(Map<String, dynamic> json) {
     return CategoryDetail(
-        id: json['id'],
-        categoryName: json['count'],
-        categoryLogo: json['next'],
-        categoryCode: json['previous'],
-        categoryDescription: json['results'],
-        isActive: json['is_active']);
+      id: json['id'],
+      categoryName: json['name'],
+    );
+  }
+}
+
+Future<List<CategoryDetail>> getCategories() async {
+  final String baseUrl = "http://15.206.28.255:8000/v1/categories";
+  final response = await http.get(Uri.parse("$baseUrl"));
+  List<CategoryDetail> categoryList = [];
+
+  if (response.statusCode == 200) {
+    final Map<String, dynamic> data = jsonDecode(response.body);
+    // Check if there are more pages and fetch them
+    final int count = data['count'];
+    for (var i = 1; i <= (count / 10).ceil(); i++) {
+      final pageResponse = await http.get(Uri.parse("$baseUrl?page=$i"));
+      final List<dynamic> pageData = jsonDecode(pageResponse.body)['results'];
+      for (var categoryData in pageData) {
+        CategoryDetail category = CategoryDetail.fromJson(categoryData);
+        categoryList.add(category);
+      }
+    }
+
+    return categoryList;
+  } else {
+    throw Exception("Failed to load categories");
   }
 }
