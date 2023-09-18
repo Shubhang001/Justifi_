@@ -361,8 +361,21 @@ class _QualificationState extends State<Qualification> {
             ),
             child: FittedBox(
               fit: BoxFit.fill,
-              child: Row(
+              child: Column(
+                mainAxisAlignment: MainAxisAlignment.start,
+                crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
+                  Padding(
+                    padding: const EdgeInsets.fromLTRB(16.0, 14.0, 8.0, 0.0),
+                    child: SizedBox(
+                      width: 210,
+                      child: Text(
+                        degree,
+                        style: const TextStyle(
+                            fontWeight: FontWeight.bold, fontSize: 18),
+                      ),
+                    ),
+                  ),
                   Row(
                     children: [
                       Image.asset("assets/images/college3.png"),
@@ -379,16 +392,6 @@ class _QualificationState extends State<Qualification> {
                                 style: const TextStyle(
                                   fontWeight: FontWeight.bold,
                                   fontSize: 18,
-                                ),
-                              ),
-                            ),
-                            Padding(
-                              padding:
-                                  const EdgeInsets.fromLTRB(8.0, 8.0, 8.0, 0.0),
-                              child: SizedBox(
-                                width: 210,
-                                child: Text(
-                                  "Degree: $degree",
                                 ),
                               ),
                             ),
@@ -424,23 +427,26 @@ class _QualificationState extends State<Qualification> {
                                     Radius.circular(20),
                                   ),
                                 ),
-                                child: InkWell(
-                                    onTap: () {
-                                      showDialog(
-                                          context: context,
-                                          builder: (BuildContext context) {
-                                            return ViewDocumentDialogBox(
-                                              certificate: certificate,
-                                            );
-                                          });
-                                    },
-                                    child: const Align(
-                                      alignment: Alignment.center,
-                                      child: Text(
-                                        "View Certificate",
-                                        style: TextStyle(color: Colors.white),
-                                      ),
-                                    )),
+                                child: Align(
+                                  alignment: Alignment.topRight,
+                                  child: InkWell(
+                                      onTap: () {
+                                        showDialog(
+                                            context: context,
+                                            builder: (BuildContext context) {
+                                              return ViewDocumentDialogBox(
+                                                certificate: certificate,
+                                              );
+                                            });
+                                      },
+                                      child: const Align(
+                                        alignment: Alignment.center,
+                                        child: Text(
+                                          "View Certificate",
+                                          style: TextStyle(color: Colors.white),
+                                        ),
+                                      )),
+                                ),
                               ),
                             ),
                           ],
