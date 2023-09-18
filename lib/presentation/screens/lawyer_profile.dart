@@ -178,7 +178,7 @@ class _DetailSectionState extends State<DetailSection>
           tabs: const [
             Tab(text: "Practice Area"),
             Tab(text: "Qualification"),
-            Tab(text: "Court"),
+            Tab(text: "Court/Bar"),
           ],
           controller: _tabController,
         ),
@@ -415,39 +415,50 @@ class _QualificationState extends State<Qualification> {
                                 ),
                               ),
                             ),
-                            Padding(
-                              padding:
-                                  const EdgeInsets.fromLTRB(8.0, 8.0, 8.0, 0.0),
-                              child: Container(
-                                height: 25,
-                                width: 120,
-                                decoration: const BoxDecoration(
-                                  color: Colors.green,
-                                  borderRadius: BorderRadius.all(
-                                    Radius.circular(20),
+                            Row(
+                              children: [
+                                Padding(
+                                  padding: const EdgeInsets.fromLTRB(
+                                      8.0, 8.0, 8.0, 0.0),
+                                  child: Container(
+                                    height: 25,
+                                    width: 97,
+                                    decoration: const BoxDecoration(
+                                      color: Colors.green,
+                                      borderRadius: BorderRadius.all(
+                                        Radius.circular(20),
+                                      ),
+                                    ),
+                                    child: Align(
+                                      alignment: Alignment.topRight,
+                                      child: ElevatedButton(
+                                          style: ElevatedButton.styleFrom(
+                                              backgroundColor: Colors.green),
+                                          onPressed: () {
+                                            showDialog(
+                                                context: context,
+                                                builder:
+                                                    (BuildContext context) {
+                                                  return ViewDocumentDialogBox(
+                                                    certificate: certificate,
+                                                  );
+                                                });
+                                          },
+                                          child: const Align(
+                                            alignment: Alignment.center,
+                                            child: Text(
+                                              "Certificate",
+                                              style: TextStyle(
+                                                  color: Colors.white),
+                                            ),
+                                          )),
+                                    ),
                                   ),
                                 ),
-                                child: Align(
-                                  alignment: Alignment.topRight,
-                                  child: InkWell(
-                                      onTap: () {
-                                        showDialog(
-                                            context: context,
-                                            builder: (BuildContext context) {
-                                              return ViewDocumentDialogBox(
-                                                certificate: certificate,
-                                              );
-                                            });
-                                      },
-                                      child: const Align(
-                                        alignment: Alignment.center,
-                                        child: Text(
-                                          "View Certificate",
-                                          style: TextStyle(color: Colors.white),
-                                        ),
-                                      )),
-                                ),
-                              ),
+                                const SizedBox(
+                                  width: 20,
+                                )
+                              ],
                             ),
                           ],
                         ),
