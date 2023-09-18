@@ -20,9 +20,7 @@ class _ChatPageState extends State<ChatPage> {
   List<Widget> message=[];
  var yourtoken="";
  var channel;
- ScrollController _scrollcontroller=ScrollController();
-
-  TextEditingController messagecontroller =new TextEditingController();
+ TextEditingController messagecontroller =new TextEditingController();
 
 
 
@@ -38,6 +36,7 @@ class _ChatPageState extends State<ChatPage> {
                 mainAxisAlignment: MainAxisAlignment.start,
                 mainAxisSize: MainAxisSize.min,
                 children: [
+                  Icon(Icons.reply,color: Colors.black,size: 20,),
                   Container(
 
                       padding: EdgeInsets.symmetric(vertical: 5,horizontal: 9),
@@ -46,12 +45,12 @@ class _ChatPageState extends State<ChatPage> {
 
                       ),
                       child:
-                        
-                        
+
+
                         Text(i['content']['text'],style: TextStyle(color: Colors.black),),
 
-                      
-                      
+
+
                       )
 
                 ],
@@ -65,26 +64,40 @@ class _ChatPageState extends State<ChatPage> {
       }
       else {
         setState(() {
-          message.add(Row(
+          message.add(Column(
             mainAxisAlignment: MainAxisAlignment.end,
-            mainAxisSize: MainAxisSize.min,
             children: [
-              Container(
+              Align(
+                alignment: Alignment.centerRight,
+                child: Row(
+                  mainAxisAlignment: MainAxisAlignment.end,
+                  mainAxisSize: MainAxisSize.min,
+                  children: [
+                    Icon(Icons.reply,color: Colors.black,size: 20,),
+                    Container(
 
-                padding: EdgeInsets.symmetric(vertical: 10,horizontal: 10),
-                decoration: BoxDecoration(
-                    borderRadius: BorderRadius.circular(5),color: Colors.black
+                      padding: EdgeInsets.symmetric(vertical: 10,horizontal: 20),
+                      decoration: BoxDecoration(
+                          borderRadius: BorderRadius.circular(5),color: Colors.black
+                      ),
+                      child:
+                          Row(
+                            children: [
+                              Text(i['content']['text'],textAlign: TextAlign.center,style: TextStyle(height: .5,color: Colors.white),),
+                        SizedBox(width: 10,),
+
+                        Icon(i['content']['isSeen']=='true'?Icons.done:Icons.done_all,color: Colors.white,size: 10,)
+                            ],
+                          ),
+
+                    )
+                  ],
                 ),
-                child:
-                    Row(
-                      children: [
-                        Text(i['content']['text'],textAlign: TextAlign.center,style: TextStyle(height: .5,color: Colors.white),),
-                  SizedBox(width: 10,),
-                  Icon(i['content']['isSeen']=='true'?Icons.done:Icons.done_all,color: Colors.white,size: 10,)
-                      ],
-                    ),
-
-              )
+              ),
+              SizedBox(height: 8,),
+              Align(
+                  alignment: Alignment.centerRight,
+                  child: Text(i['created_at'].toString().substring(11,16),textAlign: TextAlign.center,style: TextStyle(height: .5,color: Colors.black),)),
             ],
           ));
           message.add(SizedBox(height: 10,));
@@ -125,6 +138,7 @@ class _ChatPageState extends State<ChatPage> {
                    Text(msg['data']['content']['text'],style: TextStyle(color: Colors.black),),
                  ],
                )),
+           Icon(Icons.reply,color: Colors.black,size: 20,),
          ],
        ));
        message.insert(0,SizedBox(height: 10,));
@@ -147,6 +161,7 @@ super.initState();
 yourtoken='0f464ab809733c1e19c02d50a1e7be04c86d74a0';
 
   makeconnection();
+
   }
 
   @override
@@ -231,6 +246,7 @@ yourtoken='0f464ab809733c1e19c02d50a1e7be04c86d74a0';
            padding: EdgeInsets.only(top: 10,bottom: 75,right: 10,left: 10),
            child: Container(
 child:ListView.builder(
+
   reverse: true,
 
     itemCount: message.length,
@@ -273,67 +289,96 @@ child:ListView.builder(
           ),
           Expanded(
             child: Container(
-              padding: const EdgeInsets.all(8),
+
+              padding: const EdgeInsets.all(5),
               margin: const EdgeInsets.symmetric(vertical: 10, horizontal: 2),
-              // height: 50,
+               height: 60,
               decoration: const BoxDecoration(
                 color: Colors.black,
                 borderRadius: BorderRadius.all(
                   Radius.circular(25),
                 ),
               ),
-              child:  TextField(
+              child:  Expanded(
+                child: TextField(
 
-                style: TextStyle(color: Colors.white),
-                decoration: InputDecoration(
-                  suffixIcon: IconButton(
+                  minLines: 1,
+                  maxLines: 100,
 
-                    color: Colors.white, onPressed: () {
+                  style: TextStyle(color: Colors.white),
+                  decoration: InputDecoration(
+                    
+                    border: OutlineInputBorder(borderSide: BorderSide.none),
+                    hintText: "message",
+                    hintStyle: TextStyle(color: Colors.grey),
+                    contentPadding: EdgeInsets.all(10),
+                    suffixIcon: IconButton(
 
-                    if (messagecontroller.text.isNotEmpty) {
-                      channel.sink.add(
-                          
-                        
-                        jsonEncode(  {
+                      color: Colors.white, onPressed: () {
+
+                      if (messagecontroller.text.isNotEmpty) {
+                        channel.sink.add(
+
+
+                          jsonEncode(  {
     "type":"chat_message",
     "case_connect_id":1,
     "content":{
     "text":messagecontroller.text
     }})
-                      );
+                        );
 
-                      setState(() {
-                        message.insert(0,SizedBox(height: 10,));
-                        message.insert(0,Row(
-                          mainAxisAlignment: MainAxisAlignment.end,
-                          mainAxisSize: MainAxisSize.min,
-                          children: [
-                            Container(
-                              padding: EdgeInsets.symmetric(vertical: 10,horizontal: 10),
-                              decoration: BoxDecoration(
-                                  borderRadius: BorderRadius.circular(5),color: Colors.black
-                              ),
-                              child:  Row(
-                                children: [
-                                  Text(messagecontroller.text,textAlign: TextAlign.center,style: TextStyle(height: .5,color: Colors.white),),
-                                  SizedBox(width: 10,),
-                                  Icon(Icons.done,color: Colors.white,size: 10,)
-                                ],
-                              ),)
-                          ],
-                        ));
+                        setState(() {
+                          message.insert(0,SizedBox(height: 10,));
+                          message.insert(0,Align(
+                            alignment: Alignment.centerRight,
+                            child: Column(
+                              mainAxisAlignment: MainAxisAlignment.end,
+                              children: [
 
-                        messagecontroller.text="";
+                                Row(
+                                  mainAxisAlignment: MainAxisAlignment.end,
+                                  mainAxisSize: MainAxisSize.min,
+                                  children: [
+                                    Icon(Icons.reply,color: Colors.black,size: 20,),
+                                    Container(
+                                      padding: EdgeInsets.symmetric(vertical: 10,horizontal: 10),
+                                      decoration: BoxDecoration(
+                                          borderRadius: BorderRadius.circular(5),color: Colors.black
+                                      ),
+                                      child:  Row(
+                                        children: [
+                                          Text(messagecontroller.text,textAlign: TextAlign.center,style: TextStyle(height: .5,color: Colors.white),),
+                                          SizedBox(width: 10,),
+                                          Icon(Icons.done,color: Colors.white,size: 10,)
+                                        ],
+                                      ),)
+                                  ],
+                                ),
+                                SizedBox(height: 10,),
+                                Text("Just Now",textAlign: TextAlign.center,style: TextStyle(height: .5,color: Colors.black),),
 
 
-                      });
+                              ],
+                            ),
+                          )
 
-                    }
 
-                  }, icon: Icon(Icons.send,),
+                          );
+
+                          messagecontroller.text="";
+
+
+                        });
+
+                      }
+
+                    }, icon: Icon(Icons.send,),
+                    ),
+
                   ),
+                  controller: messagecontroller,
                 ),
-                controller: messagecontroller,
               ),
             ),
           ),
