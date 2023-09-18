@@ -279,7 +279,9 @@ class _CasePostCancelledCardState extends State<CasePostCancelledCard> {
                                     showDialog(
                                         context: context,
                                         builder: (BuildContext context) {
-                                          return const ViewDocumentDialogBox();
+                                          return const ViewDocumentDialogBox(
+                                            certificate: "",
+                                          );
                                         });
                                   },
                                   child: Padding(
@@ -330,7 +332,9 @@ class _CasePostCancelledCardState extends State<CasePostCancelledCard> {
                                     showDialog(
                                         context: context,
                                         builder: (BuildContext context) {
-                                          return const ViewDocumentDialogBox();
+                                          return const ViewDocumentDialogBox(
+                                            certificate: "",
+                                          );
                                         });
                                   },
                                   child: Padding(

@@ -296,7 +296,9 @@ class _CasePostPendingHireCardState extends State<CasePostPendingHireCard> {
                                     showDialog(
                                         context: context,
                                         builder: (BuildContext context) {
-                                          return const ViewDocumentDialogBox();
+                                          return const ViewDocumentDialogBox(
+                                            certificate: "",
+                                          );
                                         });
                                   },
                                   child: Padding(
@@ -350,7 +352,9 @@ class _CasePostPendingHireCardState extends State<CasePostPendingHireCard> {
                                     showDialog(
                                         context: context,
                                         builder: (BuildContext context) {
-                                          return const ViewDocumentDialogBox();
+                                          return const ViewDocumentDialogBox(
+                                            certificate: "",
+                                          );
                                         });
                                   },
                                   child: Padding(
