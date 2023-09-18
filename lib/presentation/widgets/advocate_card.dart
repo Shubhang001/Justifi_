@@ -106,10 +106,7 @@ class AdvocateCard extends StatelessWidget {
                           name,
                           style: kAdvocateCardName,
                         ),
-                        Text(
-                          education,
-                          style: kAdvocateCardSubTitle,
-                        ),
+                        const SizedBox(height: 5.0),
                         Row(
                           children: [
                             const Icon(
