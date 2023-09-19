@@ -22,7 +22,7 @@ class RiskPolicies extends StatelessWidget {
             color: Colors.black,
             child: const Center(
               child: Text(
-                "Risk Policies",
+                "Refund and Cancellation Policy",
                 style: TextStyle(color: Colors.white),
               ),
             ),

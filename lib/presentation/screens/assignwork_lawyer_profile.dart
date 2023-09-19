@@ -1,6 +1,10 @@
+import 'dart:convert';
+
 import 'package:flutter/material.dart';
 import 'dart:io';
 import 'package:file_picker/file_picker.dart';
+import 'package:http/http.dart' as http;
+import 'package:http/http.dart';
 import 'package:jusitfi_admin/presentation/screens/assign_work_completed.dart';
 import 'package:jusitfi_admin/utils/constants/textstyles.dart';
 import 'package:jusitfi_admin/api/category/get_categorylist.dart';
@@ -37,6 +41,8 @@ class _AssignWorkLawyerProfileState extends State<AssignWorkLawyerProfile> {
     }
   }
 
+  TextEditingController title = TextEditingController();
+  TextEditingController description = TextEditingController();
   List<CategoryDetail> categories = [];
   List<DropdownMenuItem<String>> subcategoryDropdownItems = [];
   String? selectedSubcategory;
@@ -81,6 +87,42 @@ class _AssignWorkLawyerProfileState extends State<AssignWorkLawyerProfile> {
       });
     } catch (e) {
       print("Error: $e.toString");
+    }
+  }
+
+  void submitData() async {
+    try {
+      var url = "http://15.206.28.255:8000/v1/case-connect";
+
+      var data = {
+        "title": title.text,
+        "description": description.text,
+        "amount_offer": "500",
+        "deadline": "2023-08-31:12:12:12",
+        "case_type": "127",
+        "category": widget.selectedCategory,
+        "subCategory": selectedSubcategory,
+        "fees": widget.selectedFees,
+        "court": widget.selectedCourt,
+      };
+
+      var headers = {
+        "Content-Type": "application/json",
+        "Authorization": "Token 0f464ab809733c1e19c02d50a1e7be04c86d74a0",
+      };
+
+      var bodyy = json.encode(data);
+      var urlParse = Uri.parse(url);
+      Response response = await http.post(
+        urlParse,
+        body: bodyy,
+        headers: headers,
+      );
+
+      var dataa = jsonDecode(response.body);
+      print(dataa);
+    } catch (e) {
+      print(e.toString());
     }
   }
 
@@ -187,6 +229,7 @@ class _AssignWorkLawyerProfileState extends State<AssignWorkLawyerProfile> {
                                     ),
                                     child: Center(
                                       child: TextField(
+                                        controller: title,
                                         decoration: const InputDecoration(
                                           border: InputBorder.none,
                                         ),
@@ -336,6 +379,7 @@ class _AssignWorkLawyerProfileState extends State<AssignWorkLawyerProfile> {
                                     ),
                                     child: Center(
                                       child: TextField(
+                                        controller: description,
                                         maxLines: 10,
                                         decoration: const InputDecoration(
                                           border: InputBorder.none,
@@ -527,6 +571,7 @@ class _AssignWorkLawyerProfileState extends State<AssignWorkLawyerProfile> {
                             ),
                             InkWell(
                               onTap: () {
+                                submitData();
                                 Navigator.push(context,
                                     MaterialPageRoute(builder: (_) {
                                   return const AssignWorkCompleted();

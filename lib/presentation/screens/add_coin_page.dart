@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:jusitfi_admin/presentation/screens/offers_page.dart';
 import 'package:jusitfi_admin/utils/constants/coupon_code_constants.dart';
+import 'package:razorpay_flutter/razorpay_flutter.dart';
 
 import '../../utils/constants/colors.dart';
 import '../../utils/constants/textstyles.dart';
@@ -43,10 +44,29 @@ class _AddCoinPage extends State<AddCoinPage> {
   //   // return couponText;
   // }
 
+  var _razorpay = Razorpay();
+
   @override
   void initState() {
     super.initState();
+    _razorpay.on(Razorpay.EVENT_PAYMENT_SUCCESS, _handlePaymentSuccess);
+    _razorpay.on(Razorpay.EVENT_PAYMENT_ERROR, _handlePaymentError);
+    _razorpay.on(Razorpay.EVENT_EXTERNAL_WALLET, _handleExternalWallet);
     CouponCodeConstant.couponCodeApplied = false;
+  }
+
+  void _handlePaymentSuccess(PaymentSuccessResponse response) {
+    // Do something when payment succeeds
+    print("Payment Done");
+  }
+
+  void _handlePaymentError(PaymentFailureResponse response) {
+    // Do something when payment fails
+    print("Payment Fail");
+  }
+
+  void _handleExternalWallet(ExternalWalletResponse response) {
+    // Do something when an external wallet is selected
   }
 
   @override
@@ -218,6 +238,20 @@ class _AddCoinPage extends State<AddCoinPage> {
                         Center(
                           child: GestureDetector(
                             onTap: () {
+                              // var options = {
+                              //   'key': "rzp_test_OGQis6YiNZBFeT",
+                              //   'amount':
+                              //       (int.parse(_addMoneyController.text) * 100)
+                              //           .toString(),
+                              //   'name': 'Justifi Client',
+                              //   'description': 'Demo',
+                              //   'timeout': 300, // in seconds
+                              //   'prefill': {
+                              //     'contact': '9898989898',
+                              //     'email': 'mohitanand@gmail.com'
+                              //   }
+                              // };
+                              // _razorpay.open(options);
                               Navigator.of(context).push(
                                 MaterialPageRoute(
                                   builder: (context) => CoinsPayNowPage(
@@ -232,6 +266,13 @@ class _AddCoinPage extends State<AddCoinPage> {
                         ),
                       ]))),
         ));
+  }
+
+  @override
+  void dispose() {
+    // TODO: implement dispose
+    _razorpay.clear();
+    super.dispose();
   }
 }
 

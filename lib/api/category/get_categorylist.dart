@@ -16,6 +16,13 @@ class CategoryDetail {
       categoryName: json['name'],
     );
   }
+
+  Map<String, dynamic> toJson() {
+    return {
+      'id': id,
+      'name': categoryName,
+    };
+  }
 }
 
 Future<List<CategoryDetail>> getCategories() async {
