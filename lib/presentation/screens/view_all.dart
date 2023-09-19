@@ -21,7 +21,7 @@ class _ViewAllPageState extends State<ViewAllPage> {
   @override
   void initState() {
     super.initState();
-    fetchUsers();
+    fetchUsers(widget.title);
   }
 
   @override
@@ -81,7 +81,13 @@ class _ViewAllPageState extends State<ViewAllPage> {
                       itemBuilder: (context, index) {
                         var res = result[index];
                         var fullname = res['full_name'];
-                        var profileimage = baseurl + res['profile_image'];
+                        String profileimage;
+                        if (res['profile_image'] == null) {
+                          profileimage =
+                              "https://imgs.search.brave.com/2EijPI14qdKvk0dFQldOjE3AG2D0Zs9Gltn5aFkk0Fo/rs:fit:860:0:0/g:ce/aHR0cHM6Ly9jZG4u/dmVjdG9yc3RvY2su/Y29tL2kvcHJldmll/dy0xeC80Ny85My9w/ZXJzb24taWNvbi1p/Y29uaWMtZGVzaWdu/LXZlY3Rvci0xODMx/NDc5My5qcGc";
+                        } else {
+                          profileimage = baseurl + res['profile_image'];
+                        }
                         var qualification = res['qualification'];
                         var userid = res['user_id'];
                         var distance = res['distance'];
@@ -118,9 +124,14 @@ class _ViewAllPageState extends State<ViewAllPage> {
     );
   }
 
-  Future<void> fetchUsers() async {
+  Future<void> fetchUsers(String title) async {
     print('fetchUser called');
-    var uri = Uri.parse("http://15.206.28.255:8000/v1/popular-advocates/");
+    Uri uri;
+    if (title == 'Lawyers Near Me') {
+      uri = Uri.parse("http://15.206.28.255:8000/v1/nearest-advocates");
+    } else {
+      uri = Uri.parse("http://15.206.28.255:8000/v1/popular-advocates/");
+    }
     var response = await http.get(uri);
     if (response.statusCode == 200) {
       final body = response.body;

@@ -1735,8 +1735,8 @@ class _ImageContainer extends StatelessWidget {
           ),
         ),
         Positioned(
-          top: 15,
-          left: 140,
+          top: 10,
+          left: 135,
           child: Container(
             height: 15,
             width: 15,

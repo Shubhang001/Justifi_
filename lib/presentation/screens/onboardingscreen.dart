@@ -96,9 +96,6 @@ class _OnBoardingScreenState extends State<OnBoardingScreen> {
                   textAlign: TextAlign.center,
                 ),
               ),
-
-
-
               Row(
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
@@ -109,12 +106,10 @@ class _OnBoardingScreenState extends State<OnBoardingScreen> {
                         //         builder: (context) => const ChatPage()),
                         //     (Route<dynamic> route) => false);
 
-
                         Navigator.of(context).push(
-                            MaterialPageRoute(
-                                builder: (context) => const ChatPage()),);
-
-
+                          MaterialPageRoute(
+                              builder: (context) => const ChatPage()),
+                        );
                       },
                       child: Text(
                         'Skip',
