@@ -4,9 +4,11 @@ import '../../utils/constants/colors.dart';
 import '../../utils/constants/textstyles.dart';
 
 class OffersPage extends StatefulWidget {
+  final String title;
   // final Widget page;
   OffersPage({
     Key? key,
+    required this.title,
   }) : super(key: key);
 
   @override
@@ -68,10 +70,12 @@ class _OffersPage extends State<OffersPage> {
                         children: [
                           OffersCard(
                             code: "23HT873",
+                            title: widget.title,
                             // page: widget.page,
                           ),
                           OffersCard(
                             code: "23HT873",
+                            title: widget.title,
                             // page: widget.page,
                           ),
                         ],

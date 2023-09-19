@@ -154,7 +154,9 @@ class _AddMoneyPageState extends State<AddMoneyPage> {
                         GestureDetector(
                             onTap: () {
                               Navigator.of(context).push(MaterialPageRoute(
-                                  builder: (context) => OffersPage()));
+                                  builder: (context) => OffersPage(
+                                        title: "Profile Credits",
+                                      )));
                             },
                             child: Center(
                                 child: Container(
