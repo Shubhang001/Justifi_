@@ -1,7 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_dotenv/flutter_dotenv.dart';
-import 'package:jusitfi_admin/presentation/screens/floatcases2.dart';
-import 'package:jusitfi_admin/presentation/screens/onboardingscreen.dart';
 import 'package:jusitfi_admin/presentation/screens/splash_screen.dart';
 import 'package:jusitfi_admin/presentation/widgets/material_color_builder.dart';
 import 'package:jusitfi_admin/utils/constants/colors.dart';
@@ -31,6 +29,6 @@ class MyApp extends StatelessWidget {
             bottomSheetTheme:
                 const BottomSheetThemeData(backgroundColor: Colors.transparent),
             primarySwatch: createMaterialColor(kobbuttonColor)),
-        home: SplashScreen());
+        home: const SplashScreen());
   }
 }

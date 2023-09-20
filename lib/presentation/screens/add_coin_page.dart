@@ -177,7 +177,9 @@ class _AddCoinPage extends State<AddCoinPage> {
                             Navigator.of(context)
                                 .push(
                                   MaterialPageRoute(
-                                    builder: (context) => OffersPage(),
+                                    builder: (context) => OffersPage(
+                                      title: "Profile Credits",
+                                    ),
                                   ),
                                 )
                                 .then((value) => setState(() {}));

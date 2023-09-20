@@ -4,6 +4,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:jusitfi_admin/presentation/screens/offers_page.dart';
 import 'package:http/http.dart' as http;
+import 'package:jusitfi_admin/presentation/widgets/offers_card.dart';
 import '../../utils/constants/colors.dart';
 import '../../utils/constants/coupon_code_constants.dart';
 import '../../utils/constants/textstyles.dart';
@@ -11,6 +12,7 @@ import 'package:razorpay_flutter/razorpay_flutter.dart';
 
 class AddCreditsPage extends StatefulWidget {
   String title;
+  String code = "";
   AddCreditsPage({super.key, required this.title});
 
   @override
@@ -18,10 +20,12 @@ class AddCreditsPage extends StatefulWidget {
 }
 
 TextEditingController _addCoinController = TextEditingController(text: "001");
-int price = 499;
-int gst = 50;
-int discount = 150;
-int total = 390;
+double price = 499;
+double gst = 0;
+double discount = 0;
+
+int total = 0;
+int cur = 0;
 
 class _AddCreditsPageState extends State<AddCreditsPage> {
   void handlePaymentErrorResponse(PaymentFailureResponse response) {
@@ -81,7 +85,14 @@ class _AddCreditsPageState extends State<AddCreditsPage> {
   void initState() {
     super.initState();
     CouponCodeConstant.couponCodeApplied = false;
-    fetchUsers(total);
+    if (widget.title == "Profile Credits") {
+      price = 199;
+    } else {
+      price = 499;
+    }
+    gst = 18 / 100 * price;
+
+    cur = 001;
   }
 
   @override
@@ -136,12 +147,21 @@ class _AddCreditsPageState extends State<AddCreditsPage> {
                       ),
                       GestureDetector(
                         onTap: () {
-                          int cur =
-                              int.parse(_addCoinController.text.toString());
+                          cur = int.parse(_addCoinController.text.toString());
                           cur++;
+
                           setState(() {
                             _addCoinController.text = cur.toString();
                           });
+                          int cur1 =
+                              int.parse(_addCoinController.text.toString());
+                          if (widget.title == "Profile Credits") {
+                            price = 199;
+                          }
+                          price = cur1 * price;
+                          gst = 18 * price / 100;
+
+                          total = (price.toDouble() + gst).round();
                         },
                         child: const AddButton(),
                       ),
@@ -154,8 +174,20 @@ class _AddCreditsPageState extends State<AddCreditsPage> {
                     onTap: () {
                       Navigator.of(context)
                           .push(MaterialPageRoute(
-                              builder: (context) => OffersPage()))
-                          .then((value) => setState(() {}));
+                              builder: (context) =>
+                                  OffersPage(title: widget.title)))
+                          .then((value) => setState(() {
+                                print(widget.code);
+                                if (widget.code == "23HT873") {
+                                  discount = 15;
+                                }
+                                discount = 15;
+
+                                discount = discount * price / 100;
+                                double discountedPrice = discount;
+                                gst = 18 * discountedPrice / 100;
+                                total = (price - discount + gst).round();
+                              }));
                     },
                     child: CButton(
                       b_title: CouponCodeConstant.couponCodeApplied
@@ -234,32 +266,14 @@ class _AddCreditsPageState extends State<AddCreditsPage> {
                           itemBuilder: (context, index) {
                             return InkWell(
                               onTap: () {
-                                order = data['order'];
-                                Razorpay razorpay = Razorpay();
-                                var key = data['razorpay_key'];
-                                var amount = order['amount'];
-                                var options = {
-                                  'key': key,
-                                  'amount': amount,
-                                  'name': 'Justifi Corp.',
-                                  'description': 'Advocate Hire',
-                                  'retry': {'enabled': true, 'max_count': 1},
-                                  'send_sms_hash': true,
-                                  'prefill': {
-                                    'contact': '8888888888',
-                                    'email': 'test@razorpay.com'
-                                  },
-                                  'external': {
-                                    'wallets': ['paytm']
-                                  }
-                                };
-                                razorpay.on(Razorpay.EVENT_PAYMENT_ERROR,
-                                    handlePaymentErrorResponse);
-                                razorpay.on(Razorpay.EVENT_PAYMENT_SUCCESS,
-                                    handlePaymentSuccessResponse);
-                                razorpay.on(Razorpay.EVENT_EXTERNAL_WALLET,
-                                    handleExternalWalletSelected);
-                                razorpay.open(options);
+                                fetchUsers(total);
+
+                                const CircularProgressIndicator(
+                                  color: Colors.green,
+                                );
+                                if (data['order'] != null) {
+                                  razorpayCalled();
+                                }
                               },
                               child: CButton(
                                 b_title: "Pay Now",
@@ -301,6 +315,30 @@ class _AddCreditsPageState extends State<AddCreditsPage> {
       });
       print('fetchUser complete');
     }
+  }
+
+  razorpayCalled() async {
+    await Future.delayed(const Duration(seconds: 3));
+    order = data['order'];
+    Razorpay razorpay = Razorpay();
+    var key = data['razorpay_key'];
+    var amount = order['amount'];
+    var options = {
+      'key': key,
+      'amount': amount,
+      'name': 'Justifi Corp.',
+      'description': 'Advocate Hire',
+      'retry': {'enabled': true, 'max_count': 1},
+      'send_sms_hash': true,
+      'prefill': {'contact': '8888888888', 'email': 'test@razorpay.com'},
+      'external': {
+        'wallets': ['paytm']
+      }
+    };
+    razorpay.on(Razorpay.EVENT_PAYMENT_ERROR, handlePaymentErrorResponse);
+    razorpay.on(Razorpay.EVENT_PAYMENT_SUCCESS, handlePaymentSuccessResponse);
+    razorpay.on(Razorpay.EVENT_EXTERNAL_WALLET, handleExternalWalletSelected);
+    razorpay.open(options);
   }
 }
 
