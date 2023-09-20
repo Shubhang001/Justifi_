@@ -96,25 +96,20 @@ class _OnBoardingScreenState extends State<OnBoardingScreen> {
                   textAlign: TextAlign.center,
                 ),
               ),
-
-
-
               Row(
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
                   TextButton(
                       onPressed: () {
-                        // Navigator.of(context).pushAndRemoveUntil(
-                        //     MaterialPageRoute(
-                        //         builder: (context) => const ChatPage()),
-                        //     (Route<dynamic> route) => false);
-
-
-                        Navigator.of(context).push(
+                        Navigator.of(context).pushAndRemoveUntil(
                             MaterialPageRoute(
-                                builder: (context) => const ChatPage()),);
+                                builder: (context) => const MainPage()),
+                            (Route<dynamic> route) => false);
 
-
+                        // Navigator.of(context).push(
+                        //   MaterialPageRoute(
+                        //       builder: (context) => const LoginScreen()),
+                        // );
                       },
                       child: Text(
                         'Skip',
