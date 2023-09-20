@@ -5,9 +5,65 @@ import 'package:jusitfi_admin/presentation/screens/riskpolicies_page.dart';
 import 'package:jusitfi_admin/presentation/screens/terms_condition.dart';
 import 'package:jusitfi_admin/presentation/screens/upi_protection.dart';
 import 'package:jusitfi_admin/presentation/widgets/profile_appbar.dart';
+import 'package:url_launcher/url_launcher.dart';
 
-class AboutUsPAge extends StatelessWidget {
+class AboutUsPAge extends StatefulWidget {
   const AboutUsPAge({super.key});
+
+  @override
+  State<AboutUsPAge> createState() => _AboutUsPAgeState();
+}
+
+class _AboutUsPAgeState extends State<AboutUsPAge> {
+  _launchURL() async {
+    Uri _url = Uri.parse(
+        'https://docs.google.com/document/d/1ZzRBBLXoi4-G4hWQ6krWmOKBG5UfdppY2JI2IYRJUTQ/edit');
+    if (await launchUrl(_url)) {
+      await launchUrl(_url);
+    } else {
+      throw 'Could not launch $_url';
+    }
+  }
+
+  _UpiURL() async {
+    Uri _url = Uri.parse(
+        'https://docs.google.com/document/d/1PJuVTxfObOIGBadymBRrr4jLBpTIkGCDoqq8E9xk-x0/edit');
+    if (await launchUrl(_url)) {
+      await launchUrl(_url);
+    } else {
+      throw 'Could not launch $_url';
+    }
+  }
+
+  _PrivacyURL() async {
+    Uri _url = Uri.parse(
+        'https://docs.google.com/document/d/12TpZu8tuht--HRrXHfWc3Cr46UKVbNQxBLd1WgYlDJs/edit');
+    if (await launchUrl(_url)) {
+      await launchUrl(_url);
+    } else {
+      throw 'Could not launch $_url';
+    }
+  }
+
+  _TermsURL() async {
+    Uri _url = Uri.parse(
+        'https://docs.google.com/document/d/13UZSQxWcY81mau1n5_tqnceEHdMSdpFAbehJ4CGvZsE/edit');
+    if (await launchUrl(_url)) {
+      await launchUrl(_url);
+    } else {
+      throw 'Could not launch $_url';
+    }
+  }
+
+  _FraudURL() async {
+    Uri _url = Uri.parse(
+        'https://docs.google.com/document/d/1Rbf1Cqt_Rd3Ck9_Xg31LRpwVinLLZE1mFKbkQRnTpoc/edit');
+    if (await launchUrl(_url)) {
+      await launchUrl(_url);
+    } else {
+      throw 'Could not launch $_url';
+    }
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -67,12 +123,13 @@ class AboutUsPAge extends StatelessWidget {
             ),
             GestureDetector(
               onTap: () {
-                Navigator.push(
-                  context,
-                  MaterialPageRoute(
-                    builder: (context) => const FraudPreventionPage(),
-                  ),
-                );
+                _FraudURL();
+                // Navigator.push(
+                //   context,
+                //   MaterialPageRoute(
+                //     builder: (context) => const FraudPreventionPage(),
+                //   ),
+                // );
               },
               child: const CustomListTile(
                 icon: Icons.folder_special_outlined,
@@ -82,12 +139,13 @@ class AboutUsPAge extends StatelessWidget {
             ),
             GestureDetector(
               onTap: () {
-                Navigator.push(
-                  context,
-                  MaterialPageRoute(
-                    builder: (context) => const PrivacyPreventionPAge(),
-                  ),
-                );
+                _PrivacyURL();
+                // Navigator.push(
+                //   context,
+                //   MaterialPageRoute(
+                //     builder: (context) => const PrivacyPreventionPAge(),
+                //   ),
+                // );
               },
               child: const CustomListTile(
                 icon: Icons.privacy_tip,
@@ -98,12 +156,13 @@ class AboutUsPAge extends StatelessWidget {
 
             GestureDetector(
               onTap: () {
-                Navigator.push(
-                  context,
-                  MaterialPageRoute(
-                    builder: (context) => const TermsCondition(),
-                  ),
-                );
+                _TermsURL();
+                // Navigator.push(
+                //   context,
+                //   MaterialPageRoute(
+                //     builder: (context) => const TermsCondition(),
+                //   ),
+                // );
               },
               child: const CustomListTile(
                 icon: Icons.file_copy,
@@ -116,16 +175,17 @@ class AboutUsPAge extends StatelessWidget {
 
             GestureDetector(
               onTap: () {
-                Navigator.push(
-                  context,
-                  MaterialPageRoute(
-                    builder: (context) => const RiskPolicies(),
-                  ),
-                );
+                _launchURL();
+                // Navigator.push(
+                //   context,
+                //   MaterialPageRoute(
+                //     builder: (context) => const RiskPolicies(),
+                //   ),
+                // );
               },
               child: const CustomListTile(
                 icon: Icons.warning,
-                title: "Risk Policies",
+                title: "Refund and Cancellation Policy",
                 redirect: true,
               ),
             ),
@@ -134,18 +194,19 @@ class AboutUsPAge extends StatelessWidget {
 
             GestureDetector(
               onTap: () {
-                Navigator.push(
-                  context,
-                  MaterialPageRoute(
-                    builder: (context) => const UpiPrevention(),
-                  ),
-                );
+                _UpiURL();
+                // Navigator.push(
+                //   context,
+                //   MaterialPageRoute(
+                //     builder: (context) => const UpiPrevention(),
+                //   ),
+                // );
               },
               child: Container(
                 margin: const EdgeInsets.only(bottom: 20),
                 child: const CustomListTile(
                   icon: Icons.credit_card,
-                  title: "Roles and Responsibilities for UPI",
+                  title: "Cookies Policy",
                   redirect: true,
                 ),
               ),

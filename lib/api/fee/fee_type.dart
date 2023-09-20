@@ -16,6 +16,13 @@ class FeeDetail {
       feeName: json['name'],
     );
   }
+
+  Map<String, dynamic> toJson() {
+    return {
+      'id': id,
+      'name': feeName,
+    };
+  }
 }
 
 Future<List<FeeDetail>> getFees() async {
