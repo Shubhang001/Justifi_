@@ -1,6 +1,7 @@
 import 'dart:convert';
 
 import 'package:flutter/material.dart';
+import 'package:jusitfi_admin/presentation/widgets/text_with_line.dart';
 import 'package:jusitfi_admin/utils/constants/textstyles.dart';
 import 'package:share_plus/share_plus.dart';
 import 'package:http/http.dart' as http;
@@ -195,7 +196,7 @@ class _DetailSectionState extends State<DetailSection>
                   education: widget.education,
                   userid: widget.userid,
                 ),
-                Court(),
+                const Court(),
               ],
             ),
           ),
@@ -205,10 +206,16 @@ class _DetailSectionState extends State<DetailSection>
   }
 }
 
-class Court extends StatelessWidget {
-  Court({
+class Court extends StatefulWidget {
+  const Court({
     super.key,
   });
+
+  @override
+  State<Court> createState() => _CourtState();
+}
+
+class _CourtState extends State<Court> {
   final List<CourtDetails> courts = [
     CourtDetails(
         title: 'Supreme Court',
@@ -221,68 +228,268 @@ class Court extends StatelessWidget {
     CourtDetails(
         title: 'District Court',
         image: "assets/images/court2.png",
-        subtitle: 'Mumbai District Court')
+        subtitle: 'Mumbai District Court'),
   ];
 
   @override
   Widget build(BuildContext context) {
     return ListView.builder(
+      scrollDirection: Axis.vertical,
       itemCount: 3,
       itemBuilder: (context, index) {
-        return Container(
-          margin: const EdgeInsets.all(10),
-          padding: const EdgeInsets.all(20),
-          decoration: const BoxDecoration(
-            color: Color.fromRGBO(169, 169, 169, 1),
-            boxShadow: [
-              BoxShadow(
-                color: Colors.black,
-                offset: Offset(
-                  5.0,
-                  5.0,
-                ),
-                blurRadius: 10.0,
-                spreadRadius: 2.0,
-              ), //BoxShadow
-              BoxShadow(
-                color: Colors.white,
-                offset: Offset(0.0, 0.0),
-                blurRadius: 0.0,
-                spreadRadius: 0.0,
-              ), //BoxShadow
-            ],
-            borderRadius: BorderRadius.all(
-              Radius.circular(25),
-            ),
-          ),
-          child: Row(
-            children: [
-              Padding(
-                padding: const EdgeInsets.all(4.0),
-                child: Image.asset(
-                  courts[index].image,
-                  width: 80,
-                  height: 80,
-                ),
-              ),
-              Column(
-                mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                children: [
-                  Text(
-                    courts[index].title,
-                    style: kpageTitleBlack,
+        return index != 2
+            ? Container(
+                margin: const EdgeInsets.all(10),
+                padding: const EdgeInsets.all(20),
+                decoration: const BoxDecoration(
+                  color: Color.fromRGBO(169, 169, 169, 1),
+                  boxShadow: [
+                    BoxShadow(
+                      color: Colors.black,
+                      offset: Offset(
+                        5.0,
+                        5.0,
+                      ),
+                      blurRadius: 10.0,
+                      spreadRadius: 2.0,
+                    ), //BoxShadow
+                    BoxShadow(
+                      color: Colors.white,
+                      offset: Offset(0.0, 0.0),
+                      blurRadius: 0.0,
+                      spreadRadius: 0.0,
+                    ), //BoxShadow
+                  ],
+                  borderRadius: BorderRadius.all(
+                    Radius.circular(25),
                   ),
-                  Text(
-                    courts[index].subtitle,
-                    textAlign: TextAlign.center,
-                    style: ksubCatText,
+                ),
+                child: Row(
+                  children: [
+                    Padding(
+                      padding: const EdgeInsets.all(4.0),
+                      child: Image.asset(
+                        courts[index].image,
+                        width: 80,
+                        height: 80,
+                      ),
+                    ),
+                    Column(
+                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                      children: [
+                        Text(
+                          courts[index].title,
+                          style: kpageTitleBlack,
+                        ),
+                        Text(
+                          courts[index].subtitle,
+                          textAlign: TextAlign.center,
+                          style: ksubCatText,
+                        ),
+                      ],
+                    ),
+                  ],
+                ),
+              )
+            : Column(
+                children: [
+                  Container(
+                    margin: const EdgeInsets.all(10),
+                    padding: const EdgeInsets.all(20),
+                    decoration: const BoxDecoration(
+                      color: Color.fromRGBO(169, 169, 169, 1),
+                      boxShadow: [
+                        BoxShadow(
+                          color: Colors.black,
+                          offset: Offset(
+                            5.0,
+                            5.0,
+                          ),
+                          blurRadius: 10.0,
+                          spreadRadius: 2.0,
+                        ), //BoxShadow
+                        BoxShadow(
+                          color: Colors.white,
+                          offset: Offset(0.0, 0.0),
+                          blurRadius: 0.0,
+                          spreadRadius: 0.0,
+                        ), //BoxShadow
+                      ],
+                      borderRadius: BorderRadius.all(
+                        Radius.circular(25),
+                      ),
+                    ),
+                    child: Row(
+                      children: [
+                        Padding(
+                          padding: const EdgeInsets.all(4.0),
+                          child: Image.asset(
+                            courts[index].image,
+                            width: 80,
+                            height: 80,
+                          ),
+                        ),
+                        Column(
+                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                          children: [
+                            Text(
+                              courts[index].title,
+                              style: kpageTitleBlack,
+                            ),
+                            Text(
+                              courts[index].subtitle,
+                              textAlign: TextAlign.center,
+                              style: ksubCatText,
+                            ),
+                          ],
+                        ),
+                      ],
+                    ),
+                  ),
+                  const SizedBox(
+                    height: 10,
+                  ),
+                  const BarDetail(),
+                ],
+              );
+      },
+    );
+  }
+}
+
+class BarDetail extends StatelessWidget {
+  const BarDetail({super.key});
+
+  @override
+  Widget build(BuildContext context) {
+    return Padding(
+      padding: const EdgeInsets.all(8.0),
+      child: Column(
+        children: [
+          const TextWithLine(
+              label: 'Bar Details', height: 1, color: Colors.black),
+          Container(
+            padding: const EdgeInsets.only(right: 10, left: 10),
+            margin: const EdgeInsets.symmetric(
+              horizontal: 10,
+              vertical: 15,
+            ),
+            constraints: const BoxConstraints(minHeight: 130, maxHeight: 210),
+            width: double.infinity,
+            decoration: const BoxDecoration(
+              color: Color.fromRGBO(169, 169, 169, 1),
+              boxShadow: [
+                BoxShadow(
+                  color: Colors.black,
+                  offset: Offset(
+                    0.0,
+                    2.0,
+                  ),
+                ),
+                BoxShadow(color: Colors.black),
+              ],
+              borderRadius: BorderRadius.all(
+                Radius.circular(20),
+              ),
+            ),
+            child: FittedBox(
+              fit: BoxFit.fill,
+              child: Column(
+                mainAxisAlignment: MainAxisAlignment.start,
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  Row(
+                    children: [
+                      Image.asset("assets/images/college3.png"),
+                      Padding(
+                        padding:
+                            const EdgeInsets.fromLTRB(20.0, 20.0, 0.0, 20.0),
+                        child: Column(
+                          crossAxisAlignment: CrossAxisAlignment.start,
+                          children: [
+                            const SizedBox(
+                              width: 255,
+                              child: Text(
+                                "university",
+                                maxLines: 2,
+                                style: TextStyle(
+                                  fontWeight: FontWeight.bold,
+                                  fontSize: 18,
+                                ),
+                              ),
+                            ),
+                            const Padding(
+                              padding: EdgeInsets.only(top: 10.0),
+                              child: SizedBox(
+                                width: 210,
+                                child: Text(
+                                  "studyfield",
+                                  maxLines: 2,
+                                ),
+                              ),
+                            ),
+                            Padding(
+                              padding: const EdgeInsets.only(top: 10.0),
+                              child: SizedBox(
+                                width: 210,
+                                child: Text(
+                                  "startdate to enddate",
+                                  maxLines: 2,
+                                ),
+                              ),
+                            ),
+                            Row(
+                              crossAxisAlignment: CrossAxisAlignment.end,
+                              mainAxisAlignment: MainAxisAlignment.end,
+                              children: [
+                                const SizedBox(
+                                  width: 150,
+                                ),
+                                Padding(
+                                  padding: const EdgeInsets.fromLTRB(
+                                      8.0, 8.0, 8.0, 0.0),
+                                  child: Container(
+                                    height: 25,
+                                    width: 100,
+                                    decoration: const BoxDecoration(
+                                      color: Colors.green,
+                                      borderRadius: BorderRadius.all(
+                                        Radius.circular(20),
+                                      ),
+                                    ),
+                                    child: Align(
+                                      alignment: Alignment.topRight,
+                                      child: ElevatedButton(
+                                          style: ElevatedButton.styleFrom(
+                                              backgroundColor: Colors.green),
+                                          onPressed: () {},
+                                          child: const Align(
+                                            alignment: Alignment.center,
+                                            child: Text(
+                                              "Certificate",
+                                              style: TextStyle(
+                                                  color: Colors.white),
+                                            ),
+                                          )),
+                                    ),
+                                  ),
+                                ),
+                                const SizedBox(
+                                  width: 20,
+                                )
+                              ],
+                            ),
+                          ],
+                        ),
+                      )
+                    ],
                   ),
                 ],
               ),
-            ],
-          ),
-        );
-      },
+            ),
+          )
+        ],
+      ),
     );
   }
 }
@@ -420,6 +627,9 @@ class _QualificationState extends State<Qualification> {
                               crossAxisAlignment: CrossAxisAlignment.end,
                               mainAxisAlignment: MainAxisAlignment.end,
                               children: [
+                                const SizedBox(
+                                  width: 150,
+                                ),
                                 Padding(
                                   padding: const EdgeInsets.fromLTRB(
                                       8.0, 8.0, 8.0, 0.0),
