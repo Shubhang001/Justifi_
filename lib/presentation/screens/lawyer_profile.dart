@@ -383,6 +383,7 @@ class _QualificationState extends State<Qualification> {
                         padding:
                             const EdgeInsets.fromLTRB(20.0, 20.0, 0.0, 20.0),
                         child: Column(
+                          crossAxisAlignment: CrossAxisAlignment.start,
                           children: [
                             SizedBox(
                               width: 255,
@@ -400,7 +401,7 @@ class _QualificationState extends State<Qualification> {
                               child: SizedBox(
                                 width: 210,
                                 child: Text(
-                                  "Study Field: $studyfield",
+                                  "$studyfield",
                                   maxLines: 2,
                                 ),
                               ),
@@ -410,19 +411,21 @@ class _QualificationState extends State<Qualification> {
                               child: SizedBox(
                                 width: 210,
                                 child: Text(
-                                  "Duration: $startdate to $enddate",
+                                  "$startdate to $enddate",
                                   maxLines: 2,
                                 ),
                               ),
                             ),
                             Row(
+                              crossAxisAlignment: CrossAxisAlignment.end,
+                              mainAxisAlignment: MainAxisAlignment.end,
                               children: [
                                 Padding(
                                   padding: const EdgeInsets.fromLTRB(
                                       8.0, 8.0, 8.0, 0.0),
                                   child: Container(
                                     height: 25,
-                                    width: 97,
+                                    width: 100,
                                     decoration: const BoxDecoration(
                                       color: Colors.green,
                                       borderRadius: BorderRadius.all(

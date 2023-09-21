@@ -4,7 +4,6 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:jusitfi_admin/presentation/screens/offers_page.dart';
 import 'package:http/http.dart' as http;
-import 'package:jusitfi_admin/presentation/widgets/offers_card.dart';
 import '../../utils/constants/colors.dart';
 import '../../utils/constants/coupon_code_constants.dart';
 import '../../utils/constants/textstyles.dart';
@@ -23,8 +22,9 @@ TextEditingController _addCoinController = TextEditingController(text: "001");
 double price = 499;
 double gst = 0;
 double discount = 0;
+double discount1 = 0;
 
-int total = 0;
+int total = price.toInt();
 int cur = 0;
 
 class _AddCreditsPageState extends State<AddCreditsPage> {
@@ -149,7 +149,6 @@ class _AddCreditsPageState extends State<AddCreditsPage> {
                         onTap: () {
                           cur = int.parse(_addCoinController.text.toString());
                           cur++;
-
                           setState(() {
                             _addCoinController.text = cur.toString();
                           });
@@ -158,10 +157,19 @@ class _AddCreditsPageState extends State<AddCreditsPage> {
                           if (widget.title == "Profile Credits") {
                             price = 199;
                           }
+                          print(_addCoinController.toString());
+                          print("done");
                           price = cur1 * price;
                           gst = 18 * price / 100;
-
-                          total = (price.toDouble() + gst).round();
+                          if (discount1 != 0) {
+                            discount = discount1 * price / 100;
+                            double discountedPrice = discount;
+                            gst = 18 * discountedPrice / 100;
+                            gst = double.parse((gst).toStringAsFixed(2));
+                            discount =
+                                double.parse((discount).toStringAsFixed(2));
+                          }
+                          total = (price.toDouble() + gst - discount).round();
                         },
                         child: const AddButton(),
                       ),
@@ -182,10 +190,13 @@ class _AddCreditsPageState extends State<AddCreditsPage> {
                                   discount = 15;
                                 }
                                 discount = 15;
-
+                                discount1 = discount;
                                 discount = discount * price / 100;
                                 double discountedPrice = discount;
                                 gst = 18 * discountedPrice / 100;
+                                gst = double.parse((gst).toStringAsFixed(2));
+                                discount =
+                                    double.parse((discount).toStringAsFixed(2));
                                 total = (price - discount + gst).round();
                               }));
                     },
@@ -267,7 +278,6 @@ class _AddCreditsPageState extends State<AddCreditsPage> {
                             return InkWell(
                               onTap: () {
                                 fetchUsers(total);
-
                                 const CircularProgressIndicator(
                                   color: Colors.green,
                                 );
