@@ -178,7 +178,7 @@ class _DetailSectionState extends State<DetailSection>
           tabs: const [
             Tab(text: "Practice Area"),
             Tab(text: "Qualification"),
-            Tab(text: "Court"),
+            Tab(text: "Court/Bar"),
           ],
           controller: _tabController,
         ),
@@ -226,10 +226,7 @@ class Court extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return GridView.builder(
-      gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
-        crossAxisCount: 2,
-      ),
+    return ListView.builder(
       itemCount: 3,
       itemBuilder: (context, index) {
         return Container(
@@ -258,13 +255,8 @@ class Court extends StatelessWidget {
               Radius.circular(25),
             ),
           ),
-          child: Column(
-            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+          child: Row(
             children: [
-              Text(
-                courts[index].title,
-                style: kpageTitleBlack,
-              ),
               Padding(
                 padding: const EdgeInsets.all(4.0),
                 child: Image.asset(
@@ -273,10 +265,19 @@ class Court extends StatelessWidget {
                   height: 80,
                 ),
               ),
-              Text(
-                courts[index].subtitle,
-                textAlign: TextAlign.center,
-                style: ksubCatText,
+              Column(
+                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                children: [
+                  Text(
+                    courts[index].title,
+                    style: kpageTitleBlack,
+                  ),
+                  Text(
+                    courts[index].subtitle,
+                    textAlign: TextAlign.center,
+                    style: ksubCatText,
+                  ),
+                ],
               ),
             ],
           ),
@@ -312,6 +313,7 @@ class Qualification extends StatefulWidget {
 
 class _QualificationState extends State<Qualification> {
   List<dynamic> result4 = [];
+  String baseurl = "http://15.206.28.255:8000";
 
   @override
   void initState() {
@@ -332,13 +334,14 @@ class _QualificationState extends State<Qualification> {
           var studyfield = res['study_field'];
           var startdate = res['start_date'];
           var enddate = res['end_date'];
+          var certificate = baseurl + res['file'];
           return Container(
             padding: const EdgeInsets.only(right: 10, left: 10),
             margin: const EdgeInsets.symmetric(
               horizontal: 10,
               vertical: 15,
             ),
-            height: 200,
+            constraints: const BoxConstraints(minHeight: 180, maxHeight: 210),
             width: double.infinity,
             decoration: const BoxDecoration(
               color: Color.fromRGBO(169, 169, 169, 1),
@@ -356,83 +359,114 @@ class _QualificationState extends State<Qualification> {
                 Radius.circular(20),
               ),
             ),
-            child: Row(
-              mainAxisAlignment: MainAxisAlignment.spaceBetween,
-              children: [
-                Row(
-                  children: [
-                    Image.asset("assets/images/college3.png"),
-                    Padding(
-                      padding: const EdgeInsets.all(20.0),
-                      child: Column(
-                        crossAxisAlignment: CrossAxisAlignment.start,
-                        children: [
-                          SizedBox(
-                            width: 210,
-                            child: Text(
-                              university,
-                              maxLines: 2,
-                              style: const TextStyle(
-                                fontWeight: FontWeight.bold,
-                                fontSize: 18,
-                              ),
-                            ),
-                          ),
-                          Padding(
-                            padding: const EdgeInsets.only(top: 10.0),
-                            child: Text(
-                              "Course: $degree",
-                            ),
-                          ),
-                          Padding(
-                            padding: const EdgeInsets.only(top: 10.0),
-                            child: SizedBox(
-                              width: 210,
-                              child: Text(
-                                "Study Field: $studyfield",
-                                maxLines: 2,
-                              ),
-                            ),
-                          ),
-                          Padding(
-                            padding: const EdgeInsets.only(top: 10.0),
-                            child: SizedBox(
-                              width: 210,
-                              child: Text(
-                                "Duration: $startdate to $enddate",
-                                maxLines: 2,
-                              ),
-                            ),
-                          )
-                        ],
+            child: FittedBox(
+              fit: BoxFit.fill,
+              child: Column(
+                mainAxisAlignment: MainAxisAlignment.start,
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  Padding(
+                    padding: const EdgeInsets.fromLTRB(16.0, 14.0, 8.0, 0.0),
+                    child: SizedBox(
+                      width: 210,
+                      child: Text(
+                        degree,
+                        style: const TextStyle(
+                            fontWeight: FontWeight.bold, fontSize: 18),
                       ),
-                    )
-                  ],
-                ),
-                InkWell(
-                  onTap: () {
-                    showDialog(
-                        context: context,
-                        builder: (BuildContext context) {
-                          return const ViewDocumentDialogBox();
-                        });
-                  },
-                  child: Column(
-                    mainAxisAlignment: MainAxisAlignment.center,
-                    crossAxisAlignment: CrossAxisAlignment.center,
+                    ),
+                  ),
+                  Row(
                     children: [
-                      Image.asset("assets/images/documnet.png"),
-                      const SizedBox(height: 10),
-                      const Text(
-                        "View",
-                        style: TextStyle(
-                          color: Colors.white,
+                      Image.asset("assets/images/college3.png"),
+                      Padding(
+                        padding:
+                            const EdgeInsets.fromLTRB(20.0, 20.0, 0.0, 20.0),
+                        child: Column(
+                          children: [
+                            SizedBox(
+                              width: 255,
+                              child: Text(
+                                university,
+                                maxLines: 2,
+                                style: const TextStyle(
+                                  fontWeight: FontWeight.bold,
+                                  fontSize: 18,
+                                ),
+                              ),
+                            ),
+                            Padding(
+                              padding: const EdgeInsets.only(top: 10.0),
+                              child: SizedBox(
+                                width: 210,
+                                child: Text(
+                                  "Study Field: $studyfield",
+                                  maxLines: 2,
+                                ),
+                              ),
+                            ),
+                            Padding(
+                              padding: const EdgeInsets.only(top: 10.0),
+                              child: SizedBox(
+                                width: 210,
+                                child: Text(
+                                  "Duration: $startdate to $enddate",
+                                  maxLines: 2,
+                                ),
+                              ),
+                            ),
+                            Row(
+                              children: [
+                                Padding(
+                                  padding: const EdgeInsets.fromLTRB(
+                                      8.0, 8.0, 8.0, 0.0),
+                                  child: Container(
+                                    height: 25,
+                                    width: 97,
+                                    decoration: const BoxDecoration(
+                                      color: Colors.green,
+                                      borderRadius: BorderRadius.all(
+                                        Radius.circular(20),
+                                      ),
+                                    ),
+                                    child: Align(
+                                      alignment: Alignment.topRight,
+                                      child: ElevatedButton(
+                                          style: ElevatedButton.styleFrom(
+                                              backgroundColor: Colors.green),
+                                          onPressed: () {
+                                            showDialog(
+                                                context: context,
+                                                builder:
+                                                    (BuildContext context) {
+                                                  return ViewDocumentDialogBox(
+                                                    certificate: certificate,
+                                                  );
+                                                });
+                                          },
+                                          child: const Align(
+                                            alignment: Alignment.center,
+                                            child: Text(
+                                              "Certificate",
+                                              style: TextStyle(
+                                                  color: Colors.white),
+                                            ),
+                                          )),
+                                    ),
+                                  ),
+                                ),
+                                const SizedBox(
+                                  width: 20,
+                                )
+                              ],
+                            ),
+                          ],
                         ),
-                      ),
+                      )
                     ],
                   ),
-                ),
-              ],
+                ],
+              ),
             ),
           );
         },
@@ -1735,8 +1769,8 @@ class _ImageContainer extends StatelessWidget {
           ),
         ),
         Positioned(
-          top: 15,
-          left: 140,
+          top: 10,
+          left: 135,
           child: Container(
             height: 15,
             width: 15,

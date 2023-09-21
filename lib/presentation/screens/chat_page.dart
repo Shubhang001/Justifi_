@@ -2,6 +2,7 @@ import 'dart:convert';
 
 
 import 'package:flutter/material.dart';
+import 'package:flutter_list_view/flutter_list_view.dart';
 import 'package:image_picker/image_picker.dart';
 import 'package:jusitfi_admin/api/chat/get_chat.dart';
 import 'package:jusitfi_admin/presentation/widgets/drop_down_button.dart';
@@ -14,13 +15,14 @@ class ChatPage extends StatefulWidget {
 }
 
 class _ChatPageState extends State<ChatPage> {
+  var w;
+
   List<Widget> message=[];
  var yourtoken="";
  var channel;
+ TextEditingController messagecontroller =new TextEditingController();
 
-  TextEditingController messagecontroller =new TextEditingController();
 
-  ScrollController chatlistcontroller = ScrollController();
 
   makeconnection()  async {
     var resp= await getchat(1);
@@ -34,13 +36,22 @@ class _ChatPageState extends State<ChatPage> {
                 mainAxisAlignment: MainAxisAlignment.start,
                 mainAxisSize: MainAxisSize.min,
                 children: [
+                  Icon(Icons.reply,color: Colors.black,size: 20,),
                   Container(
+
                       padding: EdgeInsets.symmetric(vertical: 5,horizontal: 9),
                       decoration: BoxDecoration(border: Border.all(width: 1,color: Colors.black,),
                           borderRadius: BorderRadius.circular(5)
 
                       ),
-                      child: Text(i['content']['text'],style: TextStyle(color: Colors.black),)),
+                      child:
+
+
+                        Text(i['content']['text'],style: TextStyle(color: Colors.black),),
+
+
+
+                      )
 
                 ],
               )
@@ -53,27 +64,55 @@ class _ChatPageState extends State<ChatPage> {
       }
       else {
         setState(() {
-          message.add(Row(
+          message.add(Column(
             mainAxisAlignment: MainAxisAlignment.end,
-            mainAxisSize: MainAxisSize.min,
             children: [
-              Container(
-                padding: EdgeInsets.symmetric(vertical: 5,horizontal: 10),
-                decoration: BoxDecoration(
-                    borderRadius: BorderRadius.circular(5),color: Colors.black
+              Align(
+                alignment: Alignment.centerRight,
+                child: Row(
+                  mainAxisAlignment: MainAxisAlignment.end,
+                  mainAxisSize: MainAxisSize.min,
+                  children: [
+                    Icon(Icons.reply,color: Colors.black,size: 20,),
+                    Container(
+
+                      padding: EdgeInsets.symmetric(vertical: 10,horizontal: 20),
+                      decoration: BoxDecoration(
+                          borderRadius: BorderRadius.circular(5),color: Colors.black
+                      ),
+                      child:
+                          Row(
+                            children: [
+                              Text(i['content']['text'],textAlign: TextAlign.center,style: TextStyle(height: .5,color: Colors.white),),
+                        SizedBox(width: 10,),
+
+                        Icon(i['content']['isSeen']=='true'?Icons.done:Icons.done_all,color: Colors.white,size: 10,)
+                            ],
+                          ),
+
+                    )
+                  ],
                 ),
-                child: Text(i['content']['text'],style: TextStyle(color: Colors.white),),),
+              ),
+              SizedBox(height: 8,),
+              Align(
+                  alignment: Alignment.centerRight,
+                  child: Text(i['created_at'].toString().substring(11,16),textAlign: TextAlign.center,style: TextStyle(height: .5,color: Colors.black),)),
             ],
           ));
           message.add(SizedBox(height: 10,));
         });
 
 
+
       }
 
 
     }
-    chatlistcontroller.jumpTo(chatlistcontroller.position.maxScrollExtent);
+
+
+
+
  channel = IOWebSocketChannel.connect('ws://15.206.28.255:8000/ws/client_advocate/sender/36/receiver/42/', headers: {
       'Content-type': 'application/json',
       'Accept': 'application/json',
@@ -84,25 +123,26 @@ class _ChatPageState extends State<ChatPage> {
    channel.stream.listen((msg){
      msg=jsonDecode(msg);
      setState(() {
-       message.add(
-         Row(
-           mainAxisAlignment: MainAxisAlignment.start,
-           mainAxisSize: MainAxisSize.min,
-           children: [
-             Container(
+       message.insert(0, Row(
+         mainAxisAlignment: MainAxisAlignment.start,
+         mainAxisSize: MainAxisSize.min,
+         children: [
+           Container(
                padding: EdgeInsets.symmetric(vertical: 5,horizontal: 9),
                decoration: BoxDecoration(border: Border.all(width: 1,color: Colors.black,),
-                 borderRadius: BorderRadius.circular(5)
+                   borderRadius: BorderRadius.circular(5)
 
                ),
-               child: Text(msg['data']['content']['text'],style: TextStyle(color: Colors.black),)),
-           ],
-         )
+               child: Column(
+                 children: [
+                   Text(msg['data']['content']['text'],style: TextStyle(color: Colors.black),),
+                 ],
+               )),
+           Icon(Icons.reply,color: Colors.black,size: 20,),
+         ],
+       ));
+       message.insert(0,SizedBox(height: 10,));
 
-
-       );
-       message.add(SizedBox(height: 10,));
-       chatlistcontroller.jumpTo(chatlistcontroller.position.maxScrollExtent);
      });
 
 
@@ -121,10 +161,12 @@ super.initState();
 yourtoken='0f464ab809733c1e19c02d50a1e7be04c86d74a0';
 
   makeconnection();
+
   }
 
   @override
   Widget build(BuildContext context) {
+    w=MediaQuery.of(context).size.width;
 
 
 
@@ -203,16 +245,14 @@ yourtoken='0f464ab809733c1e19c02d50a1e7be04c86d74a0';
          child: Padding(
            padding: EdgeInsets.only(top: 10,bottom: 75,right: 10,left: 10),
            child: Container(
+child:ListView.builder(
 
-             child: ListView.builder(
-             shrinkWrap: true,
+  reverse: true,
 
-               controller: chatlistcontroller,
-               itemCount: message.length,
-               itemBuilder: (BuildContext context, int index) {
-               return message[index];
-             },),
-           ),
+    itemCount: message.length,
+    itemBuilder: (BuildContext context, int index) {
+  return message[index];
+    },)
          ),
        )
 
@@ -220,7 +260,7 @@ yourtoken='0f464ab809733c1e19c02d50a1e7be04c86d74a0';
 
 
 
-        ],
+       ) ],
       ),
       bottomSheet: Row(
         children: [
@@ -249,60 +289,96 @@ yourtoken='0f464ab809733c1e19c02d50a1e7be04c86d74a0';
           ),
           Expanded(
             child: Container(
-              padding: const EdgeInsets.all(8),
+
+              padding: const EdgeInsets.all(5),
               margin: const EdgeInsets.symmetric(vertical: 10, horizontal: 2),
-              // height: 50,
+               height: 60,
               decoration: const BoxDecoration(
                 color: Colors.black,
                 borderRadius: BorderRadius.all(
                   Radius.circular(25),
                 ),
               ),
-              child:  TextField(
+              child:  Expanded(
+                child: TextField(
 
-                style: TextStyle(color: Colors.white),
-                decoration: InputDecoration(
-                  suffixIcon: IconButton(
+                  minLines: 1,
+                  maxLines: 100,
 
-                    color: Colors.white, onPressed: () {
+                  style: TextStyle(color: Colors.white),
+                  decoration: InputDecoration(
+                    
+                    border: OutlineInputBorder(borderSide: BorderSide.none),
+                    hintText: "message",
+                    hintStyle: TextStyle(color: Colors.grey),
+                    contentPadding: EdgeInsets.all(10),
+                    suffixIcon: IconButton(
 
-                    if (messagecontroller.text.isNotEmpty) {
-                      channel.sink.add(
-                          
-                        
-                        jsonEncode(  {
+                      color: Colors.white, onPressed: () {
+
+                      if (messagecontroller.text.isNotEmpty) {
+                        channel.sink.add(
+
+
+                          jsonEncode(  {
     "type":"chat_message",
     "case_connect_id":1,
     "content":{
     "text":messagecontroller.text
     }})
-                      );
+                        );
 
-                      setState(() {
-                        message.add(Row(
-                          mainAxisAlignment: MainAxisAlignment.end,
-                          mainAxisSize: MainAxisSize.min,
-                          children: [
-                            Container(
-                              padding: EdgeInsets.symmetric(vertical: 5,horizontal: 10),
-                              decoration: BoxDecoration(
-                                  borderRadius: BorderRadius.circular(5),color: Colors.black
-                              ),
-                              child: Text(messagecontroller.text,style: TextStyle(color: Colors.white),),),
-                          ],
-                        ));
-                        message.add(SizedBox(height: 10,));
-                        messagecontroller.text="";
-                        chatlistcontroller.jumpTo(chatlistcontroller.position.maxScrollExtent);
+                        setState(() {
+                          message.insert(0,SizedBox(height: 10,));
+                          message.insert(0,Align(
+                            alignment: Alignment.centerRight,
+                            child: Column(
+                              mainAxisAlignment: MainAxisAlignment.end,
+                              children: [
 
-                      });
+                                Row(
+                                  mainAxisAlignment: MainAxisAlignment.end,
+                                  mainAxisSize: MainAxisSize.min,
+                                  children: [
+                                    Icon(Icons.reply,color: Colors.black,size: 20,),
+                                    Container(
+                                      padding: EdgeInsets.symmetric(vertical: 10,horizontal: 10),
+                                      decoration: BoxDecoration(
+                                          borderRadius: BorderRadius.circular(5),color: Colors.black
+                                      ),
+                                      child:  Row(
+                                        children: [
+                                          Text(messagecontroller.text,textAlign: TextAlign.center,style: TextStyle(height: .5,color: Colors.white),),
+                                          SizedBox(width: 10,),
+                                          Icon(Icons.done,color: Colors.white,size: 10,)
+                                        ],
+                                      ),)
+                                  ],
+                                ),
+                                SizedBox(height: 10,),
+                                Text("Just Now",textAlign: TextAlign.center,style: TextStyle(height: .5,color: Colors.black),),
 
-                    }
 
-                  }, icon: Icon(Icons.send,),
+                              ],
+                            ),
+                          )
+
+
+                          );
+
+                          messagecontroller.text="";
+
+
+                        });
+
+                      }
+
+                    }, icon: Icon(Icons.send,),
+                    ),
+
                   ),
+                  controller: messagecontroller,
                 ),
-                controller: messagecontroller,
               ),
             ),
           ),
