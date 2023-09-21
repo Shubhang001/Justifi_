@@ -642,7 +642,7 @@ class _FloatCases2State extends State<FloatCases2> {
       );
 
       var dataa = jsonDecode(response.body);
-      print(dataa);
+      print("Data Posted Successfully: $dataa");
     } catch (e) {
       print(e.toString());
     }

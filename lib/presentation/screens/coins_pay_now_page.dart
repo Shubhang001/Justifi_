@@ -153,7 +153,10 @@ class _CoinsPayNowPage extends State<CoinsPayNowPage> {
                                             width: 10,
                                           ),
                                           const Text(
-                                              "Pay with Debit/Credit/ATM Card")
+                                              "Pay with Debit/Credit/ATM Card",
+                                              style: TextStyle(
+                                                fontSize: 13.5,
+                                              ))
                                         ],
                                       )))))),
                   const SizedBox(

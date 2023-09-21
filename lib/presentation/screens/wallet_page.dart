@@ -35,8 +35,8 @@ class _WalletPageState extends State<WalletPage> {
           backgroundColor: Colors.black,
           actions: [
             Padding(
-              padding:
-                  EdgeInsets.only(left: 20, right: 30, top: 10, bottom: 10),
+              padding: const EdgeInsets.only(
+                  left: 20, right: 30, top: 10, bottom: 10),
               child: Row(
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
@@ -45,11 +45,11 @@ class _WalletPageState extends State<WalletPage> {
                       Navigator.push(
                         context,
                         MaterialPageRoute(
-                          builder: (context) => NotificationsPage(),
+                          builder: (context) => const NotificationsPage(),
                         ),
                       );
                     },
-                    child: Icon(
+                    child: const Icon(
                       Icons.notifications_outlined,
                       color: Colors.white,
                       size: 35,
@@ -200,7 +200,8 @@ class _WalletPageState extends State<WalletPage> {
                       GestureDetector(
                           onTap: () {
                             Navigator.of(context).push(MaterialPageRoute(
-                                builder: (context) => OffersPage()));
+                                builder: (context) =>
+                                    OffersPage(title: "Profile Credits")));
                           },
                           child: Container(
                             height: 54,
