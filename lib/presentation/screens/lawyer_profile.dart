@@ -368,120 +368,118 @@ class BarDetail extends StatelessWidget {
         children: [
           const TextWithLine(
               label: 'Bar Details', height: 1, color: Colors.black),
-          Container(
-            padding: const EdgeInsets.only(right: 10, left: 10),
-            margin: const EdgeInsets.symmetric(
-              horizontal: 10,
-              vertical: 15,
-            ),
-            constraints: const BoxConstraints(minHeight: 130, maxHeight: 210),
-            width: double.infinity,
-            decoration: const BoxDecoration(
-              color: Color.fromRGBO(169, 169, 169, 1),
-              boxShadow: [
-                BoxShadow(
-                  color: Colors.black,
-                  offset: Offset(
-                    0.0,
-                    2.0,
-                  ),
+          Padding(
+            padding: const EdgeInsets.only(top: 12.0),
+            child: Container(
+              margin: const EdgeInsets.all(10),
+              padding: const EdgeInsets.all(20),
+              decoration: const BoxDecoration(
+                color: Color.fromRGBO(169, 169, 169, 1),
+                boxShadow: [
+                  BoxShadow(
+                    color: Colors.black,
+                    offset: Offset(
+                      5.0,
+                      5.0,
+                    ),
+                    blurRadius: 10.0,
+                    spreadRadius: 2.0,
+                  ), //BoxShadow
+                  BoxShadow(
+                    color: Colors.white,
+                    offset: Offset(0.0, 0.0),
+                    blurRadius: 0.0,
+                    spreadRadius: 0.0,
+                  ), //BoxShadow
+                ],
+                borderRadius: BorderRadius.all(
+                  Radius.circular(25),
                 ),
-                BoxShadow(color: Colors.black),
-              ],
-              borderRadius: BorderRadius.all(
-                Radius.circular(20),
               ),
-            ),
-            child: FittedBox(
-              fit: BoxFit.fill,
-              child: Column(
-                mainAxisAlignment: MainAxisAlignment.start,
-                crossAxisAlignment: CrossAxisAlignment.start,
+              child: Row(
                 children: [
-                  Row(
+                  Padding(
+                    padding: const EdgeInsets.all(4.0),
+                    child: Image.network(
+                      "https://imgs.search.brave.com/yAHEuQYdMyi-nzxcqegl65s-ajkrhIggZiMhJMACP_s/rs:fit:500:0:0/g:ce/aHR0cHM6Ly9pMy53/cC5jb20vdXBsb2Fk/Lndpa2ltZWRpYS5v/cmcvd2lraXBlZGlh/L2VuLzYvNmUvTG9n/b19vZl9CYXJfQ291/bmNpbF9vZl9JbmRp/YS5wbmc",
+                      width: 80,
+                      height: 80,
+                    ),
+                  ),
+                  Column(
+                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                    crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
-                      Image.asset("assets/images/college3.png"),
+                      Text(
+                        "Bar Name",
+                        style: kpageTitleBlack,
+                      ),
                       Padding(
-                        padding:
-                            const EdgeInsets.fromLTRB(20.0, 20.0, 0.0, 20.0),
-                        child: Column(
-                          crossAxisAlignment: CrossAxisAlignment.start,
-                          children: [
-                            const SizedBox(
-                              width: 255,
-                              child: Text(
-                                "university",
-                                maxLines: 2,
-                                style: TextStyle(
-                                  fontWeight: FontWeight.bold,
-                                  fontSize: 18,
-                                ),
-                              ),
-                            ),
-                            const Padding(
-                              padding: EdgeInsets.only(top: 10.0),
-                              child: SizedBox(
-                                width: 210,
-                                child: Text(
-                                  "studyfield",
-                                  maxLines: 2,
-                                ),
-                              ),
-                            ),
-                            Padding(
-                              padding: const EdgeInsets.only(top: 10.0),
-                              child: SizedBox(
-                                width: 210,
-                                child: Text(
-                                  "startdate to enddate",
-                                  maxLines: 2,
-                                ),
-                              ),
-                            ),
-                            Row(
-                              crossAxisAlignment: CrossAxisAlignment.end,
-                              mainAxisAlignment: MainAxisAlignment.end,
-                              children: [
-                                const SizedBox(
-                                  width: 150,
-                                ),
-                                Padding(
-                                  padding: const EdgeInsets.fromLTRB(
-                                      8.0, 8.0, 8.0, 0.0),
-                                  child: Container(
-                                    height: 25,
-                                    width: 100,
-                                    decoration: const BoxDecoration(
-                                      color: Colors.green,
-                                      borderRadius: BorderRadius.all(
-                                        Radius.circular(20),
-                                      ),
-                                    ),
-                                    child: Align(
-                                      alignment: Alignment.topRight,
-                                      child: ElevatedButton(
-                                          style: ElevatedButton.styleFrom(
-                                              backgroundColor: Colors.green),
-                                          onPressed: () {},
-                                          child: const Align(
-                                            alignment: Alignment.center,
-                                            child: Text(
-                                              "Certificate",
-                                              style: TextStyle(
-                                                  color: Colors.white),
-                                            ),
-                                          )),
-                                    ),
-                                  ),
-                                ),
-                                const SizedBox(
-                                  width: 20,
-                                )
-                              ],
-                            ),
-                          ],
+                        padding: const EdgeInsets.only(top: 8.0),
+                        child: Text(
+                          "Registration Year",
+                          textAlign: TextAlign.center,
+                          style: ksubCatText,
                         ),
-                      )
+                      ),
+                      Padding(
+                        padding: const EdgeInsets.only(top: 8.0),
+                        child: Text(
+                          "Bar ID",
+                          textAlign: TextAlign.center,
+                          style: ksubCatText,
+                        ),
+                      ),
+                      Row(
+                        crossAxisAlignment: CrossAxisAlignment.end,
+                        mainAxisAlignment: MainAxisAlignment.end,
+                        children: [
+                          const SizedBox(
+                            width: 60,
+                          ),
+                          Padding(
+                            padding:
+                                const EdgeInsets.fromLTRB(8.0, 8.0, 8.0, 0.0),
+                            child: Container(
+                              height: 25,
+                              width: 100,
+                              decoration: const BoxDecoration(
+                                color: Colors.green,
+                                borderRadius: BorderRadius.all(
+                                  Radius.circular(20),
+                                ),
+                              ),
+                              child: Align(
+                                alignment: Alignment.topRight,
+                                child: ElevatedButton(
+                                    style: ElevatedButton.styleFrom(
+                                        backgroundColor: Colors.green),
+                                    onPressed: () {
+                                      String certificate =
+                                          "https://imgs.search.brave.com/s6VqExHXr63G-HLqHNdn2cm6uMZLyDwnW2Ag6-7mPV4/rs:fit:860:0:0/g:ce/aHR0cHM6Ly9pMS53/cC5jb20vaW1hZ2Uu/c2xpZGVzaGFyZWNk/bi5jb20vYjdlYjgy/MWItNmQ1Ny00YWRk/LWEyZDItNjgwYzUy/NDlkZjJjLTE2MTAw/NjA4NDYxNy85NS9i/YXItY291bmNpbC1v/Zi1pbmRpYS0xLTYz/OC5qcGc_Y2I9MTQ3/NTc0MzU4OQ";
+                                      showDialog(
+                                          context: context,
+                                          builder: (BuildContext context) {
+                                            return ViewDocumentDialogBox(
+                                              certificate: certificate,
+                                            );
+                                          });
+                                    },
+                                    child: const Align(
+                                      alignment: Alignment.center,
+                                      child: Text(
+                                        "Certificate",
+                                        style: TextStyle(color: Colors.white),
+                                      ),
+                                    )),
+                              ),
+                            ),
+                          ),
+                          const SizedBox(
+                            width: 20,
+                          )
+                        ],
+                      ),
                     ],
                   ),
                 ],
