@@ -99,15 +99,15 @@ class _OnBoardingScreenState extends State<OnBoardingScreen> {
                 children: [
                   TextButton(
                       onPressed: () {
-                        // Navigator.of(context).pushAndRemoveUntil(
-                        //     MaterialPageRoute(
-                        //         builder: (context) => const ChatPage()),
-                        //     (Route<dynamic> route) => false);
+                        Navigator.of(context).pushAndRemoveUntil(
+                            MaterialPageRoute(
+                                builder: (context) => const MainPage()),
+                            (Route<dynamic> route) => false);
 
-                        Navigator.of(context).push(
-                          MaterialPageRoute(
-                              builder: (context) => const MainPage()),
-                        );
+                        // Navigator.of(context).push(
+                        //   MaterialPageRoute(
+                        //       builder: (context) => const LoginScreen()),
+                        // );
                       },
                       child: Text(
                         'Skip',
