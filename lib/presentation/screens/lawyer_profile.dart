@@ -434,8 +434,9 @@ class BarDetail extends StatelessWidget {
                         crossAxisAlignment: CrossAxisAlignment.end,
                         mainAxisAlignment: MainAxisAlignment.end,
                         children: [
-                          const SizedBox(
-                            width: 60,
+                          Container(
+                            constraints: const BoxConstraints(
+                                minWidth: 30, maxWidth: 60),
                           ),
                           Padding(
                             padding:
