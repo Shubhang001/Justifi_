@@ -6,6 +6,7 @@ import 'package:flutter_list_view/flutter_list_view.dart';
 import 'package:image_picker/image_picker.dart';
 import 'package:jusitfi_admin/api/chat/get_chat.dart';
 import 'package:jusitfi_admin/presentation/widgets/drop_down_button.dart';
+import 'package:scroll_to_index/scroll_to_index.dart';
 import 'package:web_socket_channel/io.dart';
 class ChatPage extends StatefulWidget {
   const ChatPage({super.key});
@@ -28,12 +29,14 @@ class _ChatPageState extends State<ChatPage> {
   var replytextdisplay="";
   var gotoindex=0;
   var templastvar='';
+  var replyid=0;
 
-ScrollController listviewscrollcontroller=ScrollController();
+AutoScrollController listviewscrollcontroller=AutoScrollController();
 
   makeconnection()  async {
     var resp= await getchat(1);
     print(resp);
+    var count=0;
     for(Map<String,dynamic> i in resp){
 
       if(i['sender']=='36'){
@@ -47,9 +50,14 @@ ScrollController listviewscrollcontroller=ScrollController();
 
           FocusScope.of(context).requestFocus(focusnode);
           setState(() {
+
           isreply=true;
           replytextdisplay=i['content']['text'].toString();
+          gotoindex=count;
+replyid=i['id'].toInt();
+
           });
+
 
 
           }, icon: Icon(Icons.reply)),
@@ -133,6 +141,7 @@ ScrollController listviewscrollcontroller=ScrollController();
 
 
       }
+      count++;
 
 
     }
@@ -475,6 +484,7 @@ focusNode: focusnode,
                                                   isreply=true;
                                                   replytextdisplay=templastvar;
                                                 });
+                                                scrollmyscreen(gotoindex);
 
 
                                               }, icon: Icon(Icons.reply)),
@@ -580,6 +590,13 @@ focusNode: focusnode,
 channel.sink.close();
 super.dispose();
  }
+
+  Future<void> scrollmyscreen(int count) async {
+
+    await listviewscrollcontroller.scrollToIndex(count,preferPosition: AutoScrollPosition.begin);
+    await listviewscrollcontroller.highlight(count);
+
+  }
 
 
 }
