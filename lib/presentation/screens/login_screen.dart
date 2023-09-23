@@ -311,7 +311,11 @@ class _LoginScreenState extends State<LoginScreen> {
                               )),
                             ),
                           )),
-                      const TextWithLine(label: 'New User', height: 1),
+                      const TextWithLine(
+                        label: 'New User',
+                        height: 1,
+                        color: Colors.white,
+                      ),
                       Column(
                         children: [
                           Padding(
