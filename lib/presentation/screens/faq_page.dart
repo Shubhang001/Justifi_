@@ -8,21 +8,31 @@ class FaqPage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      body: SingleChildScrollView(
-        child: Column(
-          children: [
-            const ProfileNavBar(),
-            const QnaWidget(
-              question: "How does payment work",
-            ),
-            const QnaWidget(
-              question: "How does the Booking an advocate work ?",
-            ),
-            const QnaWidget(
-              question: "How can I contact support ?",
-            ),
-          ],
+    return SafeArea(
+      child: Scaffold(
+        body: SingleChildScrollView(
+          child: Column(
+            children: [
+              Container(
+                color: Colors.black,
+                child: Row(
+                  mainAxisAlignment: MainAxisAlignment.start,
+                  children: [IconButton( onPressed: () {
+
+
+                    Navigator.of(context).pop();
+                  }, icon:Icon(Icons.arrow_back,color:Colors.white),)],),),
+              const QnaWidget(
+                question: "How does payment work",
+              ),
+              const QnaWidget(
+                question: "How does the Booking an advocate work ?",
+              ),
+              const QnaWidget(
+                question: "How can I contact support ?",
+              ),
+            ],
+          ),
         ),
       ),
     );
