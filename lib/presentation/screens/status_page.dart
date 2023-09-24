@@ -35,23 +35,27 @@ class _StatusPageState extends State<StatusPage> {
   ];
   final List<List<Widget>> _verticalTileWidgetList = [
     [
-      const PendingApprovalVerticalTile(),
-      const ScheduledVerticalTile(),
-      const ScheduledMeetCancelledVerticleTile(),
-      const ScheduledMeetCompletedVerticleTile(),
-      const RefundVerticalTile()
+      const LiveCallsCompletedVerticleTile(),
+      const LiveCallsCancelledVerticleTile(),
+      const LiveCallsCancelledVerticleTile(),
     ],
+
     [
       const CasePostPendingApplyVerticalTile(),
       const CasePostPendingHireVerticalTile(),
       const CasePostHiredVerticalTile(),
       const CasePostCancelledVerticalTile(),
     ],
+
     [
-      const LiveCallsCompletedVerticleTile(),
-      const LiveCallsCancelledVerticleTile(),
-      const LiveCallsCancelledVerticleTile(),
-    ]
+      // const PendingApprovalVerticalTile(),
+      // const ScheduledVerticalTile(),
+      // const ScheduledMeetCancelledVerticleTile(),
+      // const ScheduledMeetCompletedVerticleTile(),
+      // const RefundVerticalTile()
+      Container(),Container(),Container(),Container(),Container(),
+    ],
+
   ];
 
   void _onCategoryTapped(int index) {
@@ -145,6 +149,31 @@ class _StatusPageState extends State<StatusPage> {
                             return GestureDetector(
                                 onTap: () {
                                   _onCategoryTapped(index);
+                                  if(index==2){
+                                    showDialog<void>(
+                                      context: context,
+
+                                      // false = user must tap button, true = tap outside dialog
+                                      builder: (BuildContext dialogContext) {
+                                        return AlertDialog(
+                                          title: Text('Service Not Available'),
+                                          content: Text('Service Not Available yet'),
+                                          actions: <Widget>[
+                                            TextButton(
+                                              child: Text('Ok'),
+                                              onPressed: () {
+                                                Navigator.of(dialogContext)
+                                                    .pop(); // Dismiss alert dialog
+                                              },
+                                            ),
+                                          ],
+                                        );
+                                      },
+                                    );
+
+
+
+                                  }
                                 },
                                 child: Container(
                                     padding: const EdgeInsets.all(8.0),

@@ -83,22 +83,17 @@ class _AboutUsPAgeState extends State<AboutUsPAge> {
                   }, icon:Icon(Icons.arrow_back,color:Colors.white),)],),),
 
               Row(
-                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                mainAxisAlignment: MainAxisAlignment.center,
                 children: [
                   Image.asset(
                     "assets/images/login1.png",
                     height: 160,
                   ),
-                  const Text(
-                    "JUSTIFI",
-                    style: TextStyle(
-                      fontStyle: FontStyle.italic,
-                      fontSize: 29,
-                    ),
-                  ),
+
                   Container(),
                 ],
               ),
+              Text("Your Lawyer App :)",style: TextStyle(color: Colors.black,fontWeight: FontWeight.w600),),
 
               GestureDetector(
                 onTap: () {
