@@ -1,13 +1,15 @@
 import 'package:flutter/material.dart';
+import 'package:jusitfi_admin/presentation/screens/add_credits_page.dart';
 import 'package:jusitfi_admin/utils/constants/coupon_code_constants.dart';
 import 'package:jusitfi_admin/utils/constants/textstyles.dart';
 
 class OffersCard extends StatefulWidget {
   final String code;
-
+  final String title;
   const OffersCard({
     Key? key,
     required this.code,
+    required this.title,
   }) : super(key: key);
 
   @override
@@ -36,6 +38,7 @@ class _OffersCardState extends State<OffersCard> {
             ScaffoldMessenger.of(context).showSnackBar(
               snackBar,
             );
+            AddCreditsPage(title: widget.title).code = widget.code;
             Navigator.of(context).pop(CouponCodeConstant.couponCodeApplied);
             //MaterialPageRoute(builder: (context) => widget.page));
           },

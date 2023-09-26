@@ -103,10 +103,6 @@ class AdvocateCardExtended extends StatelessWidget {
                                 name,
                                 style: kAdvocateCardName,
                               ),
-                              Text(
-                                education,
-                                style: kAdvocateCardSubTitle,
-                              ),
                               Row(
                                 children: [
                                   const Icon(

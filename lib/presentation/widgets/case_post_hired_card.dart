@@ -277,7 +277,9 @@ class _CasePostHiredCardState extends State<CasePostHiredCard> {
                                     showDialog(
                                         context: context,
                                         builder: (BuildContext context) {
-                                          return const ViewDocumentDialogBox();
+                                          return const ViewDocumentDialogBox(
+                                            certificate: "",
+                                          );
                                         });
                                   },
                                   child: Padding(
@@ -328,7 +330,9 @@ class _CasePostHiredCardState extends State<CasePostHiredCard> {
                                     showDialog(
                                         context: context,
                                         builder: (BuildContext context) {
-                                          return const ViewDocumentDialogBox();
+                                          return const ViewDocumentDialogBox(
+                                            certificate: "",
+                                          );
                                         });
                                   },
                                   child: Padding(

@@ -1,3 +1,5 @@
+import 'dart:async';
+
 import 'package:flutter/material.dart';
 import 'package:jusitfi_admin/presentation/screens/mianpage.dart';
 import 'package:jusitfi_admin/presentation/screens/signup_screen.dart';
@@ -5,8 +7,6 @@ import 'package:jusitfi_admin/presentation/widgets/mobilenumberfield.dart';
 import 'package:jusitfi_admin/presentation/widgets/text_with_line.dart';
 import 'package:jusitfi_admin/utils/constants/textstyles.dart';
 import 'package:flutter_otp_text_field/flutter_otp_text_field.dart';
-import 'package:jusitfi_admin/utils/dynamic/dynamic_values.dart';
-import 'package:jusitfi_admin/utils/models/usermodel.dart';
 import 'package:jusitfi_admin/utils/services/rest_apis.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import '../../utils/constants/colors.dart';
@@ -33,11 +33,32 @@ class _LoginScreenState extends State<LoginScreen> {
   String otp = "";
   int otpCount = 0;
   int receivedUserId = 0;
+  int resendTime = 60;
+  late Timer countdownTimer;
+
+  startTimer() {
+    countdownTimer = Timer.periodic(const Duration(seconds: 1), (timer) {
+      setState(() {
+        resendTime = resendTime - 1;
+      });
+      if (resendTime < 1) {
+        countdownTimer.cancel();
+        resendTime = 60;
+      }
+    });
+  }
+
+  stopTimer() {
+    if (countdownTimer.isActive) {
+      countdownTimer.cancel();
+    }
+  }
+
+  String strFormatting(n) => n.toString().padLeft(2, '0');
 
   Future<void> registerUserPhoneId() async {
     try {
       var response = await loginUserWithPhone(mobileNumber.text);
-      print("Response: $response");
 
       if (response != null && response['success'] == true) {
         final id = response['id'];
@@ -53,7 +74,7 @@ class _LoginScreenState extends State<LoginScreen> {
           }
         }
       } else {
-        ScaffoldMessenger.of(context).showSnackBar(SnackBar(
+        ScaffoldMessenger.of(context).showSnackBar(const SnackBar(
           content: Text("Failed to send OTP"),
         ));
       }
@@ -61,7 +82,6 @@ class _LoginScreenState extends State<LoginScreen> {
       ScaffoldMessenger.of(context).showSnackBar(SnackBar(
         content: Text("Error: $e"),
       ));
-      print("Error: $e");
     }
   }
 
@@ -106,7 +126,6 @@ class _LoginScreenState extends State<LoginScreen> {
           ScaffoldMessenger.of(context).showSnackBar(SnackBar(
             content: Text(e.toString()),
           ));
-          print("Error: $e");
         }
       }
     }
@@ -124,7 +143,7 @@ class _LoginScreenState extends State<LoginScreen> {
             Container(
               transform: Matrix4.translationValues(0.0, 15.0, 0.0),
               child: Image.asset(
-                'assets/images/login.png',
+                'assets/images/login1.png',
                 height: 200,
                 width: 200,
               ),
@@ -139,39 +158,67 @@ class _LoginScreenState extends State<LoginScreen> {
                           topLeft: Radius.circular(200),
                           topRight: Radius.circular(200))),
                   child: Column(
-                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
                     children: [
                       Padding(
                         padding: const EdgeInsets.fromLTRB(60, 80, 60, 0),
                         child: Column(
-                          crossAxisAlignment: CrossAxisAlignment.end,
                           children: [
                             MobileInputTextField(
                                 validate: validate,
                                 title: 'Enter Your Mobile Number',
                                 txtController: mobileNumber),
-                            InkWell(
-                              onTap: () async {
-                                setState(() {
-                                  otpCount++;
-                                });
-                                try {
-                                  await registerUserPhoneId();
-                                } catch (e) {
-                                  ScaffoldMessenger.of(context)
-                                      .showSnackBar(SnackBar(
-                                    content: Text(e.toString()),
-                                  ));
-                                  print("Error: $e");
-                                }
-                              },
-                              child: Text(
-                                otpCount == 0 ? 'Send otp' : 'Resend otp',
-                                style: const TextStyle(
-                                    color: Colors.white,
-                                    fontSize: 16,
-                                    fontWeight: FontWeight.bold),
-                              ),
+                            SizedBox(
+                              height: 50,
+                              width: 220,
+                              child: resendTime == 60
+                                  ? Align(
+                                      alignment: Alignment.topRight,
+                                      child: InkWell(
+                                        onTap: () async {
+                                          setState(() {
+                                            startTimer();
+                                          });
+                                        },
+                                        child: const Text(
+                                          'Send otp',
+                                          style: TextStyle(
+                                              color: Colors.white,
+                                              fontSize: 18,
+                                              fontWeight: FontWeight.bold),
+                                        ),
+                                      ),
+                                    )
+                                  : InkWell(
+                                      onTap: () {
+                                        debugPrint("second tap");
+                                      },
+                                      child: Column(
+                                        children: [
+                                          const Align(
+                                            alignment: Alignment.topRight,
+                                            child: Text(
+                                              'Send otp',
+                                              style: TextStyle(
+                                                  color: Colors.grey,
+                                                  fontSize: 18,
+                                                  fontWeight: FontWeight.bold),
+                                            ),
+                                          ),
+                                          const SizedBox(height: 8.0),
+                                          resendTime > 0
+                                              ? Text(
+                                                  'You can resend OTP after ${strFormatting(resendTime)} second(s)',
+                                                  maxLines: 2,
+                                                  style: const TextStyle(
+                                                      fontSize: 12,
+                                                      color: Colors.yellow),
+                                                )
+                                              : const SizedBox(
+                                                  height: 8,
+                                                )
+                                        ],
+                                      ),
+                                    ),
                             )
                           ],
                         ),
@@ -246,7 +293,6 @@ class _LoginScreenState extends State<LoginScreen> {
                                         .showSnackBar(SnackBar(
                                       content: Text(e.toString()),
                                     ));
-                                    print("Error: $e");
                                   }
                                 }
                               }
@@ -264,7 +310,11 @@ class _LoginScreenState extends State<LoginScreen> {
                               )),
                             ),
                           )),
-                      const TextWithLine(label: 'New User', height: 1),
+                      const TextWithLine(
+                        label: 'New User',
+                        height: 1,
+                        color: Colors.white,
+                      ),
                       Column(
                         children: [
                           Padding(

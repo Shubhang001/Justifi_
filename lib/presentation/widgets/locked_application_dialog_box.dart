@@ -222,7 +222,8 @@ class _LockedApplicationDialogBox extends State<LockedApplicationDialogBox> {
                       onTap: () {
                         Navigator.of(context)
                             .push(MaterialPageRoute(
-                                builder: (context) => OffersPage()))
+                                builder: (context) =>
+                                    OffersPage(title: "Profile Credits")))
                             .then((value) => setState(() {}));
                       },
                       child: Container(

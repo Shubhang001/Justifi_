@@ -1,7 +1,9 @@
+import 'dart:convert';
+
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:jusitfi_admin/presentation/screens/offers_page.dart';
-
+import 'package:http/http.dart' as http;
 import '../../utils/constants/colors.dart';
 import '../../utils/constants/coupon_code_constants.dart';
 import '../../utils/constants/textstyles.dart';
@@ -9,6 +11,7 @@ import 'package:razorpay_flutter/razorpay_flutter.dart';
 
 class AddCreditsPage extends StatefulWidget {
   String title;
+  String code = "";
   AddCreditsPage({super.key, required this.title});
 
   @override
@@ -16,10 +19,13 @@ class AddCreditsPage extends StatefulWidget {
 }
 
 TextEditingController _addCoinController = TextEditingController(text: "001");
-int price = 499;
-int gst = 50;
-int discount = 150;
-int total = 390;
+double price = 499;
+double gst = 0;
+double discount = 0;
+double discount1 = 0;
+
+int total = price.toInt();
+int cur = 0;
 
 class _AddCreditsPageState extends State<AddCreditsPage> {
   void handlePaymentErrorResponse(PaymentFailureResponse response) {
@@ -29,7 +35,7 @@ class _AddCreditsPageState extends State<AddCreditsPage> {
     * 2. Error Description
     * 3. Metadata
     * */
-    showAlertDialog(context as BuildContext, "Payment Failed",
+    showAlertDialog(context, "Payment Failed",
         "Code: ${response.code}\nDescription: ${response.message}\nMetadata:${response.error.toString()}");
   }
 
@@ -40,13 +46,13 @@ class _AddCreditsPageState extends State<AddCreditsPage> {
     * 2. Payment ID
     * 3. Signature
     * */
-    showAlertDialog(context as BuildContext, "Payment Successful",
-        "Payment ID: ${response.paymentId}");
+    showAlertDialog(
+        context, "Payment Successful", "Payment ID: ${response.paymentId}");
   }
 
   void handleExternalWalletSelected(ExternalWalletResponse response) {
-    showAlertDialog(context as BuildContext, "External Wallet Selected",
-        "${response.walletName}");
+    showAlertDialog(
+        context, "External Wallet Selected", "${response.walletName}");
   }
 
   void showAlertDialog(BuildContext context, String title, String message) {
@@ -72,10 +78,21 @@ class _AddCreditsPageState extends State<AddCreditsPage> {
     );
   }
 
+  Map<String, dynamic> data = {};
+  Map<String, dynamic> order = {};
+
   @override
   void initState() {
     super.initState();
     CouponCodeConstant.couponCodeApplied = false;
+    if (widget.title == "Profile Credits") {
+      price = 199;
+    } else {
+      price = 499;
+    }
+    gst = 18 / 100 * price;
+
+    cur = 001;
   }
 
   @override
@@ -130,12 +147,29 @@ class _AddCreditsPageState extends State<AddCreditsPage> {
                       ),
                       GestureDetector(
                         onTap: () {
-                          int cur =
-                              int.parse(_addCoinController.text.toString());
+                          cur = int.parse(_addCoinController.text.toString());
                           cur++;
                           setState(() {
                             _addCoinController.text = cur.toString();
                           });
+                          int cur1 =
+                              int.parse(_addCoinController.text.toString());
+                          if (widget.title == "Profile Credits") {
+                            price = 199;
+                          }
+                          print(_addCoinController.toString());
+                          print("done");
+                          price = cur1 * price;
+                          gst = 18 * price / 100;
+                          if (discount1 != 0) {
+                            discount = discount1 * price / 100;
+                            double discountedPrice = discount;
+                            gst = 18 * discountedPrice / 100;
+                            gst = double.parse((gst).toStringAsFixed(2));
+                            discount =
+                                double.parse((discount).toStringAsFixed(2));
+                          }
+                          total = (price.toDouble() + gst - discount).round();
                         },
                         child: const AddButton(),
                       ),
@@ -148,8 +182,23 @@ class _AddCreditsPageState extends State<AddCreditsPage> {
                     onTap: () {
                       Navigator.of(context)
                           .push(MaterialPageRoute(
-                              builder: (context) => OffersPage()))
-                          .then((value) => setState(() {}));
+                              builder: (context) =>
+                                  OffersPage(title: widget.title)))
+                          .then((value) => setState(() {
+                                print(widget.code);
+                                if (widget.code == "23HT873") {
+                                  discount = 15;
+                                }
+                                discount = 15;
+                                discount1 = discount;
+                                discount = discount * price / 100;
+                                double discountedPrice = discount;
+                                gst = 18 * discountedPrice / 100;
+                                gst = double.parse((gst).toStringAsFixed(2));
+                                discount =
+                                    double.parse((discount).toStringAsFixed(2));
+                                total = (price - discount + gst).round();
+                              }));
                     },
                     child: CButton(
                       b_title: CouponCodeConstant.couponCodeApplied
@@ -220,35 +269,27 @@ class _AddCreditsPageState extends State<AddCreditsPage> {
                     height: 60,
                   ),
                   Center(
-                    child: GestureDetector(
-                      onTap: () {
-                        Razorpay razorpay = Razorpay();
-                        var options = {
-                          'key': 'rzp_live_ILgsfZCZoFIKMb',
-                          'amount': 10000000,
-                          'name': 'Justifi Corp.',
-                          'description': 'Advocate Hire',
-                          'retry': {'enabled': true, 'max_count': 1},
-                          'send_sms_hash': true,
-                          'prefill': {
-                            'contact': '8888888888',
-                            'email': 'test@razorpay.com'
-                          },
-                          'external': {
-                            'wallets': ['paytm']
-                          }
-                        };
-                        razorpay.on(Razorpay.EVENT_PAYMENT_ERROR,
-                            handlePaymentErrorResponse);
-                        razorpay.on(Razorpay.EVENT_PAYMENT_SUCCESS,
-                            handlePaymentSuccessResponse);
-                        razorpay.on(Razorpay.EVENT_EXTERNAL_WALLET,
-                            handleExternalWalletSelected);
-                        razorpay.open(options);
-                      },
-                      child: CButton(
-                        b_title: "Pay Now",
-                      ),
+                    child: SizedBox(
+                      height: 100,
+                      width: 100,
+                      child: ListView.builder(
+                          itemCount: 1,
+                          itemBuilder: (context, index) {
+                            return InkWell(
+                              onTap: () {
+                                fetchUsers(total);
+                                const CircularProgressIndicator(
+                                  color: Colors.green,
+                                );
+                                if (data['order'] != null) {
+                                  razorpayCalled();
+                                }
+                              },
+                              child: CButton(
+                                b_title: "Pay Now",
+                              ),
+                            );
+                          }),
                     ),
                   ),
                 ],
@@ -258,6 +299,56 @@ class _AddCreditsPageState extends State<AddCreditsPage> {
         ),
       ),
     );
+  }
+
+  Future<void> fetchUsers(int total) async {
+    print('fetchUser called');
+    //String authentication = "0f464ab809733c1e19c02d50a1e7be04c86d74a0";
+    Uri uri;
+    uri = Uri.parse("http://15.206.28.255:8000/v1/payment/");
+    var response = await http.post(uri,
+        headers: <String, String>{
+          "Authorization": "token 0f464ab809733c1e19c02d50a1e7be04c86d74a0",
+          "Content-Type": "application/json",
+        },
+        body: jsonEncode(<String, dynamic>{"amount": total}));
+    print(response.statusCode.toString());
+    if (response.statusCode == 201) {
+      final body = response.body;
+      print(response.body);
+      final json = jsonDecode(body);
+      if (json == null) {
+        print("exception");
+      }
+      setState(() {
+        data = json['data'];
+      });
+      print('fetchUser complete');
+    }
+  }
+
+  razorpayCalled() async {
+    await Future.delayed(const Duration(seconds: 3));
+    order = data['order'];
+    Razorpay razorpay = Razorpay();
+    var key = data['razorpay_key'];
+    var amount = order['amount'];
+    var options = {
+      'key': key,
+      'amount': amount,
+      'name': 'Justifi Corp.',
+      'description': 'Advocate Hire',
+      'retry': {'enabled': true, 'max_count': 1},
+      'send_sms_hash': true,
+      'prefill': {'contact': '8888888888', 'email': 'test@razorpay.com'},
+      'external': {
+        'wallets': ['paytm']
+      }
+    };
+    razorpay.on(Razorpay.EVENT_PAYMENT_ERROR, handlePaymentErrorResponse);
+    razorpay.on(Razorpay.EVENT_PAYMENT_SUCCESS, handlePaymentSuccessResponse);
+    razorpay.on(Razorpay.EVENT_EXTERNAL_WALLET, handleExternalWalletSelected);
+    razorpay.open(options);
   }
 }
 

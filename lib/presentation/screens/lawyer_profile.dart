@@ -1,6 +1,7 @@
 import 'dart:convert';
-
+import 'package:jiffy/jiffy.dart';
 import 'package:flutter/material.dart';
+import 'package:jusitfi_admin/presentation/widgets/text_with_line.dart';
 import 'package:jusitfi_admin/utils/constants/textstyles.dart';
 import 'package:share_plus/share_plus.dart';
 import 'package:http/http.dart' as http;
@@ -178,7 +179,7 @@ class _DetailSectionState extends State<DetailSection>
           tabs: const [
             Tab(text: "Practice Area"),
             Tab(text: "Qualification"),
-            Tab(text: "Court"),
+            Tab(text: "Court/Bar"),
           ],
           controller: _tabController,
         ),
@@ -195,7 +196,7 @@ class _DetailSectionState extends State<DetailSection>
                   education: widget.education,
                   userid: widget.userid,
                 ),
-                Court(),
+                const Court(),
               ],
             ),
           ),
@@ -205,10 +206,16 @@ class _DetailSectionState extends State<DetailSection>
   }
 }
 
-class Court extends StatelessWidget {
-  Court({
+class Court extends StatefulWidget {
+  const Court({
     super.key,
   });
+
+  @override
+  State<Court> createState() => _CourtState();
+}
+
+class _CourtState extends State<Court> {
   final List<CourtDetails> courts = [
     CourtDetails(
         title: 'Supreme Court',
@@ -221,67 +228,267 @@ class Court extends StatelessWidget {
     CourtDetails(
         title: 'District Court',
         image: "assets/images/court2.png",
-        subtitle: 'Mumbai District Court')
+        subtitle: 'Mumbai District Court'),
   ];
 
   @override
   Widget build(BuildContext context) {
-    return GridView.builder(
-      gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
-        crossAxisCount: 2,
-      ),
+    return ListView.builder(
+      scrollDirection: Axis.vertical,
       itemCount: 3,
       itemBuilder: (context, index) {
-        return Container(
-          margin: const EdgeInsets.all(10),
-          padding: const EdgeInsets.all(20),
-          decoration: const BoxDecoration(
-            color: Color.fromRGBO(169, 169, 169, 1),
-            boxShadow: [
-              BoxShadow(
-                color: Colors.black,
-                offset: Offset(
-                  5.0,
-                  5.0,
+        return index != 2
+            ? Container(
+                margin: const EdgeInsets.all(10),
+                padding: const EdgeInsets.all(20),
+                decoration: const BoxDecoration(
+                  color: Color.fromRGBO(169, 169, 169, 1),
+                  boxShadow: [
+                    BoxShadow(
+                      color: Colors.black,
+                      offset: Offset(
+                        5.0,
+                        5.0,
+                      ),
+                      blurRadius: 10.0,
+                      spreadRadius: 2.0,
+                    ), //BoxShadow
+                    BoxShadow(
+                      color: Colors.white,
+                      offset: Offset(0.0, 0.0),
+                      blurRadius: 0.0,
+                      spreadRadius: 0.0,
+                    ), //BoxShadow
+                  ],
+                  borderRadius: BorderRadius.all(
+                    Radius.circular(25),
+                  ),
                 ),
-                blurRadius: 10.0,
-                spreadRadius: 2.0,
-              ), //BoxShadow
-              BoxShadow(
-                color: Colors.white,
-                offset: Offset(0.0, 0.0),
-                blurRadius: 0.0,
-                spreadRadius: 0.0,
-              ), //BoxShadow
-            ],
-            borderRadius: BorderRadius.all(
-              Radius.circular(25),
-            ),
-          ),
-          child: Column(
-            mainAxisAlignment: MainAxisAlignment.spaceBetween,
-            children: [
-              Text(
-                courts[index].title,
-                style: kpageTitleBlack,
-              ),
-              Padding(
-                padding: const EdgeInsets.all(4.0),
-                child: Image.asset(
-                  courts[index].image,
-                  width: 80,
-                  height: 80,
+                child: Row(
+                  children: [
+                    Padding(
+                      padding: const EdgeInsets.all(4.0),
+                      child: Image.asset(
+                        courts[index].image,
+                        width: 80,
+                        height: 80,
+                      ),
+                    ),
+                    Column(
+                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                      children: [
+                        Text(
+                          courts[index].title,
+                          style: kpageTitleBlack,
+                        ),
+                        Text(
+                          courts[index].subtitle,
+                          textAlign: TextAlign.center,
+                          style: ksubCatText,
+                        ),
+                      ],
+                    ),
+                  ],
                 ),
-              ),
-              Text(
-                courts[index].subtitle,
-                textAlign: TextAlign.center,
-                style: ksubCatText,
-              ),
-            ],
-          ),
-        );
+              )
+            : Column(
+                children: [
+                  Container(
+                    margin: const EdgeInsets.all(10),
+                    padding: const EdgeInsets.all(20),
+                    decoration: const BoxDecoration(
+                      color: Color.fromRGBO(169, 169, 169, 1),
+                      boxShadow: [
+                        BoxShadow(
+                          color: Colors.black,
+                          offset: Offset(
+                            5.0,
+                            5.0,
+                          ),
+                          blurRadius: 10.0,
+                          spreadRadius: 2.0,
+                        ), //BoxShadow
+                        BoxShadow(
+                          color: Colors.white,
+                          offset: Offset(0.0, 0.0),
+                          blurRadius: 0.0,
+                          spreadRadius: 0.0,
+                        ), //BoxShadow
+                      ],
+                      borderRadius: BorderRadius.all(
+                        Radius.circular(25),
+                      ),
+                    ),
+                    child: Row(
+                      children: [
+                        Padding(
+                          padding: const EdgeInsets.all(4.0),
+                          child: Image.asset(
+                            courts[index].image,
+                            width: 80,
+                            height: 80,
+                          ),
+                        ),
+                        Column(
+                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                          children: [
+                            Text(
+                              courts[index].title,
+                              style: kpageTitleBlack,
+                            ),
+                            Text(
+                              courts[index].subtitle,
+                              textAlign: TextAlign.center,
+                              style: ksubCatText,
+                            ),
+                          ],
+                        ),
+                      ],
+                    ),
+                  ),
+                  const SizedBox(
+                    height: 10,
+                  ),
+                  const BarDetail(),
+                ],
+              );
       },
+    );
+  }
+}
+
+class BarDetail extends StatelessWidget {
+  const BarDetail({super.key});
+
+  @override
+  Widget build(BuildContext context) {
+    return Padding(
+      padding: const EdgeInsets.all(8.0),
+      child: Column(
+        children: [
+          const TextWithLine(
+              label: 'Bar Details', height: 1, color: Colors.black),
+          Padding(
+            padding: const EdgeInsets.only(top: 12.0),
+            child: Container(
+              margin: const EdgeInsets.all(10),
+              padding: const EdgeInsets.all(20),
+              decoration: const BoxDecoration(
+                color: Color.fromRGBO(169, 169, 169, 1),
+                boxShadow: [
+                  BoxShadow(
+                    color: Colors.black,
+                    offset: Offset(
+                      5.0,
+                      5.0,
+                    ),
+                    blurRadius: 10.0,
+                    spreadRadius: 2.0,
+                  ), //BoxShadow
+                  BoxShadow(
+                    color: Colors.white,
+                    offset: Offset(0.0, 0.0),
+                    blurRadius: 0.0,
+                    spreadRadius: 0.0,
+                  ), //BoxShadow
+                ],
+                borderRadius: BorderRadius.all(
+                  Radius.circular(25),
+                ),
+              ),
+              child: Row(
+                children: [
+                  Padding(
+                    padding: const EdgeInsets.all(4.0),
+                    child: Image.network(
+                      "https://imgs.search.brave.com/yAHEuQYdMyi-nzxcqegl65s-ajkrhIggZiMhJMACP_s/rs:fit:500:0:0/g:ce/aHR0cHM6Ly9pMy53/cC5jb20vdXBsb2Fk/Lndpa2ltZWRpYS5v/cmcvd2lraXBlZGlh/L2VuLzYvNmUvTG9n/b19vZl9CYXJfQ291/bmNpbF9vZl9JbmRp/YS5wbmc",
+                      width: 80,
+                      height: 80,
+                    ),
+                  ),
+                  Column(
+                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                      Text(
+                        "Bar Name",
+                        style: kpageTitleBlack,
+                      ),
+                      Padding(
+                        padding: const EdgeInsets.only(top: 8.0),
+                        child: Text(
+                          "Registration Year",
+                          textAlign: TextAlign.center,
+                          style: ksubCatText,
+                        ),
+                      ),
+                      Padding(
+                        padding: const EdgeInsets.only(top: 8.0),
+                        child: Text(
+                          "Bar ID",
+                          textAlign: TextAlign.center,
+                          style: ksubCatText,
+                        ),
+                      ),
+                      Row(
+                        crossAxisAlignment: CrossAxisAlignment.end,
+                        mainAxisAlignment: MainAxisAlignment.end,
+                        children: [
+                          Container(
+                            constraints: const BoxConstraints(
+                                minWidth: 30, maxWidth: 60),
+                          ),
+                          Padding(
+                            padding:
+                                const EdgeInsets.fromLTRB(8.0, 8.0, 8.0, 0.0),
+                            child: Container(
+                              height: 25,
+                              width: 100,
+                              decoration: const BoxDecoration(
+                                color: Colors.green,
+                                borderRadius: BorderRadius.all(
+                                  Radius.circular(20),
+                                ),
+                              ),
+                              child: Align(
+                                alignment: Alignment.topRight,
+                                child: ElevatedButton(
+                                    style: ElevatedButton.styleFrom(
+                                        backgroundColor: Colors.green),
+                                    onPressed: () {
+                                      String certificate =
+                                          "https://imgs.search.brave.com/s6VqExHXr63G-HLqHNdn2cm6uMZLyDwnW2Ag6-7mPV4/rs:fit:860:0:0/g:ce/aHR0cHM6Ly9pMS53/cC5jb20vaW1hZ2Uu/c2xpZGVzaGFyZWNk/bi5jb20vYjdlYjgy/MWItNmQ1Ny00YWRk/LWEyZDItNjgwYzUy/NDlkZjJjLTE2MTAw/NjA4NDYxNy85NS9i/YXItY291bmNpbC1v/Zi1pbmRpYS0xLTYz/OC5qcGc_Y2I9MTQ3/NTc0MzU4OQ";
+                                      showDialog(
+                                          context: context,
+                                          builder: (BuildContext context) {
+                                            return ViewDocumentDialogBox(
+                                              certificate: certificate,
+                                            );
+                                          });
+                                    },
+                                    child: const Align(
+                                      alignment: Alignment.center,
+                                      child: Text(
+                                        "Certificate",
+                                        style: TextStyle(color: Colors.white),
+                                      ),
+                                    )),
+                              ),
+                            ),
+                          ),
+                          const SizedBox(
+                            width: 20,
+                          )
+                        ],
+                      ),
+                    ],
+                  ),
+                ],
+              ),
+            ),
+          )
+        ],
+      ),
     );
   }
 }
@@ -312,6 +519,7 @@ class Qualification extends StatefulWidget {
 
 class _QualificationState extends State<Qualification> {
   List<dynamic> result4 = [];
+  String baseurl = "http://15.206.28.255:8000";
 
   @override
   void initState() {
@@ -330,15 +538,59 @@ class _QualificationState extends State<Qualification> {
           var university = res['university'];
           var degree = res['type'];
           var studyfield = res['study_field'];
-          var startdate = res['start_date'];
-          var enddate = res['end_date'];
+          String startdate = res['start_date'];
+          String enddate = res['end_date'];
+          var certificate = baseurl + res['file'];
+
+          String inputDate = startdate;
+          List<String> dateParts = inputDate.split("-");
+          String formattedStartDate = "";
+
+          if (dateParts.length == 3) {
+            // Extract the year, month, and day parts from the list
+            String year = dateParts[0];
+            String month = dateParts[1];
+            String day = dateParts[2];
+
+            // Convert the parts to integers if needed
+            int yearInt = int.tryParse(year) ?? 0;
+            int monthInt = int.tryParse(month) ?? 0;
+            int dayInt = int.tryParse(day) ?? 0;
+            DateTime dateTime = DateTime(yearInt, monthInt, dayInt);
+
+            // Use Jiffy to format the date into the month-year format
+            formattedStartDate = Jiffy.parseFromDateTime(dateTime).yMMMM;
+            print("Formatted Date: $formattedStartDate");
+          }
+
+          String inputDate1 = enddate;
+          List<String> dateParts1 = inputDate1.split("-");
+          String formattedEndDate = "";
+
+          if (dateParts.length == 3) {
+            // Extract the year, month, and day parts from the list
+            String year = dateParts1[0];
+            String month = dateParts1[1];
+            String day = dateParts1[2];
+
+            // Convert the parts to integers if needed
+            int yearInt = int.tryParse(year) ?? 0;
+            int monthInt = int.tryParse(month) ?? 0;
+            int dayInt = int.tryParse(day) ?? 0;
+            DateTime dateTime = DateTime(yearInt, monthInt, dayInt);
+
+            // Use Jiffy to format the date into the month-year format
+            formattedEndDate = Jiffy.parseFromDateTime(dateTime).yMMMM;
+            print("Formatted Date: $formattedEndDate");
+          }
+
           return Container(
             padding: const EdgeInsets.only(right: 10, left: 10),
             margin: const EdgeInsets.symmetric(
               horizontal: 10,
               vertical: 15,
             ),
-            height: 200,
+            constraints: const BoxConstraints(minHeight: 180, maxHeight: 210),
             width: double.infinity,
             decoration: const BoxDecoration(
               color: Color.fromRGBO(169, 169, 169, 1),
@@ -356,83 +608,127 @@ class _QualificationState extends State<Qualification> {
                 Radius.circular(20),
               ),
             ),
-            child: Row(
-              mainAxisAlignment: MainAxisAlignment.spaceBetween,
-              children: [
-                Row(
-                  children: [
-                    Image.asset("assets/images/college3.png"),
-                    Padding(
-                      padding: const EdgeInsets.all(20.0),
-                      child: Column(
-                        crossAxisAlignment: CrossAxisAlignment.start,
-                        children: [
-                          SizedBox(
-                            width: 210,
-                            child: Text(
-                              university,
-                              maxLines: 2,
-                              style: const TextStyle(
-                                fontWeight: FontWeight.bold,
-                                fontSize: 18,
-                              ),
-                            ),
-                          ),
-                          Padding(
-                            padding: const EdgeInsets.only(top: 10.0),
-                            child: Text(
-                              "Course: $degree",
-                            ),
-                          ),
-                          Padding(
-                            padding: const EdgeInsets.only(top: 10.0),
-                            child: SizedBox(
-                              width: 210,
-                              child: Text(
-                                "Study Field: $studyfield",
-                                maxLines: 2,
-                              ),
-                            ),
-                          ),
-                          Padding(
-                            padding: const EdgeInsets.only(top: 10.0),
-                            child: SizedBox(
-                              width: 210,
-                              child: Text(
-                                "Duration: $startdate to $enddate",
-                                maxLines: 2,
-                              ),
-                            ),
-                          )
-                        ],
+            child: FittedBox(
+              fit: BoxFit.fill,
+              child: Column(
+                mainAxisAlignment: MainAxisAlignment.start,
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  Padding(
+                    padding: const EdgeInsets.fromLTRB(16.0, 14.0, 8.0, 0.0),
+                    child: SizedBox(
+                      width: 210,
+                      child: Text(
+                        degree,
+                        style: const TextStyle(
+                            fontWeight: FontWeight.bold, fontSize: 18),
                       ),
-                    )
-                  ],
-                ),
-                InkWell(
-                  onTap: () {
-                    showDialog(
-                        context: context,
-                        builder: (BuildContext context) {
-                          return const ViewDocumentDialogBox();
-                        });
-                  },
-                  child: Column(
-                    mainAxisAlignment: MainAxisAlignment.center,
-                    crossAxisAlignment: CrossAxisAlignment.center,
+                    ),
+                  ),
+                  Row(
                     children: [
-                      Image.asset("assets/images/documnet.png"),
-                      const SizedBox(height: 10),
-                      const Text(
-                        "View",
-                        style: TextStyle(
-                          color: Colors.white,
+                      Container(
+                          constraints: const BoxConstraints(
+                              minWidth: 30, maxWidth: 70, minHeight: 45),
+                          child: Image.asset("assets/icons/graduation.png")),
+                      Padding(
+                        padding:
+                            const EdgeInsets.fromLTRB(20.0, 10.0, 0.0, 20.0),
+                        child: Column(
+                          crossAxisAlignment: CrossAxisAlignment.start,
+                          children: [
+                            SizedBox(
+                              width: 255,
+                              child: Text(
+                                university,
+                                maxLines: 2,
+                                style: const TextStyle(
+                                  fontWeight: FontWeight.bold,
+                                  fontSize: 18,
+                                ),
+                              ),
+                            ),
+                            Padding(
+                              padding: const EdgeInsets.only(top: 10.0),
+                              child: SizedBox(
+                                width: 210,
+                                child: Text(
+                                  "$studyfield",
+                                  maxLines: 2,
+                                ),
+                              ),
+                            ),
+                            Padding(
+                              padding: const EdgeInsets.only(top: 10.0),
+                              child: SizedBox(
+                                width: 210,
+                                child: Text(
+                                  "$formattedStartDate to $formattedEndDate",
+                                  maxLines: 2,
+                                ),
+                              ),
+                            ),
+                            Padding(
+                              padding:
+                                  const EdgeInsets.only(top: 12.0, right: 8.0),
+                              child: Row(
+                                crossAxisAlignment: CrossAxisAlignment.end,
+                                mainAxisAlignment: MainAxisAlignment.end,
+                                children: [
+                                  const SizedBox(
+                                    width: 150,
+                                  ),
+                                  Padding(
+                                    padding: const EdgeInsets.fromLTRB(
+                                        8.0, 12.0, 8.0, 0.0),
+                                    child: Container(
+                                      height: 25,
+                                      width: 100,
+                                      decoration: const BoxDecoration(
+                                        color: Colors.green,
+                                        borderRadius: BorderRadius.all(
+                                          Radius.circular(20),
+                                        ),
+                                      ),
+                                      child: Align(
+                                        alignment: Alignment.topRight,
+                                        child: ElevatedButton(
+                                            style: ElevatedButton.styleFrom(
+                                                backgroundColor: Colors.green),
+                                            onPressed: () {
+                                              showDialog(
+                                                  context: context,
+                                                  builder:
+                                                      (BuildContext context) {
+                                                    return ViewDocumentDialogBox(
+                                                      certificate: certificate,
+                                                    );
+                                                  });
+                                            },
+                                            child: const Align(
+                                              alignment: Alignment.center,
+                                              child: Text(
+                                                "Certificate",
+                                                style: TextStyle(
+                                                    color: Colors.white),
+                                              ),
+                                            )),
+                                      ),
+                                    ),
+                                  ),
+                                  const SizedBox(
+                                    width: 20,
+                                  )
+                                ],
+                              ),
+                            ),
+                          ],
                         ),
-                      ),
+                      )
                     ],
                   ),
-                ),
-              ],
+                ],
+              ),
             ),
           );
         },
@@ -1735,8 +2031,8 @@ class _ImageContainer extends StatelessWidget {
           ),
         ),
         Positioned(
-          top: 15,
-          left: 140,
+          top: 10,
+          left: 135,
           child: Container(
             height: 15,
             width: 15,

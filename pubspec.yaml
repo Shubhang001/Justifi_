@@ -55,6 +55,8 @@ dependencies:
   url_launcher: ^6.1.14
   videosdk: ^1.1.4
   web_socket_channel: ^2.4.0
+  flutter_list_view:
+  jiffy: ^6.2.1
 
 dev_dependencies:
   flutter_lints: ^2.0.0

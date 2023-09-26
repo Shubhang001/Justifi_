@@ -5,6 +5,7 @@ import 'package:jusitfi_admin/presentation/screens/hiring_credits_page.dart';
 import 'package:jusitfi_admin/presentation/screens/notification_page.dart';
 import 'package:jusitfi_admin/presentation/screens/offers_page.dart';
 import 'package:jusitfi_admin/presentation/screens/profile_page.dart';
+import 'package:jusitfi_admin/presentation/widgets/coindetail.dart';
 import 'package:jusitfi_admin/utils/constants/textstyles.dart';
 
 import '../../testing_transaction_page.dart';
@@ -34,8 +35,8 @@ class _WalletPageState extends State<WalletPage> {
           backgroundColor: Colors.black,
           actions: [
             Padding(
-              padding:
-                  EdgeInsets.only(left: 20, right: 30, top: 10, bottom: 10),
+              padding: const EdgeInsets.only(
+                  left: 20, right: 30, top: 10, bottom: 10),
               child: Row(
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
@@ -44,11 +45,11 @@ class _WalletPageState extends State<WalletPage> {
                       Navigator.push(
                         context,
                         MaterialPageRoute(
-                          builder: (context) => NotificationsPage(),
+                          builder: (context) => const NotificationsPage(),
                         ),
                       );
                     },
-                    child: Icon(
+                    child: const Icon(
                       Icons.notifications_outlined,
                       color: Colors.white,
                       size: 35,
@@ -199,7 +200,8 @@ class _WalletPageState extends State<WalletPage> {
                       GestureDetector(
                           onTap: () {
                             Navigator.of(context).push(MaterialPageRoute(
-                                builder: (context) => OffersPage()));
+                                builder: (context) =>
+                                    OffersPage(title: "Profile Credits")));
                           },
                           child: Container(
                             height: 54,
@@ -253,24 +255,21 @@ class _WalletPageState extends State<WalletPage> {
                     Navigator.of(context).push(MaterialPageRoute(
                         builder: (context) => const FrozenCoinBalanceScreen()));
                   },
-                  child:
-                      const FrozenCard(title: "Frozen Coin ", value: "8XXX1")),
+                  child: const FrozenCard(
+                      title: "Frozen Coin ",
+                      value: "8XXX1",
+                      detail: " Coins used to schedule Calls")),
               const SizedBox(
                 height: 20,
               ),
               GestureDetector(
                   onTap: () {},
                   child: const FrozenCard(
-                      title: "Available Coin ", value: "8XXX1")),
+                      title: "Available Coin ",
+                      value: "8XXX1",
+                      detail: " Coins available for Live and Schedule calls")),
               const SizedBox(
                 height: 20,
-              ),
-              GestureDetector(
-                  onTap: () {},
-                  child:
-                      const FrozenCard(title: "Total Coin ", value: "8XXX1")),
-              const SizedBox(
-                height: 10,
               ),
               Center(
                   child: Text(
@@ -286,17 +285,48 @@ class _WalletPageState extends State<WalletPage> {
                   Column(
                     crossAxisAlignment: CrossAxisAlignment.center,
                     children: [
-                      Center(
-                        child: Text(
-                          "Profile",
-                          style: interW400S14Black,
-                        ),
+                      Row(
+                        children: [
+                          Center(
+                            child: Text(
+                              "Profile",
+                              style: interW400S14Black,
+                            ),
+                          ),
+                          const SizedBox(
+                            width: 3,
+                          ),
+                          SizedBox(
+                              height: 25,
+                              width: 25,
+                              child: FloatingActionButton(
+                                onPressed: () {
+                                  showDialog(
+                                      context: context,
+                                      builder: (BuildContext context) {
+                                        return const CoinDetail(
+                                          title: "Profile Credit :",
+                                          detail:
+                                              " Used to Hire advocate directly",
+                                        );
+                                      });
+                                },
+                                child: const Icon(Icons.info_outline),
+                              ))
+                        ],
                       ),
-                      Center(
-                        child: Text(
-                          "Credits",
-                          style: interW400S14Black,
-                        ),
+                      Row(
+                        children: [
+                          Center(
+                            child: Text(
+                              "Credits",
+                              style: interW400S14Black,
+                            ),
+                          ),
+                          const SizedBox(
+                            width: 30,
+                          )
+                        ],
                       ),
                       const SizedBox(
                         height: 5,
@@ -338,18 +368,49 @@ class _WalletPageState extends State<WalletPage> {
                     crossAxisAlignment: CrossAxisAlignment.center,
                     children: [
                       Center(
-                        child: Text(
-                          "Post",
-                          textAlign: TextAlign.start,
-                          style: interW400S14Black,
+                        child: Row(
+                          children: [
+                            Text(
+                              "Post",
+                              textAlign: TextAlign.start,
+                              style: interW400S14Black,
+                            ),
+                            const SizedBox(
+                              width: 10,
+                            ),
+                            SizedBox(
+                                height: 25,
+                                width: 25,
+                                child: FloatingActionButton(
+                                  onPressed: () {
+                                    showDialog(
+                                        context: context,
+                                        builder: (BuildContext context) {
+                                          return const CoinDetail(
+                                            title: "Post Credit :",
+                                            detail:
+                                                " Used to post cases and Hire best advocate Applied",
+                                          );
+                                        });
+                                  },
+                                  child: const Icon(Icons.info_outline),
+                                )),
+                          ],
                         ),
                       ),
-                      Center(
-                        child: Text(
-                          "Credits",
-                          textAlign: TextAlign.center,
-                          style: interW400S14Black,
-                        ),
+                      Row(
+                        children: [
+                          Center(
+                            child: Text(
+                              "Credits",
+                              textAlign: TextAlign.center,
+                              style: interW400S14Black,
+                            ),
+                          ),
+                          const SizedBox(
+                            width: 30,
+                          )
+                        ],
                       ),
                       const SizedBox(
                         height: 5,
@@ -418,7 +479,12 @@ class AddButton extends StatelessWidget {
 class FrozenCard extends StatelessWidget {
   final String title;
   final String value;
-  const FrozenCard({super.key, required this.title, required this.value});
+  final String detail;
+  const FrozenCard(
+      {super.key,
+      required this.title,
+      required this.value,
+      required this.detail});
 
   @override
   Widget build(BuildContext context) {
@@ -446,9 +512,39 @@ class FrozenCard extends StatelessWidget {
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
               const SizedBox(height: 6),
-              Text(
-                title,
-                style: poppinsW500S18White,
+              Row(
+                children: [
+                  Text(
+                    title,
+                    style: poppinsW500S18White,
+                  ),
+                  const SizedBox(
+                    width: 5,
+                  ),
+                  Padding(
+                    padding: const EdgeInsets.only(right: 10.0),
+                    child: Align(
+                      alignment: Alignment.centerRight,
+                      child: SizedBox(
+                        height: 25,
+                        width: 25,
+                        child: FloatingActionButton(
+                          onPressed: () {
+                            showDialog(
+                                context: context,
+                                builder: (BuildContext context) {
+                                  return CoinDetail(
+                                    title: "$title :",
+                                    detail: "Coins used to schedule Calls ",
+                                  );
+                                });
+                          },
+                          child: const Icon(Icons.info_outline),
+                        ),
+                      ),
+                    ),
+                  ),
+                ],
               ),
               const SizedBox(height: 8),
               Row(children: [
