@@ -1,5 +1,5 @@
 import 'dart:convert';
-
+import 'package:jiffy/jiffy.dart';
 import 'package:flutter/material.dart';
 import 'package:jusitfi_admin/presentation/widgets/text_with_line.dart';
 import 'package:jusitfi_admin/utils/constants/textstyles.dart';
@@ -434,8 +434,9 @@ class BarDetail extends StatelessWidget {
                         crossAxisAlignment: CrossAxisAlignment.end,
                         mainAxisAlignment: MainAxisAlignment.end,
                         children: [
-                          const SizedBox(
-                            width: 60,
+                          Container(
+                            constraints: const BoxConstraints(
+                                minWidth: 30, maxWidth: 60),
                           ),
                           Padding(
                             padding:
@@ -537,9 +538,52 @@ class _QualificationState extends State<Qualification> {
           var university = res['university'];
           var degree = res['type'];
           var studyfield = res['study_field'];
-          var startdate = res['start_date'];
-          var enddate = res['end_date'];
+          String startdate = res['start_date'];
+          String enddate = res['end_date'];
           var certificate = baseurl + res['file'];
+
+          String inputDate = startdate;
+          List<String> dateParts = inputDate.split("-");
+          String formattedStartDate = "";
+
+          if (dateParts.length == 3) {
+            // Extract the year, month, and day parts from the list
+            String year = dateParts[0];
+            String month = dateParts[1];
+            String day = dateParts[2];
+
+            // Convert the parts to integers if needed
+            int yearInt = int.tryParse(year) ?? 0;
+            int monthInt = int.tryParse(month) ?? 0;
+            int dayInt = int.tryParse(day) ?? 0;
+            DateTime dateTime = DateTime(yearInt, monthInt, dayInt);
+
+            // Use Jiffy to format the date into the month-year format
+            formattedStartDate = Jiffy.parseFromDateTime(dateTime).yMMMM;
+            print("Formatted Date: $formattedStartDate");
+          }
+
+          String inputDate1 = enddate;
+          List<String> dateParts1 = inputDate1.split("-");
+          String formattedEndDate = "";
+
+          if (dateParts.length == 3) {
+            // Extract the year, month, and day parts from the list
+            String year = dateParts1[0];
+            String month = dateParts1[1];
+            String day = dateParts1[2];
+
+            // Convert the parts to integers if needed
+            int yearInt = int.tryParse(year) ?? 0;
+            int monthInt = int.tryParse(month) ?? 0;
+            int dayInt = int.tryParse(day) ?? 0;
+            DateTime dateTime = DateTime(yearInt, monthInt, dayInt);
+
+            // Use Jiffy to format the date into the month-year format
+            formattedEndDate = Jiffy.parseFromDateTime(dateTime).yMMMM;
+            print("Formatted Date: $formattedEndDate");
+          }
+
           return Container(
             padding: const EdgeInsets.only(right: 10, left: 10),
             margin: const EdgeInsets.symmetric(
@@ -583,10 +627,13 @@ class _QualificationState extends State<Qualification> {
                   ),
                   Row(
                     children: [
-                      Image.asset("assets/images/college3.png"),
+                      Container(
+                          constraints: const BoxConstraints(
+                              minWidth: 30, maxWidth: 70, minHeight: 45),
+                          child: Image.asset("assets/icons/graduation.png")),
                       Padding(
                         padding:
-                            const EdgeInsets.fromLTRB(20.0, 20.0, 0.0, 20.0),
+                            const EdgeInsets.fromLTRB(20.0, 10.0, 0.0, 20.0),
                         child: Column(
                           crossAxisAlignment: CrossAxisAlignment.start,
                           children: [
@@ -616,60 +663,64 @@ class _QualificationState extends State<Qualification> {
                               child: SizedBox(
                                 width: 210,
                                 child: Text(
-                                  "$startdate to $enddate",
+                                  "$formattedStartDate to $formattedEndDate",
                                   maxLines: 2,
                                 ),
                               ),
                             ),
-                            Row(
-                              crossAxisAlignment: CrossAxisAlignment.end,
-                              mainAxisAlignment: MainAxisAlignment.end,
-                              children: [
-                                const SizedBox(
-                                  width: 150,
-                                ),
-                                Padding(
-                                  padding: const EdgeInsets.fromLTRB(
-                                      8.0, 8.0, 8.0, 0.0),
-                                  child: Container(
-                                    height: 25,
-                                    width: 100,
-                                    decoration: const BoxDecoration(
-                                      color: Colors.green,
-                                      borderRadius: BorderRadius.all(
-                                        Radius.circular(20),
+                            Padding(
+                              padding:
+                                  const EdgeInsets.only(top: 12.0, right: 8.0),
+                              child: Row(
+                                crossAxisAlignment: CrossAxisAlignment.end,
+                                mainAxisAlignment: MainAxisAlignment.end,
+                                children: [
+                                  const SizedBox(
+                                    width: 150,
+                                  ),
+                                  Padding(
+                                    padding: const EdgeInsets.fromLTRB(
+                                        8.0, 12.0, 8.0, 0.0),
+                                    child: Container(
+                                      height: 25,
+                                      width: 100,
+                                      decoration: const BoxDecoration(
+                                        color: Colors.green,
+                                        borderRadius: BorderRadius.all(
+                                          Radius.circular(20),
+                                        ),
+                                      ),
+                                      child: Align(
+                                        alignment: Alignment.topRight,
+                                        child: ElevatedButton(
+                                            style: ElevatedButton.styleFrom(
+                                                backgroundColor: Colors.green),
+                                            onPressed: () {
+                                              showDialog(
+                                                  context: context,
+                                                  builder:
+                                                      (BuildContext context) {
+                                                    return ViewDocumentDialogBox(
+                                                      certificate: certificate,
+                                                    );
+                                                  });
+                                            },
+                                            child: const Align(
+                                              alignment: Alignment.center,
+                                              child: Text(
+                                                "Certificate",
+                                                style: TextStyle(
+                                                    color: Colors.white),
+                                              ),
+                                            )),
                                       ),
                                     ),
-                                    child: Align(
-                                      alignment: Alignment.topRight,
-                                      child: ElevatedButton(
-                                          style: ElevatedButton.styleFrom(
-                                              backgroundColor: Colors.green),
-                                          onPressed: () {
-                                            showDialog(
-                                                context: context,
-                                                builder:
-                                                    (BuildContext context) {
-                                                  return ViewDocumentDialogBox(
-                                                    certificate: certificate,
-                                                  );
-                                                });
-                                          },
-                                          child: const Align(
-                                            alignment: Alignment.center,
-                                            child: Text(
-                                              "Certificate",
-                                              style: TextStyle(
-                                                  color: Colors.white),
-                                            ),
-                                          )),
-                                    ),
                                   ),
-                                ),
-                                const SizedBox(
-                                  width: 20,
-                                )
-                              ],
+                                  const SizedBox(
+                                    width: 20,
+                                  )
+                                ],
+                              ),
                             ),
                           ],
                         ),

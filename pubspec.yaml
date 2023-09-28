@@ -56,8 +56,6 @@ dependencies:
   videosdk: ^1.1.4
   web_socket_channel: ^2.4.0
   flutter_list_view:
-  swipe_to:
-  scroll_to_index:
 
 dev_dependencies:
   flutter_lints: ^2.0.0
