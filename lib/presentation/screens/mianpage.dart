@@ -103,7 +103,7 @@ class _MainPageState extends State<MainPage> {
               width: 40,
               height: 40,
             ),
-            label: 'Status',
+            label: 'Call Log',
           ),
           BottomNavigationBarItem(
             icon: Image.asset(

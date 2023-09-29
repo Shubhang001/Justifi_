@@ -1,6 +1,7 @@
 import 'dart:convert';
 import 'package:jiffy/jiffy.dart';
 import 'package:flutter/material.dart';
+import 'package:jusitfi_admin/presentation/widgets/noservice.dart';
 import 'package:jusitfi_admin/presentation/widgets/text_with_line.dart';
 import 'package:jusitfi_admin/utils/constants/textstyles.dart';
 import 'package:share_plus/share_plus.dart';
@@ -1786,7 +1787,7 @@ class CallToAction extends StatelessWidget {
           InkWell(
             onTap: () {
               Navigator.push(context, MaterialPageRoute(builder: (_) {
-                return AssignWorkLawyerProfile();
+                return const DialogService1();
               }));
             },
             child: const RoundedButton(

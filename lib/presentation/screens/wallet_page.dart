@@ -133,12 +133,12 @@ class _WalletPageState extends State<WalletPage> {
                 height: 15,
               ),
               Padding(
-                padding: const EdgeInsets.only(top: 15, left: 15, right: 15),
+                padding: const EdgeInsets.only(top: 15, left: 23, right: 20),
                 child: Row(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: [
-                    Column(children: [
+                    /*Column(children: [
                       GestureDetector(
                           onTap: () {
                             Navigator.of(context).push(MaterialPageRoute(
@@ -166,7 +166,7 @@ class _WalletPageState extends State<WalletPage> {
                         "Credits",
                         style: poppinsW500S12Black,
                       )
-                    ]),
+                    ]),*/
                     Column(children: [
                       GestureDetector(
                         onTap: () {
@@ -271,7 +271,7 @@ class _WalletPageState extends State<WalletPage> {
               const SizedBox(
                 height: 20,
               ),
-              Center(
+              /*Center(
                   child: Text(
                 "Buy Hiring packages as per your need ",
                 style: alegreyaW700S18Black,
@@ -446,7 +446,7 @@ class _WalletPageState extends State<WalletPage> {
                     ],
                   ),
                 ],
-              ),
+              ),*/
             ])));
   }
 }

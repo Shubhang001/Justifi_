@@ -120,7 +120,7 @@ class _StatusPageState extends State<StatusPage> {
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
             Text(
-              "Status",
+              "Call Log",
               style: klocationLight,
             )
           ],
@@ -132,7 +132,7 @@ class _StatusPageState extends State<StatusPage> {
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
-                  Container(
+                  /* Container(
                       height: 40,
                       margin: const EdgeInsets.all(8.0),
                       child: ListView.separated(
@@ -161,7 +161,7 @@ class _StatusPageState extends State<StatusPage> {
                                             .toString(),
                                         isSelected: false,
                                         textSize: 16)));
-                          })),
+                          })),*/
                   const SizedBox(
                     height: 25,
                   ),
