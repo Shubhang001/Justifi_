@@ -268,18 +268,17 @@ class _LoginScreenState extends State<LoginScreen> {
                                     var response = await verifyUserLogin(
                                         receivedUserId.toString(), otp);
                                     if (response['success'] == true) {
+                                      String token = response['token'];
+                                      _storeToken(token);
+
                                       if (mounted) {
                                         ScaffoldMessenger.of(context)
                                             .showSnackBar(SnackBar(
                                           content: Text(response["message"]),
                                         ));
-                                        Navigator.pushAndRemoveUntil(
-                                            context,
-                                            MaterialPageRoute(
-                                              builder: (context) =>
-                                                  const MainPage(),
-                                            ),
-                                            ((route) => false));
+                                        print('$response["message"]');
+                                        Navigator.pushNamedAndRemoveUntil(
+                                            context, '/main', (route) => false);
                                       }
                                     } else {
                                       if (mounted) {
