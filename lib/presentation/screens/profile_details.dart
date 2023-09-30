@@ -40,9 +40,9 @@ class ProfileDetails extends StatelessWidget {
                 content: "syedjohan@gmail.com",
               ),
               const InfoTile(
-                tileName: "Address  :",
+                tileName: "Date of Birth :",
                 content:
-                    "      MR road , Retul nagar - 9886 MN road\n     Chennai , 78987",
+                    "      20/01/1985",
               ),
               const InfoTile(
                 tileName: "Gender : ",

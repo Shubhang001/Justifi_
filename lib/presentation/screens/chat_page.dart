@@ -6,7 +6,7 @@ import 'package:flutter_list_view/flutter_list_view.dart';
 import 'package:image_picker/image_picker.dart';
 import 'package:jusitfi_admin/api/chat/get_chat.dart';
 import 'package:jusitfi_admin/presentation/widgets/drop_down_button.dart';
-import 'package:scroll_to_index/scroll_to_index.dart';
+
 import 'package:web_socket_channel/io.dart';
 class ChatPage extends StatefulWidget {
   const ChatPage({super.key});
@@ -31,7 +31,6 @@ class _ChatPageState extends State<ChatPage> {
   var templastvar='';
   var replyid=0;
 
-AutoScrollController listviewscrollcontroller=AutoScrollController();
 
   makeconnection()  async {
     var resp= await getchat(1);
@@ -292,7 +291,7 @@ child:ListView.builder(
   return message[index];
     },
 
-controller: listviewscrollcontroller,
+
 )
          ),
        )
@@ -593,8 +592,7 @@ super.dispose();
 
   Future<void> scrollmyscreen(int count) async {
 
-    await listviewscrollcontroller.scrollToIndex(count,preferPosition: AutoScrollPosition.begin);
-    await listviewscrollcontroller.highlight(count);
+
 
   }
 
