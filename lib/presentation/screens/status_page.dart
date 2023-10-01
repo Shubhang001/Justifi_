@@ -38,6 +38,7 @@ class _StatusPageState extends State<StatusPage> {
       const LiveCallsCompletedVerticleTile(),
       const LiveCallsCancelledVerticleTile(),
       const LiveCallsCancelledVerticleTile(),
+      const LiveCallsCompletedVerticleTile(),
     ],
 
     [
@@ -124,7 +125,7 @@ class _StatusPageState extends State<StatusPage> {
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
             Text(
-              "Status",
+              "Call Logs",
               style: klocationLight,
             )
           ],
@@ -136,107 +137,65 @@ class _StatusPageState extends State<StatusPage> {
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
-                  Container(
-                      height: 40,
-                      margin: const EdgeInsets.all(8.0),
-                      child: ListView.separated(
-                          separatorBuilder: (context, index) =>
-                              const SizedBox(width: 24),
-                          shrinkWrap: true,
-                          scrollDirection: Axis.horizontal,
-                          itemCount: statusPageCategories.length,
-                          itemBuilder: (context, index) {
-                            return GestureDetector(
-                                onTap: () {
-                                  _onCategoryTapped(index);
-                                  if(index==2){
-                                    showDialog<void>(
-                                      context: context,
+                  // Container(
+                  //     height: 40,
+                  //     margin: const EdgeInsets.all(8.0),
+                  //     child: ListView.separated(
+                  //         separatorBuilder: (context, index) =>
+                  //             const SizedBox(width: 24),
+                  //         shrinkWrap: true,
+                  //         scrollDirection: Axis.horizontal,
+                  //         itemCount: statusPageCategories.length,
+                  //         itemBuilder: (context, index) {
+                  //           return GestureDetector(
+                  //               onTap: () {
+                  //                 _onCategoryTapped(index);
+                  //                 if(index==2){
+                  //                   showDialog<void>(
+                  //                     context: context,
+                  //
+                  //                     // false = user must tap button, true = tap outside dialog
+                  //                     builder: (BuildContext dialogContext) {
+                  //                       return AlertDialog(
+                  //                         title: Text('Service Not Available'),
+                  //                         content: Text('Service Not Available yet'),
+                  //                         actions: <Widget>[
+                  //                           TextButton(
+                  //                             child: Text('Ok'),
+                  //                             onPressed: () {
+                  //                               Navigator.of(dialogContext)
+                  //                                   .pop(); // Dismiss alert dialog
+                  //                             },
+                  //                           ),
+                  //                         ],
+                  //                       );
+                  //                     },
+                  //                   );
+                  //
+                  //
+                  //
+                  //                 }
+                  //               },
+                  //               child: Container(
+                  //                   padding: const EdgeInsets.all(8.0),
+                  //                   decoration: BoxDecoration(
+                  //                     border: Border.all(
+                  //                         color: Colors.black, width: 1),
+                  //                     borderRadius: BorderRadius.circular(15),
+                  //                     color: _selectedCategoryIndex == index
+                  //                         ? kPrimaryBlackColor
+                  //                         : Colors.white,
+                  //                   ),
+                  //                   child: TextBox(
+                  //                       text: statusPageCategories[index]
+                  //                           .toString(),
+                  //                       isSelected: false,
+                  //                       textSize: 16)));
+                  //         })),
+                  // const SizedBox(
+                  //   height: 25,
+                  // ),
 
-                                      // false = user must tap button, true = tap outside dialog
-                                      builder: (BuildContext dialogContext) {
-                                        return AlertDialog(
-                                          title: Text('Service Not Available'),
-                                          content: Text('Service Not Available yet'),
-                                          actions: <Widget>[
-                                            TextButton(
-                                              child: Text('Ok'),
-                                              onPressed: () {
-                                                Navigator.of(dialogContext)
-                                                    .pop(); // Dismiss alert dialog
-                                              },
-                                            ),
-                                          ],
-                                        );
-                                      },
-                                    );
-
-
-
-                                  }
-                                },
-                                child: Container(
-                                    padding: const EdgeInsets.all(8.0),
-                                    decoration: BoxDecoration(
-                                      border: Border.all(
-                                          color: Colors.black, width: 1),
-                                      borderRadius: BorderRadius.circular(15),
-                                      color: _selectedCategoryIndex == index
-                                          ? kPrimaryBlackColor
-                                          : Colors.white,
-                                    ),
-                                    child: TextBox(
-                                        text: statusPageCategories[index]
-                                            .toString(),
-                                        isSelected: false,
-                                        textSize: 16)));
-                          })),
-                  const SizedBox(
-                    height: 25,
-                  ),
-                  SizedBox(
-                      height: 35,
-                      child: ListView.separated(
-                          separatorBuilder: (context, index) => const SizedBox(
-                                width: 30,
-                              ),
-                          shrinkWrap: true,
-                          scrollDirection: Axis.horizontal,
-                          itemCount: _subcategoryList[_selectedCategoryIndex]
-                              .toList()
-                              .length,
-                          itemBuilder: (context, index) {
-                            return GestureDetector(
-                                onTap: () {
-                                  _onSubCategoryTapped(index);
-                                },
-                                child: Container(
-                                    padding: const EdgeInsets.all(8.0),
-                                    decoration: BoxDecoration(
-                                      border: Border.all(
-                                          color: Colors.black, width: 1),
-                                      borderRadius: BorderRadius.circular(15),
-                                      color: _selectedSubCategoryIndex == index
-                                          ? kPrimaryBlackColor
-                                          : Colors.white,
-                                    ),
-                                    child: TextBox(
-                                        text: _subcategoryList[
-                                                _selectedCategoryIndex][index]
-                                            .toString(),
-                                        isSelected: false,
-                                        textSize: 14)));
-                          })),
-                  const SizedBox(
-                    height: 8,
-                  ),
-                  Divider(
-                    color: kprimaryTextColor,
-                    thickness: 1,
-                  ),
-                  const SizedBox(
-                    height: 8,
-                  ),
                   Expanded(
                       child: ListView(
                     scrollDirection: Axis.vertical,
