@@ -39,6 +39,7 @@ class _LiveCallsCompletedVerticleTile
 
   @override
   Widget build(BuildContext context) {
+    var w=MediaQuery.sizeOf(context).width;
     return Column(
       children: [
         SizedBox(
@@ -59,20 +60,19 @@ class _LiveCallsCompletedVerticleTile
                           Container(
                               decoration: BoxDecoration(
                                 border:
-                                    Border.all(color: Colors.black, width: 1),
-                                borderRadius: BorderRadius.circular(15),
-                                color: _selectedIndex == 0
-                                    ? const Color.fromRGBO(0, 0, 0, 1)
-                                    : Colors.white,
+                                    Border(bottom: BorderSide(color: _selectedIndex == 0 ? Colors.black : Colors.white, width:_selectedIndex == 0 ? 2 : 0)),
+
+                                // color: _selectedIndex == 0
+                                //     ? const Color.fromRGBO(0, 0, 0, 1)
+                                //     : Colors.white,
                               ),
                               height: 30,
-                              width: 130,
+                              width: (w-40)/2,
                               child: Center(
                                   child: Text(
                                 "Today",
-                                style: _selectedIndex == 0
-                                    ? todayTextStyle
-                                    : todayTextStyleBlack,
+                                style:
+                                  todayTextStyleBlack,
                               ))),
                         ],
                       ),
@@ -90,20 +90,18 @@ class _LiveCallsCompletedVerticleTile
                           Container(
                               decoration: BoxDecoration(
                                 border:
-                                    Border.all(color: Colors.black, width: 1),
-                                borderRadius: BorderRadius.circular(15),
-                                color: _selectedIndex == 1
-                                    ? Colors.black
-                                    : Colors.white,
+                                Border(bottom: BorderSide(color: _selectedIndex == 1? Colors.black : Colors.white, width:_selectedIndex == 1 ? 2 : 0)),
+
+                                // color: _selectedIndex == 0
+                                //     ? const Color.fromRGBO(0, 0, 0, 1)
+                                //     : Colors.white,
                               ),
                               height: 30,
-                              width: 130,
+                              width: (w-40)/2,
                               child: Center(
                                   child: Text(
                                 "Previous",
-                                style: _selectedIndex == 1
-                                    ? todayTextStyle
-                                    : todayTextStyleBlack,
+                                style: todayTextStyleBlack,
                               ))),
                         ],
                       ),
@@ -111,10 +109,7 @@ class _LiveCallsCompletedVerticleTile
                   ],
                 ),
 
-                Divider(
-                  color: kprimaryTextColor,
-                  thickness: 1,
-                ),
+                SizedBox(height: 5,),
                 Container(
                     height: 40,
                     margin: const EdgeInsets.all(8.0),
@@ -158,7 +153,9 @@ class _LiveCallsCompletedVerticleTile
                                   padding: const EdgeInsets.all(8.0),
                                   decoration: BoxDecoration(
                                     border: Border.all(
-                                        color: Colors.black, width: 1),
+                                        color: livecallsIndex == index
+                                            ? Colors.black
+                                            : Colors.white, width: 1),
                                     borderRadius: BorderRadius.circular(15),
                                     color: livecallsIndex == index
                                         ? kPrimaryBlackColor

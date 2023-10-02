@@ -21,4 +21,4 @@ List<String> casePostSubCategories = [
   "Hired",
   "Canclled",
 ];
-List<String> liveCallsSubcategories = ["Completed", "Canclled", "Not Picked"];
+List<String> liveCallsSubcategories = ["Completed", "Cancelled", "Not Picked"];

@@ -1,6 +1,7 @@
 import 'dart:async';
 
 import 'package:flutter/material.dart';
+import 'package:google_fonts/google_fonts.dart';
 import 'package:jusitfi_admin/presentation/screens/mianpage.dart';
 import 'package:jusitfi_admin/presentation/screens/signup_screen.dart';
 import 'package:jusitfi_admin/presentation/widgets/mobilenumberfield.dart';
@@ -165,7 +166,7 @@ class _LoginScreenState extends State<LoginScreen> {
                           children: [
                             MobileInputTextField(
                                 validate: validate,
-                                title: 'Enter Your Mobile Number',
+                                title: 'Enter your mobile number',
                                 txtController: mobileNumber),
                             SizedBox(
                               height: 50,
@@ -195,7 +196,7 @@ class _LoginScreenState extends State<LoginScreen> {
                                       child: Column(
                                         children: [
                                           const Align(
-                                            alignment: Alignment.topRight,
+                                            alignment: Alignment.topCenter,
                                             child: Text(
                                               'Send otp',
                                               style: TextStyle(
@@ -306,15 +307,42 @@ class _LoginScreenState extends State<LoginScreen> {
                               child: Center(
                                   child: Text(
                                 'Login',
-                                style: kpageTitle,
+                                style: GoogleFonts.outfit(
+                                  color: Colors.black,
+                                  fontStyle: FontStyle.normal,
+                                  fontSize: 18,
+                                  fontWeight: FontWeight.w700,
+                                ),
                               )),
                             ),
                           )),
-                      const TextWithLine(
-                        label: 'New User',
-                        height: 1,
-                        color: Colors.white,
-                      ),
+                      Row(children: <Widget>[
+                        Expanded(
+                          child: Container(
+                              margin: const EdgeInsets.only(left: 10.0, right: 15.0),
+                              child: Divider(
+                                color:Colors.white,
+                                height: 1,
+                              )),
+                        ),
+                        Text(
+                          "New User",
+                          style: TextStyle(
+                            color: Colors.yellow,
+                            fontStyle: FontStyle.normal,
+                            fontSize: 18,
+                            fontWeight: FontWeight.w700,
+                          ),
+                        ),
+                        Expanded(
+                          child: Container(
+                              margin: const EdgeInsets.only(left: 15.0, right: 10.0),
+                              child: Divider(
+                                color:Colors.white,
+                                height: 1,
+                              )),
+                        ),
+                      ]),
                       Column(
                         children: [
                           Padding(
@@ -324,7 +352,7 @@ class _LoginScreenState extends State<LoginScreen> {
                                 removescreens: false,
                                 nextPage: const SignupScreen(),
                                 buttonColor: kbuttonColor,
-                                text: 'Sign Up',
+                                text: 'Register',
                                 width: 150,
                                 height: 40,
                               )),
