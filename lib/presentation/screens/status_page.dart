@@ -35,11 +35,10 @@ class _StatusPageState extends State<StatusPage> {
   ];
   final List<List<Widget>> _verticalTileWidgetList = [
     [
-      const PendingApprovalVerticalTile(),
-      const ScheduledVerticalTile(),
-      const ScheduledMeetCancelledVerticleTile(),
-      const ScheduledMeetCompletedVerticleTile(),
-      const RefundVerticalTile()
+      const LiveCallsCompletedVerticleTile(),
+      const LiveCallsCancelledVerticleTile(),
+      const LiveCallsCancelledVerticleTile(),
+      const LiveCallsCompletedVerticleTile(),
     ],
     [
       const CasePostPendingApplyVerticalTile(),
@@ -48,10 +47,13 @@ class _StatusPageState extends State<StatusPage> {
       const CasePostCancelledVerticalTile(),
     ],
     [
-      const LiveCallsCompletedVerticleTile(),
-      const LiveCallsCancelledVerticleTile(),
-      const LiveCallsCancelledVerticleTile(),
-    ]
+      // const PendingApprovalVerticalTile(),
+      // const ScheduledVerticalTile(),
+      // const ScheduledMeetCancelledVerticleTile(),
+      // const ScheduledMeetCompletedVerticleTile(),
+      // const RefundVerticalTile()
+      Container(), Container(), Container(), Container(), Container(),
+    ],
   ];
 
   void _onCategoryTapped(int index) {
@@ -120,7 +122,7 @@ class _StatusPageState extends State<StatusPage> {
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
             Text(
-              "Call Log",
+              "Status",
               style: klocationLight,
             )
           ],

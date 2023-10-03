@@ -250,18 +250,18 @@ class _WalletPageState extends State<WalletPage> {
               const SizedBox(
                 height: 10,
               ),
-              GestureDetector(
-                  onTap: () {
-                    Navigator.of(context).push(MaterialPageRoute(
-                        builder: (context) => const FrozenCoinBalanceScreen()));
-                  },
-                  child: const FrozenCard(
-                      title: "Frozen Coin ",
-                      value: "8XXX1",
-                      detail: " Coins used to schedule Calls")),
-              const SizedBox(
-                height: 20,
-              ),
+              // GestureDetector(
+              //     onTap: () {
+              //       Navigator.of(context).push(MaterialPageRoute(
+              //           builder: (context) => const FrozenCoinBalanceScreen()));
+              //     },
+              //     child: const FrozenCard(
+              //         title: "Frozen Coin ",
+              //         value: "8XXX1",
+              //         detail: " Coins used to schedule Calls")),
+              // const SizedBox(
+              //   height: 20,
+              // ),
               GestureDetector(
                   onTap: () {},
                   child: const FrozenCard(
@@ -271,7 +271,7 @@ class _WalletPageState extends State<WalletPage> {
               const SizedBox(
                 height: 20,
               ),
-              /*Center(
+              Center(
                   child: Text(
                 "Buy Hiring packages as per your need ",
                 style: alegreyaW700S18Black,
@@ -446,7 +446,7 @@ class _WalletPageState extends State<WalletPage> {
                     ],
                   ),
                 ],
-              ),*/
+              ),
             ])));
   }
 }

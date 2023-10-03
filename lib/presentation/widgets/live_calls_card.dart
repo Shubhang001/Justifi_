@@ -29,6 +29,7 @@ class LiveCallsCard extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    var w=MediaQuery.of(context).size.width;
     return Padding(
       padding: const EdgeInsets.all(8.0),
       child: Container(
@@ -44,28 +45,48 @@ class LiveCallsCard extends StatelessWidget {
                 Image.asset(
                   image,
                 ),
+
                 Column(
+
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
-                    Text(
-                      name,
-                      style: kAdvocateCardNameWhite,
+                    Container(
+padding: EdgeInsets.only(left: 50,bottom: 20),
+                      width: w/2.5,
+                      child: Row(
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                          mainAxisAlignment: MainAxisAlignment.end,
+                          mainAxisSize: MainAxisSize.max,
+                          children: [
+                            RatingBox(rating: rating),
+                          ]),
                     ),
-                    Row(
-                      mainAxisAlignment: MainAxisAlignment.spaceAround,
-                      children: [
-                        Image.asset("assets/icons/location_icon.png"),
-                        Text(
-                          location,
-                          style: kAdvocateCardLocationWhite,
-                        )
-                      ],
-                    )
+Padding(
+  padding: EdgeInsets.only(bottom: 40),
+  child:   Column(
+    crossAxisAlignment: CrossAxisAlignment.start,
+    children: [
+    Text(
+      name,
+      style: kAdvocateCardNameWhite,
+    ),
+    Row(
+      mainAxisAlignment: MainAxisAlignment.spaceAround,
+      children: [
+        Image.asset("assets/icons/location_icon.png"),
+        Text(
+          location,
+          style: kAdvocateCardLocationWhite,
+        )
+      ],
+    )
+
+  ],),
+)
+
                   ],
                 ),
-                Column(children: [
-                  RatingBox(rating: rating),
-                ])
+
               ],
             ),
 

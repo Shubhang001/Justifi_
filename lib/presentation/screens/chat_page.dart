@@ -6,6 +6,7 @@ import 'package:flutter_list_view/flutter_list_view.dart';
 import 'package:image_picker/image_picker.dart';
 import 'package:jusitfi_admin/api/chat/get_chat.dart';
 import 'package:jusitfi_admin/presentation/widgets/drop_down_button.dart';
+
 import 'package:web_socket_channel/io.dart';
 class ChatPage extends StatefulWidget {
   const ChatPage({super.key});
@@ -20,13 +21,21 @@ class _ChatPageState extends State<ChatPage> {
   List<Widget> message=[];
  var yourtoken="";
  var channel;
+ var focusnode=FocusNode();
+ bool autofocusvar=false;
  TextEditingController messagecontroller =new TextEditingController();
 
+  bool isreply=false;
+  var replytextdisplay="";
+  var gotoindex=0;
+  var templastvar='';
+  var replyid=0;
 
 
   makeconnection()  async {
     var resp= await getchat(1);
     print(resp);
+    var count=0;
     for(Map<String,dynamic> i in resp){
 
       if(i['sender']=='36'){
@@ -36,7 +45,21 @@ class _ChatPageState extends State<ChatPage> {
                 mainAxisAlignment: MainAxisAlignment.start,
                 mainAxisSize: MainAxisSize.min,
                 children: [
-                  Icon(Icons.reply,color: Colors.black,size: 20,),
+                  IconButton(onPressed: (){
+
+          FocusScope.of(context).requestFocus(focusnode);
+          setState(() {
+
+          isreply=true;
+          replytextdisplay=i['content']['text'].toString();
+          gotoindex=count;
+replyid=i['id'].toInt();
+
+          });
+
+
+
+          }, icon: Icon(Icons.reply)),
                   Container(
 
                       padding: EdgeInsets.symmetric(vertical: 5,horizontal: 9),
@@ -73,7 +96,17 @@ class _ChatPageState extends State<ChatPage> {
                   mainAxisAlignment: MainAxisAlignment.end,
                   mainAxisSize: MainAxisSize.min,
                   children: [
-                    Icon(Icons.reply,color: Colors.black,size: 20,),
+                    IconButton(onPressed: (){
+
+                      FocusScope.of(context).requestFocus(focusnode);
+                      setState(() {
+                        isreply=true;
+                        replytextdisplay=i['content']['text'].toString();
+                        gotoindex=message.length+1;
+                      });
+
+
+                    }, icon: Icon(Icons.reply)),
                     Container(
 
                       padding: EdgeInsets.symmetric(vertical: 10,horizontal: 20),
@@ -101,11 +134,13 @@ class _ChatPageState extends State<ChatPage> {
             ],
           ));
           message.add(SizedBox(height: 10,));
+
         });
 
 
 
       }
+      count++;
 
 
     }
@@ -127,6 +162,7 @@ class _ChatPageState extends State<ChatPage> {
          mainAxisAlignment: MainAxisAlignment.start,
          mainAxisSize: MainAxisSize.min,
          children: [
+
            Container(
                padding: EdgeInsets.symmetric(vertical: 5,horizontal: 9),
                decoration: BoxDecoration(border: Border.all(width: 1,color: Colors.black,),
@@ -138,7 +174,7 @@ class _ChatPageState extends State<ChatPage> {
                    Text(msg['data']['content']['text'],style: TextStyle(color: Colors.black),),
                  ],
                )),
-           Icon(Icons.reply,color: Colors.black,size: 20,),
+
          ],
        ));
        message.insert(0,SizedBox(height: 10,));
@@ -247,12 +283,16 @@ yourtoken='0f464ab809733c1e19c02d50a1e7be04c86d74a0';
            child: Container(
 child:ListView.builder(
 
+
   reverse: true,
 
     itemCount: message.length,
     itemBuilder: (BuildContext context, int index) {
   return message[index];
-    },)
+    },
+
+
+)
          ),
        )
 
@@ -262,125 +302,281 @@ child:ListView.builder(
 
        ) ],
       ),
-      bottomSheet: Row(
+      bottomSheet: Column(
+        mainAxisSize: MainAxisSize.min,
+        mainAxisAlignment: MainAxisAlignment.end,
         children: [
-          Container(
-            margin: const EdgeInsets.symmetric(vertical: 10, horizontal: 2),
-            padding: const EdgeInsets.all(5),
-            decoration: const BoxDecoration(
-                color: Colors.black,
-                borderRadius: BorderRadius.all(
-                  Radius.circular(50),
-                )),
-            child: IconButton(
-              onPressed: () async {
-                final ImagePicker picker = ImagePicker();
-                final XFile? image =
-                await picker.pickImage(source: ImageSource.gallery);
-                if (image != null) {
-                  debugPrint(image.path);
-                }
-              },
-              icon: const Icon(
-                Icons.add,
-                color: Colors.white,
-              ),
-            ),
-          ),
-          Expanded(
+
+
+          Visibility(
+            visible: isreply,
             child: Container(
+                width: w,
 
-              padding: const EdgeInsets.all(5),
-              margin: const EdgeInsets.symmetric(vertical: 10, horizontal: 2),
-               height: 60,
-              decoration: const BoxDecoration(
-                color: Colors.black,
-                borderRadius: BorderRadius.all(
-                  Radius.circular(25),
+                padding: EdgeInsets.all(10),
+                decoration: BoxDecoration(
+                    color: Colors.black.withOpacity(0.8),
+                  borderRadius: BorderRadius.only(topRight: Radius.circular(10),topLeft:Radius.circular(10) )
                 ),
-              ),
-              child:  Expanded(
-                child: TextField(
 
-                  minLines: 1,
-                  maxLines: 100,
+                child: Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                  children: [
+                    Text(replytextdisplay,style: TextStyle(color: Colors.white),),
+                    IconButton(onPressed: (){
 
-                  style: TextStyle(color: Colors.white),
-                  decoration: InputDecoration(
-                    
-                    border: OutlineInputBorder(borderSide: BorderSide.none),
-                    hintText: "message",
-                    hintStyle: TextStyle(color: Colors.grey),
-                    contentPadding: EdgeInsets.all(10),
-                    suffixIcon: IconButton(
+                      setState(() {
+                        isreply=false;
+                        replytextdisplay='';
+                      });
 
-                      color: Colors.white, onPressed: () {
-
-                      if (messagecontroller.text.isNotEmpty) {
-                        channel.sink.add(
-
-
-                          jsonEncode(  {
-    "type":"chat_message",
-    "case_connect_id":1,
-    "content":{
-    "text":messagecontroller.text
-    }})
-                        );
-
-                        setState(() {
-                          message.insert(0,SizedBox(height: 10,));
-                          message.insert(0,Align(
-                            alignment: Alignment.centerRight,
-                            child: Column(
-                              mainAxisAlignment: MainAxisAlignment.end,
-                              children: [
-
-                                Row(
-                                  mainAxisAlignment: MainAxisAlignment.end,
-                                  mainAxisSize: MainAxisSize.min,
-                                  children: [
-                                    Icon(Icons.reply,color: Colors.black,size: 20,),
-                                    Container(
-                                      padding: EdgeInsets.symmetric(vertical: 10,horizontal: 10),
-                                      decoration: BoxDecoration(
-                                          borderRadius: BorderRadius.circular(5),color: Colors.black
-                                      ),
-                                      child:  Row(
-                                        children: [
-                                          Text(messagecontroller.text,textAlign: TextAlign.center,style: TextStyle(height: .5,color: Colors.white),),
-                                          SizedBox(width: 10,),
-                                          Icon(Icons.done,color: Colors.white,size: 10,)
-                                        ],
-                                      ),)
-                                  ],
-                                ),
-                                SizedBox(height: 10,),
-                                Text("Just Now",textAlign: TextAlign.center,style: TextStyle(height: .5,color: Colors.black),),
-
-
-                              ],
-                            ),
-                          )
-
-
-                          );
-
-                          messagecontroller.text="";
-
-
-                        });
-
-                      }
-
-                    }, icon: Icon(Icons.send,),
-                    ),
-
+                    }, icon: Icon(Icons.cancel,color: Colors.white,))
+                  ],
+                )),
+          ),
+          Row(
+            children: [
+              Container(
+                margin: const EdgeInsets.symmetric(vertical: 10, horizontal: 2),
+                padding: const EdgeInsets.all(5),
+                decoration: const BoxDecoration(
+                    color: Colors.black,
+                    borderRadius: BorderRadius.all(
+                      Radius.circular(50),
+                    )),
+                child: IconButton(
+                  onPressed: () async {
+                    final ImagePicker picker = ImagePicker();
+                    final XFile? image =
+                    await picker.pickImage(source: ImageSource.gallery);
+                    if (image != null) {
+                      debugPrint(image.path);
+                    }
+                  },
+                  icon: const Icon(
+                    Icons.add,
+                    color: Colors.white,
                   ),
-                  controller: messagecontroller,
                 ),
               ),
-            ),
+              Expanded(
+                child: Container(
+
+                  padding: const EdgeInsets.all(5),
+                  margin: const EdgeInsets.symmetric(vertical: 10, horizontal: 2),
+                   height: 60,
+                  decoration: const BoxDecoration(
+                    color: Colors.black,
+                    borderRadius: BorderRadius.all(
+                      Radius.circular(25),
+                    ),
+                  ),
+                  child:  Column(
+                    children: [
+
+                      Expanded(
+                        child: TextField(
+                          autofocus: autofocusvar,
+focusNode: focusnode,
+                          minLines: 1,
+                          maxLines: 100,
+
+                          style: TextStyle(color: Colors.white),
+                          decoration: InputDecoration(
+
+                            border: OutlineInputBorder(borderSide: BorderSide.none),
+                            hintText: "message",
+                            hintStyle: TextStyle(color: Colors.grey),
+                            contentPadding: EdgeInsets.all(10),
+                            suffixIcon: IconButton(
+
+                              color: Colors.white, onPressed: () {
+
+                              if (messagecontroller.text.isNotEmpty) {
+                                if(isreply==false){
+
+
+                                  channel.sink.add(
+
+
+                                      jsonEncode(  {
+                                        "type":"chat_message",
+                                        "case_connect_id":1,
+                                        "content":{
+                                          "text":messagecontroller.text
+                                        }})
+                                  );
+
+                                  setState(() {
+                                    message.insert(0,SizedBox(height: 10,));
+                                    message.insert(0,Align(
+                                      alignment: Alignment.centerRight,
+                                      child: Column(
+                                        mainAxisAlignment: MainAxisAlignment.end,
+                                        children: [
+
+                                          Row(
+                                            mainAxisAlignment: MainAxisAlignment.end,
+                                            mainAxisSize: MainAxisSize.min,
+                                            children: [
+
+                                              Container(
+                                                padding: EdgeInsets.symmetric(vertical: 10,horizontal: 10),
+                                                decoration: BoxDecoration(
+                                                    borderRadius: BorderRadius.circular(5),color: Colors.black
+                                                ),
+                                                child:  Row(
+                                                  children: [
+                                                    Text(messagecontroller.text,textAlign: TextAlign.center,style: TextStyle(height: .5,color: Colors.white),),
+                                                    SizedBox(width: 10,),
+                                                    Icon(Icons.done,color: Colors.white,size: 10,)
+                                                  ],
+                                                ),)
+                                            ],
+                                          ),
+                                          SizedBox(height: 10,),
+                                          Text("Just Now",textAlign: TextAlign.center,style: TextStyle(height: .5,color: Colors.black),),
+
+
+                                        ],
+                                      ),
+                                    )
+
+
+                                    );
+
+                                    messagecontroller.text="";
+
+
+                                  });
+
+                                }
+                                else{
+
+
+                                  channel.sink.add(
+
+
+                                      jsonEncode(  {
+                                        "type":"chat_message",
+                                        "case_connect_id":1,
+                                        "content":{
+                                          "text":messagecontroller.text
+                                        }})
+                                  );
+
+                                  setState(() {
+                                    message.insert(0,SizedBox(height: 10,));
+                                    message.insert(0,Align(
+                                      alignment: Alignment.centerRight,
+                                      child:Column(
+                                        crossAxisAlignment: CrossAxisAlignment.end,
+                                        children: [
+                                          Row(
+                                            mainAxisAlignment: MainAxisAlignment.end,
+                                            mainAxisSize: MainAxisSize.min,
+                                            children: [
+                                              IconButton(onPressed: (){
+
+                                                FocusScope.of(context).requestFocus(focusnode);
+                                                setState(() {
+                                                  isreply=true;
+                                                  replytextdisplay=templastvar;
+                                                });
+                                                scrollmyscreen(gotoindex);
+
+
+                                              }, icon: Icon(Icons.reply)),
+                                              Container(
+                                                width: 100,
+                                                height: 75,
+                                                decoration: BoxDecoration(
+
+                                                    borderRadius: BorderRadius.all(Radius.circular(5)),
+                                                    color: Colors.black.withOpacity(0.5)),
+                                                child: Column(
+                                                mainAxisAlignment: MainAxisAlignment.end,
+
+                                                children: [
+
+
+                                                  Padding(
+                                                    padding: const EdgeInsets.all(5.0),
+                                                    child: Text(replytextdisplay,style: TextStyle(
+                                                      overflow: TextOverflow.ellipsis,
+                                                        height:2,color: Colors.white),),
+                                                  ),
+
+                                                  Row(
+                                                    mainAxisAlignment: MainAxisAlignment.end,
+                                                    
+                                                    children: [
+
+                                                      Expanded(
+                                                        child: Container(
+                                                          padding: EdgeInsets.symmetric(vertical: 10,horizontal: 10),
+                                                          decoration: BoxDecoration(
+                                                              borderRadius: BorderRadius.circular(5),color: Colors.black
+                                                          ),
+                                                          child:  Row(
+                                                            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                                                            children: [
+                                                              Text(messagecontroller.text,textAlign: TextAlign.center,style: TextStyle(height: .5,color: Colors.white),),
+
+                                                              Icon(Icons.done,color: Colors.white,size: 10,)
+                                                            ],
+                                                          ),),
+                                                      )
+                                                    ],
+                                                  ),
+
+
+                                                ],
+                                              ),
+
+                                    ),
+                                            ],
+                                          ),
+                                          SizedBox(height: 10,),
+                                          Align(
+                                            alignment: Alignment.centerRight,
+                                              child: Text("Just Now",textAlign: TextAlign.center,style: TextStyle(height: .5,color: Colors.black),)),
+
+
+                                        ],
+                                      )),
+
+
+                                    );
+                                    templastvar=messagecontroller.text;
+                                    messagecontroller.text="";
+                                    replytextdisplay="";
+                                    isreply=false;
+
+
+
+                                  });
+
+
+
+
+                                }
+
+
+                              }
+
+                            }, icon: Icon(Icons.send,),
+                            ),
+
+                          ),
+                          controller: messagecontroller,
+                        ),
+                      ),
+                    ],
+                  ),
+                ),
+              ),
+            ],
           ),
         ],
       ),
@@ -393,6 +589,12 @@ child:ListView.builder(
 channel.sink.close();
 super.dispose();
  }
+
+  Future<void> scrollmyscreen(int count) async {
+
+
+
+  }
 
 
 }

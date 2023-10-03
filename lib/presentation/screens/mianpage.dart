@@ -84,11 +84,12 @@ class _MainPageState extends State<MainPage> {
         unselectedLabelStyle: kNavLabel,
         items: <BottomNavigationBarItem>[
           BottomNavigationBarItem(
-            icon: Image.asset(
-              'assets/nav_icons/home.png',
-              width: 40,
-              height: 40,
-            ),
+            icon: Icon(Icons.home_outlined,size: 40,),
+            // icon: Image.asset(
+            //   'assets/nav_icons/home.png',
+            //   width: 30,
+            //   height: 30,
+            // ),
             label: 'Home',
           ),
           BottomNavigationBarItem(
@@ -116,11 +117,12 @@ class _MainPageState extends State<MainPage> {
             label: 'Wallet',
           ),
           BottomNavigationBarItem(
-            icon: Image.asset(
-              'assets/nav_icons/message.png',
-              width: 40,
-              height: 40,
-            ),
+            icon: Icon(Icons.chat_outlined,size: 35,),
+            // icon: Image.asset(
+            //   'assets/nav_icons/message.png',
+            //   width: 30,
+            //   height: 30,
+            // ),
             label: 'Message',
           ),
         ],

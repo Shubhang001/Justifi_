@@ -43,7 +43,7 @@ class CasePostCancelledVerticalTile extends StatelessWidget {
                     width: 10,
                   ),
                 ]),
-                const CasePostCancelledCard(
+                CasePostCancelledCard(
                   fees: '1024',
                   name: "Priya Sharma",
                   image: 'assets/images/advocate_img.png',
