@@ -6,6 +6,7 @@ import 'package:jusitfi_admin/presentation/screens/message_page.dart';
 import 'package:jusitfi_admin/presentation/screens/status_page.dart';
 import 'package:jusitfi_admin/presentation/screens/wallet_page.dart';
 import 'package:jusitfi_admin/presentation/widgets/noservice.dart';
+import 'package:jusitfi_admin/presentation/widgets/videocall.dart';
 import 'package:jusitfi_admin/utils/constants/textstyles.dart';
 
 class MainPage extends StatefulWidget {
@@ -27,7 +28,7 @@ class _MainPageState extends State<MainPage> {
 
   final List<Widget> _widgetOptions = <Widget>[
     const HomePage(),
-    const DialogService1(),
+    const FloatCases(),
     const StatusPage(),
     const WalletPage(
         userName: "Sangeeta Rai",

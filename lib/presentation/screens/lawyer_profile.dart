@@ -9,7 +9,6 @@ import 'package:http/http.dart' as http;
 import '../widgets/show_call_details.dart';
 import '../widgets/show_call_dialog.dart';
 import '../widgets/view_document_dialog_box.dart';
-import 'assignwork_lawyer_profile.dart';
 import 'schedule3.dart';
 import 'package:url_launcher/url_launcher.dart';
 
