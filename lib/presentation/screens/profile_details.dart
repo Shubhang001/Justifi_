@@ -6,44 +6,54 @@ class ProfileDetails extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      body: SingleChildScrollView(
-        child: Column(
-          children: [
-            const ProfileNavBar(),
-            Container(
-              margin: const EdgeInsets.only(top: 20),
-              child: const CircleAvatar(
-                radius: 50,
-                backgroundColor: Colors.grey,
+    return SafeArea(
+      child: Scaffold(
+        body: SingleChildScrollView(
+          child: Column(
+            children: [
+               Container(
+                 color: Colors.black,
+                 child: Row(
+                 mainAxisAlignment: MainAxisAlignment.start,
+                 children: [IconButton( onPressed: () {
+
+
+                   Navigator.of(context).pop();
+                 }, icon:Icon(Icons.arrow_back,color:Colors.white),)],),),
+              Container(
+                margin: const EdgeInsets.only(top: 20),
+                child: const CircleAvatar(
+                  radius: 50,
+                  backgroundColor: Colors.grey,
+                ),
               ),
-            ),
-            const InfoTile(
-              tileName: "First name :",
-              content: "Syed ",
-            ),
-            const InfoTile(
-              tileName: "Last name :",
-              content: "Johan",
-            ),
-            const InfoTile(
-              tileName: "Email :",
-              content: "syedjohan@gmail.com",
-            ),
-            const InfoTile(
-              tileName: "Address  :",
-              content:
-                  "      MR road , Retul nagar - 9886 MN road\n     Chennai , 78987",
-            ),
-            const InfoTile(
-              tileName: "Gender : ",
-              content: "KElee",
-            ),
-            const InfoTile(
-              tileName: "Mobile number :",
-              content: "KElee",
-            ),
-          ],
+              const InfoTile(
+                tileName: "First name :",
+                content: "Syed ",
+              ),
+              const InfoTile(
+                tileName: "Last name :",
+                content: "Johan",
+              ),
+              const InfoTile(
+                tileName: "Email :",
+                content: "syedjohan@gmail.com",
+              ),
+              const InfoTile(
+                tileName: "Date of Birth :",
+                content:
+                    "      20/01/1985",
+              ),
+              const InfoTile(
+                tileName: "Gender : ",
+                content: "KElee",
+              ),
+              const InfoTile(
+                tileName: "Mobile number :",
+                content: "KElee",
+              ),
+            ],
+          ),
         ),
       ),
     );

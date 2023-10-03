@@ -1,9 +1,11 @@
 class StatusPageConstant {}
 
 List<String> statusPageCategories = [
-  "Scheduled Meet",
+  "Live Calls",
+
   "Case Post",
-  "Live Calls"
+  "Scheduled Meet",
+
 ];
 
 List<String> scheduledMeetSubCategories = [
@@ -19,4 +21,4 @@ List<String> casePostSubCategories = [
   "Hired",
   "Canclled",
 ];
-List<String> liveCallsSubcategories = ["Completed", "Canclled", "Not Picked"];
+List<String> liveCallsSubcategories = ["Completed", "Cancelled", "Not Picked"];
