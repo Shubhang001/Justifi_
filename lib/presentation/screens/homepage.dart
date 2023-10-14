@@ -219,21 +219,23 @@ class _HomePageState extends State<HomePage> {
                       ),
                     ),
                     Positioned(
-                        top: 450,
-                        right: 10,
-                        child: TextButton(
-                            onPressed: () {
-                              Navigator.of(context)
-                                  .push(MaterialPageRoute(builder: (_) {
-                                return const ViewAllPage(
-                                  title: 'Lawyers Near Me',
-                                );
-                              }));
-                            },
-                            child: Text(
-                              'View All',
-                              style: kViewAll,
-                            ))),
+                      top: 450,
+                      right: 10,
+                      child: TextButton(
+                        onPressed: () {
+                          Navigator.of(context)
+                              .push(MaterialPageRoute(builder: (_) {
+                            return const ViewAllPage(
+                              title: 'Lawyers Near Me',
+                            );
+                          }));
+                        },
+                        child: Text(
+                          'View All',
+                          style: kViewAll,
+                        ),
+                      ),
+                    ),
                     const Positioned(
                       top: 500,
                       child: HorizontalTiles(
@@ -241,21 +243,23 @@ class _HomePageState extends State<HomePage> {
                       ),
                     ),
                     Positioned(
-                        top: 780,
-                        right: 10,
-                        child: TextButton(
-                            onPressed: () {
-                              Navigator.of(context)
-                                  .push(MaterialPageRoute(builder: (_) {
-                                return const ViewAllPage(
-                                  title: 'Popular Lawyers',
-                                );
-                              }));
-                            },
-                            child: Text(
-                              'View All',
-                              style: kViewAll,
-                            )))
+                      top: 780,
+                      right: 10,
+                      child: TextButton(
+                        onPressed: () {
+                          Navigator.of(context)
+                              .push(MaterialPageRoute(builder: (_) {
+                            return const ViewAllPage(
+                              title: 'Popular Lawyers',
+                            );
+                          }));
+                        },
+                        child: Text(
+                          'View All',
+                          style: kViewAll,
+                        ),
+                      ),
+                    ),
                   ]),
                 ],
               ),
