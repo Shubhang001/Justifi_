@@ -320,20 +320,20 @@ class _HomePageState extends State<HomePage> {
                                                     style: kAdvocateCardName,
                                                   ),
                                                   const SizedBox(height: 5.0),
-                                                  Row(
-                                                    children: [
-                                                      const Icon(
-                                                        Icons.pin_drop,
-                                                        color: Colors.red,
-                                                        size: 20,
-                                                      ),
-                                                      Text(
-                                                        '5 kms from your location',
-                                                        style:
-                                                            kAdvocateCardLocation,
-                                                      )
-                                                    ],
-                                                  )
+                                                  // Row(
+                                                  //   children: [
+                                                  //     const Icon(
+                                                  //       Icons.pin_drop,
+                                                  //       color: Colors.red,
+                                                  //       size: 20,
+                                                  //     ),
+                                                  //     Text(
+                                                  //       '5 kms from your location',
+                                                  //       style:
+                                                  //           kAdvocateCardLocation,
+                                                  //     )
+                                                  //   ],
+                                                  // ),
                                                 ],
                                               ),
                                               Column(

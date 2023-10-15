@@ -82,6 +82,7 @@ class _ViewAllPageState extends State<ViewAllPage> {
                       itemCount: 5,
                       itemBuilder: (context, index) {
                         return Container(
+                          margin: EdgeInsets.only(bottom:8),
                           height: 300,
                           width: 300,
                           decoration: BoxDecoration(
@@ -137,20 +138,20 @@ class _ViewAllPageState extends State<ViewAllPage> {
                                                 'Sakshi',
                                                 style: kAdvocateCardName,
                                               ),
-                                              Row(
-                                                children: [
-                                                  const Icon(
-                                                    Icons.pin_drop,
-                                                    color: Colors.red,
-                                                    size: 10,
-                                                  ),
-                                                  Text(
-                                                    '5 kms from your location',
-                                                    style:
-                                                        kAdvocateCardLocation,
-                                                  )
-                                                ],
-                                              ),
+                                              // Row(
+                                              //   children: [
+                                              //     const Icon(
+                                              //       Icons.pin_drop,
+                                              //       color: Colors.red,
+                                              //       size: 10,
+                                              //     ),
+                                              //     Text(
+                                              //       '5 kms from your location',
+                                              //       style:
+                                              //           kAdvocateCardLocation,
+                                              //     )
+                                              //   ],
+                                              // ),
                                             ],
                                           ),
                                           Column(
