@@ -29,7 +29,7 @@ class _MainPageState extends State<MainPage> {
   final List<Widget> _widgetOptions = <Widget>[
     const HomePage(),
     const FloatCases(),
-    const StatusPage(),
+    const MyVideoCall(),
     const WalletPage(
         userName: "Sangeeta Rai",
         userImage: "assets/images/user_image.png",
@@ -84,7 +84,10 @@ class _MainPageState extends State<MainPage> {
         unselectedLabelStyle: kNavLabel,
         items: <BottomNavigationBarItem>[
           BottomNavigationBarItem(
-            icon: Icon(Icons.home_outlined,size: 40,),
+            icon: Icon(
+              Icons.home_outlined,
+              size: 40,
+            ),
             // icon: Image.asset(
             //   'assets/nav_icons/home.png',
             //   width: 30,
@@ -117,7 +120,10 @@ class _MainPageState extends State<MainPage> {
             label: 'Wallet',
           ),
           BottomNavigationBarItem(
-            icon: Icon(Icons.chat_outlined,size: 35,),
+            icon: Icon(
+              Icons.chat_outlined,
+              size: 35,
+            ),
             // icon: Image.asset(
             //   'assets/nav_icons/message.png',
             //   width: 30,
