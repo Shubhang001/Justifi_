@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:jusitfi_admin/presentation/screens/notification_page.dart';
 import 'package:jusitfi_admin/utils/constants/textstyles.dart';
 // import 'package:justifi_advocate/presentation/screens/signup/signup_details.dart';
 // import 'package:justifi_advocate/presentation/widgets/custom_app_bar_profile.dart';
@@ -34,8 +35,45 @@ class _LawyerProfileScreenState extends State<LawyerProfileScreen>
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      // appBar: buildAppBar(),
-      //appBar: const CustomAppBarProfile(title: "Lawyer Profile",),
+      appBar: AppBar(
+        centerTitle: true,
+        elevation: 0,
+        backgroundColor: Colors.black,
+        actions: [
+          Padding(
+            padding: EdgeInsets.only(left: 20, right: 30, top: 10, bottom: 10),
+            child: Row(
+              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+              children: [
+                InkWell(
+                  onTap: () {
+                    Navigator.push(
+                      context,
+                      MaterialPageRoute(
+                        builder: (context) => NotificationsPage(),
+                      ),
+                    );
+                  },
+                  child: Icon(
+                    Icons.notifications_outlined,
+                    color: Colors.white,
+                    size: 35,
+                  ),
+                )
+              ],
+            ),
+          ),
+        ],
+        title: Row(
+          mainAxisAlignment: MainAxisAlignment.center,
+          children: [
+            Text(
+              "Profile",
+              style: klocationLight,
+            )
+          ],
+        ),
+      ),
       body: SafeArea(
         child: Column(
           children: [
