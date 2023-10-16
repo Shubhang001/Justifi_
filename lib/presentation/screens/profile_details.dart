@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:jusitfi_admin/presentation/screens/notification_page.dart';
 import 'package:jusitfi_admin/presentation/widgets/profile_appbar.dart';
+import 'package:jusitfi_admin/utils/constants/textstyles.dart';
 
 class ProfileDetails extends StatelessWidget {
   const ProfileDetails({super.key});
@@ -8,18 +10,64 @@ class ProfileDetails extends StatelessWidget {
   Widget build(BuildContext context) {
     return SafeArea(
       child: Scaffold(
+        appBar: AppBar(
+          centerTitle: true,
+          elevation: 0,
+          backgroundColor: Colors.black,
+          actions: [
+            Padding(
+              padding:
+                  EdgeInsets.only(left: 20, right: 30, top: 10, bottom: 10),
+              child: Row(
+                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                children: [
+                  InkWell(
+                    onTap: () {
+                      Navigator.push(
+                        context,
+                        MaterialPageRoute(
+                          builder: (context) => NotificationsPage(),
+                        ),
+                      );
+                    },
+                    child: Icon(
+                      Icons.notifications_outlined,
+                      color: Colors.white,
+                      size: 35,
+                    ),
+                  )
+                ],
+              ),
+            ),
+          ],
+          title: Row(
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: [
+              Text(
+                "Profile Details",
+                style: klocationLight,
+              )
+            ],
+          ),
+        ),
         body: SingleChildScrollView(
           child: Column(
             children: [
-               Container(
-                 color: Colors.black,
-                 child: Row(
-                 mainAxisAlignment: MainAxisAlignment.start,
-                 children: [IconButton( onPressed: () {
-
-
-                   Navigator.of(context).pop();
-                 }, icon:Icon(Icons.arrow_back,color:Colors.white),)],),),
+              // Container(
+              //   color: Colors.black,
+              //   child: Row(
+              //     mainAxisAlignment: MainAxisAlignment.start,
+              //     children: [
+              //       IconButton(
+              //         onPressed: () {
+              //           Navigator.of(context).pop();
+              //         },
+              //         icon: Icon(Icons.arrow_back, color: Colors.white),
+              //       ),
+              //       Text('data',style: klocationLight,)
+              //     ],
+              //   ),
+              // ),
               Container(
                 margin: const EdgeInsets.only(top: 20),
                 child: const CircleAvatar(
@@ -41,8 +89,7 @@ class ProfileDetails extends StatelessWidget {
               ),
               const InfoTile(
                 tileName: "Date of Birth :",
-                content:
-                    "      20/01/1985",
+                content: "      20/01/1985",
               ),
               const InfoTile(
                 tileName: "Gender : ",
