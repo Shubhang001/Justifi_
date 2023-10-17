@@ -494,41 +494,46 @@ class Qualification extends StatelessWidget {
               mainAxisAlignment: MainAxisAlignment.center,
               children: [
                 // Degree and logo
-                Column(
-                  mainAxisAlignment: MainAxisAlignment.center,
-                  children: [
-                    Text(
-                      'Degree',
-                      style: TextStyle(
-                          fontWeight: FontWeight.bold, fontSize: 18),
-                    ),
-                    SizedBox(
-                      width: 60,
-                      child: Image.asset('assets/icons/graduation.png'),
-                    ),
-                  ],
-                ),
-                // university
-                Expanded(
-                  child: Text(
-                    'university',
-                    textAlign: TextAlign.center,
-                    maxLines: 2,
-                    style: TextStyle(
-                      fontWeight: FontWeight.bold,
-                      fontSize: 18,
-                    ),
-                  ),
-                ),
-                // studyfield
                 Expanded(
                   child: Column(
                     mainAxisAlignment: MainAxisAlignment.center,
                     children: [
+                      Padding(
+                        padding: EdgeInsets.only(bottom: MediaQuery.of(context).size.height*0.035),
+                        child: const Text(
+                          'Degree',
+                          style:
+                              TextStyle(fontWeight: FontWeight.bold, fontSize: 18),
+                        ),
+                      ),
+                      SizedBox(
+                        width: 75,
+                        child: Image.asset('assets/icons/graduation.png'),
+                      ),
+                    ],
+                  ),
+                ),
+                // university
+                Expanded(
+                  flex: 2,
+                  child: Column(
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                      const Text(
+                        'Indian scool of Law',
+                        textAlign: TextAlign.center,
+                        maxLines: 2,
+                        style: TextStyle(
+                          fontWeight: FontWeight.bold,
+                          fontSize: 18,
+                        ),
+                      ),
+                      // studyfield
                       const Padding(
                         padding: EdgeInsets.only(top: 10.0),
                         child: Text(
-                          "studyfield",
+                          "Commercial appeal",
                           maxLines: 2,
                         ),
                       ),
@@ -536,25 +541,25 @@ class Qualification extends StatelessWidget {
                       const Padding(
                         padding: EdgeInsets.only(top: 10.0),
                         child: Text(
-                          "20/10/2021\nto\n20/10/2023",
+                          "August 2021 to August 2023",
                           textAlign: TextAlign.center,
                           maxLines: 3,
                         ),
                       ),
-                    ],
-                  ),
-                ),
-
-                //button
-                Expanded(
-                  child: ElevatedButton(
-                    onPressed: () {},
-                    child: Text(
-                      "Certificate",
-                      style: TextStyle(
-                        color: Colors.white,
+                      //button
+                      Align(
+                        alignment: Alignment.bottomRight,
+                        child: ElevatedButton(
+                          onPressed: () {},
+                          child: const Text(
+                            "Certificate",
+                            style: TextStyle(
+                              color: Colors.white,
+                            ),
+                          ),
+                        ),
                       ),
-                    ),
+                    ],
                   ),
                 ),
               ],
