@@ -198,7 +198,7 @@ class _DetailSectionState extends State<DetailSection>
   @override
   Widget build(BuildContext context) {
     _tabController = TabController(
-      initialIndex: 0,
+      initialIndex: 1,
       vsync: this,
       length: 3,
     );
@@ -353,12 +353,12 @@ class Qualification extends StatelessWidget {
         itemCount: 3,
         itemBuilder: (context, index) {
           return Container(
-            padding: const EdgeInsets.symmetric(horizontal: 10),
+            padding: const EdgeInsets.only(right: 10, left: 10),
             margin: const EdgeInsets.symmetric(
               horizontal: 10,
               vertical: 15,
             ),
-            height: 135,
+            constraints: BoxConstraints(minHeight: 180, maxHeight: 210),
             width: double.infinity,
             decoration: const BoxDecoration(
               color: Color.fromRGBO(169, 169, 169, 1),
@@ -376,57 +376,185 @@ class Qualification extends StatelessWidget {
                 Radius.circular(20),
               ),
             ),
+            // child: FittedBox(
+            //   fit: BoxFit.contain,
+            //   child: Column(
+            //     mainAxisAlignment: MainAxisAlignment.start,
+            //     crossAxisAlignment: CrossAxisAlignment.start,
+            //     children: [
+            //       const Padding(
+            //         padding: EdgeInsets.fromLTRB(16.0, 14.0, 8.0, 0.0),
+            //         child: SizedBox(
+            //           width: 210,
+            //           child: Text(
+            //             'degree',
+            //             style: TextStyle(
+            //                 fontWeight: FontWeight.bold, fontSize: 18),
+            //           ),
+            //         ),
+            //       ),
+            //       Row(
+            //         children: [
+            //           Container(
+            //             constraints: const BoxConstraints(
+            //                 minWidth: 30, maxWidth: 70, minHeight: 45),
+            //             child: Image.asset('assets/icons/graduation.png'),
+            //           ),
+            //           const Padding(
+            //             padding: EdgeInsets.fromLTRB(20.0, 10.0, 0.0, 20.0),
+            //             child: Column(
+            //               crossAxisAlignment: CrossAxisAlignment.start,
+            //               children: [
+            //                 SizedBox(
+            //                   width: 255,
+            //                   child: Text(
+            //                     'university',
+            //                     maxLines: 2,
+            //                     style: TextStyle(
+            //                       fontWeight: FontWeight.bold,
+            //                       fontSize: 18,
+            //                     ),
+            //                   ),
+            //                 ),
+            //               ],
+            //             ),
+            //           ),
+            //           const Padding(
+            //             padding: EdgeInsets.only(top: 10.0),
+            //             child: SizedBox(
+            //               width: 210,
+            //               child: Text(
+            //                 "studyfield",
+            //                 maxLines: 2,
+            //               ),
+            //             ),
+            //           ),
+            //           const Padding(
+            //             padding: EdgeInsets.only(top: 10.0),
+            //             child: SizedBox(
+            //               width: 210,
+            //               child: Text(
+            //                 "20/10/2021 to 20/10/2023",
+            //                 maxLines: 2,
+            //               ),
+            //             ),
+            //           ),
+            //           Padding(
+            //             padding: const EdgeInsets.only(top: 12.0, right: 8.0),
+            //             child: Row(
+            //               crossAxisAlignment: CrossAxisAlignment.end,
+            //               mainAxisAlignment: MainAxisAlignment.end,
+            //               children: [
+            //                 const SizedBox(
+            //                   width: 250,
+            //                 ),
+            //                 Padding(
+            //                   padding: const EdgeInsets.fromLTRB(
+            //                       8.0, 12.0, 8.0, 0.0),
+            //                   child: Container(
+            //                     height: 25,
+            //                     width: 100,
+            //                     decoration: const BoxDecoration(
+            //                       color: Colors.green,
+            //                       borderRadius: BorderRadius.all(
+            //                         Radius.circular(20),
+            //                       ),
+            //                     ),
+            //                     child: Align(
+            //                       alignment: Alignment.topRight,
+            //                       child: ElevatedButton(
+            //                         onPressed: () {},
+            //                         child: const Align(
+            //                           alignment: Alignment.center,
+            //                           child: Text(
+            //                             "Certificate",
+            //                             style: TextStyle(
+            //                               color: Colors.white,
+            //                             ),
+            //                           ),
+            //                         ),
+            //                       ),
+            //                     ),
+            //                   ),
+            //                 ),
+            //                 const SizedBox(
+            //                   width: 20,
+            //                 )
+            //               ],
+            //             ),
+            //           ),
+            //         ],
+            //       ),
+            //     ],
+            //   ),
+            // ),
+
             child: Row(
-              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+              crossAxisAlignment: CrossAxisAlignment.center,
+              mainAxisAlignment: MainAxisAlignment.center,
               children: [
-                Row(
+                // Degree and logo
+                Column(
+                  mainAxisAlignment: MainAxisAlignment.center,
                   children: [
-                    Image.asset("assets/images/college3.png"),
-                    Container(
-                      margin: const EdgeInsets.all(20),
-                      child: Column(
-                        crossAxisAlignment: CrossAxisAlignment.start,
-                        children: [
-                          Text(
-                            college[index],
-                            style: const TextStyle(
-                              fontWeight: FontWeight.bold,
-                              fontSize: 18,
-                            ),
-                          ),
-                          Container(
-                            margin: const EdgeInsets.only(top: 15),
-                            child: const Text(
-                              "October 2021- October2022",
-                            ),
-                          )
-                        ],
-                      ),
-                    )
+                    Text(
+                      'Degree',
+                      style: TextStyle(
+                          fontWeight: FontWeight.bold, fontSize: 18),
+                    ),
+                    SizedBox(
+                      width: 60,
+                      child: Image.asset('assets/icons/graduation.png'),
+                    ),
                   ],
                 ),
-                InkWell(
-                  onTap: () {
-                    // showDialog(
-                    //   context: context,
-                    //   builder: (BuildContext context) {
-                    //     return const ViewDocumentDialogBox();
-                    //   },
-                    // );
-                  },
+                // university
+                Expanded(
+                  child: Text(
+                    'university',
+                    textAlign: TextAlign.center,
+                    maxLines: 2,
+                    style: TextStyle(
+                      fontWeight: FontWeight.bold,
+                      fontSize: 18,
+                    ),
+                  ),
+                ),
+                // studyfield
+                Expanded(
                   child: Column(
                     mainAxisAlignment: MainAxisAlignment.center,
-                    crossAxisAlignment: CrossAxisAlignment.center,
                     children: [
-                      Image.asset("assets/images/documnet.png"),
-                      const SizedBox(height: 10),
-                      const Text(
-                        "View",
-                        style: TextStyle(
-                          color: Colors.white,
+                      const Padding(
+                        padding: EdgeInsets.only(top: 10.0),
+                        child: Text(
+                          "studyfield",
+                          maxLines: 2,
+                        ),
+                      ),
+                      //date
+                      const Padding(
+                        padding: EdgeInsets.only(top: 10.0),
+                        child: Text(
+                          "20/10/2021\nto\n20/10/2023",
+                          textAlign: TextAlign.center,
+                          maxLines: 3,
                         ),
                       ),
                     ],
+                  ),
+                ),
+
+                //button
+                Expanded(
+                  child: ElevatedButton(
+                    onPressed: () {},
+                    child: Text(
+                      "Certificate",
+                      style: TextStyle(
+                        color: Colors.white,
+                      ),
+                    ),
                   ),
                 ),
               ],
@@ -435,6 +563,95 @@ class Qualification extends StatelessWidget {
         },
       ),
     );
+    /////////////// OLD QUALIFICATION CODE
+    // SizedBox(
+    //   height: 500,
+    //   child: ListView.builder(
+    //     itemCount: 3,
+    //     itemBuilder: (context, index) {
+    //       return Container(
+    //         padding: const EdgeInsets.symmetric(horizontal: 10),
+    //         margin: const EdgeInsets.symmetric(
+    //           horizontal: 10,
+    //           vertical: 15,
+    //         ),
+    //         height: 135,
+    //         width: double.infinity,
+    //         decoration: const BoxDecoration(
+    //           color: Color.fromRGBO(169, 169, 169, 1),
+    //           boxShadow: [
+    //             BoxShadow(
+    //               color: Colors.black,
+    //               offset: Offset(
+    //                 0.0,
+    //                 2.0,
+    //               ),
+    //             ),
+    //             BoxShadow(color: Colors.black),
+    //           ],
+    //           borderRadius: BorderRadius.all(
+    //             Radius.circular(20),
+    //           ),
+    //         ),
+    //         child: Row(
+    //           mainAxisAlignment: MainAxisAlignment.spaceBetween,
+    //           children: [
+    //             Row(
+    //               children: [
+    //                 Image.asset("assets/images/college3.png"),
+    //                 Container(
+    //                   margin: const EdgeInsets.all(20),
+    //                   child: Column(
+    //                     crossAxisAlignment: CrossAxisAlignment.start,
+    //                     children: [
+    //                       Text(
+    //                         college[index],
+    //                         style: const TextStyle(
+    //                           fontWeight: FontWeight.bold,
+    //                           fontSize: 18,
+    //                         ),
+    //                       ),
+    //                       Container(
+    //                         margin: const EdgeInsets.only(top: 15),
+    //                         child: const Text(
+    //                           "October 2021- October2022",
+    //                         ),
+    //                       )
+    //                     ],
+    //                   ),
+    //                 )
+    //               ],
+    //             ),
+    //             InkWell(
+    //               onTap: () {
+    //                 // showDialog(
+    //                 //   context: context,
+    //                 //   builder: (BuildContext context) {
+    //                 //     return const ViewDocumentDialogBox();
+    //                 //   },
+    //                 // );
+    //               },
+    //               child: Column(
+    //                 mainAxisAlignment: MainAxisAlignment.center,
+    //                 crossAxisAlignment: CrossAxisAlignment.center,
+    //                 children: [
+    //                   Image.asset("assets/images/documnet.png"),
+    //                   const SizedBox(height: 10),
+    //                   const Text(
+    //                     "View",
+    //                     style: TextStyle(
+    //                       color: Colors.white,
+    //                     ),
+    //                   ),
+    //                 ],
+    //               ),
+    //             ),
+    //           ],
+    //         ),
+    //       );
+    //     },
+    //   ),
+    // );
   }
 }
 
