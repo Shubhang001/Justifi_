@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:jusitfi_admin/presentation/screens/float_cases.dart';
+import 'package:jusitfi_admin/presentation/screens/floatcases.dart';
 import 'package:jusitfi_admin/presentation/screens/floatcases2.dart';
 import 'package:jusitfi_admin/presentation/screens/homepage.dart';
 import 'package:jusitfi_admin/presentation/screens/message_page.dart';

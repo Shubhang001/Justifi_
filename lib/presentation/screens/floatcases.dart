@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 
-class MessageScreen extends StatelessWidget {
-  const MessageScreen({super.key});
+class FloatCases extends StatelessWidget {
+  const FloatCases({super.key});
 
   @override
   Widget build(BuildContext context) {
