@@ -38,34 +38,38 @@ class _MainPageState extends State<MainPage> {
   ];
 
   void _onItemTapped(int index) {
-    if (index == 1 || index == 4) {
-      showDialog(
-        context: context,
-        builder: (BuildContext context) {
-          return AlertDialog(
-            shape: const RoundedRectangleBorder(
-              borderRadius: BorderRadius.all(
-                Radius.circular(20.0),
-              ),
-            ),
-            title: const Text('Service Not Available'),
-            content: const Text('Sorry, the service is not available yet.'),
-            actions: [
-              ElevatedButton(
-                child: const Text('OK'),
-                onPressed: () {
-                  Navigator.of(context).pop();
-                },
-              ),
-            ],
-          );
-        },
-      );
-    } else {
-      setState(() {
+    setState(() {
         _selectedIndex = index;
       });
-    }
+    //if (false) {
+      // index == 1 || index == 4
+      // showDialog(
+      //   context: context,
+      //   builder: (BuildContext context) {
+      //     return AlertDialog(
+      //       shape: const RoundedRectangleBorder(
+      //         borderRadius: BorderRadius.all(
+      //           Radius.circular(20.0),
+      //         ),
+      //       ),
+      //       title: const Text('Service Not Available'),
+      //       content: const Text('Sorry, the service is not available yet.'),
+      //       actions: [
+      //         ElevatedButton(
+      //           child: const Text('OK'),
+      //           onPressed: () {
+      //             Navigator.of(context).pop();
+      //           },
+      //         ),
+      //       ],
+      //     );
+      //   },
+      // );
+    // } else {
+    //   setState(() {
+    //     _selectedIndex = index;
+    //   });
+    // }
   }
 
   @override
