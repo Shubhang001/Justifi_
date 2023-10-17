@@ -6,7 +6,6 @@ import 'package:jusitfi_admin/presentation/screens/message_page.dart';
 import 'package:jusitfi_admin/presentation/screens/status_page.dart';
 import 'package:jusitfi_admin/presentation/screens/wallet_page.dart';
 import 'package:jusitfi_admin/presentation/widgets/noservice.dart';
-import 'package:jusitfi_admin/presentation/widgets/videocall.dart';
 import 'package:jusitfi_admin/utils/constants/textstyles.dart';
 
 class MainPage extends StatefulWidget {
@@ -29,7 +28,7 @@ class _MainPageState extends State<MainPage> {
   final List<Widget> _widgetOptions = <Widget>[
     const HomePage(),
     const FloatCases(),
-    const MyVideoCall(),
+    const StatusPage(),
     const WalletPage(
         userName: "Sangeeta Rai",
         userImage: "assets/images/user_image.png",
@@ -109,7 +108,7 @@ class _MainPageState extends State<MainPage> {
               width: 40,
               height: 40,
             ),
-            label: 'Call Log',
+            label: 'Status',
           ),
           BottomNavigationBarItem(
             icon: Image.asset(
@@ -119,7 +118,7 @@ class _MainPageState extends State<MainPage> {
             ),
             label: 'Wallet',
           ),
-          BottomNavigationBarItem(
+          const BottomNavigationBarItem(
             icon: Icon(
               Icons.chat_outlined,
               size: 35,

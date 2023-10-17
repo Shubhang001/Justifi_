@@ -1,5 +1,4 @@
 import 'dart:convert';
-import 'package:jiffy/jiffy.dart';
 import 'package:flutter/material.dart';
 import 'package:jusitfi_admin/presentation/widgets/noservice.dart';
 import 'package:jusitfi_admin/presentation/widgets/text_with_line.dart';
@@ -11,6 +10,7 @@ import '../widgets/show_call_dialog.dart';
 import '../widgets/view_document_dialog_box.dart';
 import 'schedule3.dart';
 import 'package:url_launcher/url_launcher.dart';
+import 'package:jiffy/jiffy.dart';
 
 class LawyerProfileScreen extends StatefulWidget {
   const LawyerProfileScreen(
