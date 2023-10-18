@@ -1,10 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:jusitfi_admin/presentation/screens/fraud_prevention_page.dart';
+import 'package:jusitfi_admin/presentation/screens/notification_page.dart';
 import 'package:jusitfi_admin/presentation/screens/privacy_preventionscree.dart';
 import 'package:jusitfi_admin/presentation/screens/riskpolicies_page.dart';
 import 'package:jusitfi_admin/presentation/screens/terms_condition.dart';
 import 'package:jusitfi_admin/presentation/screens/upi_protection.dart';
 import 'package:jusitfi_admin/presentation/widgets/profile_appbar.dart';
+import 'package:jusitfi_admin/utils/constants/textstyles.dart';
 import 'package:url_launcher/url_launcher.dart';
 
 class AboutUsPAge extends StatefulWidget {
@@ -69,18 +71,63 @@ class _AboutUsPAgeState extends State<AboutUsPAge> {
   Widget build(BuildContext context) {
     return SafeArea(
       child: Scaffold(
+        appBar: AppBar(
+          centerTitle: true,
+          elevation: 0,
+          backgroundColor: Colors.black,
+          actions: [
+            Padding(
+              padding:
+                  EdgeInsets.only(left: 20, right: 30, top: 10, bottom: 10),
+              child: Row(
+                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                children: [
+                  InkWell(
+                    onTap: () {
+                      Navigator.push(
+                        context,
+                        MaterialPageRoute(
+                          builder: (context) => NotificationsPage(),
+                        ),
+                      );
+                    },
+                    child: Icon(
+                      Icons.notifications_outlined,
+                      color: Colors.white,
+                      size: 35,
+                    ),
+                  )
+                ],
+              ),
+            ),
+          ],
+          title: Row(
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: [
+              Text(
+                "About Us",
+                style: klocationLight,
+              )
+            ],
+          ),
+        ),
         body: SingleChildScrollView(
           child: Column(
             children: [
-              Container(
-                color: Colors.black,
-                child: Row(
-                  mainAxisAlignment: MainAxisAlignment.start,
-                  children: [IconButton( onPressed: () {
-
-
-                    Navigator.of(context).pop();
-                  }, icon:Icon(Icons.arrow_back,color:Colors.white),)],),),
+              // Container(
+              //   color: Colors.black,
+              //   child: Row(
+              //     mainAxisAlignment: MainAxisAlignment.start,
+              //     children: [
+              //       IconButton(
+              //         onPressed: () {
+              //           Navigator.of(context).pop();
+              //         },
+              //         icon: Icon(Icons.arrow_back, color: Colors.white),
+              //       ),
+              //     ],
+              //   ),
+              // ),
 
               Row(
                 mainAxisAlignment: MainAxisAlignment.center,
@@ -89,11 +136,14 @@ class _AboutUsPAgeState extends State<AboutUsPAge> {
                     "assets/images/login1.png",
                     height: 160,
                   ),
-
                   Container(),
                 ],
               ),
-              Text("Your Lawyer App :)",style: TextStyle(color: Colors.black,fontWeight: FontWeight.w600),),
+              Text(
+                "Your Lawyer App :)",
+                style:
+                    TextStyle(color: Colors.black, fontWeight: FontWeight.w600),
+              ),
 
               GestureDetector(
                 onTap: () {
