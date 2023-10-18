@@ -1,8 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:jusitfi_admin/presentation/screens/float_cases.dart';
+import 'package:jusitfi_admin/presentation/screens/floatcases.dart';
 import 'package:jusitfi_admin/utils/constants/colors.dart';
 import 'package:jusitfi_admin/utils/constants/textstyles.dart';
-
 
 class TestingPage extends StatelessWidget {
   const TestingPage({super.key});
@@ -16,8 +15,8 @@ class TestingPage extends StatelessWidget {
           children: [
             InkWell(
               onTap: () {
-                Navigator.push(
-                    context, MaterialPageRoute(builder: (_) => const FloatCases()));
+                Navigator.push(context,
+                    MaterialPageRoute(builder: (_) => const FloatCases()));
               },
               child: Container(
                 width: MediaQuery.of(context).size.width / 1.5,

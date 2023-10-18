@@ -58,6 +58,8 @@ dependencies:
   flutter_list_view:
   url_launcher: ^6.1.14
   jiffy: ^6.2.1
+  zego_uikit_prebuilt_call: ^3.16.0
+  zego_uikit_signaling_plugin: ^2.6.0
   
 
 dev_dependencies:
