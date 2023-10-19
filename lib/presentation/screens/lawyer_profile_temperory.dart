@@ -198,7 +198,7 @@ class _DetailSectionState extends State<DetailSection>
   @override
   Widget build(BuildContext context) {
     _tabController = TabController(
-      initialIndex: 1,
+      initialIndex: 2,
       vsync: this,
       length: 3,
     );
@@ -211,7 +211,7 @@ class _DetailSectionState extends State<DetailSection>
           tabs: const [
             Tab(text: "Practice Area"),
             Tab(text: "Qualification"),
-            Tab(text: "Court"),
+            Tab(text: "Court/Bar"),
           ],
           controller: _tabController,
         ),
@@ -233,10 +233,57 @@ class _DetailSectionState extends State<DetailSection>
   }
 }
 
-class Court extends StatelessWidget {
-  Court({
-    super.key,
-  });
+class Court extends StatefulWidget {
+  const Court({super.key});
+
+  @override
+  State<Court> createState() => _CourtState();
+}
+
+class _CourtState extends State<Court> with TickerProviderStateMixin {
+  TabController? _tabController;
+
+  @override
+  Widget build(BuildContext context) {
+    _tabController = TabController(
+      length: 2,
+      vsync: this,
+      initialIndex: 0,
+    );
+    return Column(
+      children: [
+        TabBar(
+          labelColor: Colors.black,
+          unselectedLabelColor: Colors.grey,
+          tabs: const [
+            Tab(
+              text: 'Court',
+            ),
+            Tab(
+              text: 'Bar',
+            ),
+          ],
+          controller: _tabController,
+        ),
+        Expanded(
+          child: SizedBox(
+            child: TabBarView(
+              controller: _tabController,
+              children: <Widget>[
+                CourtTab(),
+                const BarTab(),
+              ],
+            ),
+          ),
+        ),
+      ],
+    );
+  }
+}
+
+//.... COURT TAB
+class CourtTab extends StatelessWidget {
+  CourtTab({super.key});
 
   final List<CourtDetails> courts = [
     CourtDetails(
@@ -250,75 +297,262 @@ class Court extends StatelessWidget {
     CourtDetails(
         title: 'District Court',
         image: "assets/images/court2.png",
-        subtitle: 'Mumbai District Court')
+        subtitle: 'Mumbai District Court'),
   ];
 
   @override
   Widget build(BuildContext context) {
-    return GridView.builder(
-      gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
-        crossAxisCount: 2,
-      ),
+    return ListView.builder(
       itemCount: 3,
       itemBuilder: (context, index) {
-        return Padding(
-          padding: const EdgeInsets.only(
-            top: 18.0,
+        return Container(
+          margin: const EdgeInsets.all(10),
+          padding: const EdgeInsets.all(20),
+          decoration: const BoxDecoration(
+            color: Color.fromRGBO(169, 169, 169, 1),
+            boxShadow: [
+              BoxShadow(
+                color: Colors.black,
+                offset: Offset(
+                  5.0,
+                  5.0,
+                ),
+                blurRadius: 10.0,
+                spreadRadius: 2.0,
+              ), //BoxShadow
+              BoxShadow(
+                color: Colors.white,
+                offset: Offset(0.0, 0.0),
+                blurRadius: 0.0,
+                spreadRadius: 0.0,
+              ), //BoxShadow
+            ],
+            borderRadius: BorderRadius.all(
+              Radius.circular(25),
+            ),
           ),
-          child: Container(
-            margin: const EdgeInsets.symmetric(horizontal: 20),
-            padding: const EdgeInsets.symmetric(horizontal: 20),
-            decoration: const BoxDecoration(
-              color: Color.fromRGBO(169, 169, 169, 1),
-              boxShadow: [
-                BoxShadow(
-                  color: Colors.black,
-                  offset: Offset(
-                    5.0,
-                    5.0,
-                  ),
-                  blurRadius: 10.0,
-                  spreadRadius: 2.0,
-                ), //BoxShadow
-                BoxShadow(
-                  color: Colors.white,
-                  offset: Offset(0.0, 0.0),
-                  blurRadius: 0.0,
-                  spreadRadius: 0.0,
-                ), //BoxShadow
-              ],
-              borderRadius: BorderRadius.all(
-                Radius.circular(25),
+          child: Row(
+            children: [
+              Padding(
+                padding: const EdgeInsets.all(4.0),
+                child: Image.asset(
+                  'assets/images/court1.png',
+                  width: 80,
+                  height: 80,
+                ),
               ),
-            ),
-            child: Column(
-              mainAxisAlignment: MainAxisAlignment.spaceBetween,
-              children: [
-                Text(
-                  courts[index].title,
-                  style: kpageTitleBlack,
-                ),
-                Padding(
-                  padding: const EdgeInsets.all(4.0),
-                  child: Image.asset(
-                    courts[index].image,
-                    width: 70,
-                    height: 70,
+              Column(
+                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                children: [
+                  Text(
+                    'Supreme court',
+                    style: kpageTitleBlack,
                   ),
-                ),
-                Text(
-                  courts[index].subtitle,
-                  textAlign: TextAlign.center,
-                  style: ksubCatText,
-                ),
-              ],
-            ),
+                  Text(
+                    'Supreme court of India',
+                    style: ksubCatText,
+                  ),
+                ],
+              ),
+            ],
           ),
         );
       },
     );
   }
 }
+
+//....BAR TAB
+class BarTab extends StatelessWidget {
+  const BarTab({super.key});
+
+  @override
+  Widget build(BuildContext context) {
+    return ListView.builder(
+      itemCount: 3,
+      itemBuilder: (context, index) {
+        return Container(
+          margin: const EdgeInsets.all(10),
+          padding: const EdgeInsets.all(20),
+          decoration: const BoxDecoration(
+            color: Color.fromRGBO(169, 169, 169, 1),
+            boxShadow: [
+              BoxShadow(
+                color: Colors.black,
+                offset: Offset(
+                  5.0,
+                  5.0,
+                ),
+                blurRadius: 10.0,
+                spreadRadius: 2.0,
+              ), //BoxShadow
+              BoxShadow(
+                color: Colors.white,
+                offset: Offset(0.0, 0.0),
+                blurRadius: 0.0,
+                spreadRadius: 0.0,
+              ), //BoxShadow
+            ],
+            borderRadius: BorderRadius.all(
+              Radius.circular(25),
+            ),
+          ),
+          child: Row(
+            children: [
+              // bar icon
+              Expanded(
+                child: Image.asset(
+                  'assets/images/court2.png',
+                  width: 80,
+                  height: 80,
+                ),
+              ),
+              // details and certificate
+              Expanded(
+                flex: 2,
+                child: Column(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    // Bar Name
+                    const Text(
+                      'Bar Name',
+                      textAlign: TextAlign.center,
+                      maxLines: 2,
+                      style: TextStyle(
+                        fontWeight: FontWeight.bold,
+                        fontSize: 18,
+                      ),
+                    ),
+                    // Registration Year
+                    const Padding(
+                      padding: EdgeInsets.only(top: 10.0),
+                      child: Text(
+                        "Registration Year",
+                        maxLines: 2,
+                      ),
+                    ),
+                    // Bar ID
+                    const Padding(
+                      padding: EdgeInsets.only(top: 10.0),
+                      child: Text(
+                        "Bar ID",
+                        textAlign: TextAlign.center,
+                        maxLines: 3,
+                      ),
+                    ),
+                    //button
+                    Align(
+                      alignment: Alignment.bottomRight,
+                      child: ElevatedButton(
+                        style: ElevatedButton.styleFrom(
+                            backgroundColor: Colors.green),
+                        onPressed: () {},
+                        child: const Text(
+                          "Certificate",
+                          style: TextStyle(
+                            color: Colors.white,
+                          ),
+                        ),
+                      ),
+                    ),
+                  ],
+                ),
+              ),
+            ],
+          ),
+        );
+      },
+    );
+  }
+}
+
+///////// OLD COURT CODE
+// class Court extends StatelessWidget {
+//   final List<CourtDetails> courts = [
+//     CourtDetails(
+//         title: 'Supreme Court',
+//         image: 'assets/images/court0.png',
+//         subtitle: 'Supreme Court of India'),
+//     CourtDetails(
+//         title: 'High Court',
+//         image: "assets/images/court1.png",
+//         subtitle: 'High Court of India'),
+//     CourtDetails(
+//         title: 'District Court',
+//         image: "assets/images/court2.png",
+//         subtitle: 'Mumbai District Court')
+//   ];
+
+//   @override
+//   Widget build(BuildContext context) {
+//     return Container();
+
+//     //////// OLD COURT CODE
+//     // GridView.builder(
+//     //   gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
+//     //     crossAxisCount: 2,
+//     //   ),
+//     //   itemCount: 3,
+//     //   itemBuilder: (context, index) {
+//     //     return Padding(
+//     //       padding: const EdgeInsets.only(
+//     //         top: 18.0,
+//     //       ),
+//     //       child: Container(
+//     //         margin: const EdgeInsets.symmetric(horizontal: 20),
+//     //         padding: const EdgeInsets.symmetric(horizontal: 20),
+//     //         decoration: const BoxDecoration(
+//     //           color: Color.fromRGBO(169, 169, 169, 1),
+//     //           boxShadow: [
+//     //             BoxShadow(
+//     //               color: Colors.black,
+//     //               offset: Offset(
+//     //                 5.0,
+//     //                 5.0,
+//     //               ),
+//     //               blurRadius: 10.0,
+//     //               spreadRadius: 2.0,
+//     //             ), //BoxShadow
+//     //             BoxShadow(
+//     //               color: Colors.white,
+//     //               offset: Offset(0.0, 0.0),
+//     //               blurRadius: 0.0,
+//     //               spreadRadius: 0.0,
+//     //             ), //BoxShadow
+//     //           ],
+//     //           borderRadius: BorderRadius.all(
+//     //             Radius.circular(25),
+//     //           ),
+//     //         ),
+//     //         child: Column(
+//     //           mainAxisAlignment: MainAxisAlignment.spaceBetween,
+//     //           children: [
+//     //             Text(
+//     //               courts[index].title,
+//     //               style: kpageTitleBlack,
+//     //             ),
+//     //             Padding(
+//     //               padding: const EdgeInsets.all(4.0),
+//     //               child: Image.asset(
+//     //                 courts[index].image,
+//     //                 width: 70,
+//     //                 height: 70,
+//     //               ),
+//     //             ),
+//     //             Text(
+//     //               courts[index].subtitle,
+//     //               textAlign: TextAlign.center,
+//     //               style: ksubCatText,
+//     //             ),
+//     //           ],
+//     //         ),
+//     //       ),
+//     //     );
+//     //   },
+//     // );
+//   }
+// }
 
 class CourtDetails {
   final String title;
@@ -499,7 +733,7 @@ class Qualification extends StatelessWidget {
                     mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                     children: [
                       Align(
-                        alignment: Alignment.topCenter,
+                        alignment: Alignment.topLeft,
                         child: const Text(
                           'Degree',
                           style: TextStyle(
