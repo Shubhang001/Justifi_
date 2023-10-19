@@ -198,7 +198,7 @@ class _DetailSectionState extends State<DetailSection>
   @override
   Widget build(BuildContext context) {
     _tabController = TabController(
-      initialIndex: 2,
+      initialIndex: 0,
       vsync: this,
       length: 3,
     );
