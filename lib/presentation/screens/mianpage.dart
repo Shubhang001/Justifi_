@@ -4,7 +4,6 @@ import 'package:jusitfi_admin/presentation/screens/floatcases2.dart';
 import 'package:jusitfi_admin/presentation/screens/homepage.dart';
 import 'package:jusitfi_admin/presentation/screens/message_page.dart';
 import 'package:jusitfi_admin/presentation/screens/status_page.dart';
-import 'package:jusitfi_admin/presentation/screens/videocall.dart';
 import 'package:jusitfi_admin/presentation/screens/wallet_page.dart';
 import 'package:jusitfi_admin/presentation/widgets/noservice.dart';
 import 'package:jusitfi_admin/presentation/widgets/videoCallWidget.dart';
