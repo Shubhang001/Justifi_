@@ -496,12 +496,15 @@ class Qualification extends StatelessWidget {
                 // Degree and logo
                 Expanded(
                   child: Column(
-                    mainAxisAlignment: MainAxisAlignment.center,
+                    mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                     children: [
-                      const Text(
-                        'Degree',
-                        style: TextStyle(
-                            fontWeight: FontWeight.bold, fontSize: 18),
+                      Align(
+                        alignment: Alignment.topCenter,
+                        child: const Text(
+                          'Degree',
+                          style: TextStyle(
+                              fontWeight: FontWeight.bold, fontSize: 18),
+                        ),
                       ),
                       SizedBox(
                         width: 75,
@@ -934,12 +937,12 @@ class ReviewContainer extends StatelessWidget {
               children: [
                 Row(
                   children: [
-                    const CircleAvatar(
-                      radius: 22,
-                      backgroundImage: NetworkImage(
-                        "https://superstarsbio.com/wp-content/uploads/2020/04/John-Doe.jpg",
-                      ),
-                    ),
+                    // const CircleAvatar(
+                    //   radius: 22,
+                    //   backgroundImage: NetworkImage(
+                    //     "https://superstarsbio.com/wp-content/uploads/2020/04/John-Doe.jpg",
+                    //   ),
+                    // ),
                     Container(
                       margin: const EdgeInsets.only(left: 15),
                       child: const Text(
