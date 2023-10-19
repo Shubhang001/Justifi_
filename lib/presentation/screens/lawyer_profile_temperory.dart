@@ -490,21 +490,18 @@ class Qualification extends StatelessWidget {
             // ),
 
             child: Row(
-              crossAxisAlignment: CrossAxisAlignment.center,
-              mainAxisAlignment: MainAxisAlignment.center,
+              crossAxisAlignment: CrossAxisAlignment.start,
+              mainAxisAlignment: MainAxisAlignment.start,
               children: [
                 // Degree and logo
                 Expanded(
                   child: Column(
                     mainAxisAlignment: MainAxisAlignment.center,
                     children: [
-                      Padding(
-                        padding: EdgeInsets.only(bottom: MediaQuery.of(context).size.height*0.035),
-                        child: const Text(
-                          'Degree',
-                          style:
-                              TextStyle(fontWeight: FontWeight.bold, fontSize: 18),
-                        ),
+                      const Text(
+                        'Degree',
+                        style: TextStyle(
+                            fontWeight: FontWeight.bold, fontSize: 18),
                       ),
                       SizedBox(
                         width: 75,
@@ -550,6 +547,8 @@ class Qualification extends StatelessWidget {
                       Align(
                         alignment: Alignment.bottomRight,
                         child: ElevatedButton(
+                          style: ElevatedButton.styleFrom(
+                              backgroundColor: Colors.green),
                           onPressed: () {},
                           child: const Text(
                             "Certificate",
