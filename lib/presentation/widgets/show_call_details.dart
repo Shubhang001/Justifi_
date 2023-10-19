@@ -2,6 +2,7 @@ import 'dart:ui';
 import 'package:flutter/material.dart';
 import 'package:jusitfi_admin/presentation/screens/meeting_screen.dart';
 import 'package:jusitfi_admin/presentation/screens/meeting_screen_audio.dart';
+import 'package:jusitfi_admin/presentation/screens/video_call.dart';
 import 'package:jusitfi_admin/utils/services/api_call.dart';
 import '../../utils/constants/colors.dart';
 import '../../utils/constants/textstyles.dart';
@@ -13,18 +14,15 @@ void onCreateButtonPressed(BuildContext context, String mode) async {
     mode == "Audio Call"
         ? Navigator.of(context).push(
             MaterialPageRoute(
-              builder: (context) => MeetingScreenAudio(
-                meetingId: meetingId,
-                token: token,
+              builder: (context) => VideoCall(
+                meetingid: meetingId,
               ),
             ),
           )
         : Navigator.of(context).push(
             MaterialPageRoute(
-              builder: (context) => MeetingScreen(
-                meetingId: meetingId,
-                token: token,
-                mode: mode,
+              builder: (context) => VideoCall(
+                meetingid: meetingId,
               ),
             ),
           );
