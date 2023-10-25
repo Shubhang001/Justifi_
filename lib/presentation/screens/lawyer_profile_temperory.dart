@@ -499,11 +499,12 @@ class Qualification extends StatelessWidget {
                     mainAxisAlignment: MainAxisAlignment.center,
                     children: [
                       Padding(
-                        padding: EdgeInsets.only(bottom: MediaQuery.of(context).size.height*0.035),
+                        padding: EdgeInsets.only(
+                            bottom: MediaQuery.of(context).size.height * 0.035),
                         child: const Text(
                           'Degree',
-                          style:
-                              TextStyle(fontWeight: FontWeight.bold, fontSize: 18),
+                          style: TextStyle(
+                              fontWeight: FontWeight.bold, fontSize: 18),
                         ),
                       ),
                       SizedBox(
@@ -1474,7 +1475,7 @@ class CallToAction extends StatelessWidget {
                       builder: (BuildContext context2) {
                         return CustomDialog(
                           onCallNowPressed: () {
-                            showCallDetails(context, 'Audio Call');
+                            showCallDetails(context, 'Audio Call', 12345);
                           },
                           onScheduleNowPressed: () {
                             Navigator.pop(context);
@@ -1504,7 +1505,7 @@ class CallToAction extends StatelessWidget {
                       builder: (BuildContext context2) {
                         return CustomDialog(
                           onCallNowPressed: () {
-                            showCallDetails(context, 'Video Call');
+                            showCallDetails(context, 'Video Call', 12345);
                           },
                           onScheduleNowPressed: () {
                             Navigator.pop(context);
