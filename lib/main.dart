@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_dotenv/flutter_dotenv.dart';
-import 'package:jusitfi_admin/presentation/screens/floatcases2.dart';
 import 'package:jusitfi_admin/presentation/screens/mianpage.dart';
-import 'package:jusitfi_admin/presentation/screens/onboardingscreen.dart';
 import 'package:jusitfi_admin/presentation/screens/splash_screen.dart';
+import 'package:jusitfi_admin/presentation/widgets/constants.dart';
+import 'package:jusitfi_admin/presentation/widgets/login_service.dart';
 import 'package:jusitfi_admin/presentation/widgets/material_color_builder.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'package:jusitfi_admin/utils/constants/colors.dart';
@@ -22,6 +22,14 @@ void main() async {
       [ZegoUIKitSignalingPlugin()],
     );
   });
+
+  final prefs = await SharedPreferences.getInstance();
+  final cacheUserID = prefs.get(cacheUserIDKey) as String? ?? '';
+  if (cacheUserID.isNotEmpty) {
+    currentUser.id = cacheUserID;
+    currentUser.name = 'user_$cacheUserID';
+  }
+
   runApp(
       // DevicePreview(
       //   enabled: true,
@@ -60,25 +68,41 @@ class _MyAppState extends State<MyApp> {
     setState(() {
       isLoggedIn = storedToken != null;
     });
+    if (currentUser.id.isNotEmpty) {
+      onUserLogin();
+    }
   }
 
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      debugShowCheckedModeBanner: false,
-      title: 'Justifi Admin',
-      theme: ThemeData(
-        bottomSheetTheme: const BottomSheetThemeData(
-          backgroundColor: Colors.transparent,
+        debugShowCheckedModeBanner: false,
+        title: 'Justifi Admin',
+        theme: ThemeData(
+          bottomSheetTheme: const BottomSheetThemeData(
+            backgroundColor: Colors.transparent,
+          ),
+          primarySwatch: createMaterialColor(kobbuttonColor),
         ),
-        primarySwatch: createMaterialColor(kobbuttonColor),
-      ),
-      // Check if the user is logged in, and navigate accordingly
-      initialRoute: isLoggedIn ? '/main' : '/',
-      routes: {
-        '/': (context) => SplashScreen(),
-        '/main': (context) => const MainPage(),
-      },
-    );
+        // Check if the user is logged in, and navigate accordingly
+        initialRoute: isLoggedIn ? '/main' : '/',
+        routes: {
+          '/': (context) => const SplashScreen(),
+          '/main': (context) => const MainPage(),
+        },
+        builder: (BuildContext context, Widget? child) {
+          return Stack(
+            children: [
+              child!,
+
+              /// support minimizing
+              ZegoUIKitPrebuiltCallMiniOverlayPage(
+                contextQuery: () {
+                  return widget.navigatorKey.currentState!.context;
+                },
+              ),
+            ],
+          );
+        });
   }
 }
