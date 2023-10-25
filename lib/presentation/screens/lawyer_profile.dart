@@ -98,7 +98,7 @@ class _LawyerProfileScreenState extends State<LawyerProfileScreen>
               ),
             ],
           ),
-          const CallToAction(),
+          CallToAction(userid: widget.userid),
           TabBar(
             labelColor: Colors.black,
             unselectedLabelColor: Colors.grey,
@@ -1707,9 +1707,8 @@ class TopNav extends StatelessWidget {
 }
 
 class CallToAction extends StatelessWidget {
-  const CallToAction({
-    super.key,
-  });
+  const CallToAction({super.key, required this.userid});
+  final int userid;
 
   @override
   Widget build(BuildContext context) {
@@ -1728,7 +1727,7 @@ class CallToAction extends StatelessWidget {
                       builder: (BuildContext context2) {
                         return CustomDialog(
                           onCallNowPressed: () {
-                            showCallDetails(context, 'Audio Call');
+                            showCallDetails(context, 'Audio Call', userid);
                           },
                           onScheduleNowPressed: () {
                             Navigator.pop(context);
@@ -1758,7 +1757,7 @@ class CallToAction extends StatelessWidget {
                       builder: (BuildContext context2) {
                         return CustomDialog(
                           onCallNowPressed: () {
-                            showCallDetails(context, 'Video Call');
+                            showCallDetails(context, 'Video Call', userid);
                           },
                           onScheduleNowPressed: () {
                             Navigator.pop(context);
