@@ -173,7 +173,7 @@ class _ViewAllPageState extends State<ViewAllPage> {
                                                   '4',
                                                   style: kAdvocateCardRating,
                                                 ),
-                                                StarRating(rating: 4)
+                                                const StarRating(rating: 4)
                                               ],
                                             )
                                           ],
