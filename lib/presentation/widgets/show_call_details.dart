@@ -14,16 +14,12 @@ void onCreateButtonPressed(BuildContext context, String mode) async {
     mode == "Audio Call"
         ? Navigator.of(context).push(
             MaterialPageRoute(
-              builder: (context) => VideoCall(
-                meetingid: meetingId,
-              ),
+              builder: (context) => const VideoCall(),
             ),
           )
         : Navigator.of(context).push(
             MaterialPageRoute(
-              builder: (context) => VideoCall(
-                meetingid: meetingId,
-              ),
+              builder: (context) => const VideoCall(),
             ),
           );
   });
