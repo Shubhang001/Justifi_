@@ -83,7 +83,7 @@ class _MainPageState extends State<MainPage> {
         selectedLabelStyle: kNavLabel,
         unselectedLabelStyle: kNavLabel,
         items: <BottomNavigationBarItem>[
-          BottomNavigationBarItem(
+          const BottomNavigationBarItem(
             icon: Icon(
               Icons.home_outlined,
               size: 40,

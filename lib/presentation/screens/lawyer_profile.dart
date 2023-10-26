@@ -4,6 +4,8 @@ import 'package:flutter_styled_toast/flutter_styled_toast.dart';
 import 'package:jusitfi_admin/presentation/widgets/noservice.dart';
 import 'package:jusitfi_admin/presentation/widgets/text_with_line.dart';
 import 'package:jusitfi_admin/utils/constants/textstyles.dart';
+import 'package:jusitfi_admin/utils/services/api_call.dart';
+import 'package:jusitfi_admin/utils/services/rest_apis.dart';
 import 'package:share_plus/share_plus.dart';
 import 'package:http/http.dart' as http;
 import '../widgets/show_call_details.dart';
@@ -136,6 +138,16 @@ class _LawyerProfileScreenState extends State<LawyerProfileScreen>
 
   AppBar buildAppBar() {
     return AppBar(
+      leading: IconButton(
+          onPressed: () {
+            userLogout(token);
+            Navigator.pop(context);
+          },
+          icon: const Icon(
+            Icons.arrow_back,
+            color: Colors.white,
+            size: 30,
+          )),
       backgroundColor: Colors.black,
       toolbarHeight: 60,
       title: Text(
