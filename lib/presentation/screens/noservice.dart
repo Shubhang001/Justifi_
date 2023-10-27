@@ -61,7 +61,7 @@ class NoService extends StatelessWidget {
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
             Text(
-              "Status",
+              title,
               style: klocationLight,
             )
           ],

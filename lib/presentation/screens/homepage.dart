@@ -202,7 +202,7 @@ class _HomePageState extends State<HomePage> {
                       width: double.infinity,
                       child: Image.asset(
                         'assets/images/home_rect.png',
-                        height: 850,
+                        height: 550,
                         fit: BoxFit.fill,
                       ),
                     ),
