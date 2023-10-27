@@ -202,7 +202,7 @@ class _HomePageState extends State<HomePage> {
                       width: double.infinity,
                       child: Image.asset(
                         'assets/images/home_rect.png',
-                        height: 850,
+                        height: 550,
                         fit: BoxFit.fill,
                       ),
                     ),
@@ -356,7 +356,8 @@ class _HomePageState extends State<HomePage> {
                                                         style:
                                                             kAdvocateCardRating,
                                                       ),
-                                                      StarRating(rating: 4)
+                                                      const StarRating(
+                                                          rating: 4)
                                                     ],
                                                   )
                                                 ],
@@ -433,7 +434,7 @@ class _HomePageState extends State<HomePage> {
                                                         context,
                                                         MaterialPageRoute(
                                                           builder: (context) =>
-                                                              LawyerProfileScreen(),
+                                                              const LawyerProfileScreen(),
                                                         ),
                                                       );
                                                     },
