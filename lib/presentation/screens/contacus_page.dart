@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:jusitfi_admin/presentation/screens/issue_chat.dart';
+import 'package:jusitfi_admin/presentation/screens/notification_page.dart';
 import 'package:jusitfi_admin/presentation/widgets/profile_appbar.dart';
+import 'package:jusitfi_admin/utils/constants/textstyles.dart';
 
 class ContactUsPage extends StatefulWidget {
   const ContactUsPage({super.key});
@@ -22,20 +24,59 @@ class _ContactUsPageState extends State<ContactUsPage>
     );
     return SafeArea(
       child: Scaffold(
+        appBar: AppBar(
+        centerTitle: true,
+        elevation: 0,
+        backgroundColor: Colors.black,
+        actions: [
+          Padding(
+            padding: EdgeInsets.only(left: 20, right: 30, top: 10, bottom: 10),
+            child: Row(
+              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+              children: [
+                InkWell(
+                  onTap: () {
+                    Navigator.push(
+                      context,
+                      MaterialPageRoute(
+                        builder: (context) => NotificationsPage(),
+                      ),
+                    );
+                  },
+                  child: Icon(
+                    Icons.notifications_outlined,
+                    color: Colors.white,
+                    size: 35,
+                  ),
+                )
+              ],
+            ),
+          ),
+        ],
+        title: Row(
+          mainAxisAlignment: MainAxisAlignment.center,
+          children: [
+            Text(
+              "Contact Us",
+              style: klocationLight,
+            )
+          ],
+        ),
+      ),
         body: Column(
           children: [
-            Container(
-              color: Colors.black,
-              child: Row(
-                mainAxisAlignment: MainAxisAlignment.start,
-                children: [IconButton( onPressed: () {
+            // Container(
+            //   color: Colors.black,
+            //   child: Row(
+            //     mainAxisAlignment: MainAxisAlignment.start,
+            //     children: [IconButton( onPressed: () {
 
 
-                  Navigator.of(context).pop();
-                }, icon:Icon(Icons.arrow_back,color:Colors.white),)],),),
-            SizedBox(
-              height: 10,
-            ),
+            //       Navigator.of(context).pop();
+            //     }, icon:Icon(Icons.arrow_back,color:Colors.white),)],),),
+            // SizedBox(
+            //   height: 10,
+            // ),
             Expanded(child: Column(children: [
               Image.asset('assets/images/login1.png', height: 160,),
               SizedBox(height: 10,),

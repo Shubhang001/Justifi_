@@ -40,23 +40,20 @@ class _StatusPageState extends State<StatusPage> {
       const LiveCallsCancelledVerticleTile(),
       const LiveCallsCompletedVerticleTile(),
     ],
-
     [
       const CasePostPendingApplyVerticalTile(),
       const CasePostPendingHireVerticalTile(),
       const CasePostHiredVerticalTile(),
       const CasePostCancelledVerticalTile(),
     ],
-
     [
       // const PendingApprovalVerticalTile(),
       // const ScheduledVerticalTile(),
       // const ScheduledMeetCancelledVerticleTile(),
       // const ScheduledMeetCompletedVerticleTile(),
       // const RefundVerticalTile()
-      Container(),Container(),Container(),Container(),Container(),
+      Container(), Container(), Container(), Container(), Container(),
     ],
-
   ];
 
   void _onCategoryTapped(int index) {
@@ -125,7 +122,7 @@ class _StatusPageState extends State<StatusPage> {
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
             Text(
-              "Call Logs",
+              "Status",
               style: klocationLight,
             )
           ],
@@ -137,44 +134,54 @@ class _StatusPageState extends State<StatusPage> {
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
-                  // Container(
-                  //     height: 40,
-                  //     margin: const EdgeInsets.all(8.0),
+                  /* Container(
+                      height: 40,
+                      margin: const EdgeInsets.all(8.0),
+                      child: ListView.separated(
+                          separatorBuilder: (context, index) =>
+                              const SizedBox(width: 24),
+                          shrinkWrap: true,
+                          scrollDirection: Axis.horizontal,
+                          itemCount: statusPageCategories.length,
+                          itemBuilder: (context, index) {
+                            return GestureDetector(
+                                onTap: () {
+                                  _onCategoryTapped(index);
+                                },
+                                child: Container(
+                                    padding: const EdgeInsets.all(8.0),
+                                    decoration: BoxDecoration(
+                                      border: Border.all(
+                                          color: Colors.black, width: 1),
+                                      borderRadius: BorderRadius.circular(15),
+                                      color: _selectedCategoryIndex == index
+                                          ? kPrimaryBlackColor
+                                          : Colors.white,
+                                    ),
+                                    child: TextBox(
+                                        text: statusPageCategories[index]
+                                            .toString(),
+                                        isSelected: false,
+                                        textSize: 16)));
+                          })),*/
+                  // const SizedBox(
+                  //   height: 25,
+                  // ),
+                  // SizedBox(
+                  //     height: 35,
                   //     child: ListView.separated(
-                  //         separatorBuilder: (context, index) =>
-                  //             const SizedBox(width: 24),
+                  //         separatorBuilder: (context, index) => const SizedBox(
+                  //               width: 30,
+                  //             ),
                   //         shrinkWrap: true,
                   //         scrollDirection: Axis.horizontal,
-                  //         itemCount: statusPageCategories.length,
+                  //         itemCount: _subcategoryList[_selectedCategoryIndex]
+                  //             .toList()
+                  //             .length,
                   //         itemBuilder: (context, index) {
                   //           return GestureDetector(
                   //               onTap: () {
-                  //                 _onCategoryTapped(index);
-                  //                 if(index==2){
-                  //                   showDialog<void>(
-                  //                     context: context,
-                  //
-                  //                     // false = user must tap button, true = tap outside dialog
-                  //                     builder: (BuildContext dialogContext) {
-                  //                       return AlertDialog(
-                  //                         title: Text('Service Not Available'),
-                  //                         content: Text('Service Not Available yet'),
-                  //                         actions: <Widget>[
-                  //                           TextButton(
-                  //                             child: Text('Ok'),
-                  //                             onPressed: () {
-                  //                               Navigator.of(dialogContext)
-                  //                                   .pop(); // Dismiss alert dialog
-                  //                             },
-                  //                           ),
-                  //                         ],
-                  //                       );
-                  //                     },
-                  //                   );
-                  //
-                  //
-                  //
-                  //                 }
+                  //                 _onSubCategoryTapped(index);
                   //               },
                   //               child: Container(
                   //                   padding: const EdgeInsets.all(8.0),
@@ -182,20 +189,28 @@ class _StatusPageState extends State<StatusPage> {
                   //                     border: Border.all(
                   //                         color: Colors.black, width: 1),
                   //                     borderRadius: BorderRadius.circular(15),
-                  //                     color: _selectedCategoryIndex == index
+                  //                     color: _selectedSubCategoryIndex == index
                   //                         ? kPrimaryBlackColor
                   //                         : Colors.white,
                   //                   ),
                   //                   child: TextBox(
-                  //                       text: statusPageCategories[index]
+                  //                       text: _subcategoryList[
+                  //                               _selectedCategoryIndex][index]
                   //                           .toString(),
                   //                       isSelected: false,
-                  //                       textSize: 16)));
+                  //                       textSize: 14)));
                   //         })),
+                  
                   // const SizedBox(
-                  //   height: 25,
+                  //   height: 8,
                   // ),
-
+                  // Divider(
+                  //   color: kprimaryTextColor,
+                  //   thickness: 1,
+                  // ),
+                  // const SizedBox(
+                  //   height: 8,
+                  // ),
                   Expanded(
                       child: ListView(
                     scrollDirection: Axis.vertical,

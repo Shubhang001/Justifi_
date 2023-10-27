@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:google_fonts/google_fonts.dart';
 import 'package:jusitfi_admin/presentation/screens/chat_page.dart';
 import 'package:jusitfi_admin/presentation/screens/profile_page.dart';
 import 'package:jusitfi_admin/presentation/widgets/filter_sort.dart';
@@ -68,25 +69,39 @@ class MessageScreen extends StatelessWidget {
           ],
         ),
       ),
-      body: SingleChildScrollView(
-        child: Column(
-          children: [
-            Container(
-              margin: const EdgeInsets.symmetric(vertical: 10, horizontal: 10),
-              child: Row(
-                mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                children: [
-                  Padding(
-                    padding: const EdgeInsets.all(4.0),
-                    child: const SearchBar(),
-                  ),
-                  FilterSort(bgColor: Colors.grey, dividerColor: Colors.black),
-                ],
+      // body: SingleChildScrollView(
+      //   child: Column(
+      //     children: [
+      //       Container(
+      //         margin: const EdgeInsets.symmetric(vertical: 10, horizontal: 10),
+      //         child: Row(
+      //           mainAxisAlignment: MainAxisAlignment.spaceBetween,
+      //           children: [
+      //             Padding(
+      //               padding: const EdgeInsets.all(4.0),
+      //               child: const SearchBar(),
+      //             ),
+      //             FilterSort(bgColor: Colors.grey, dividerColor: Colors.black),
+      //           ],
+      //         ),
+      //       ),
+      //       for (int i = 0; i < 4; i++) const CaseTile(),
+      //     ],
+      //   ),
+      // ),
+      body: Column(
+        mainAxisAlignment: MainAxisAlignment.center,
+        children: [
+          Center(
+            child: Text(
+              'Service not available yet',
+              style: TextStyle(
+                fontFamily: GoogleFonts.poppins().fontFamily,
+                fontSize: 26,
               ),
             ),
-            for (int i = 0; i < 4; i++) const CaseTile(),
-          ],
-        ),
+          ),
+        ],
       ),
     );
   }
@@ -152,7 +167,7 @@ class CaseTile extends StatelessWidget {
               Navigator.push(
                   context,
                   MaterialPageRoute(
-                    builder: (context) =>ChatPage(),
+                    builder: (context) => ChatPage(),
                   ));
             },
             child: Row(

@@ -1,10 +1,12 @@
 import 'package:flutter/material.dart';
-import 'package:jusitfi_admin/presentation/screens/float_cases.dart';
+import 'package:jusitfi_admin/presentation/screens/floatcases.dart';
 import 'package:jusitfi_admin/presentation/screens/floatcases2.dart';
 import 'package:jusitfi_admin/presentation/screens/homepage.dart';
 import 'package:jusitfi_admin/presentation/screens/message_page.dart';
 import 'package:jusitfi_admin/presentation/screens/status_page.dart';
 import 'package:jusitfi_admin/presentation/screens/wallet_page.dart';
+import 'package:jusitfi_admin/presentation/widgets/noservice.dart';
+import 'package:jusitfi_admin/presentation/widgets/videoCallWidget.dart';
 import 'package:jusitfi_admin/utils/constants/textstyles.dart';
 
 class MainPage extends StatefulWidget {
@@ -26,7 +28,7 @@ class _MainPageState extends State<MainPage> {
 
   final List<Widget> _widgetOptions = <Widget>[
     const HomePage(),
-    FloatCases2(),
+    const FloatCases(),
     const StatusPage(),
     const WalletPage(
         userName: "Sangeeta Rai",
@@ -36,9 +38,34 @@ class _MainPageState extends State<MainPage> {
   ];
 
   void _onItemTapped(int index) {
-    setState(() {
-      _selectedIndex = index;
-    });
+    if (index == 1 || index == 4) {
+      showDialog(
+        context: context,
+        builder: (BuildContext context) {
+          return AlertDialog(
+            shape: const RoundedRectangleBorder(
+              borderRadius: BorderRadius.all(
+                Radius.circular(20.0),
+              ),
+            ),
+            title: const Text('Service Not Available'),
+            content: const Text('Sorry, the service is not available yet.'),
+            actions: [
+              ElevatedButton(
+                child: const Text('OK'),
+                onPressed: () {
+                  Navigator.of(context).pop();
+                },
+              ),
+            ],
+          );
+        },
+      );
+    } else {
+      setState(() {
+        _selectedIndex = index;
+      });
+    }
   }
 
   @override
@@ -56,8 +83,11 @@ class _MainPageState extends State<MainPage> {
         selectedLabelStyle: kNavLabel,
         unselectedLabelStyle: kNavLabel,
         items: <BottomNavigationBarItem>[
-          BottomNavigationBarItem(
-            icon: Icon(Icons.home_outlined,size: 40,),
+          const BottomNavigationBarItem(
+            icon: Icon(
+              Icons.home_outlined,
+              size: 40,
+            ),
             // icon: Image.asset(
             //   'assets/nav_icons/home.png',
             //   width: 30,
@@ -89,8 +119,11 @@ class _MainPageState extends State<MainPage> {
             ),
             label: 'Wallet',
           ),
-          BottomNavigationBarItem(
-            icon: Icon(Icons.chat_outlined,size: 35,),
+          const BottomNavigationBarItem(
+            icon: Icon(
+              Icons.chat_outlined,
+              size: 35,
+            ),
             // icon: Image.asset(
             //   'assets/nav_icons/message.png',
             //   width: 30,
