@@ -3,6 +3,7 @@ import 'package:jusitfi_admin/presentation/screens/floatcases.dart';
 import 'package:jusitfi_admin/presentation/screens/floatcases2.dart';
 import 'package:jusitfi_admin/presentation/screens/homepage.dart';
 import 'package:jusitfi_admin/presentation/screens/message_page.dart';
+import 'package:jusitfi_admin/presentation/screens/noservice.dart';
 import 'package:jusitfi_admin/presentation/screens/status_page.dart';
 import 'package:jusitfi_admin/presentation/screens/wallet_page.dart';
 import 'package:jusitfi_admin/presentation/widgets/noservice.dart';
@@ -28,44 +29,19 @@ class _MainPageState extends State<MainPage> {
 
   final List<Widget> _widgetOptions = <Widget>[
     const HomePage(),
-    const FloatCases(),
+    const NoService(title: "Cases"),
     const StatusPage(),
     const WalletPage(
         userName: "Sangeeta Rai",
         userImage: "assets/images/user_image.png",
         userLocation: "Mumbai"),
-    const MessageScreen(),
+    const NoService(title: "Messsage"),
   ];
 
   void _onItemTapped(int index) {
-    if (index == 1 || index == 4) {
-      showDialog(
-        context: context,
-        builder: (BuildContext context) {
-          return AlertDialog(
-            shape: const RoundedRectangleBorder(
-              borderRadius: BorderRadius.all(
-                Radius.circular(20.0),
-              ),
-            ),
-            title: const Text('Service Not Available'),
-            content: const Text('Sorry, the service is not available yet.'),
-            actions: [
-              ElevatedButton(
-                child: const Text('OK'),
-                onPressed: () {
-                  Navigator.of(context).pop();
-                },
-              ),
-            ],
-          );
-        },
-      );
-    } else {
-      setState(() {
-        _selectedIndex = index;
-      });
-    }
+    setState(() {
+      _selectedIndex = index;
+    });
   }
 
   @override

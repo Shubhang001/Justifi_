@@ -356,7 +356,8 @@ class _HomePageState extends State<HomePage> {
                                                         style:
                                                             kAdvocateCardRating,
                                                       ),
-                                                      StarRating(rating: 4)
+                                                      const StarRating(
+                                                          rating: 4)
                                                     ],
                                                   )
                                                 ],
@@ -433,7 +434,7 @@ class _HomePageState extends State<HomePage> {
                                                         context,
                                                         MaterialPageRoute(
                                                           builder: (context) =>
-                                                              LawyerProfileScreen(),
+                                                              const LawyerProfileScreen(),
                                                         ),
                                                       );
                                                     },
