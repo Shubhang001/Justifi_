@@ -4,8 +4,9 @@ import 'package:jusitfi_admin/presentation/screens/profile_page.dart';
 import 'package:jusitfi_admin/utils/constants/textstyles.dart';
 
 class NoService extends StatelessWidget {
-  const NoService({super.key, required this.title});
   final String title;
+
+  const NoService({super.key, required this.title});
 
   @override
   Widget build(BuildContext context) {
