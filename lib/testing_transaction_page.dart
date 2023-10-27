@@ -52,10 +52,7 @@ class _WalletTransactionPageState extends State<WalletTransactionPage>
               padding: EdgeInsets.all(2),
               decoration: BoxDecoration(
                 borderRadius: BorderRadius.circular(10),
-                border: Border.all(
-                  width: 1,
-                  color: Colors.black
-                ),
+                border: Border.all(width: 1, color: Colors.black),
               ),
               margin: const EdgeInsets.symmetric(vertical: 10, horizontal: 5),
               child: TabBar(
@@ -69,7 +66,7 @@ class _WalletTransactionPageState extends State<WalletTransactionPage>
                 labelStyle: tabBarFont,
                 unselectedLabelStyle: tabBarFont,
                 unselectedLabelColor: Colors.black,
-                tabs: [
+                tabs: const [
                   // Tab(
                   //   child: Container(
                   //     padding: const EdgeInsets.symmetric(
@@ -89,13 +86,13 @@ class _WalletTransactionPageState extends State<WalletTransactionPage>
                   //   ),
                   // ),
                   Tab(
-                    child: const Text(
+                    child: Text(
                       "Coin Add",
                       style: TextStyle(fontWeight: FontWeight.bold),
                     ),
                   ),
                   Tab(
-                    child: const Text(
+                    child: Text(
                       "Coin Paid",
                       style: TextStyle(fontWeight: FontWeight.bold),
                     ),

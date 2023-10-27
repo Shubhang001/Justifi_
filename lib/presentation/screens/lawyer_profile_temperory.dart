@@ -41,7 +41,8 @@ class _LawyerProfileScreenState extends State<LawyerProfileScreen>
         backgroundColor: Colors.black,
         actions: [
           Padding(
-            padding: EdgeInsets.only(left: 20, right: 30, top: 10, bottom: 10),
+            padding:
+                const EdgeInsets.only(left: 20, right: 30, top: 10, bottom: 10),
             child: Row(
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
@@ -50,11 +51,11 @@ class _LawyerProfileScreenState extends State<LawyerProfileScreen>
                     Navigator.push(
                       context,
                       MaterialPageRoute(
-                        builder: (context) => NotificationsPage(),
+                        builder: (context) => const NotificationsPage(),
                       ),
                     );
                   },
-                  child: Icon(
+                  child: const Icon(
                     Icons.notifications_outlined,
                     color: Colors.white,
                     size: 35,
@@ -1735,7 +1736,7 @@ class CallToAction extends StatelessWidget {
                       icon: "assets/images/chat.png", price: "10")),
               InkWell(
                   onTap: () {
-                    showDialog(
+                    /*showDialog(
                       context: context,
                       builder: (BuildContext context2) {
                         return CustomDialog(
@@ -1753,7 +1754,8 @@ class CallToAction extends StatelessWidget {
                           },
                         );
                       },
-                    );
+                    );*/
+                    DialogService.showNotAvailableDialog(context);
                   },
                   child: const LawyerCTA(
                       icon: "assets/images/video_call.png", price: "30")),
