@@ -118,8 +118,7 @@ class ProfileScreen extends StatelessWidget {
                         onTap: () {},
                         child: ListTile(
                             iconColor: Colors.black,
-                            // leading: Icon(Icons.share),
-                            leading: Image.asset("assets/images/send-share.png"),
+                            leading: Icon(Icons.share),
                             title: Text('Invite and Share the App'),
                             trailing: IconButton(
                               icon: const Icon(Icons.share),

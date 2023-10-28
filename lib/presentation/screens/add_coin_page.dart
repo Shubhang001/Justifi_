@@ -238,7 +238,7 @@ class _AddCoinPage extends State<AddCoinPage> {
                           ),
                         ),
                         Padding(
-                          padding: const EdgeInsets.only(left: 40, right: 40),
+                          padding: EdgeInsets.only(left: 40, right: 40),
                           child: Row(
                             mainAxisAlignment: MainAxisAlignment.spaceBetween,
                             children: [
@@ -257,7 +257,7 @@ class _AddCoinPage extends State<AddCoinPage> {
                           thickness: 1,
                         ),
                         Padding(
-                          padding: const EdgeInsets.only(left: 40, right: 40),
+                          padding: EdgeInsets.only(left: 40, right: 40),
                           child: Row(
                             mainAxisAlignment: MainAxisAlignment.spaceBetween,
                             children: [

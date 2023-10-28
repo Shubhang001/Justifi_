@@ -29,22 +29,15 @@ class MobileInputTextField extends StatelessWidget {
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
-          Center(
-            child: RichText(
-              text: TextSpan(text: title, style: GoogleFonts.poppins(
-                color: Colors.white,
-                fontStyle: FontStyle.normal,
-                fontSize: 16,
-                fontWeight: FontWeight.w700,
-              ), children: [
-                TextSpan(
-                    text: ' *',
-                    style: TextStyle(
-                        color: Colors.red,
-                        fontWeight: ktextFieldTitle.fontWeight,
-                        fontSize: ktextFieldTitle.fontSize))
-              ]),
-            ),
+          RichText(
+            text: TextSpan(text: title, style: ktextFieldMainTitle, children: [
+              TextSpan(
+                  text: ' *',
+                  style: TextStyle(
+                      color: Colors.red,
+                      fontWeight: ktextFieldTitle.fontWeight,
+                      fontSize: ktextFieldTitle.fontSize))
+            ]),
           ),
           const SizedBox(
             height: 16,
