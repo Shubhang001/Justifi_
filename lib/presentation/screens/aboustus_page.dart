@@ -1,10 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:jusitfi_admin/presentation/screens/fraud_prevention_page.dart';
+import 'package:jusitfi_admin/presentation/screens/notification_page.dart';
 import 'package:jusitfi_admin/presentation/screens/privacy_preventionscree.dart';
 import 'package:jusitfi_admin/presentation/screens/riskpolicies_page.dart';
 import 'package:jusitfi_admin/presentation/screens/terms_condition.dart';
 import 'package:jusitfi_admin/presentation/screens/upi_protection.dart';
 import 'package:jusitfi_admin/presentation/widgets/profile_appbar.dart';
+import 'package:jusitfi_admin/utils/constants/textstyles.dart';
 import 'package:url_launcher/url_launcher.dart';
 
 class AboutUsPAge extends StatefulWidget {
@@ -67,153 +69,176 @@ class _AboutUsPAgeState extends State<AboutUsPAge> {
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      body: SingleChildScrollView(
-        child: Column(
-          children: [
-            const ProfileNavBar(),
+    return SafeArea(
+      child: Scaffold(
+        appBar: AppBar(
+          centerTitle: true,
+          elevation: 0,
+          backgroundColor: Colors.black,
+          actions: [
+            Padding(
+              padding:
+                  EdgeInsets.only(left: 20, right: 30, top: 10, bottom: 10),
+              child: Row(
+                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                children: [
+                  InkWell(
+                    onTap: () {
+                      Navigator.push(
+                        context,
+                        MaterialPageRoute(
+                          builder: (context) => NotificationsPage(),
+                        ),
+                      );
+                    },
+                    child: Icon(
+                      Icons.notifications_outlined,
+                      color: Colors.white,
+                      size: 35,
+                    ),
+                  )
+                ],
+              ),
+            ),
+          ],
+          title: Row(
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: [
+              Text(
+                "About Us",
+                style: klocationLight,
+              )
+            ],
+          ),
+        ),
+        body: SingleChildScrollView(
+          child: Column(
+            children: [
+              // Container(
+              //   color: Colors.black,
+              //   child: Row(
+              //     mainAxisAlignment: MainAxisAlignment.start,
+              //     children: [
+              //       IconButton(
+              //         onPressed: () {
+              //           Navigator.of(context).pop();
+              //         },
+              //         icon: Icon(Icons.arrow_back, color: Colors.white),
+              //       ),
+              //     ],
+              //   ),
+              // ),
 
-            Row(
-              mainAxisAlignment: MainAxisAlignment.spaceBetween,
-              children: [
-                Image.asset(
-                  "assets/images/app_logo.png",
-                  height: 160,
-                ),
-                const Text(
-                  "JUSTIFI",
-                  style: TextStyle(
-                    fontStyle: FontStyle.italic,
-                    fontSize: 29,
+              Row(
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: [
+                  Image.asset(
+                    "assets/images/login1.png",
+                    height: 160,
                   ),
-                ),
-                Container(),
-              ],
-            ),
-            const Center(
-                child: Text(
-              "Justifi",
-              style: TextStyle(fontWeight: FontWeight.bold, fontSize: 18),
-            )),
-            Container(
-              margin: const EdgeInsets.only(top: 20),
-              child: const Text(
-                "Connecting clients with the right advocate , seamlessly",
+                  Container(),
+                ],
               ),
-            ),
-            const CustomListTile(
-              icon: Icons.mail,
-              title: "Justifyspark@gmail.com",
-              redirect: false,
-            ),
-            const CustomListTile(
-              icon: Icons.interests,
-              title: "www.supportjustifyspark.com",
-              redirect: false,
-            ),
-            const CustomListTile(
-              redirect: false,
-              icon: Icons.location_on,
-              title:
-                  "K G Road , Rajmouli center , near N C R nagar - 04 Mumbai - 4579697 , India",
-            ),
-            const Divider(
-              thickness: 3,
-              color: Colors.grey,
-            ),
-            GestureDetector(
-              onTap: () {
-                _FraudURL();
-                // Navigator.push(
-                //   context,
-                //   MaterialPageRoute(
-                //     builder: (context) => const FraudPreventionPage(),
-                //   ),
-                // );
-              },
-              child: const CustomListTile(
-                icon: Icons.folder_special_outlined,
-                title: "Fraud Prevention",
-                redirect: true,
+              Text(
+                "Your Lawyer App :)",
+                style:
+                    TextStyle(color: Colors.black, fontWeight: FontWeight.w600),
               ),
-            ),
-            GestureDetector(
-              onTap: () {
-                _PrivacyURL();
-                // Navigator.push(
-                //   context,
-                //   MaterialPageRoute(
-                //     builder: (context) => const PrivacyPreventionPAge(),
-                //   ),
-                // );
-              },
-              child: const CustomListTile(
-                icon: Icons.privacy_tip,
-                title: "Privacy Policy",
-                redirect: true,
-              ),
-            ),
 
-            GestureDetector(
-              onTap: () {
-                _TermsURL();
-                // Navigator.push(
-                //   context,
-                //   MaterialPageRoute(
-                //     builder: (context) => const TermsCondition(),
-                //   ),
-                // );
-              },
-              child: const CustomListTile(
-                icon: Icons.file_copy,
-                title: "Terms & Condition",
-                redirect: true,
-              ),
-            ),
-
-            //
-
-            GestureDetector(
-              onTap: () {
-                _launchURL();
-                // Navigator.push(
-                //   context,
-                //   MaterialPageRoute(
-                //     builder: (context) => const RiskPolicies(),
-                //   ),
-                // );
-              },
-              child: const CustomListTile(
-                icon: Icons.warning,
-                title: "Refund and Cancellation Policy",
-                redirect: true,
-              ),
-            ),
-
-            //
-
-            GestureDetector(
-              onTap: () {
-                _UpiURL();
-                // Navigator.push(
-                //   context,
-                //   MaterialPageRoute(
-                //     builder: (context) => const UpiPrevention(),
-                //   ),
-                // );
-              },
-              child: Container(
-                margin: const EdgeInsets.only(bottom: 20),
+              GestureDetector(
+                onTap: () {
+                  _FraudURL();
+                  // Navigator.push(
+                  //   context,
+                  //   MaterialPageRoute(
+                  //     builder: (context) => const FraudPreventionPage(),
+                  //   ),
+                  // );
+                },
                 child: const CustomListTile(
-                  icon: Icons.credit_card,
-                  title: "Cookies Policy",
+                  icon: Icons.folder_special_outlined,
+                  title: "Fraud Prevention",
                   redirect: true,
                 ),
               ),
-            ),
+              GestureDetector(
+                onTap: () {
+                  _PrivacyURL();
+                  // Navigator.push(
+                  //   context,
+                  //   MaterialPageRoute(
+                  //     builder: (context) => const PrivacyPreventionPAge(),
+                  //   ),
+                  // );
+                },
+                child: const CustomListTile(
+                  icon: Icons.privacy_tip,
+                  title: "Privacy Policy",
+                  redirect: true,
+                ),
+              ),
 
-            //
-          ],
+              GestureDetector(
+                onTap: () {
+                  _TermsURL();
+                  // Navigator.push(
+                  //   context,
+                  //   MaterialPageRoute(
+                  //     builder: (context) => const TermsCondition(),
+                  //   ),
+                  // );
+                },
+                child: const CustomListTile(
+                  icon: Icons.file_copy,
+                  title: "Terms & Condition",
+                  redirect: true,
+                ),
+              ),
+
+              //
+
+              GestureDetector(
+                onTap: () {
+                  _launchURL();
+                  // Navigator.push(
+                  //   context,
+                  //   MaterialPageRoute(
+                  //     builder: (context) => const RiskPolicies(),
+                  //   ),
+                  // );
+                },
+                child: const CustomListTile(
+                  icon: Icons.warning,
+                  title: "Refund and Cancellation Policy",
+                  redirect: true,
+                ),
+              ),
+
+              //
+
+              GestureDetector(
+                onTap: () {
+                  _UpiURL();
+                  // Navigator.push(
+                  //   context,
+                  //   MaterialPageRoute(
+                  //     builder: (context) => const UpiPrevention(),
+                  //   ),
+                  // );
+                },
+                child: Container(
+                  margin: const EdgeInsets.only(bottom: 20),
+                  child: const CustomListTile(
+                    icon: Icons.credit_card,
+                    title: "Cookies Policy",
+                    redirect: true,
+                  ),
+                ),
+              ),
+
+              //
+            ],
+          ),
         ),
       ),
     );

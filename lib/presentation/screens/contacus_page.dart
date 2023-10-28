@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:jusitfi_admin/presentation/screens/issue_chat.dart';
+import 'package:jusitfi_admin/presentation/screens/notification_page.dart';
 import 'package:jusitfi_admin/presentation/widgets/profile_appbar.dart';
+import 'package:jusitfi_admin/utils/constants/textstyles.dart';
 
 class ContactUsPage extends StatefulWidget {
   const ContactUsPage({super.key});
@@ -20,15 +22,107 @@ class _ContactUsPageState extends State<ContactUsPage>
       vsync: this,
       length: 2,
     );
-    return Scaffold(
-      body: Column(
-        children: [
-          const ProfileNavBar(),
-          SizedBox(
-            height: 10,
+    return SafeArea(
+      child: Scaffold(
+        appBar: AppBar(
+        centerTitle: true,
+        elevation: 0,
+        backgroundColor: Colors.black,
+        actions: [
+          Padding(
+            padding: EdgeInsets.only(left: 20, right: 30, top: 10, bottom: 10),
+            child: Row(
+              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+              children: [
+                InkWell(
+                  onTap: () {
+                    Navigator.push(
+                      context,
+                      MaterialPageRoute(
+                        builder: (context) => NotificationsPage(),
+                      ),
+                    );
+                  },
+                  child: Icon(
+                    Icons.notifications_outlined,
+                    color: Colors.white,
+                    size: 35,
+                  ),
+                )
+              ],
+            ),
           ),
-          Expanded(child: Body(tabController: _tabController)),
         ],
+        title: Row(
+          mainAxisAlignment: MainAxisAlignment.center,
+          children: [
+            Text(
+              "Contact Us",
+              style: klocationLight,
+            )
+          ],
+        ),
+      ),
+        body: Column(
+          children: [
+            // Container(
+            //   color: Colors.black,
+            //   child: Row(
+            //     mainAxisAlignment: MainAxisAlignment.start,
+            //     children: [IconButton( onPressed: () {
+
+
+            //       Navigator.of(context).pop();
+            //     }, icon:Icon(Icons.arrow_back,color:Colors.white),)],),),
+            // SizedBox(
+            //   height: 10,
+            // ),
+            Expanded(child: Column(children: [
+              Image.asset('assets/images/login1.png', height: 160,),
+              SizedBox(height: 10,),
+              Padding(
+                
+                padding: EdgeInsets.all(30.0),
+                child: Container(
+                  padding: EdgeInsets.all(15.0),
+
+                  decoration: BoxDecoration(color: Colors.black,borderRadius: BorderRadius.all(Radius.circular(10))),
+                  child: Column(
+                    mainAxisAlignment: MainAxisAlignment.start,
+                    children: [
+                  Align(
+                      alignment: Alignment.centerLeft,
+                      child: Text("Email",style: TextStyle(color: Colors.white,fontWeight: FontWeight.w700),)),
+                      SizedBox(height: 5,),
+                    Align(
+                        alignment: Alignment.centerLeft,
+                        child: Text("justifi@gmail.com",style: TextStyle(color: Colors.white,),)),
+                      SizedBox(height: 15,),
+                      Align(
+                          alignment: Alignment.centerLeft,
+                          child: Text("Website",style: TextStyle(color: Colors.white,fontWeight: FontWeight.w700),)),
+                      SizedBox(height: 5,),
+                      Align(
+                          alignment: Alignment.centerLeft,
+                          child: Text("www.justifi.com",style: TextStyle(color: Colors.white,),)),
+                      SizedBox(height: 15,),
+                      Align(
+                          alignment: Alignment.centerLeft,
+                          child: Text("Location",style: TextStyle(color: Colors.white,fontWeight: FontWeight.w700),)),
+                      SizedBox(height: 5,),
+                      Align(
+                          alignment: Alignment.centerLeft,
+                          child: Text("K.G. road, K.V.K Complex Near",style: TextStyle(color: Colors.white),)),
+                      SizedBox(height: 5,),
+                      Align(
+                          alignment: Alignment.centerLeft,
+                          child: Text("K.K Nagar Delhi-6846789, India",style: TextStyle(color: Colors.white,),)),
+
+                ],),),
+              )
+            ],)),
+          ],
+        ),
       ),
     );
   }
@@ -44,43 +138,7 @@ class Body extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Column(
-      children: [
-        Container(
-          margin: const EdgeInsets.symmetric(
-            vertical: 1,
-            horizontal: 10,
-          ),
-          child: TabBar(
-            indicator: const BoxDecoration(
-                color: Colors.black,
-                borderRadius: BorderRadius.all(
-                  Radius.circular(25),
-                )),
-            labelColor: Colors.white,
-            unselectedLabelColor: Colors.grey,
-            labelStyle: const TextStyle(
-              color: Colors.white,
-              // decorationStyle: TextDecorationStyle.solid,
-            ),
-            tabs: const [
-              Tab(text: "New"),
-              Tab(text: "Existing"),
-            ],
-            controller: _tabController,
-          ),
-        ),
-        Expanded(
-          child: TabBarView(
-            controller: _tabController,
-            children: const [
-              NewIssue(),
-              ExistingIssue(),
-            ],
-          ),
-        ),
-      ],
-    );
+    return Scaffold();
   }
 }
 

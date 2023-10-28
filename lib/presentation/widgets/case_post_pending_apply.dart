@@ -62,18 +62,21 @@ class CasePostPendingApplyVerticalTile extends StatelessWidget {
                     width: 10,
                   ),
                 ]),
-                const CasePostPendingApplyCard(
-                  name: "Priya Sharma",
-                  image: 'assets/images/advocate_img.png',
-                  caseTitle: "Landlord not giving Refundable Money ",
-                  courtType: "High Court",
-                  caseCategory: "xyz",
-                  caseSubCategory: "xyz",
-                  postingDate: "27th Nov, 2022",
-                  noOfApplication: 15,
-                  feeType: "Per Hearing",
-                  viewApplication: false,
-                  courtName: "Allahabad",
+                SingleChildScrollView(
+
+                  child: const CasePostPendingApplyCard(
+                    name: "Priya Sharma",
+                    image: 'assets/images/advocate_img.png',
+                    caseTitle: "Landlord not giving Refundable Money ",
+                    courtType: "High Court",
+                    caseCategory: "xyz",
+                    caseSubCategory: "xyz",
+                    postingDate: "27th Nov, 2022",
+                    noOfApplication: 15,
+                    feeType: "Per Hearing",
+                    viewApplication: false,
+                    courtName: "Allahabad",
+                  ),
                 ),
                 Row(mainAxisAlignment: MainAxisAlignment.end, children: [
                   Text("Post Date: 10th January, 2023",
