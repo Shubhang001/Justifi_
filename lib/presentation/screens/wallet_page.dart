@@ -29,117 +29,116 @@ class _WalletPageState extends State<WalletPage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        centerTitle: true,
-        elevation: 0,
-        backgroundColor: Colors.black,
-        actions: [
-          Padding(
-            padding:
-                const EdgeInsets.only(left: 20, right: 30, top: 10, bottom: 10),
-            child: Row(
-              mainAxisAlignment: MainAxisAlignment.spaceBetween,
-              children: [
-                InkWell(
-                  onTap: () {
-                    Navigator.push(
-                      context,
-                      MaterialPageRoute(
-                        builder: (context) => const NotificationsPage(),
-                      ),
-                    );
-                  },
-                  child: const Icon(
-                    Icons.notifications_outlined,
-                    color: Colors.white,
-                    size: 35,
-                  ),
-                )
-              ],
-            ),
-          ),
-        ],
-        leading: GestureDetector(
-          onTap: () {
-            Navigator.push(
-              context,
-              MaterialPageRoute(
-                builder: (context) => const ProfileScreen(),
-              ),
-            );
-          },
-          child: Padding(
-            padding: const EdgeInsets.all(5.0),
-            child: Image.asset(
-              'assets/icons/profile_new.png',
-              color: Colors.white,
-            ),
-          ),
-        ),
-        title: Row(
-          mainAxisAlignment: MainAxisAlignment.center,
-          children: [
-            Text(
-              "Wallet",
-              style: klocationLight,
-            )
-          ],
-        ),
-      ),
-      body: SingleChildScrollView(
-        scrollDirection: Axis.vertical,
-        child: Column(
-          children: [
-            const SizedBox(
-              height: 10,
-            ),
-            Row(
-              mainAxisAlignment: MainAxisAlignment.center,
-              children: [
-                Image.asset(
-                  widget.userImage.toString(),
-                ),
-                const SizedBox(
-                  width: 10,
-                ),
-                Column(
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  children: [
-                    Text(
-                      widget.userName,
-                      style: poppinsW500S18Black,
-                    ),
-                    Row(
-                      mainAxisAlignment: MainAxisAlignment.spaceAround,
-                      children: [
-                        SizedBox(
-                          height: 20,
-                          width: 20,
-                          child: Image.asset(
-                            "assets/icons/place_marker.png",
-                            fit: BoxFit.cover,
-                          ),
-                        ),
-                        Text(
-                          widget.userLocation,
-                          style: poppinsW400S12Black,
-                        )
-                      ],
-                    )
-                  ],
-                ),
-              ],
-            ),
-            const SizedBox(
-              height: 15,
-            ),
+        appBar: AppBar(
+          centerTitle: true,
+          elevation: 0,
+          backgroundColor: Colors.black,
+          actions: [
             Padding(
-              padding: const EdgeInsets.only(top: 15, left: 23, right: 20),
+              padding: const EdgeInsets.only(
+                  left: 20, right: 30, top: 10, bottom: 10),
               child: Row(
-                crossAxisAlignment: CrossAxisAlignment.start,
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
-                  /*Column(children: [
+                  InkWell(
+                    onTap: () {
+                      Navigator.push(
+                        context,
+                        MaterialPageRoute(
+                          builder: (context) => const NotificationsPage(),
+                        ),
+                      );
+                    },
+                    child: const Icon(
+                      Icons.notifications_outlined,
+                      color: Colors.white,
+                      size: 35,
+                    ),
+                  )
+                ],
+              ),
+            ),
+          ],
+          leading: GestureDetector(
+            onTap: () {
+              Navigator.push(
+                context,
+                MaterialPageRoute(
+                  builder: (context) => const ProfileScreen(),
+                ),
+              );
+            },
+            child: Padding(
+              padding: const EdgeInsets.all(5.0),
+              child: Image.asset(
+                'assets/icons/profile_new.png',
+                color: Colors.white,
+              ),
+            ),
+          ),
+          title: Row(
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: [
+              Text(
+                "Wallet",
+                style: klocationLight,
+              )
+            ],
+          ),
+        ),
+        body: SingleChildScrollView(
+            scrollDirection: Axis.vertical,
+            child: Column(children: [
+              const SizedBox(
+                height: 10,
+              ),
+              Row(
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: [
+                  Image.asset(
+                    widget.userImage.toString(),
+                  ),
+                  const SizedBox(
+                    width: 10,
+                  ),
+                  Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                      Text(
+                        widget.userName,
+                        style: poppinsW500S18Black,
+                      ),
+                      Row(
+                        mainAxisAlignment: MainAxisAlignment.spaceAround,
+                        children: [
+                          SizedBox(
+                            height: 20,
+                            width: 20,
+                            child: Image.asset(
+                              "assets/icons/place_marker.png",
+                              fit: BoxFit.cover,
+                            ),
+                          ),
+                          Text(
+                            widget.userLocation,
+                            style: poppinsW400S12Black,
+                          )
+                        ],
+                      )
+                    ],
+                  ),
+                ],
+              ),
+              const SizedBox(
+                height: 15,
+              ),
+              Padding(
+                padding: const EdgeInsets.only(top: 15, left: 15, right: 15),
+                child: Row(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                  children: [
+                    Column(children: [
                       GestureDetector(
                           onTap: () {
                             Navigator.of(context).push(MaterialPageRoute(
@@ -167,42 +166,12 @@ class _WalletPageState extends State<WalletPage> {
                         "Credits",
                         style: poppinsW500S12Black,
                       )
-                    ]),*/
-                  Column(children: [
-                    GestureDetector(
-                      onTap: () {
-                        Navigator.of(context).push(MaterialPageRoute(
-                            builder: (context) => const AddCoinPage()));
-                      },
-                      child: Container(
-                        height: 54,
-                        width: 48,
-                        padding: const EdgeInsets.all(4),
-                        decoration: BoxDecoration(
-                            borderRadius: BorderRadius.circular(16),
-                            color: Colors.black),
-                        child: Center(
-                            child: Image.asset(
-                          "assets/icons/add_coins_u.png",
-                          fit: BoxFit.cover,
-                        )),
-                      ),
-                    ),
-                    Text(
-                      "Add",
-                      style: poppinsW500S12Black,
-                    ),
-                    Text(
-                      "Coins",
-                      style: poppinsW500S12Black,
-                    )
-                  ]),
-                  Column(children: [
-                    GestureDetector(
+                    ]),
+                    Column(children: [
+                      GestureDetector(
                         onTap: () {
                           Navigator.of(context).push(MaterialPageRoute(
-                              builder: (context) =>
-                                  OffersPage(title: "Profile Credits")));
+                              builder: (context) => const AddCoinPage()));
                         },
                         child: Container(
                           height: 54,
@@ -212,247 +181,273 @@ class _WalletPageState extends State<WalletPage> {
                               borderRadius: BorderRadius.circular(16),
                               color: Colors.black),
                           child: Center(
-                              child: Image.asset("assets/icons/offers_u.png",
-                                  fit: BoxFit.cover)),
-                        )),
-                    Text(
-                      "Offers",
-                      style: poppinsW500S12Black,
-                    ),
-                  ]),
-                  Column(children: [
-                    GestureDetector(
-                        onTap: () {
-                          Navigator.of(context).push(MaterialPageRoute(
-                              builder: (context) =>
-                                  const WalletTransactionPage()));
-                        },
-                        child: Container(
-                          height: 54,
-                          width: 48,
-                          padding: const EdgeInsets.all(6),
-                          decoration: BoxDecoration(
-                              borderRadius: BorderRadius.circular(16),
-                              color: Colors.black),
-                          child: Center(
                               child: Image.asset(
-                            "assets/icons/transaction_u.png",
+                            "assets/icons/add_coins_u.png",
                             fit: BoxFit.cover,
                           )),
-                        )),
-                    Text(
-                      "Transaction",
-                      style: poppinsW500S12Black,
-                    ),
-                  ]),
+                        ),
+                      ),
+                      Text(
+                        "Add",
+                        style: poppinsW500S12Black,
+                      ),
+                      Text(
+                        "Coins",
+                        style: poppinsW500S12Black,
+                      )
+                    ]),
+                    Column(children: [
+                      GestureDetector(
+                          onTap: () {
+                            Navigator.of(context).push(MaterialPageRoute(
+                                builder: (context) =>
+                                    OffersPage(title: "Profile Credits")));
+                          },
+                          child: Container(
+                            height: 54,
+                            width: 48,
+                            padding: const EdgeInsets.all(4),
+                            decoration: BoxDecoration(
+                                borderRadius: BorderRadius.circular(16),
+                                color: Colors.black),
+                            child: Center(
+                                child: Image.asset("assets/icons/offers_u.png",
+                                    fit: BoxFit.cover)),
+                          )),
+                      Text(
+                        "Offers",
+                        style: poppinsW500S12Black,
+                      ),
+                    ]),
+                    Column(children: [
+                      GestureDetector(
+                          onTap: () {
+                            Navigator.of(context).push(MaterialPageRoute(
+                                builder: (context) =>
+                                    const WalletTransactionPage()));
+                          },
+                          child: Container(
+                            height: 54,
+                            width: 48,
+                            padding: const EdgeInsets.all(6),
+                            decoration: BoxDecoration(
+                                borderRadius: BorderRadius.circular(16),
+                                color: Colors.black),
+                            child: Center(
+                                child: Image.asset(
+                              "assets/icons/transaction_u.png",
+                              fit: BoxFit.cover,
+                            )),
+                          )),
+                      Text(
+                        "Transaction",
+                        style: poppinsW500S12Black,
+                      ),
+                    ]),
+                  ],
+                ),
+              ),
+              const SizedBox(
+                height: 10,
+              ),
+              GestureDetector(
+                  onTap: () {
+                    Navigator.of(context).push(MaterialPageRoute(
+                        builder: (context) => const FrozenCoinBalanceScreen()));
+                  },
+                  child: const FrozenCard(
+                      title: "Frozen Coin ",
+                      value: "8XXX1",
+                      detail: " Coins used to schedule Calls")),
+              const SizedBox(
+                height: 20,
+              ),
+              GestureDetector(
+                  onTap: () {},
+                  child: const FrozenCard(
+                      title: "Available Coin ",
+                      value: "8XXX1",
+                      detail: " Coins available for Live and Schedule calls")),
+              const SizedBox(
+                height: 20,
+              ),
+              Center(
+                  child: Text(
+                "Buy Hiring packages as per your need ",
+                style: alegreyaW700S18Black,
+              )),
+              const SizedBox(
+                height: 15,
+              ),
+              Row(
+                mainAxisAlignment: MainAxisAlignment.spaceAround,
+                children: [
+                  Column(
+                    crossAxisAlignment: CrossAxisAlignment.center,
+                    children: [
+                      Row(
+                        children: [
+                          Center(
+                            child: Text(
+                              "Profile",
+                              style: interW400S14Black,
+                            ),
+                          ),
+                          const SizedBox(
+                            width: 3,
+                          ),
+                          SizedBox(
+                              height: 25,
+                              width: 25,
+                              child: FloatingActionButton(
+                                onPressed: () {
+                                  showDialog(
+                                      context: context,
+                                      builder: (BuildContext context) {
+                                        return const CoinDetail(
+                                          title: "Profile Credit :",
+                                          detail:
+                                              " Used to Hire advocate directly",
+                                        );
+                                      });
+                                },
+                                child: const Icon(Icons.info_outline),
+                              ))
+                        ],
+                      ),
+                      Row(
+                        children: [
+                          Center(
+                            child: Text(
+                              "Credits",
+                              style: interW400S14Black,
+                            ),
+                          ),
+                          const SizedBox(
+                            width: 30,
+                          )
+                        ],
+                      ),
+                      const SizedBox(
+                        height: 5,
+                      ),
+                      Center(
+                        child: GestureDetector(
+                          onTap: () {
+                            //implement on tap
+                            Navigator.of(context).push(MaterialPageRoute(
+                                builder: (context) => AddCreditsPage(
+                                      title: 'Profile Credits',
+                                    )));
+                          },
+                          child: const AddButton(),
+                        ),
+                      ),
+                      const SizedBox(
+                        height: 5,
+                      ),
+                      Text(
+                        "Pricing",
+                        style: interW700S10Black,
+                      ),
+                      Center(
+                        child: Text(
+                          "₹ 199+GST/Credit",
+                          style: poppinsW400S12Black,
+                        ),
+                      )
+                    ],
+                  ),
+                  // const IntrinsicHeight(
+                  //   child: VerticalDivider(
+                  //     thickness: 2,
+                  //     color: Colors.black,
+                  //   ),
+                  // ),
+                  Column(
+                    crossAxisAlignment: CrossAxisAlignment.center,
+                    children: [
+                      Center(
+                        child: Row(
+                          children: [
+                            Text(
+                              "Post",
+                              textAlign: TextAlign.start,
+                              style: interW400S14Black,
+                            ),
+                            const SizedBox(
+                              width: 10,
+                            ),
+                            SizedBox(
+                                height: 25,
+                                width: 25,
+                                child: FloatingActionButton(
+                                  onPressed: () {
+                                    showDialog(
+                                        context: context,
+                                        builder: (BuildContext context) {
+                                          return const CoinDetail(
+                                            title: "Post Credit :",
+                                            detail:
+                                                " Used to post cases and Hire best advocate Applied",
+                                          );
+                                        });
+                                  },
+                                  child: const Icon(Icons.info_outline),
+                                )),
+                          ],
+                        ),
+                      ),
+                      Row(
+                        children: [
+                          Center(
+                            child: Text(
+                              "Credits",
+                              textAlign: TextAlign.center,
+                              style: interW400S14Black,
+                            ),
+                          ),
+                          const SizedBox(
+                            width: 30,
+                          )
+                        ],
+                      ),
+                      const SizedBox(
+                        height: 5,
+                      ),
+                      Center(
+                        child: GestureDetector(
+                          onTap: () {
+                            //implement on tap
+                            Navigator.of(context).push(
+                              MaterialPageRoute(
+                                builder: (context) => AddCreditsPage(
+                                  title: "Post Credits",
+                                ),
+                              ),
+                            );
+                          },
+                          child: const AddButton(),
+                        ),
+                      ),
+                      const SizedBox(
+                        height: 5,
+                      ),
+                      Text(
+                        "Pricing",
+                        style: interW700S10Black,
+                      ),
+                      Center(
+                        child: Text(
+                          "₹ 499+GST/Credit",
+                          style: poppinsW400S12Black,
+                        ),
+                      )
+                    ],
+                  ),
                 ],
               ),
-            ),
-            const SizedBox(
-              height: 10,
-            ),
-            // GestureDetector(
-            //     onTap: () {
-            //       Navigator.of(context).push(MaterialPageRoute(
-            //           builder: (context) => const FrozenCoinBalanceScreen()));
-            //     },
-            //     child: const FrozenCard(
-            //         title: "Frozen Coin ",
-            //         value: "8XXX1",
-            //         detail: " Coins used to schedule Calls")),
-            // const SizedBox(
-            //   height: 20,
-            // ),
-            GestureDetector(
-                onTap: () {},
-                child: const FrozenCard(
-                    title: "Available Coin ",
-                    value: "8XXX1",
-                    detail: " Coins available for Live and Schedule calls")),
-            const SizedBox(
-              height: 20,
-            ),
-            // Center(
-            //     child: Text(
-            //   "Buy Hiring packages as per your need ",
-            //   style: alegreyaW700S18Black,
-            // )),
-            // const SizedBox(
-            //   height: 15,
-            // ),
-            // Row(
-            //   mainAxisAlignment: MainAxisAlignment.spaceAround,
-            //   children: [
-            //     Column(
-            //       crossAxisAlignment: CrossAxisAlignment.center,
-            //       children: [
-            //         Row(
-            //           children: [
-            //             Center(
-            //               child: Text(
-            //                 "Profile",
-            //                 style: interW400S14Black,
-            //               ),
-            //             ),
-            //             const SizedBox(
-            //               width: 3,
-            //             ),
-            //             SizedBox(
-            //               height: 25,
-            //               width: 25,
-            //               child: FloatingActionButton(
-            //                 onPressed: () {
-            //                   showDialog(
-            //                       context: context,
-            //                       builder: (BuildContext context) {
-            //                         return const CoinDetail(
-            //                           title: "Profile Credit :",
-            //                           detail: " Used to Hire advocate directly",
-            //                         );
-            //                       });
-            //                 },
-            //                 child: const Icon(Icons.info_outline),
-            //               ),
-            //             ),
-            //           ],
-            //         ),
-            //         Row(
-            //           children: [
-            //             Center(
-            //               child: Text(
-            //                 "Credits",
-            //                 style: interW400S14Black,
-            //               ),
-            //             ),
-            //             const SizedBox(
-            //               width: 30,
-            //             )
-            //           ],
-            //         ),
-            //         const SizedBox(
-            //           height: 5,
-            //         ),
-            //         Center(
-            //           child: GestureDetector(
-            //             onTap: () {
-            //               //implement on tap
-            //               Navigator.of(context).push(MaterialPageRoute(
-            //                   builder: (context) => AddCreditsPage(
-            //                         title: 'Profile Credits',
-            //                       )));
-            //             },
-            //             child: const AddButton(),
-            //           ),
-            //         ),
-            //         const SizedBox(
-            //           height: 5,
-            //         ),
-            //         Text(
-            //           "Pricing",
-            //           style: interW700S10Black,
-            //         ),
-            //         Center(
-            //           child: Text(
-            //             "₹ 199+GST/Credit",
-            //             style: poppinsW400S12Black,
-            //           ),
-            //         )
-            //       ],
-            //     ),
-            //     // const IntrinsicHeight(
-            //     //   child: VerticalDivider(
-            //     //     thickness: 2,
-            //     //     color: Colors.black,
-            //     //   ),
-            //     // ),
-            //     Column(
-            //       crossAxisAlignment: CrossAxisAlignment.center,
-            //       children: [
-            //         Center(
-            //           child: Row(
-            //             children: [
-            //               Text(
-            //                 "Post",
-            //                 textAlign: TextAlign.start,
-            //                 style: interW400S14Black,
-            //               ),
-            //               const SizedBox(
-            //                 width: 10,
-            //               ),
-            //               SizedBox(
-            //                   height: 25,
-            //                   width: 25,
-            //                   child: FloatingActionButton(
-            //                     onPressed: () {
-            //                       showDialog(
-            //                           context: context,
-            //                           builder: (BuildContext context) {
-            //                             return const CoinDetail(
-            //                               title: "Post Credit :",
-            //                               detail:
-            //                                   " Used to post cases and Hire best advocate Applied",
-            //                             );
-            //                           });
-            //                     },
-            //                     child: const Icon(Icons.info_outline),
-            //                   )),
-            //             ],
-            //           ),
-            //         ),
-            //         Row(
-            //           children: [
-            //             Center(
-            //               child: Text(
-            //                 "Credits",
-            //                 textAlign: TextAlign.center,
-            //                 style: interW400S14Black,
-            //               ),
-            //             ),
-            //             const SizedBox(
-            //               width: 30,
-            //             )
-            //           ],
-            //         ),
-            //         const SizedBox(
-            //           height: 5,
-            //         ),
-            //         Center(
-            //           child: GestureDetector(
-            //             onTap: () {
-            //               //implement on tap
-            //               Navigator.of(context).push(
-            //                 MaterialPageRoute(
-            //                   builder: (context) => AddCreditsPage(
-            //                     title: "Post Credits",
-            //                   ),
-            //                 ),
-            //               );
-            //             },
-            //             child: const AddButton(),
-            //           ),
-            //         ),
-            //         const SizedBox(
-            //           height: 5,
-            //         ),
-            //         Text(
-            //           "Pricing",
-            //           style: interW700S10Black,
-            //         ),
-            //         Center(
-            //           child: Text(
-            //             "₹ 499+GST/Credit",
-            //             style: poppinsW400S12Black,
-            //           ),
-            //         )
-            //       ],
-            //     ),
-            //   ],
-            // ),
-          
-          ],
-        ),
-      ),
-    );
+            ])));
   }
 }
 

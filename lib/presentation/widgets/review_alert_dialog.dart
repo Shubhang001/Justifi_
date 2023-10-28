@@ -36,27 +36,26 @@ class _ReviewDialogBox extends State<ReviewDialogBox> {
                       style: poppinsW600S20Black,
                     ),
                     Image.asset(
-                      'assets/images/advocate_img.png',
+                      'assets/images/advocate_image.png',
                       fit: BoxFit.cover,
                     ),
                     Text(
                       "Priya Sharma",
                       style: poppinsW600S16Black,
                     ),
-                    /// LOCATION
-                    // Row(
-                    //   mainAxisAlignment: MainAxisAlignment.center,
-                    //   children: [
-                    //     const Icon(
-                    //       Icons.location_on,
-                    //       color: Colors.black,
-                    //     ),
-                    //     Text(
-                    //       "Mumbai",
-                    //       style: kAdvocateCardLocationBlack,
-                    //     )
-                    //   ],
-                    // ),
+                    Row(
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      children: [
+                        const Icon(
+                          Icons.location_on,
+                          color: Colors.black,
+                        ),
+                        Text(
+                          "Mumbai",
+                          style: kAdvocateCardLocationBlack,
+                        )
+                      ],
+                    ),
                     Divider(
                       color: kprimaryTextColor,
                       thickness: 1,

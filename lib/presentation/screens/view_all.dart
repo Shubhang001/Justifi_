@@ -1,11 +1,9 @@
 import 'dart:convert';
 
 import 'package:flutter/material.dart';
-import 'package:jusitfi_admin/presentation/screens/lawyer_profile_temperory.dart';
 import 'package:jusitfi_admin/presentation/widgets/advocate_card_extended.dart';
 import 'package:jusitfi_admin/presentation/widgets/filter_sort.dart';
 import 'package:jusitfi_admin/presentation/widgets/searchbar.dart';
-import 'package:jusitfi_admin/presentation/widgets/starrating.dart';
 import 'package:jusitfi_admin/utils/constants/textstyles.dart';
 import 'package:http/http.dart' as http;
 
@@ -23,7 +21,7 @@ class _ViewAllPageState extends State<ViewAllPage> {
   @override
   void initState() {
     super.initState();
-    //fetchUsers(widget.title);
+    fetchUsers(widget.title);
   }
 
   @override
@@ -75,240 +73,48 @@ class _ViewAllPageState extends State<ViewAllPage> {
                   ),
                 ),
                 Center(
-                  /////// TEMPERORY CODE, REMOVE AFTER BACKEND WORK OVER
                   child: SizedBox(
                     height: 500,
                     width: 300,
                     child: ListView.builder(
-                      itemCount: 5,
+                      itemCount: result.length,
                       itemBuilder: (context, index) {
-                        return GestureDetector(
-                          onTap: (() {
-                            Navigator.push(
-                              context,
-                              MaterialPageRoute(
-                                builder: (context) => LawyerProfileScreen(),
-                              ),
-                            );
-                          }),
-                          child: Container(
-                            margin: const EdgeInsets.only(bottom: 8),
-                            height: 300,
-                            width: 300,
-                            decoration: BoxDecoration(
-                              border:
-                                  Border.all(color: Colors.white, width: 2.0),
-                              color: Colors.black,
-                              borderRadius: BorderRadius.circular(8),
-                            ),
-                            child: Column(
-                              crossAxisAlignment: CrossAxisAlignment.start,
-                              mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                              children: [
-                                Row(
-                                  children: [
-                                    CircleAvatar(
-                                      radius: 75.0,
-                                      backgroundColor: Colors.transparent,
-                                      child: ClipOval(
-                                        child: Image.asset(
-                                          'assets/images/advocate_img.png',
-                                          width: 120,
-                                          height: 120,
-                                        ),
-                                      ),
-                                    ),
-                                    CircleAvatar(
-                                      radius: 60.0,
-                                      backgroundColor: Colors.transparent,
-                                      child: ClipOval(
-                                        child: Image.asset(
-                                          "assets/images/justify_logo.png",
-                                          width: 130,
-                                          height: 130,
-                                        ),
-                                      ),
-                                    ),
-                                  ],
-                                ),
-                                Container(
-                                  color: Colors.white,
-                                  child: Column(
-                                    children: [
-                                      Container(
-                                        color: Colors.white,
-                                        child: Row(
-                                          mainAxisAlignment:
-                                              MainAxisAlignment.spaceAround,
-                                          children: [
-                                            Column(
-                                              crossAxisAlignment:
-                                                  CrossAxisAlignment.start,
-                                              children: [
-                                                Text(
-                                                  'Sakshi',
-                                                  style: kAdvocateCardName,
-                                                ),
-                                                // Row(
-                                                //   children: [
-                                                //     const Icon(
-                                                //       Icons.pin_drop,
-                                                //       color: Colors.red,
-                                                //       size: 10,
-                                                //     ),
-                                                //     Text(
-                                                //       '5 kms from your location',
-                                                //       style:
-                                                //           kAdvocateCardLocation,
-                                                //     )
-                                                //   ],
-                                                // ),
-                                              ],
-                                            ),
-                                            Column(
-                                              mainAxisAlignment:
-                                                  MainAxisAlignment.spaceAround,
-                                              children: [
-                                                Text(
-                                                  '4',
-                                                  style: kAdvocateCardRating,
-                                                ),
-                                                const StarRating(rating: 4)
-                                              ],
-                                            )
-                                          ],
-                                        ),
-                                      ),
-                                      Container(
-                                        color: Colors.white,
-                                        child: IntrinsicHeight(
-                                          child: Row(
-                                            mainAxisAlignment:
-                                                MainAxisAlignment.spaceAround,
-                                            children: [
-                                              Column(
-                                                children: [
-                                                  Text(
-                                                    '13',
-                                                    style: kAdvocateCardCount,
-                                                  ),
-                                                  Text(
-                                                    'Clients',
-                                                    style:
-                                                        kAdvocateCardCountTitle,
-                                                  )
-                                                ],
-                                              ),
-                                              const VerticalDivider(
-                                                color: Colors.black,
-                                              ),
-                                              Column(
-                                                children: [
-                                                  Text(
-                                                    '10',
-                                                    style: kAdvocateCardCount,
-                                                  ),
-                                                  Text(
-                                                    'Cases',
-                                                    style:
-                                                        kAdvocateCardCountTitle,
-                                                  )
-                                                ],
-                                              ),
-                                              const VerticalDivider(
-                                                color: Colors.black,
-                                              ),
-                                              Column(
-                                                children: [
-                                                  Text(
-                                                    '4',
-                                                    style: kAdvocateCardCount,
-                                                  ),
-                                                  Text(
-                                                    'Experiences',
-                                                    style:
-                                                        kAdvocateCardCountTitle,
-                                                  )
-                                                ],
-                                              )
-                                            ],
-                                          ),
-                                        ),
-                                      ),
-                                      Padding(
-                                        padding: const EdgeInsets.all(8.0),
-                                        child: Align(
-                                          alignment: Alignment.bottomRight,
-                                          child: Container(
-                                            height: 20,
-                                            width: 80,
-                                            decoration: BoxDecoration(
-                                                color: Colors.green,
-                                                borderRadius:
-                                                    BorderRadius.circular(2)),
-                                            child: Center(
-                                              child: Text(
-                                                'View Profile',
-                                                style: kProfileButtonText,
-                                              ),
-                                            ),
-                                          ),
-                                        ),
-                                      ),
-                                    ],
-                                  ),
-                                ),
-                              ],
-                            ),
-                          ),
+                        var res = result[index];
+                        var fullname = res['full_name'];
+                        String profileimage;
+                        if (res['profile_image'] == null) {
+                          profileimage =
+                              "https://imgs.search.brave.com/2EijPI14qdKvk0dFQldOjE3AG2D0Zs9Gltn5aFkk0Fo/rs:fit:860:0:0/g:ce/aHR0cHM6Ly9jZG4u/dmVjdG9yc3RvY2su/Y29tL2kvcHJldmll/dy0xeC80Ny85My9w/ZXJzb24taWNvbi1p/Y29uaWMtZGVzaWdu/LXZlY3Rvci0xODMx/NDc5My5qcGc";
+                        } else {
+                          profileimage = baseurl + res['profile_image'];
+                        }
+                        var qualification = res['qualification'];
+                        var userid = res['user_id'];
+                        var distance = res['distance'];
+                        var place = res['practice_place'];
+                        double rating = res['rating'].toDouble();
+                        var totalclientshandled = res['total_client_handled'];
+                        var totalcaseshandled = res['total_case_handled'];
+                        var experience = 0;
+                        if (res['total_experience'] != null) {
+                          experience = res['total_experience'];
+                        }
+                        qualification ??= "No qulification";
+                        return AdvocateCardExtended(
+                          name: fullname,
+                          image: profileimage,
+                          userid: userid,
+                          education: qualification,
+                          distance: distance,
+                          rating: rating,
+                          clients: totalclientshandled,
+                          cases: totalcaseshandled,
+                          experience: experience,
+                          place: place,
                         );
                       },
                     ),
                   ),
-
-                  /////// OLD BACKEND CODE
-                  // child: SizedBox(
-                  //   height: 500,
-                  //   width: 300,
-                  //   child: ListView.builder(
-                  //     itemCount: result.length,
-                  //     itemBuilder: (context, index) {
-                  //       var res = result[index];
-                  //       var fullname = res['full_name'];
-                  //       String profileimage;
-                  //       if (res['profile_image'] == null) {
-                  //         profileimage =
-                  //             "https://imgs.search.brave.com/2EijPI14qdKvk0dFQldOjE3AG2D0Zs9Gltn5aFkk0Fo/rs:fit:860:0:0/g:ce/aHR0cHM6Ly9jZG4u/dmVjdG9yc3RvY2su/Y29tL2kvcHJldmll/dy0xeC80Ny85My9w/ZXJzb24taWNvbi1p/Y29uaWMtZGVzaWdu/LXZlY3Rvci0xODMx/NDc5My5qcGc";
-                  //       } else {
-                  //         profileimage = baseurl + res['profile_image'];
-                  //       }
-                  //       var qualification = res['qualification'];
-                  //       var userid = res['user_id'];
-                  //       var distance = res['distance'];
-                  //       var place = res['practice_place'];
-                  //       double rating = res['rating'].toDouble();
-                  //       var totalclientshandled = res['total_client_handled'];
-                  //       var totalcaseshandled = res['total_case_handled'];
-                  //       var experience = 0;
-                  //       if (res['total_experience'] != null) {
-                  //         experience = res['total_experience'];
-                  //       }
-                  //       qualification ??= "No qulification";
-                  // return AdvocateCardExtended(
-                  //         name: fullname,
-                  //         image: profileimage,
-                  //         userid: userid,
-                  //         education: qualification,
-                  //         distance: distance,
-                  //         rating: rating,
-                  //         clients: totalclientshandled,
-                  //         cases: totalcaseshandled,
-                  //         experience: experience,
-                  //         place: place,
-                  //       );
-                  //     },
-                  //   ),
-                  // ),
                 ),
               ],
             ),

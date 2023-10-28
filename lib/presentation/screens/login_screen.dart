@@ -1,7 +1,6 @@
 import 'dart:async';
 
 import 'package:flutter/material.dart';
-import 'package:google_fonts/google_fonts.dart';
 import 'package:jusitfi_admin/presentation/screens/mianpage.dart';
 import 'package:jusitfi_admin/presentation/screens/signup_screen.dart';
 import 'package:jusitfi_admin/presentation/widgets/mobilenumberfield.dart';
@@ -166,7 +165,7 @@ class _LoginScreenState extends State<LoginScreen> {
                           children: [
                             MobileInputTextField(
                                 validate: validate,
-                                title: 'Enter your mobile number',
+                                title: 'Enter Your Mobile Number',
                                 txtController: mobileNumber),
                             SizedBox(
                               height: 50,
@@ -196,7 +195,7 @@ class _LoginScreenState extends State<LoginScreen> {
                                       child: Column(
                                         children: [
                                           const Align(
-                                            alignment: Alignment.topCenter,
+                                            alignment: Alignment.topRight,
                                             child: Text(
                                               'Send otp',
                                               style: TextStyle(
@@ -269,17 +268,18 @@ class _LoginScreenState extends State<LoginScreen> {
                                     var response = await verifyUserLogin(
                                         receivedUserId.toString(), otp);
                                     if (response['success'] == true) {
-                                      String token = response['token'];
-                                      _storeToken(token);
-
                                       if (mounted) {
                                         ScaffoldMessenger.of(context)
                                             .showSnackBar(SnackBar(
                                           content: Text(response["message"]),
                                         ));
-                                        print('$response["message"]');
-                                        Navigator.pushNamedAndRemoveUntil(
-                                            context, '/main', (route) => false);
+                                        Navigator.pushAndRemoveUntil(
+                                            context,
+                                            MaterialPageRoute(
+                                              builder: (context) =>
+                                                  const MainPage(),
+                                            ),
+                                            ((route) => false));
                                       }
                                     } else {
                                       if (mounted) {
@@ -307,42 +307,15 @@ class _LoginScreenState extends State<LoginScreen> {
                               child: Center(
                                   child: Text(
                                 'Login',
-                                style: GoogleFonts.outfit(
-                                  color: Colors.black,
-                                  fontStyle: FontStyle.normal,
-                                  fontSize: 18,
-                                  fontWeight: FontWeight.w700,
-                                ),
+                                style: kpageTitle,
                               )),
                             ),
                           )),
-                      Row(children: <Widget>[
-                        Expanded(
-                          child: Container(
-                              margin: const EdgeInsets.only(left: 10.0, right: 15.0),
-                              child: Divider(
-                                color:Colors.white,
-                                height: 1,
-                              )),
-                        ),
-                        Text(
-                          "New User",
-                          style: TextStyle(
-                            color: Colors.yellow,
-                            fontStyle: FontStyle.normal,
-                            fontSize: 18,
-                            fontWeight: FontWeight.w700,
-                          ),
-                        ),
-                        Expanded(
-                          child: Container(
-                              margin: const EdgeInsets.only(left: 15.0, right: 10.0),
-                              child: Divider(
-                                color:Colors.white,
-                                height: 1,
-                              )),
-                        ),
-                      ]),
+                      const TextWithLine(
+                        label: 'New User',
+                        height: 1,
+                        color: Colors.white,
+                      ),
                       Column(
                         children: [
                           Padding(
@@ -352,7 +325,7 @@ class _LoginScreenState extends State<LoginScreen> {
                                 removescreens: false,
                                 nextPage: const SignupScreen(),
                                 buttonColor: kbuttonColor,
-                                text: 'Register',
+                                text: 'Sign Up',
                                 width: 150,
                                 height: 40,
                               )),

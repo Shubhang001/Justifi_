@@ -1,19 +1,16 @@
 import 'dart:convert';
+import 'package:jiffy/jiffy.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_styled_toast/flutter_styled_toast.dart';
-import 'package:jusitfi_admin/presentation/widgets/noservice.dart';
 import 'package:jusitfi_admin/presentation/widgets/text_with_line.dart';
 import 'package:jusitfi_admin/utils/constants/textstyles.dart';
-import 'package:jusitfi_admin/utils/services/api_call.dart';
-import 'package:jusitfi_admin/utils/services/rest_apis.dart';
 import 'package:share_plus/share_plus.dart';
 import 'package:http/http.dart' as http;
 import '../widgets/show_call_details.dart';
 import '../widgets/show_call_dialog.dart';
 import '../widgets/view_document_dialog_box.dart';
+import 'assignwork_lawyer_profile.dart';
 import 'schedule3.dart';
 import 'package:url_launcher/url_launcher.dart';
-import 'package:jiffy/jiffy.dart';
 
 class LawyerProfileScreen extends StatefulWidget {
   const LawyerProfileScreen(
@@ -101,7 +98,7 @@ class _LawyerProfileScreenState extends State<LawyerProfileScreen>
               ),
             ],
           ),
-          CallToAction(userid: widget.userid),
+          const CallToAction(),
           TabBar(
             labelColor: Colors.black,
             unselectedLabelColor: Colors.grey,
@@ -138,16 +135,6 @@ class _LawyerProfileScreenState extends State<LawyerProfileScreen>
 
   AppBar buildAppBar() {
     return AppBar(
-      leading: IconButton(
-          onPressed: () {
-            userLogout(token);
-            Navigator.pop(context);
-          },
-          icon: const Icon(
-            Icons.arrow_back,
-            color: Colors.white,
-            size: 30,
-          )),
       backgroundColor: Colors.black,
       toolbarHeight: 60,
       title: Text(
@@ -1720,8 +1707,9 @@ class TopNav extends StatelessWidget {
 }
 
 class CallToAction extends StatelessWidget {
-  const CallToAction({super.key, required this.userid});
-  final int userid;
+  const CallToAction({
+    super.key,
+  });
 
   @override
   Widget build(BuildContext context) {
@@ -1740,7 +1728,7 @@ class CallToAction extends StatelessWidget {
                       builder: (BuildContext context2) {
                         return CustomDialog(
                           onCallNowPressed: () {
-                            showCallDetails(context, 'Audio Call', userid);
+                            showCallDetails(context, 'Audio Call');
                           },
                           onScheduleNowPressed: () {
                             Navigator.pop(context);
@@ -1770,7 +1758,7 @@ class CallToAction extends StatelessWidget {
                       builder: (BuildContext context2) {
                         return CustomDialog(
                           onCallNowPressed: () {
-                            showCallDetails(context, 'Video Call', userid);
+                            showCallDetails(context, 'Video Call');
                           },
                           onScheduleNowPressed: () {
                             Navigator.pop(context);
@@ -1798,7 +1786,7 @@ class CallToAction extends StatelessWidget {
           InkWell(
             onTap: () {
               Navigator.push(context, MaterialPageRoute(builder: (_) {
-                return const DialogService1();
+                return AssignWorkLawyerProfile();
               }));
             },
             child: const RoundedButton(
