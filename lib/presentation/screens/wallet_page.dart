@@ -268,7 +268,7 @@ class _WalletPageState extends State<WalletPage> {
                 child: const FrozenCard(
                     title: "Available Coin ",
                     value: "8XXX1",
-                    detail: " Coins available for Live and Schedule calls")),
+                    detail: " Coin available to call advocate")),
             const SizedBox(
               height: 20,
             ),
@@ -448,7 +448,6 @@ class _WalletPageState extends State<WalletPage> {
             //     ),
             //   ],
             // ),
-          
           ],
         ),
       ),

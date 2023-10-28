@@ -1172,12 +1172,12 @@ class ReviewContainer extends StatelessWidget {
               children: [
                 Row(
                   children: [
-                    // const CircleAvatar(
-                    //   radius: 22,
-                    //   backgroundImage: NetworkImage(
-                    //     "https://superstarsbio.com/wp-content/uploads/2020/04/John-Doe.jpg",
-                    //   ),
-                    // ),
+                    const CircleAvatar(
+                      radius: 22,
+                      backgroundImage: NetworkImage(
+                        "https://superstarsbio.com/wp-content/uploads/2020/04/John-Doe.jpg",
+                      ),
+                    ),
                     Container(
                       margin: const EdgeInsets.only(left: 15),
                       child: const Text(
@@ -1733,7 +1733,7 @@ class CallToAction extends StatelessWidget {
                     DialogService.showNotAvailableDialog(context);
                   },
                   child: const LawyerCTA(
-                      icon: "assets/images/chat.png", price: "10")),
+                      icon: "assets/images/message3.png", price: "10")),
               InkWell(
                   onTap: () {
                     /*showDialog(
@@ -1758,7 +1758,7 @@ class CallToAction extends StatelessWidget {
                     DialogService.showNotAvailableDialog(context);
                   },
                   child: const LawyerCTA(
-                      icon: "assets/images/video_call.png", price: "30")),
+                      icon: "assets/images/videocall.png", price: "30")),
               InkWell(
                   onTap: () {
                     DialogService.showNotAvailableDialog(context);
