@@ -1714,13 +1714,14 @@ class CallToAction extends StatelessWidget {
                             showCallDetails(context, 'Audio Call', 12345);
                           },
                           onScheduleNowPressed: () {
-                            Navigator.pop(context);
+                            /*Navigator.pop(context);
                             Navigator.push(
                                 context,
                                 MaterialPageRoute(
                                     builder: (context) => const Schedule3(
                                           mode: 'Phone Call',
-                                        )));
+                                        )));*/
+                            DialogService.showNotAvailableDialog(context);
                           },
                         );
                       },
@@ -1736,7 +1737,7 @@ class CallToAction extends StatelessWidget {
                       icon: "assets/images/message3.png", price: "10")),
               InkWell(
                   onTap: () {
-                    /*showDialog(
+                    showDialog(
                       context: context,
                       builder: (BuildContext context2) {
                         return CustomDialog(
@@ -1744,18 +1745,18 @@ class CallToAction extends StatelessWidget {
                             showCallDetails(context, 'Video Call', 12345);
                           },
                           onScheduleNowPressed: () {
-                            Navigator.pop(context);
+                            /*Navigator.pop(context);
                             Navigator.push(
                                 context,
                                 MaterialPageRoute(
                                     builder: (context) => const Schedule3(
                                           mode: 'Video Call',
-                                        )));
+                                        )));*/
+                            DialogService.showNotAvailableDialog(context);
                           },
                         );
                       },
-                    );*/
-                    DialogService.showNotAvailableDialog(context);
+                    );
                   },
                   child: const LawyerCTA(
                       icon: "assets/images/videocall.png", price: "30")),

@@ -268,7 +268,7 @@ class _WalletPageState extends State<WalletPage> {
                 child: const FrozenCard(
                     title: "Available Coin ",
                     value: "8XXX1",
-                    detail: " Coin available to call advocate")),
+                    detail: "Coin available to call advocate")),
             const SizedBox(
               height: 20,
             ),
@@ -539,7 +539,7 @@ class FrozenCard extends StatelessWidget {
                                 builder: (BuildContext context) {
                                   return CoinDetail(
                                     title: "$title :",
-                                    detail: "Coins used to schedule Calls ",
+                                    detail: "Coin available to call advocate",
                                   );
                                 });
                           },

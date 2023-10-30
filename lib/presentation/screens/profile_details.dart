@@ -99,6 +99,10 @@ class ProfileDetails extends StatelessWidget {
                 tileName: "Mobile number :",
                 content: "KElee",
               ),
+              const InfoTile(
+                tileName: "City :",
+                content: "Mumbai",
+              ),
             ],
           ),
         ),
