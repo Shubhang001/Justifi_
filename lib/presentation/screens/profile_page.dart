@@ -27,7 +27,8 @@ class ProfileScreen extends StatelessWidget {
         backgroundColor: Colors.black,
         actions: [
           Padding(
-            padding: EdgeInsets.only(left: 20, right: 30, top: 10, bottom: 10),
+            padding:
+                const EdgeInsets.only(left: 20, right: 30, top: 10, bottom: 10),
             child: Row(
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
@@ -119,7 +120,8 @@ class ProfileScreen extends StatelessWidget {
                         child: ListTile(
                             iconColor: Colors.black,
                             // leading: Icon(Icons.share),
-                            leading: Image.asset("assets/images/send-share.png"),
+                            leading:
+                                Image.asset("assets/images/send-share.png"),
                             title: Text('Invite and Share the App'),
                             trailing: IconButton(
                               icon: const Icon(Icons.share),
