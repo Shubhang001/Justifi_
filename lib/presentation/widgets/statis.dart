@@ -1,5 +1,5 @@
 class Statics {
   static String appSign =
-      '4d20c8e94ac1dcc5b470d261999892b44157315ec4de62ea8648a90319f11414';
-  static int appID = 1219133755;
+      '05d2d5bc34e3bdd72e018039fb6200710d320bd4ea20ea7d0f8e02e274cee944';
+  static int appID = 1597543383;
 }
