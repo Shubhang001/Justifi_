@@ -160,6 +160,10 @@ class _AddCoinPage extends State<AddCoinPage> {
                           style: poppinsW500S12Black,
                         ),
                         TextFormField(
+                          onChanged: (value) => setState(() {
+                            String p = _addMoneyController.text.toString();
+                            price = int.parse(p);
+                          }),
                           controller: _addMoneyController,
                           keyboardType: TextInputType.number,
                           inputFormatters: <TextInputFormatter>[
@@ -177,7 +181,7 @@ class _AddCoinPage extends State<AddCoinPage> {
                             Navigator.of(context)
                                 .push(
                                   MaterialPageRoute(
-                                    builder: (context) => OffersPage(
+                                    builder: (context) => const OffersPage(
                                       title: "Profile Credits",
                                     ),
                                   ),
@@ -276,13 +280,13 @@ class _AddCoinPage extends State<AddCoinPage> {
                         Center(
                           child: GestureDetector(
                             onTap: () {
-                              order = data['order'];
+                              //order = data['order'];
                               Razorpay razorpay = Razorpay();
-                              var key = data['razorpay_key'];
-                              var amount = order['amount'];
+                              //var key = data['razorpay_key'];
+                              //var amount = order['amount'];
                               var options = {
-                                'key': key,
-                                'amount': amount,
+                                'key': 'rzp_test_gnnEJ8xqyzd9jf',
+                                'amount': price,
                                 'name': 'Justifi Corp.',
                                 'description': 'Advocate Hire',
                                 'retry': {'enabled': true, 'max_count': 1},

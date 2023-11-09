@@ -2,6 +2,8 @@ import 'package:flutter/material.dart';
 import '../../utils/constants/colors.dart';
 import '../../utils/constants/textstyles.dart';
 
+import 'package:dropdown_button2/dropdown_button2.dart';
+
 class SearchBarUpdated extends StatelessWidget {
   const SearchBarUpdated(
       {super.key, required this.backgroundColor, required this.color});
@@ -41,7 +43,33 @@ class SearchBarUpdated extends StatelessWidget {
                 hintStyle: ksearch,
               ),
             ),
-          )
+          ),
+          PopupMenuButton(
+            child: Icon(
+              Icons.arrow_drop_down,
+              size: 30,
+              color: kmainButtonColor,
+            ),
+            itemBuilder: (context) {
+              return [
+                const PopupMenuItem(
+                  padding: EdgeInsets.all(8),
+                  child: Text("Name"),
+                ),
+                const PopupMenuItem(
+                  padding: EdgeInsets.all(8),
+                  child: Text("Category"),
+                ),
+                const PopupMenuItem(
+                  padding: EdgeInsets.all(8),
+                  child: Text("Sub-Category"),
+                )
+              ];
+            },
+          ),
+          const SizedBox(
+            width: 5,
+          ),
         ],
       ),
     );

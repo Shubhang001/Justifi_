@@ -6,7 +6,7 @@ import '../../utils/constants/textstyles.dart';
 class OffersPage extends StatefulWidget {
   final String title;
   // final Widget page;
-  OffersPage({
+  const OffersPage({
     Key? key,
     required this.title,
   }) : super(key: key);
