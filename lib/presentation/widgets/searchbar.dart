@@ -15,8 +15,22 @@ class SearchBarUpdated extends StatefulWidget {
 }
 
 class _SearchBarUpdatedState extends State<SearchBarUpdated> {
-  List<String> name = ['Priya Sharma', 'Sakshi', 'Ajay kumar'];
-  List<String> category = ['Criminal', 'Adoption', 'Cybercrime'];
+  List<String> name = [
+    'Priya Sharma',
+    'Sakshi',
+    'Ajay kumar',
+    'xyz',
+    'abc',
+    'pqr'
+  ];
+  List<String> category = [
+    'Criminal',
+    'Adoption',
+    'Cybercrime',
+    'Coporate',
+    'Private',
+    'Murder'
+  ];
   List<String> subcategory = ['Priya Sharma', 'Sakshi', 'Ajay kumar'];
   List<String> items = [];
 
