@@ -67,45 +67,16 @@ class _FaqPageState extends State<FaqPage> {
             ],
           ),
         ),
-        body: SingleChildScrollView(
-          /*child: Column(
-            children: [
-              // Container(
-              //   color: Colors.black,
-              //   child: Row(
-              //     mainAxisAlignment: MainAxisAlignment.start,
-              //     children: [
-              //       IconButton(
-              //         onPressed: () {
-              //           Navigator.of(context).pop();
-              //         },
-              //         icon: Icon(Icons.arrow_back, color: Colors.white),
-              //       ),
-              //     ],
-              //   ),
-              // ),
-              QnaWidget(
-                question: "How does payment work",
-              ),
-              QnaWidget(
-                question: "How does the Booking an advocate work ?",
-              ),
-              QnaWidget(
-                question: "How can I contact support ?",
-              ),
-            ],
-          ),*/
-          child: SizedBox(
-            height: 100,
-            child: ListView.builder(
-              itemCount: result.length,
-              itemBuilder: (context, index) {
-                var res1 = result[index];
-                var question = res1['question'];
-                var answer = res1['answer'];
-                return QnaWidget(question: question, answer: answer);
-              },
-            ),
+        body: ConstrainedBox(
+          constraints: const BoxConstraints(minHeight: 20, maxHeight: 300),
+          child: ListView.builder(
+            itemCount: result.length,
+            itemBuilder: (context, index) {
+              var res1 = result[index];
+              var question = res1['question'];
+              var answer = res1['answer'];
+              return QnaWidget(question: question, answer: answer);
+            },
           ),
         ),
       ),
@@ -149,6 +120,7 @@ class QnaWidget extends StatelessWidget {
       backgroundColor: queryColor,
       children: [
         Container(
+          height: 100,
           padding: const EdgeInsets.all(20),
           color: Colors.white,
           child: ListTile(
