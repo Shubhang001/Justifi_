@@ -144,7 +144,7 @@ class _LoginScreenState extends State<LoginScreen> {
             Container(
               transform: Matrix4.translationValues(0.0, 15.0, 0.0),
               child: Image.asset(
-                'assets/images/login1.png',
+                'assets/images/login_white.png',
                 height: 200,
                 width: 200,
               ),
@@ -319,9 +319,10 @@ class _LoginScreenState extends State<LoginScreen> {
                       Row(children: <Widget>[
                         Expanded(
                           child: Container(
-                              margin: const EdgeInsets.only(left: 10.0, right: 15.0),
+                              margin: const EdgeInsets.only(
+                                  left: 10.0, right: 15.0),
                               child: Divider(
-                                color:Colors.white,
+                                color: Colors.white,
                                 height: 1,
                               )),
                         ),
@@ -336,9 +337,10 @@ class _LoginScreenState extends State<LoginScreen> {
                         ),
                         Expanded(
                           child: Container(
-                              margin: const EdgeInsets.only(left: 15.0, right: 10.0),
+                              margin: const EdgeInsets.only(
+                                  left: 15.0, right: 10.0),
                               child: Divider(
-                                color:Colors.white,
+                                color: Colors.white,
                                 height: 1,
                               )),
                         ),

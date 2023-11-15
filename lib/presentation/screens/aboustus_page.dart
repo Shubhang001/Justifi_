@@ -1,11 +1,11 @@
 import 'package:flutter/material.dart';
-import 'package:jusitfi_admin/presentation/screens/fraud_prevention_page.dart';
+//import 'package:jusitfi_admin/presentation/screens/fraud_prevention_page.dart';
 import 'package:jusitfi_admin/presentation/screens/notification_page.dart';
-import 'package:jusitfi_admin/presentation/screens/privacy_preventionscree.dart';
-import 'package:jusitfi_admin/presentation/screens/riskpolicies_page.dart';
-import 'package:jusitfi_admin/presentation/screens/terms_condition.dart';
-import 'package:jusitfi_admin/presentation/screens/upi_protection.dart';
-import 'package:jusitfi_admin/presentation/widgets/profile_appbar.dart';
+//import 'package:jusitfi_admin/presentation/screens/privacy_preventionscree.dart';
+//import 'package:jusitfi_admin/presentation/screens/riskpolicies_page.dart';
+//import 'package:jusitfi_admin/presentation/screens/terms_condition.dart';
+//import 'package:jusitfi_admin/presentation/screens/upi_protection.dart';
+//import 'package:jusitfi_admin/presentation/widgets/profile_appbar.dart';
 import 'package:jusitfi_admin/utils/constants/textstyles.dart';
 import 'package:url_launcher/url_launcher.dart';
 
@@ -77,8 +77,8 @@ class _AboutUsPAgeState extends State<AboutUsPAge> {
           backgroundColor: Colors.black,
           actions: [
             Padding(
-              padding:
-                  EdgeInsets.only(left: 20, right: 30, top: 10, bottom: 10),
+              padding: const EdgeInsets.only(
+                  left: 20, right: 30, top: 10, bottom: 10),
               child: Row(
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
@@ -87,11 +87,11 @@ class _AboutUsPAgeState extends State<AboutUsPAge> {
                       Navigator.push(
                         context,
                         MaterialPageRoute(
-                          builder: (context) => NotificationsPage(),
+                          builder: (context) => const NotificationsPage(),
                         ),
                       );
                     },
-                    child: Icon(
+                    child: const Icon(
                       Icons.notifications_outlined,
                       color: Colors.white,
                       size: 35,
@@ -133,13 +133,13 @@ class _AboutUsPAgeState extends State<AboutUsPAge> {
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [
                   Image.asset(
-                    "assets/images/login1.png",
+                    "assets/images/login_white.png",
                     height: 160,
                   ),
                   Container(),
                 ],
               ),
-              Text(
+              const Text(
                 "Your Lawyer App :)",
                 style:
                     TextStyle(color: Colors.black, fontWeight: FontWeight.w600),

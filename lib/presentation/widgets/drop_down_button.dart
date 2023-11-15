@@ -1,4 +1,3 @@
-import 'package:dropdown_button2/custom_dropdown_button2.dart';
 import 'package:flutter/material.dart';
 
 class DropDownMenuButton extends StatefulWidget {
@@ -43,6 +42,16 @@ class _DropDownMenuButtonState extends State<DropDownMenuButton> {
       ),
     );
   }
+
+  CustomDropdownButton2(
+      {required String hint,
+      required String value,
+      required List<String> dropdownItems,
+      required Null Function(dynamic value) onChanged,
+      required Icon icon,
+      required double buttonWidth,
+      required double dropdownWidth,
+      required double buttonHeight}) {}
 }
 
 String dropdownvalue = 'Item 1';

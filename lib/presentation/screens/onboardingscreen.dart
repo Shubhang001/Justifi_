@@ -42,7 +42,7 @@ class _OnBoardingScreenState extends State<OnBoardingScreen> {
                   width: 280,
                   child: Align(
                       alignment: Alignment.center,
-                      child: Image.asset('assets/images/justify_logo.png')),
+                      child: Image.asset('assets/images/login2.png')),
                 ),
                 Padding(
                   padding: const EdgeInsets.only(left: 19),

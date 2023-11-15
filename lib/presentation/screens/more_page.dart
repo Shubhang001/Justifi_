@@ -18,26 +18,20 @@ class MorePage extends StatefulWidget {
 }
 
 class _MorePageState extends State<MorePage> {
- late Future<List<dynamic>> categorydetailslist;
-getcat() async {
- categorydetailslist= getCategories();
-
-}
+  late Future<List<dynamic>> categorydetailslist;
+  getcat() async {
+    categorydetailslist = getCategories();
+  }
 
   @override
- initState() {
-    // TODO: implement initState
+  initState() {
     super.initState();
     getcat();
   }
 
-
-  late   Future<List<dynamic>> subCatItems;
+  late Future<List<dynamic>> subCatItems;
   @override
   Widget build(BuildContext context) {
-
-
-
     return Scaffold(
       backgroundColor: Colors.white,
       body: SafeArea(
@@ -46,10 +40,11 @@ getcat() async {
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
-              Row(
-                children: const [
+              const Row(
+                children: [
                   SearchBarUpdated(
-                    backgroundColor: Colors.black, color:Colors.white,
+                    backgroundColor: Colors.black,
+                    color: Colors.white,
                   ),
                   SizedBox(
                     width: 10,
@@ -71,65 +66,60 @@ getcat() async {
                 height: 30,
               ),
               Expanded(
-                child:FutureBuilder<List<dynamic>>(
-                    future: categorydetailslist,
-                    builder: (context,snapshot){
-                      print(snapshot.data);
-                      if(snapshot.hasData){
-                        return   GridView.builder(
-                          itemCount:snapshot.data?.length,
-                          gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
-                            childAspectRatio: (100 / 150),
-                            crossAxisCount: 3,
-                            mainAxisSpacing: 16,
-                            crossAxisSpacing: 16,
-                          ),
-                          itemBuilder: (context, index) {
-                            return InkWell(
-                              onTap: () {
-                                setState(() {
-                                  subCatItems=getsubcategories(snapshot.data![index]['id']);
-                                });
+                  child: FutureBuilder<List<dynamic>>(
+                      future: categorydetailslist,
+                      builder: (context, snapshot) {
+                        print(snapshot.data);
+                        if (snapshot.hasData) {
+                          return GridView.builder(
+                            itemCount: snapshot.data?.length,
+                            gridDelegate:
+                                const SliverGridDelegateWithFixedCrossAxisCount(
+                              childAspectRatio: (100 / 150),
+                              crossAxisCount: 3,
+                              mainAxisSpacing: 16,
+                              crossAxisSpacing: 16,
+                            ),
+                            itemBuilder: (context, index) {
+                              return InkWell(
+                                onTap: () {
+                                  setState(() {
+                                    subCatItems = getsubcategories(
+                                        snapshot.data![index]['id']);
+                                  });
 
-                                ShowSubCat(context, subCatItems);
-                              },
-                              child: Column(
-                                crossAxisAlignment: CrossAxisAlignment.center,
-                                children: [
-                                  Image.network(
-                                   "$baseURL"+ snapshot.data![index]['logo'].toString(),
-                                    height: 100,
-                                    width: 100,
-                                    fit: BoxFit.fill,
-                                  ),
-                                  Expanded(
-                                    child: Text(
-                                      snapshot.data![index]['name'],
-                                      style: kMainCategory,
-                                      textAlign: TextAlign.center,
-                                      
-
+                                  ShowSubCat(context, subCatItems);
+                                },
+                                child: Column(
+                                  crossAxisAlignment: CrossAxisAlignment.center,
+                                  children: [
+                                    Image.network(
+                                      "$baseURL${snapshot.data![index]['logo']}",
+                                      height: 100,
+                                      width: 100,
+                                      fit: BoxFit.fill,
                                     ),
-                                  )
-                                ],
-                              ),
-                            );
-                          },
-                        );
-                      }
-                      else if(snapshot.hasError){
-                        if (kDebugMode) {
-                          print(snapshot.error);
+                                    Expanded(
+                                      child: Text(
+                                        snapshot.data![index]['name'],
+                                        style: kMainCategory,
+                                        textAlign: TextAlign.center,
+                                      ),
+                                    )
+                                  ],
+                                ),
+                              );
+                            },
+                          );
+                        } else if (snapshot.hasError) {
+                          if (kDebugMode) {
+                            print(snapshot.error);
+                          }
                         }
-                      }
-                      return Center(child: CircularProgressIndicator(),);
-                    }
-                )
-
-
-              ),
-
-
+                        return const Center(
+                          child: CircularProgressIndicator(),
+                        );
+                      })),
             ],
           ),
         ),
@@ -137,6 +127,3 @@ getcat() async {
     );
   }
 }
-
-
-

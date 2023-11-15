@@ -29,7 +29,7 @@ class _SplashScreenState extends State<SplashScreen> {
                   SizedBox(
                       height: 300,
                       width: 300,
-                      child: Image.asset("assets/images/justify_logo.png")),
+                      child: Image.asset("assets/images/login2.png")),
                   const SizedBox(
                     height: 64.0,
                     width: 200,

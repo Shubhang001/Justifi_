@@ -5,10 +5,10 @@ import 'package:jusitfi_admin/utils/constants/textstyles.dart';
 // import 'package:justifi_advocate/presentation/widgets/custom_app_bar_profile.dart';
 // import 'package:justifi_advocate/utils/constants/textstyles.dart';
 import 'package:share_plus/share_plus.dart';
-import 'schedule3.dart';
+//import 'schedule3.dart';
 import '../widgets/show_call_details.dart';
 import '../widgets/show_call_dialog.dart';
-import '../widgets/view_document_dialog_box.dart';
+//import '../widgets/view_document_dialog_box.dart';
 
 class LawyerProfileScreen extends StatefulWidget {
   static const routeName = "/lawyerprofile";
@@ -221,9 +221,9 @@ class _DetailSectionState extends State<DetailSection>
             width: double.maxFinite,
             child: TabBarView(
               controller: _tabController,
-              children: <Widget>[
-                const PracticeArea(),
-                const Qualification(),
+              children: const <Widget>[
+                PracticeArea(),
+                Qualification(),
                 Court(),
               ],
             ),
@@ -593,7 +593,7 @@ class Qualification extends StatelessWidget {
               horizontal: 10,
               vertical: 15,
             ),
-            constraints: BoxConstraints(minHeight: 180, maxHeight: 210),
+            constraints: const BoxConstraints(minHeight: 180, maxHeight: 190),
             width: double.infinity,
             decoration: const BoxDecoration(
               color: Color.fromRGBO(169, 169, 169, 1),
@@ -725,20 +725,24 @@ class Qualification extends StatelessWidget {
             // ),
 
             child: Row(
-              crossAxisAlignment: CrossAxisAlignment.start,
-              mainAxisAlignment: MainAxisAlignment.start,
+              // crossAxisAlignment: CrossAxisAlignment.start,
+              //mainAxisAlignment: MainAxisAlignment.start,
               children: [
                 // Degree and logo
                 Expanded(
                   child: Column(
-                    mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                    //mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                    crossAxisAlignment: CrossAxisAlignment.stretch,
                     children: [
-                      Align(
-                        alignment: Alignment.topLeft,
-                        child: const Text(
-                          'Degree',
-                          style: TextStyle(
-                              fontWeight: FontWeight.bold, fontSize: 18),
+                      const Padding(
+                        padding: EdgeInsets.all(12.0),
+                        child: Align(
+                          alignment: Alignment.topLeft,
+                          child: Text(
+                            'Degree',
+                            style: TextStyle(
+                                fontWeight: FontWeight.bold, fontSize: 18),
+                          ),
                         ),
                       ),
                       SizedBox(
@@ -752,9 +756,12 @@ class Qualification extends StatelessWidget {
                 Expanded(
                   flex: 2,
                   child: Column(
-                    mainAxisAlignment: MainAxisAlignment.center,
+                    //mainAxisAlignment: MainAxisAlignment.center,
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
+                      const SizedBox(
+                        height: 30,
+                      ),
                       const Text(
                         'Indian scool of Law',
                         textAlign: TextAlign.center,
@@ -781,9 +788,12 @@ class Qualification extends StatelessWidget {
                           maxLines: 3,
                         ),
                       ),
+                      const SizedBox(
+                        height: 25,
+                      ),
                       //button
                       Align(
-                        alignment: Alignment.bottomRight,
+                        alignment: AlignmentDirectional.bottomEnd,
                         child: ElevatedButton(
                           style: ElevatedButton.styleFrom(
                               backgroundColor: Colors.green),

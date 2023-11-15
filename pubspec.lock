@@ -221,10 +221,26 @@ packages:
     dependency: "direct main"
     description:
       name: dropdown_button2
-      sha256: "604b87283e251e0e4a0cb1d0fdfa91fd527702b06e80999c4054cecc603e10e7"
+      sha256: b0fe8d49a030315e9eef6c7ac84ca964250155a6224d491c1365061bc974a9e1
       url: "https://pub.dev"
     source: hosted
-    version: "1.9.4"
+    version: "2.3.9"
+  dropdown_search:
+    dependency: "direct main"
+    description:
+      name: dropdown_search
+      sha256: "55106e8290acaa97ed15bea1fdad82c3cf0c248dd410e651f5a8ac6870f783ab"
+      url: "https://pub.dev"
+    source: hosted
+    version: "5.0.6"
+  dropdownfield2:
+    dependency: "direct main"
+    description:
+      name: dropdownfield2
+      sha256: "83d7c25c253f64d86d3541543b5a118b150acd2810e0f57330c970e81032db35"
+      url: "https://pub.dev"
+    source: hosted
+    version: "1.0.7"
   encrypt:
     dependency: transitive
     description:
