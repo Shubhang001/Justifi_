@@ -299,7 +299,7 @@ class _HomePageState extends State<HomePage> {
                                                     Colors.transparent,
                                                 child: ClipOval(
                                                   child: Image.asset(
-                                                    "assets/images/justify_logo.png",
+                                                    "assets/images/login2.png",
                                                     width: 130,
                                                     height: 130,
                                                   ),
