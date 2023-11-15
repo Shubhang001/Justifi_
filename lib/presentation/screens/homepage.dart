@@ -9,7 +9,7 @@ import 'package:jusitfi_admin/presentation/widgets/starrating.dart';
 import 'package:jusitfi_admin/utils/constants/textstyles.dart';
 import '../widgets/category_tile.dart';
 import '../widgets/filter_sort.dart';
-import '../widgets/horizontal_tile.dart';
+//import '../widgets/horizontal_tile.dart';
 import '../widgets/searchbar.dart';
 import 'package:flutter/material.dart';
 

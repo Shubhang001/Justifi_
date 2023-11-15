@@ -89,7 +89,7 @@ class _NotificationsPageState extends State<NotificationsPage> {
                                   child: Text(
                                     formatDateTime(
                                         dummyNotifications[index].dateTime),
-                                    style: TextStyle(
+                                    style: const TextStyle(
                                         color: Colors.black,
                                         fontWeight: FontWeight.bold),
                                   )),
@@ -97,8 +97,8 @@ class _NotificationsPageState extends State<NotificationsPage> {
                             Row(
                               crossAxisAlignment: CrossAxisAlignment.start,
                               children: [
-                                Padding(
-                                  padding: const EdgeInsets.all(8.0),
+                                const Padding(
+                                  padding: EdgeInsets.all(8.0),
                                   child: CircleAvatar(
                                       radius: 20,
                                       child:
