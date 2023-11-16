@@ -1,8 +1,9 @@
-import 'package:dropdownfield2/dropdownfield2.dart';
+//import 'package:dropdownfield2/dropdownfield2.dart';
 import 'package:flutter/material.dart';
 import '../../utils/constants/colors.dart';
-import '../../utils/constants/textstyles.dart';
+//import '../../utils/constants/textstyles.dart';
 import 'package:dropdown_search/dropdown_search.dart';
+//import 'package:searchfield/searchfield.dart';
 
 class SearchBarUpdated extends StatefulWidget {
   const SearchBarUpdated(
@@ -33,15 +34,18 @@ class _SearchBarUpdatedState extends State<SearchBarUpdated> {
   ];
   List<String> subcategory = ['Priya Sharma', 'Sakshi', 'Ajay kumar'];
   List<String> items = [];
-
+  String selectedItem = '';
   final _searchController = TextEditingController();
-  int value = 0;
+  int value1 = 0;
+  String labelText = "Search....";
 
   void nametoitems() {
     setState(() {
       items = name;
     });
   }
+
+  int suggestionsCount = 12;
 
   @override
   Widget build(BuildContext context) {
@@ -99,7 +103,13 @@ class _SearchBarUpdatedState extends State<SearchBarUpdated> {
               items: name,
             ),*/
             child: DropdownSearch<String>(
+              onChanged: (value) => setState(() {
+                selectedItem = items[value1];
+                labelText = selectedItem;
+              }),
               popupProps: PopupProps.menu(
+                showSearchBox: true,
+                isFilterOnline: true,
                 showSelectedItems: true,
                 disabledItemFn: (String s) => s.startsWith('I'),
               ),
@@ -112,7 +122,7 @@ class _SearchBarUpdatedState extends State<SearchBarUpdated> {
                     fontWeight: FontWeight.w400,
                     fontSize: 18,
                   ),
-                  labelText: "Search....",
+                  labelText: labelText,
                   labelStyle: TextStyle(
                     color: kmainButtonColor,
                     fontWeight: FontWeight.w400,
@@ -120,8 +130,15 @@ class _SearchBarUpdatedState extends State<SearchBarUpdated> {
                   ),
                 ),
               ),
-              selectedItem: "Advocate",
+              selectedItem: selectedItem,
             ),
+            /*child: SearchField(
+              suggestions: suggestions
+                  .map((e) => SearchFieldListItem<String>(
+                        e,
+                      ))
+                  .toList(),
+            ),*/
           ),
           PopupMenuButton(
             child: Icon(
@@ -133,16 +150,22 @@ class _SearchBarUpdatedState extends State<SearchBarUpdated> {
               // add this property
               setState(() {
                 if (newValue == 1) {
-                  value = newValue;
                   items = name;
+                  setState(() {
+                    value1 = newValue;
+                  });
                 }
                 if (newValue == 2) {
-                  value = newValue;
+                  setState(() {
+                    value1 = newValue;
+                  });
                   items = category;
                 }
                 if (newValue == 3) {
                   items = subcategory;
-                  value = newValue;
+                  setState(() {
+                    value1 = newValue;
+                  });
                 }
               });
             },
