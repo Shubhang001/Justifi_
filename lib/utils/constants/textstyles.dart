@@ -382,7 +382,7 @@ TextStyle robotoW500S30Black = GoogleFonts.roboto(
 
 TextStyle inriaSerifW700S30Black = GoogleFonts.inriaSerif(
   color: Colors.black,
-  fontSize: 30,
+  fontSize: 25,
   fontWeight: FontWeight.w700,
 );
 
