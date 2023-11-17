@@ -34,7 +34,7 @@ class _MorePageState extends State<MorePage> {
     fetchUsers();
   }
 
-  late Future<List<dynamic>> subCatItems;
+  late List<dynamic> subCatItems;
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -94,7 +94,7 @@ class _MorePageState extends State<MorePage> {
                                 onTap: () {
                                   setState(() {
                                     subCatItems =
-                                        getsubcategories(result[index]['id']);
+                                        result[index]['subcategories'];
                                   });
 
                                   ShowSubCat(context, subCatItems);

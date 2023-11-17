@@ -216,7 +216,7 @@ TextStyle klocationLight = GoogleFonts.inter(
 );
 
 TextStyle ksubCatText = GoogleFonts.inter(
-  color: Colors.black,
+  color: Colors.white,
   fontWeight: FontWeight.w400,
   fontSize: 12,
 );
