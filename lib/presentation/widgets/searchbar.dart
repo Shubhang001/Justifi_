@@ -107,6 +107,10 @@ class _SearchBarUpdatedState extends State<SearchBarUpdated> {
                 selectedItem = items[value1];
                 labelText = selectedItem;
               }),
+              onSaved: (value) => setState(() {
+                selectedItem = items[value1];
+                labelText = selectedItem;
+              }),
               popupProps: PopupProps.menu(
                 showSearchBox: true,
                 isFilterOnline: true,

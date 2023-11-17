@@ -1,3 +1,5 @@
+import 'dart:convert';
+
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:jusitfi_admin/api/category/get_categorylist.dart';
@@ -7,8 +9,8 @@ import 'package:jusitfi_admin/presentation/widgets/filter_sort.dart';
 import 'package:jusitfi_admin/presentation/widgets/searchbar.dart';
 import 'package:jusitfi_admin/presentation/widgets/show_sub_cat.dart';
 import 'package:jusitfi_admin/utils/constants/textstyles.dart';
-
-import '../../api/base_url.dart';
+import 'package:http/http.dart' as http;
+//import '../../api/base_url.dart';
 
 class MorePage extends StatefulWidget {
   const MorePage({super.key});
@@ -19,6 +21,8 @@ class MorePage extends StatefulWidget {
 
 class _MorePageState extends State<MorePage> {
   late Future<List<dynamic>> categorydetailslist;
+  List<dynamic> result = [];
+  String baseURL1 = "http://65.0.130.67:8000";
   getcat() async {
     categorydetailslist = getCategories();
   }
@@ -27,6 +31,7 @@ class _MorePageState extends State<MorePage> {
   initState() {
     super.initState();
     getcat();
+    fetchUsers();
   }
 
   late Future<List<dynamic>> subCatItems;
@@ -65,14 +70,18 @@ class _MorePageState extends State<MorePage> {
               const SizedBox(
                 height: 30,
               ),
-              Expanded(
-                  child: FutureBuilder<List<dynamic>>(
-                      future: categorydetailslist,
-                      builder: (context, snapshot) {
-                        print(snapshot.data);
-                        if (snapshot.hasData) {
-                          return GridView.builder(
-                            itemCount: snapshot.data?.length,
+              SizedBox(
+                  height: 100,
+                  child: ListView.builder(
+                      //future: categorydetailslist,
+                      itemCount: result.length,
+                      itemBuilder: (context, index) {
+                        // print(snapshot.data);
+
+                        return SizedBox(
+                          height: 100,
+                          child: GridView.builder(
+                            itemCount: result.length,
                             gridDelegate:
                                 const SliverGridDelegateWithFixedCrossAxisCount(
                               childAspectRatio: (100 / 150),
@@ -84,8 +93,8 @@ class _MorePageState extends State<MorePage> {
                               return InkWell(
                                 onTap: () {
                                   setState(() {
-                                    subCatItems = getsubcategories(
-                                        snapshot.data![index]['id']);
+                                    subCatItems =
+                                        getsubcategories(result[index]['id']);
                                   });
 
                                   ShowSubCat(context, subCatItems);
@@ -94,14 +103,14 @@ class _MorePageState extends State<MorePage> {
                                   crossAxisAlignment: CrossAxisAlignment.center,
                                   children: [
                                     Image.network(
-                                      "$baseURL${snapshot.data![index]['logo']}",
+                                      result[index]['logo'],
                                       height: 100,
                                       width: 100,
                                       fit: BoxFit.fill,
                                     ),
                                     Expanded(
                                       child: Text(
-                                        snapshot.data![index]['name'],
+                                        result[index]['name'],
                                         style: kMainCategory,
                                         textAlign: TextAlign.center,
                                       ),
@@ -110,14 +119,7 @@ class _MorePageState extends State<MorePage> {
                                 ),
                               );
                             },
-                          );
-                        } else if (snapshot.hasError) {
-                          if (kDebugMode) {
-                            print(snapshot.error);
-                          }
-                        }
-                        return const Center(
-                          child: CircularProgressIndicator(),
+                          ),
                         );
                       })),
             ],
@@ -125,5 +127,23 @@ class _MorePageState extends State<MorePage> {
         ),
       ),
     );
+  }
+
+  Future<void> fetchUsers() async {
+    print('fetchUser called');
+    Uri uri;
+
+    uri = Uri.parse("http://65.0.130.67:8000/case/category-subcategory/");
+
+    var response = await http.get(uri);
+    if (response.statusCode == 200) {
+      final body = response.body;
+      final json = jsonDecode(body);
+
+      setState(() {
+        result = json;
+      });
+      print('fetchUser complete');
+    }
   }
 }

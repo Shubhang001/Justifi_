@@ -3,8 +3,9 @@ import 'package:http/http.dart' as http;
 import 'package:jusitfi_admin/api/base_url.dart';
 
 Future<List<dynamic>> getsubcategories(id) async {
+  String baseURL1 = "http://65.0.130.67:8000";
   final response =
-      await http.get(Uri.parse("$baseURL/v1/categories/$id/sub_categories/"));
+      await http.get(Uri.parse("$baseURL1/v1/categories/$id/sub_categories/"));
 
   if (response.statusCode == 200) {
     final List<dynamic> data = jsonDecode(response.body)['results'];
