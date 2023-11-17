@@ -28,6 +28,7 @@ class _AddCoinPage extends State<AddCoinPage> {
   int discount = 150;
   int total = 390;
   // String couponText = "Coupon Code";
+  String p = '';
 
   void _onAmountTapped(int index) {
     setState(() {
@@ -52,7 +53,7 @@ class _AddCoinPage extends State<AddCoinPage> {
     * 2. Error Description
     * 3. Metadata
     * */
-    showAlertDialog(context, "Payment Failed",
+    showAlertDialog(context as BuildContext, "Payment Failed",
         "Code: ${response.code}\nDescription: ${response.message}\nMetadata:${response.error.toString()}");
   }
 
@@ -63,13 +64,13 @@ class _AddCoinPage extends State<AddCoinPage> {
     * 2. Payment ID
     * 3. Signature
     * */
-    showAlertDialog(
-        context, "Payment Successful", "Payment ID: ${response.paymentId}");
+    showAlertDialog(context as BuildContext, "Payment Successful",
+        "Payment ID: ${response.paymentId}");
   }
 
   void handleExternalWalletSelected(ExternalWalletResponse response) {
-    showAlertDialog(
-        context, "External Wallet Selected", "${response.walletName}");
+    showAlertDialog(context as BuildContext, "External Wallet Selected",
+        "${response.walletName}");
   }
 
   void showAlertDialog(BuildContext context, String title, String message) {
@@ -161,13 +162,14 @@ class _AddCoinPage extends State<AddCoinPage> {
                         ),
                         TextFormField(
                           onChanged: (value) => setState(() {
-                            String p = _addMoneyController.text.toString();
+                            p = _addMoneyController.text.toString();
                             price = int.parse(p);
                           }),
                           controller: _addMoneyController,
                           keyboardType: TextInputType.number,
                           inputFormatters: <TextInputFormatter>[
-                            FilteringTextInputFormatter.digitsOnly
+                            FilteringTextInputFormatter.digitsOnly,
+                            LengthLimitingTextInputFormatter(7),
                           ],
                           decoration: const InputDecoration(
                             border: OutlineInputBorder(),
@@ -247,7 +249,7 @@ class _AddCoinPage extends State<AddCoinPage> {
                             mainAxisAlignment: MainAxisAlignment.spaceBetween,
                             children: [
                               Text(
-                                "Discount",
+                                "Coupon Coin",
                                 style: inriaSerifW700S30Black,
                               ),
                               Text(discount.toString(),
@@ -280,32 +282,38 @@ class _AddCoinPage extends State<AddCoinPage> {
                         Center(
                           child: GestureDetector(
                             onTap: () {
-                              //order = data['order'];
-                              Razorpay razorpay = Razorpay();
-                              //var key = data['razorpay_key'];
-                              //var amount = order['amount'];
-                              var options = {
-                                'key': 'rzp_test_gnnEJ8xqyzd9jf',
-                                'amount': price,
-                                'name': 'Justifi Corp.',
-                                'description': 'Advocate Hire',
-                                'retry': {'enabled': true, 'max_count': 1},
-                                'send_sms_hash': true,
-                                'prefill': {
-                                  'contact': '8888888888',
-                                  'email': 'test@razorpay.com'
-                                },
-                                'external': {
-                                  'wallets': ['paytm']
-                                }
-                              };
-                              razorpay.on(Razorpay.EVENT_PAYMENT_ERROR,
-                                  handlePaymentErrorResponse);
-                              razorpay.on(Razorpay.EVENT_PAYMENT_SUCCESS,
-                                  handlePaymentSuccessResponse);
-                              razorpay.on(Razorpay.EVENT_EXTERNAL_WALLET,
-                                  handleExternalWalletSelected);
-                              razorpay.open(options);
+                              int price1 = int.parse(p);
+                              if (price1 >= 100) {
+                                //order = data['order'];
+                                Razorpay razorpay = Razorpay();
+                                //var key = data['razorpay_key'];
+                                //var amount = order['amount'];
+                                var options = {
+                                  'key': 'rzp_test_gnnEJ8xqyzd9jf',
+                                  'amount': price,
+                                  'name': 'Justifi Corp.',
+                                  'description': 'Advocate Hire',
+                                  'retry': {'enabled': true, 'max_count': 1},
+                                  'send_sms_hash': true,
+                                  'prefill': {
+                                    'contact': '8888888888',
+                                    'email': 'test@razorpay.com'
+                                  },
+                                  'external': {
+                                    'wallets': ['paytm']
+                                  }
+                                };
+                                razorpay.on(Razorpay.EVENT_PAYMENT_ERROR,
+                                    handlePaymentErrorResponse);
+                                razorpay.on(Razorpay.EVENT_PAYMENT_SUCCESS,
+                                    handlePaymentSuccessResponse);
+                                razorpay.on(Razorpay.EVENT_EXTERNAL_WALLET,
+                                    handleExternalWalletSelected);
+                                razorpay.open(options);
+                              } else {
+                                _showDialog(context,
+                                    "Minimum 100 coins required for proceeding");
+                              }
                             },
                             child: const PayNowButton(),
                           ),
@@ -357,4 +365,27 @@ class PayNowButton extends StatelessWidget {
           style: poppinsW500S15White,
         )));
   }
+}
+
+void _showDialog(context, String text) {
+  // flutter defined function
+  showDialog(
+    context: context,
+    builder: (BuildContext context) {
+      // return object of type Dialog
+      return AlertDialog(
+        title: const Text("Alert Error"),
+        content: Text(text),
+        actions: <Widget>[
+          // usually buttons at the bottom of the dialog
+          TextButton(
+            child: const Text("Close"),
+            onPressed: () {
+              Navigator.of(context).pop();
+            },
+          ),
+        ],
+      );
+    },
+  );
 }

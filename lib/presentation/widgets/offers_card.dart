@@ -48,7 +48,9 @@ class _OffersCardState extends State<OffersCard> {
               // const SizedBox(
               //   height: 20,
               // ),
-              Image.asset("assets/images/advocate_tie.png"),
+              SizedBox(
+                  height: 100,
+                  child: Image.asset("assets/images/advocate.png")),
               Text(
                 "One Time Hiring",
                 style: poppinsW700S14White,

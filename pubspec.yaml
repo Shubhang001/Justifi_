@@ -67,6 +67,7 @@ dependencies:
   flutter_styled_toast: ^2.2.1
   dropdownfield2: ^1.0.7
   dropdown_search: ^5.0.6
+  searchfield: ^0.8.7
 
 dev_dependencies:
   flutter_lints: ^2.0.0
