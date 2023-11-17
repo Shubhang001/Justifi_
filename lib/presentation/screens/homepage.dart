@@ -1,11 +1,9 @@
 import 'package:flutter_typeahead/flutter_typeahead.dart';
-import 'package:jusitfi_admin/presentation/screens/lawyer_profile_temperory.dart';
 import 'package:jusitfi_admin/presentation/screens/more_page.dart';
 import 'package:jusitfi_admin/presentation/screens/notification_page.dart';
 import 'package:jusitfi_admin/presentation/screens/profile_page.dart';
 import 'package:jusitfi_admin/presentation/screens/view_all.dart';
 import 'package:jusitfi_admin/presentation/widgets/home_nav_bar.dart';
-import 'package:jusitfi_admin/presentation/widgets/starrating.dart';
 import 'package:jusitfi_admin/utils/constants/textstyles.dart';
 import '../widgets/category_tile.dart';
 import '../widgets/filter_sort.dart';
@@ -202,7 +200,7 @@ class _HomePageState extends State<HomePage> {
                       width: double.infinity,
                       child: Image.asset(
                         'assets/images/home_rect.png',
-                        height: 550,
+                        height: 850,
                         fit: BoxFit.fill,
                       ),
                     ),

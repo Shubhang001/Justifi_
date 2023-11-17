@@ -35,10 +35,11 @@ class _StatusPageState extends State<StatusPage> {
   ];
   final List<List<Widget>> _verticalTileWidgetList = [
     [
-      const LiveCallsCompletedVerticleTile(),
-      const LiveCallsCancelledVerticleTile(),
-      const LiveCallsCancelledVerticleTile(),
-      const LiveCallsCompletedVerticleTile(),
+      const PendingApprovalVerticalTile(),
+      const ScheduledVerticalTile(),
+      const ScheduledMeetCancelledVerticleTile(),
+      const ScheduledMeetCompletedVerticleTile(),
+      const RefundVerticalTile()
     ],
     [
       const CasePostPendingApplyVerticalTile(),
@@ -47,13 +48,10 @@ class _StatusPageState extends State<StatusPage> {
       const CasePostCancelledVerticalTile(),
     ],
     [
-      // const PendingApprovalVerticalTile(),
-      // const ScheduledVerticalTile(),
-      // const ScheduledMeetCancelledVerticleTile(),
-      // const ScheduledMeetCompletedVerticleTile(),
-      // const RefundVerticalTile()
-      Container(), Container(), Container(), Container(), Container(),
-    ],
+      const LiveCallsCompletedVerticleTile(),
+      const LiveCallsCancelledVerticleTile(),
+      const LiveCallsCancelledVerticleTile(),
+    ]
   ];
 
   void _onCategoryTapped(int index) {
@@ -134,7 +132,7 @@ class _StatusPageState extends State<StatusPage> {
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
-                  /* Container(
+                  Container(
                       height: 40,
                       margin: const EdgeInsets.all(8.0),
                       child: ListView.separated(
@@ -163,54 +161,53 @@ class _StatusPageState extends State<StatusPage> {
                                             .toString(),
                                         isSelected: false,
                                         textSize: 16)));
-                          })),*/
-                  // const SizedBox(
-                  //   height: 25,
-                  // ),
-                  // SizedBox(
-                  //     height: 35,
-                  //     child: ListView.separated(
-                  //         separatorBuilder: (context, index) => const SizedBox(
-                  //               width: 30,
-                  //             ),
-                  //         shrinkWrap: true,
-                  //         scrollDirection: Axis.horizontal,
-                  //         itemCount: _subcategoryList[_selectedCategoryIndex]
-                  //             .toList()
-                  //             .length,
-                  //         itemBuilder: (context, index) {
-                  //           return GestureDetector(
-                  //               onTap: () {
-                  //                 _onSubCategoryTapped(index);
-                  //               },
-                  //               child: Container(
-                  //                   padding: const EdgeInsets.all(8.0),
-                  //                   decoration: BoxDecoration(
-                  //                     border: Border.all(
-                  //                         color: Colors.black, width: 1),
-                  //                     borderRadius: BorderRadius.circular(15),
-                  //                     color: _selectedSubCategoryIndex == index
-                  //                         ? kPrimaryBlackColor
-                  //                         : Colors.white,
-                  //                   ),
-                  //                   child: TextBox(
-                  //                       text: _subcategoryList[
-                  //                               _selectedCategoryIndex][index]
-                  //                           .toString(),
-                  //                       isSelected: false,
-                  //                       textSize: 14)));
-                  //         })),
-                  
-                  // const SizedBox(
-                  //   height: 8,
-                  // ),
-                  // Divider(
-                  //   color: kprimaryTextColor,
-                  //   thickness: 1,
-                  // ),
-                  // const SizedBox(
-                  //   height: 8,
-                  // ),
+                          })),
+                  const SizedBox(
+                    height: 25,
+                  ),
+                  SizedBox(
+                      height: 35,
+                      child: ListView.separated(
+                          separatorBuilder: (context, index) => const SizedBox(
+                                width: 30,
+                              ),
+                          shrinkWrap: true,
+                          scrollDirection: Axis.horizontal,
+                          itemCount: _subcategoryList[_selectedCategoryIndex]
+                              .toList()
+                              .length,
+                          itemBuilder: (context, index) {
+                            return GestureDetector(
+                                onTap: () {
+                                  _onSubCategoryTapped(index);
+                                },
+                                child: Container(
+                                    padding: const EdgeInsets.all(8.0),
+                                    decoration: BoxDecoration(
+                                      border: Border.all(
+                                          color: Colors.black, width: 1),
+                                      borderRadius: BorderRadius.circular(15),
+                                      color: _selectedSubCategoryIndex == index
+                                          ? kPrimaryBlackColor
+                                          : Colors.white,
+                                    ),
+                                    child: TextBox(
+                                        text: _subcategoryList[
+                                                _selectedCategoryIndex][index]
+                                            .toString(),
+                                        isSelected: false,
+                                        textSize: 14)));
+                          })),
+                  const SizedBox(
+                    height: 8,
+                  ),
+                  Divider(
+                    color: kprimaryTextColor,
+                    thickness: 1,
+                  ),
+                  const SizedBox(
+                    height: 8,
+                  ),
                   Expanded(
                       child: ListView(
                     scrollDirection: Axis.vertical,

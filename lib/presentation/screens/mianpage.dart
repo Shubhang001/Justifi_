@@ -1,22 +1,20 @@
 import 'package:flutter/material.dart';
-import 'package:jusitfi_admin/presentation/screens/floatcases.dart';
-import 'package:jusitfi_admin/presentation/screens/floatcases2.dart';
+import 'package:jusitfi_admin/presentation/screens/float_cases.dart';
 import 'package:jusitfi_admin/presentation/screens/homepage.dart';
 import 'package:jusitfi_admin/presentation/screens/message_page.dart';
-import 'package:jusitfi_admin/presentation/screens/noservice.dart';
 import 'package:jusitfi_admin/presentation/screens/status_page.dart';
 import 'package:jusitfi_admin/presentation/screens/wallet_page.dart';
-import 'package:jusitfi_admin/presentation/widgets/noservice.dart';
-import 'package:jusitfi_admin/presentation/widgets/videoCallWidget.dart';
 import 'package:jusitfi_admin/utils/constants/textstyles.dart';
 
 class MainPage extends StatefulWidget {
   const MainPage({super.key, this.index = 0});
+  
 
   @override
   // ignore: library_private_types_in_public_api
   _MainPageState createState() => _MainPageState();
   final int index;
+  
 }
 
 class _MainPageState extends State<MainPage> {
@@ -26,17 +24,20 @@ class _MainPageState extends State<MainPage> {
     super.initState();
     _selectedIndex = widget.index;
   }
+  
 
   final List<Widget> _widgetOptions = <Widget>[
     const HomePage(),
-    const NoService(title: "Cases"),
+    const FloatCases(),
     const StatusPage(),
     const WalletPage(
         userName: "Sangeeta Rai",
         userImage: "assets/images/user_image.png",
         userLocation: "Mumbai"),
-    const NoService(title: "Messsage"),
+    const MessageScreen(),
   ];
+  
+  
 
   void _onItemTapped(int index) {
     setState(() {
@@ -59,16 +60,12 @@ class _MainPageState extends State<MainPage> {
         selectedLabelStyle: kNavLabel,
         unselectedLabelStyle: kNavLabel,
         items: <BottomNavigationBarItem>[
-          const BottomNavigationBarItem(
-            icon: Icon(
-              Icons.home_outlined,
-              size: 40,
+          BottomNavigationBarItem(
+            icon: Image.asset(
+              'assets/nav_icons/home.png',
+              width: 40,
+              height: 40,
             ),
-            // icon: Image.asset(
-            //   'assets/nav_icons/home.png',
-            //   width: 30,
-            //   height: 30,
-            // ),
             label: 'Home',
           ),
           BottomNavigationBarItem(
@@ -95,16 +92,12 @@ class _MainPageState extends State<MainPage> {
             ),
             label: 'Wallet',
           ),
-          const BottomNavigationBarItem(
-            icon: Icon(
-              Icons.chat_outlined,
-              size: 35,
+          BottomNavigationBarItem(
+            icon: Image.asset(
+              'assets/nav_icons/message.png',
+              width: 40,
+              height: 40,
             ),
-            // icon: Image.asset(
-            //   'assets/nav_icons/message.png',
-            //   width: 30,
-            //   height: 30,
-            // ),
             label: 'Message',
           ),
         ],
