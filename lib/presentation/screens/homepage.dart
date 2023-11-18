@@ -1,3 +1,4 @@
+import 'dart:convert';
 import 'package:flutter_typeahead/flutter_typeahead.dart';
 import 'package:jusitfi_admin/presentation/screens/lawyer_profile_temperory.dart';
 import 'package:jusitfi_admin/presentation/screens/more_page.dart';
@@ -12,6 +13,7 @@ import '../widgets/filter_sort.dart';
 //import '../widgets/horizontal_tile.dart';
 import '../widgets/searchbar.dart';
 import 'package:flutter/material.dart';
+import 'package:http/http.dart' as http;
 
 class HomePage extends StatefulWidget {
   const HomePage({super.key});
@@ -21,6 +23,14 @@ class HomePage extends StatefulWidget {
 }
 
 class _HomePageState extends State<HomePage> {
+  List<dynamic> result = [];
+
+  @override
+  void initState() {
+    super.initState();
+    fetchUsers();
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -169,11 +179,25 @@ class _HomePageState extends State<HomePage> {
                   Row(
                     mainAxisAlignment: MainAxisAlignment.spaceAround,
                     children: [
-                      CategoryTile(
-                        image: 'assets/category_icons/criminal.png',
-                        name: 'Criminal',
+                      SizedBox(
+                        height: 75,
+                        width: 300,
+                        child: GridView.builder(
+                          scrollDirection: Axis.vertical,
+                          itemCount: 3,
+                          itemBuilder: (context, index) {
+                            return CategoryTile(
+                              image: result[index]['logo'],
+                              name: result[index]['name'],
+                              subCatItems: result[index]['subcategories'],
+                            );
+                          },
+                          gridDelegate:
+                              const SliverGridDelegateWithFixedCrossAxisCount(
+                                  crossAxisCount: 3),
+                        ),
                       ),
-                      CategoryTile(
+                      /*CategoryTile(
                         image: 'assets/category_icons/family and adoption.png',
                         name: 'Family and Adoption',
                         isTransparentBackground: false,
@@ -181,7 +205,7 @@ class _HomePageState extends State<HomePage> {
                       CategoryTile(
                         image: 'assets/category_icons/cybercrime.png',
                         name: 'Cybercrime',
-                      ),
+                      ),*/
                       InkWell(
                         onTap: () {
                           Navigator.of(context)
@@ -193,6 +217,7 @@ class _HomePageState extends State<HomePage> {
                           image: 'assets/category_icons/more.png',
                           name: 'More',
                           is_more: true,
+                          subCatItems: [''],
                         ),
                       )
                     ],
@@ -523,5 +548,23 @@ class _HomePageState extends State<HomePage> {
             ),
           ),
         ));
+  }
+
+  Future<void> fetchUsers() async {
+    print('fetchUser called');
+    Uri uri;
+
+    uri = Uri.parse("http://65.0.130.67:8000/case/category-subcategory/");
+
+    var response = await http.get(uri);
+    if (response.statusCode == 200) {
+      final body = response.body;
+      final json = jsonDecode(body);
+
+      setState(() {
+        result = json;
+      });
+      print('fetchUser complete');
+    }
   }
 }

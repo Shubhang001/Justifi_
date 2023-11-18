@@ -8,6 +8,7 @@ class CategoryTile extends StatelessWidget {
       {super.key,
       required this.image,
       required this.name,
+      required this.subCatItems,
       this.is_more = false,
       this.is_interactive = true,
       this.isDark = false,
@@ -18,8 +19,9 @@ class CategoryTile extends StatelessWidget {
   final bool isDark;
   final bool is_more;
   final bool is_interactive;
+  final List<dynamic> subCatItems;
 
-  final List<String> subCatItems = [
+  /*final List<String> subCatItems = [
     'Family and Adoption',
     'Marriage dissolution',
     'Paternity and child custody',
@@ -29,7 +31,7 @@ class CategoryTile extends StatelessWidget {
     'Termination of Parental Rights and Adoptions',
     'Juvenile matters',
     'Other'
-  ];
+  ];*/
 
   @override
   Widget build(BuildContext context) {
@@ -38,9 +40,9 @@ class CategoryTile extends StatelessWidget {
         is_interactive
             ? is_more
                 ? Navigator.of(context).push(MaterialPageRoute(builder: (_) {
-                    return MorePage();
+                    return const MorePage();
                   }))
-                : ShowSubCat(context, subCatItems as List)
+                : ShowSubCat(context, subCatItems)
             : null;
       },
       child: Column(
