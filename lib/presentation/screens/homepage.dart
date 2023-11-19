@@ -24,11 +24,20 @@ class HomePage extends StatefulWidget {
 
 class _HomePageState extends State<HomePage> {
   List<dynamic> result = [];
+  List<dynamic> result1 = [];
+  String city1 = '';
 
   @override
   void initState() {
     super.initState();
     fetchUsers();
+  }
+
+  void cityFind() {
+    var city = result1[0]['practice_city'];
+    setState(() {
+      city1 = city;
+    });
   }
 
   @override
@@ -563,6 +572,25 @@ class _HomePageState extends State<HomePage> {
 
       setState(() {
         result = json;
+      });
+      print('fetchUser complete');
+    }
+  }
+
+  Future<void> fetchUsers1() async {
+    print('fetchUser called');
+    Uri uri;
+
+    uri = Uri.parse("http://65.0.130.67:8000/case/practice-data/");
+
+    var response = await http.get(uri);
+    if (response.statusCode == 200) {
+      final body = response.body;
+      final json = jsonDecode(body);
+
+      setState(() {
+        result1 = json['practice_cities'];
+        cityFind();
       });
       print('fetchUser complete');
     }
