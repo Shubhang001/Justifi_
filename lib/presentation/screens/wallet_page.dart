@@ -29,144 +29,144 @@ class _WalletPageState extends State<WalletPage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-        appBar: AppBar(
-          centerTitle: true,
-          elevation: 0,
-          backgroundColor: Colors.black,
-          actions: [
-            Padding(
-              padding: const EdgeInsets.only(
-                  left: 20, right: 30, top: 10, bottom: 10),
-              child: Row(
-                mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                children: [
-                  InkWell(
-                    onTap: () {
-                      Navigator.push(
-                        context,
-                        MaterialPageRoute(
-                          builder: (context) => const NotificationsPage(),
-                        ),
-                      );
-                    },
-                    child: const Icon(
-                      Icons.notifications_outlined,
-                      color: Colors.white,
-                      size: 35,
-                    ),
-                  )
-                ],
-              ),
-            ),
-          ],
-          leading: GestureDetector(
-            onTap: () {
-              Navigator.push(
-                context,
-                MaterialPageRoute(
-                  builder: (context) => const ProfileScreen(),
-                ),
-              );
-            },
-            child: Padding(
-              padding: const EdgeInsets.all(5.0),
-              child: Image.asset(
-                'assets/icons/profile_new.png',
-                color: Colors.white,
-              ),
+      appBar: AppBar(
+        centerTitle: true,
+        elevation: 0,
+        backgroundColor: Colors.black,
+        actions: [
+          Padding(
+            padding:
+                const EdgeInsets.only(left: 20, right: 30, top: 10, bottom: 10),
+            child: Row(
+              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+              children: [
+                InkWell(
+                  onTap: () {
+                    Navigator.push(
+                      context,
+                      MaterialPageRoute(
+                        builder: (context) => const NotificationsPage(),
+                      ),
+                    );
+                  },
+                  child: const Icon(
+                    Icons.notifications_outlined,
+                    color: Colors.white,
+                    size: 35,
+                  ),
+                )
+              ],
             ),
           ),
-          title: Row(
-            mainAxisAlignment: MainAxisAlignment.center,
-            children: [
-              Text(
-                "Wallet",
-                style: klocationLight,
-              )
-            ],
+        ],
+        leading: GestureDetector(
+          onTap: () {
+            Navigator.push(
+              context,
+              MaterialPageRoute(
+                builder: (context) => const ProfileScreen(),
+              ),
+            );
+          },
+          child: Padding(
+            padding: const EdgeInsets.all(5.0),
+            child: Image.asset(
+              'assets/icons/profile_new.png',
+              color: Colors.white,
+            ),
           ),
         ),
-        body: SingleChildScrollView(
-            scrollDirection: Axis.vertical,
-            child: Column(children: [
-              const SizedBox(
-                height: 10,
-              ),
-              Row(
-                mainAxisAlignment: MainAxisAlignment.center,
-                children: [
-                  Image.asset(
-                    widget.userImage.toString(),
-                  ),
-                  const SizedBox(
-                    width: 10,
-                  ),
-                  Column(
-                    crossAxisAlignment: CrossAxisAlignment.start,
-                    children: [
-                      Text(
-                        widget.userName,
-                        style: poppinsW500S18Black,
-                      ),
-                      Row(
-                        mainAxisAlignment: MainAxisAlignment.spaceAround,
-                        children: [
-                          SizedBox(
-                            height: 20,
-                            width: 20,
-                            child: Image.asset(
-                              "assets/icons/place_marker.png",
-                              fit: BoxFit.cover,
-                            ),
-                          ),
-                          Text(
-                            widget.userLocation,
-                            style: poppinsW400S12Black,
-                          )
-                        ],
-                      )
-                    ],
-                  ),
-                ],
-              ),
-              const SizedBox(
-                height: 15,
-              ),
-              Padding(
-                padding: const EdgeInsets.only(top: 15, left: 15, right: 15),
-                child: Row(
+        title: Row(
+          mainAxisAlignment: MainAxisAlignment.center,
+          children: [
+            Text(
+              "Wallet",
+              style: klocationLight,
+            )
+          ],
+        ),
+      ),
+      body: SingleChildScrollView(
+        scrollDirection: Axis.vertical,
+        child: Column(
+          children: [
+            const SizedBox(
+              height: 10,
+            ),
+            Row(
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: [
+                Image.asset(
+                  widget.userImage.toString(),
+                ),
+                const SizedBox(
+                  width: 10,
+                ),
+                Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
-                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: [
-                    Column(children: [
-                      GestureDetector(
-                          onTap: () {
-                            Navigator.of(context).push(MaterialPageRoute(
-                                builder: (context) =>
-                                    const HiringCreditsPage()));
-                          },
-                          child: Container(
-                            padding: const EdgeInsets.all(4),
-                            height: 54,
-                            width: 48,
-                            decoration: BoxDecoration(
-                                borderRadius: BorderRadius.circular(16),
-                                color: Colors.black),
-                            child: Center(
-                                child: Image.asset(
-                              "assets/icons/hiring_package_u.png",
-                              fit: BoxFit.cover,
-                            )),
+                    Text(
+                      widget.userName,
+                      style: poppinsW500S18Black,
+                    ),
+                    Row(
+                      mainAxisAlignment: MainAxisAlignment.spaceAround,
+                      children: [
+                        SizedBox(
+                          height: 20,
+                          width: 20,
+                          child: Image.asset(
+                            "assets/icons/place_marker.png",
+                            fit: BoxFit.cover,
+                          ),
+                        ),
+                        Text(
+                          widget.userLocation,
+                          style: poppinsW400S12Black,
+                        )
+                      ],
+                    )
+                  ],
+                ),
+              ],
+            ),
+            const SizedBox(
+              height: 15,
+            ),
+            Padding(
+              padding: const EdgeInsets.only(top: 15, left: 15, right: 15),
+              child: Row(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                children: [
+                  Column(children: [
+                    GestureDetector(
+                        onTap: () {
+                          Navigator.of(context).push(MaterialPageRoute(
+                              builder: (context) => const HiringCreditsPage()));
+                        },
+                        child: Container(
+                          padding: const EdgeInsets.all(4),
+                          height: 54,
+                          width: 48,
+                          decoration: BoxDecoration(
+                              borderRadius: BorderRadius.circular(16),
+                              color: Colors.black),
+                          child: Center(
+                              child: Image.asset(
+                            "assets/icons/hiring_package_u.png",
+                            fit: BoxFit.cover,
                           )),
-                      Text(
-                        "Hiring",
-                        style: poppinsW500S12Black,
-                      ),
-                      Text(
-                        "Credits",
-                        style: poppinsW500S12Black,
-                      )
-                    ]),*/
+                        )),
+                    Text(
+                      "Hiring",
+                      style: poppinsW500S12Black,
+                    ),
+                    Text(
+                      "Credits",
+                      style: poppinsW500S12Black,
+                    )
+                  ]),
                   Column(children: [
                     GestureDetector(
                       onTap: () {
