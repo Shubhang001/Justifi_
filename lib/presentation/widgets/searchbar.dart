@@ -18,6 +18,7 @@ class SearchBarUpdated extends StatefulWidget {
 }
 
 class _SearchBarUpdatedState extends State<SearchBarUpdated> {
+  TextEditingController searchTextController1 = TextEditingController();
   List<String> suggestions = [];
   List<String> name = [
     'Priya Sharma',
@@ -108,7 +109,7 @@ class _SearchBarUpdatedState extends State<SearchBarUpdated> {
               textFieldConfiguration: TextFieldConfiguration(
                   //onChanged: ,
 
-                  controller: searchTextController,
+                  controller: searchTextController1,
                   textAlign: TextAlign.start,
                   autofocus: false,
                   style: const TextStyle(
@@ -145,7 +146,7 @@ class _SearchBarUpdatedState extends State<SearchBarUpdated> {
               },
               onSuggestionSelected: (suggestion) {
                 //
-                searchTextController.text = suggestion.toString();
+                searchTextController1.text = suggestion.toString();
               },
             ),
           ),
