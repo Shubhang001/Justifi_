@@ -3,7 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_styled_toast/flutter_styled_toast.dart';
 import 'package:jusitfi_admin/presentation/screens/meeting_screen.dart';
 import 'package:jusitfi_admin/presentation/screens/meeting_screen_audio.dart';
-//import 'package:jusitfi_admin/presentation/screens/video_call.dart';
+import 'package:jusitfi_admin/presentation/screens/video_call.dart';
 import 'package:jusitfi_admin/utils/services/api_call.dart';
 import 'package:zego_uikit_prebuilt_call/zego_uikit_prebuilt_call.dart';
 import '../../utils/constants/colors.dart';
