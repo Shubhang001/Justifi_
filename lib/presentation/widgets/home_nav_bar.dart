@@ -1,12 +1,18 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_typeahead/flutter_typeahead.dart';
-
+import 'dart:convert';
 import '../../utils/constants/colors.dart';
 import '../screens/profile_page.dart';
+import 'package:http/http.dart' as http;
 
-class HomeNavBar extends StatelessWidget {
+class HomeNavBar extends StatefulWidget {
   const HomeNavBar({super.key});
 
+  @override
+  State<HomeNavBar> createState() => _HomeNavBarState();
+}
+
+class _HomeNavBarState extends State<HomeNavBar> {
   @override
   Widget build(BuildContext context) {
     //TextEditingController controller=TextEditingController();
@@ -115,11 +121,4 @@ class HomeNavBar extends StatelessWidget {
 
 TextEditingController searchTextController = TextEditingController();
 
-List<String> suggestons = [
-  "Maharastra",
-  "Mangalore",
-  "Malappuram",
-  "Maharastra",
-  "Mangalore",
-  "Malappuram",
-];
+List<String> suggestons = [];

@@ -1,5 +1,7 @@
 //import 'package:dropdownfield2/dropdownfield2.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_typeahead/flutter_typeahead.dart';
+import 'package:jusitfi_admin/presentation/widgets/home_nav_bar.dart';
 import '../../utils/constants/colors.dart';
 //import '../../utils/constants/textstyles.dart';
 import 'package:dropdown_search/dropdown_search.dart';
@@ -16,6 +18,7 @@ class SearchBarUpdated extends StatefulWidget {
 }
 
 class _SearchBarUpdatedState extends State<SearchBarUpdated> {
+  List<String> suggestions = [];
   List<String> name = [
     'Priya Sharma',
     'Sakshi',
@@ -33,17 +36,8 @@ class _SearchBarUpdatedState extends State<SearchBarUpdated> {
     'Murder'
   ];
   List<String> subcategory = ['Priya Sharma', 'Sakshi', 'Ajay kumar'];
-  List<String> items = [];
-  String selectedItem = '';
-  final _searchController = TextEditingController();
-  int value1 = 0;
-  String labelText = "Search....";
 
-  void nametoitems() {
-    setState(() {
-      items = name;
-    });
-  }
+  int value1 = 0;
 
   int suggestionsCount = 12;
 
@@ -68,40 +62,8 @@ class _SearchBarUpdatedState extends State<SearchBarUpdated> {
           const SizedBox(
             width: 10,
           ),
-          Expanded(
-            /* child: TextField(
-              style: TextStyle(
-                color: color,
-                fontWeight: FontWeight.w400,
-                fontSize: 18,
-              ),
-              decoration: InputDecoration(
-                border: InputBorder.none,
-                hintText: 'Search....',
-                hintStyle: ksearch,
-              ),
-            ),*/
-            /*child: DropDownField(
-              icon: Icon(
-                Icons.search,
-                size: 30,
-                color: kmainButtonColor,
-              ),
-              textStyle: TextStyle(
-                color: kmainButtonColor,
-                fontWeight: FontWeight.w400,
-                fontSize: 18,
-              ),
-              controller: _searchController,
-              hintText: "Search....",
-              hintStyle: TextStyle(
-                color: kmainButtonColor,
-                fontWeight: FontWeight.w400,
-                fontSize: 18,
-              ),
-              enabled: true,
-              items: name,
-            ),*/
+          /*Expanded(
+            
             child: DropdownSearch<String>(
               onChanged: (value) => setState(() {
                 selectedItem = items[value1];
@@ -136,13 +98,56 @@ class _SearchBarUpdatedState extends State<SearchBarUpdated> {
               ),
               selectedItem: selectedItem,
             ),
-            /*child: SearchField(
-              suggestions: suggestions
-                  .map((e) => SearchFieldListItem<String>(
-                        e,
-                      ))
-                  .toList(),
-            ),*/
+            
+          ),*/
+          SizedBox(
+            width: 140,
+            child: TypeAheadField(
+              animationStart: 0,
+              animationDuration: Duration.zero,
+              textFieldConfiguration: TextFieldConfiguration(
+                  //onChanged: ,
+
+                  controller: searchTextController,
+                  textAlign: TextAlign.start,
+                  autofocus: false,
+                  style: const TextStyle(
+                      fontSize: 24,
+                      fontWeight: FontWeight.w400,
+                      color: Colors.white),
+                  decoration: const InputDecoration(
+                    focusColor: Colors.white,
+                    hintText: "Search...",
+                    hintStyle: TextStyle(
+                        color: Colors.white,
+                        fontWeight: FontWeight.w400,
+                        fontSize: 20),
+                    enabledBorder: InputBorder.none,
+                    disabledBorder: OutlineInputBorder(),
+                  )),
+              suggestionsBoxDecoration:
+                  SuggestionsBoxDecoration(color: Colors.lightBlue[50]),
+              suggestionsCallback: (pattern) {
+                List<String> matches = <String>[];
+                matches.addAll(suggestions);
+
+                matches.retainWhere((s) {
+                  return s.toLowerCase().contains(pattern.toLowerCase());
+                });
+                return matches;
+              },
+              itemBuilder: (context, sone) {
+                return Card(
+                    child: Container(
+                  padding: const EdgeInsets.all(10),
+                  child: Text(sone.toString()),
+                ));
+              },
+              onSuggestionSelected: (suggestion) {
+                //
+                searchTextController.text = suggestion.toString();
+              },
+            ),
           ),
           PopupMenuButton(
             child: Icon(
@@ -154,7 +159,7 @@ class _SearchBarUpdatedState extends State<SearchBarUpdated> {
               // add this property
               setState(() {
                 if (newValue == 1) {
-                  items = name;
+                  suggestions = name;
                   setState(() {
                     value1 = newValue;
                   });
@@ -163,10 +168,10 @@ class _SearchBarUpdatedState extends State<SearchBarUpdated> {
                   setState(() {
                     value1 = newValue;
                   });
-                  items = category;
+                  suggestions = category;
                 }
                 if (newValue == 3) {
-                  items = subcategory;
+                  suggestions = subcategory;
                   setState(() {
                     value1 = newValue;
                   });

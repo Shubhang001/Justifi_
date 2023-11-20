@@ -25,18 +25,21 @@ class HomePage extends StatefulWidget {
 class _HomePageState extends State<HomePage> {
   List<dynamic> result = [];
   List<dynamic> result1 = [];
-  String city1 = '';
+  List<String> suggestions = ['1', '2'];
 
   @override
   void initState() {
     super.initState();
     fetchUsers();
+    fetchUsers1();
   }
 
   void cityFind() {
-    var city = result1[0]['practice_city'];
     setState(() {
-      city1 = city;
+      for (int i = 0; i < result1.length; i++) {
+        suggestions[i] = result1[i]['practice_city'];
+        print(suggestions[i]);
+      }
     });
   }
 
@@ -126,7 +129,7 @@ class _HomePageState extends State<HomePage> {
                       SuggestionsBoxDecoration(color: Colors.lightBlue[50]),
                   suggestionsCallback: (pattern) {
                     List<String> matches = <String>[];
-                    matches.addAll(suggestons);
+                    matches.addAll(suggestions);
 
                     matches.retainWhere((s) {
                       return s.toLowerCase().contains(pattern.toLowerCase());
