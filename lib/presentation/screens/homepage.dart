@@ -25,7 +25,7 @@ class HomePage extends StatefulWidget {
 class _HomePageState extends State<HomePage> {
   List<dynamic> result = [];
   List<dynamic> result1 = [];
-  List<String> suggestions = ['1', '2'];
+  List<String> suggestions = [];
 
   @override
   void initState() {
@@ -36,10 +36,12 @@ class _HomePageState extends State<HomePage> {
 
   void cityFind() {
     setState(() {
+      List<String> suggestionList = List.filled(result1.length, '');
       for (int i = 0; i < result1.length; i++) {
-        suggestions[i] = result1[i]['practice_city'];
-        print(suggestions[i]);
+        suggestionList[i] = result1[i]['practice_city'];
+        print(suggestionList[i]);
       }
+      suggestions = suggestionList;
     });
   }
 
