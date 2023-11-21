@@ -71,57 +71,47 @@ class _MorePageState extends State<MorePage> {
                 height: 30,
               ),
               SizedBox(
-                  height: 100,
-                  child: ListView.builder(
-                      //future: categorydetailslist,
-                      itemCount: result.length,
-                      itemBuilder: (context, index) {
-                        // print(snapshot.data);
+                height: 600,
+                child: GridView.builder(
+                  itemCount: result.length,
+                  gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
+                    childAspectRatio: (100 / 150),
+                    crossAxisCount: 3,
+                    mainAxisSpacing: 16,
+                    crossAxisSpacing: 16,
+                  ),
+                  itemBuilder: (context, index) {
+                    return InkWell(
+                      onTap: () {
+                        setState(() {
+                          subCatItems = result[index]['subcategories'];
+                        });
 
-                        return SizedBox(
-                          height: 100,
-                          child: GridView.builder(
-                            itemCount: result.length,
-                            gridDelegate:
-                                const SliverGridDelegateWithFixedCrossAxisCount(
-                              childAspectRatio: (100 / 150),
-                              crossAxisCount: 3,
-                              mainAxisSpacing: 16,
-                              crossAxisSpacing: 16,
-                            ),
-                            itemBuilder: (context, index) {
-                              return InkWell(
-                                onTap: () {
-                                  setState(() {
-                                    subCatItems =
-                                        result[index]['subcategories'];
-                                  });
-
-                                  ShowSubCat(context, subCatItems);
-                                },
-                                child: Column(
-                                  crossAxisAlignment: CrossAxisAlignment.center,
-                                  children: [
-                                    Image.network(
-                                      result[index]['logo'],
-                                      height: 100,
-                                      width: 100,
-                                      fit: BoxFit.fill,
-                                    ),
-                                    Expanded(
-                                      child: Text(
-                                        result[index]['name'],
-                                        style: kMainCategory,
-                                        textAlign: TextAlign.center,
-                                      ),
-                                    )
-                                  ],
-                                ),
-                              );
-                            },
+                        ShowSubCat(context, subCatItems);
+                      },
+                      child: Column(
+                        crossAxisAlignment: CrossAxisAlignment.center,
+                        children: [
+                          Image.network(
+                            result[index]['logo'],
+                            height: 50,
+                            width: 100,
+                            fit: BoxFit.fill,
                           ),
-                        );
-                      })),
+                          //SizedBox(height: 40.0),
+                          Expanded(
+                            child: Text(
+                              result[index]['name'],
+                              style: kMainCategory,
+                              textAlign: TextAlign.center,
+                            ),
+                          )
+                        ],
+                      ),
+                    );
+                  },
+                ),
+              ),
             ],
           ),
         ),

@@ -48,18 +48,26 @@ class CategoryTile extends StatelessWidget {
       child: Column(
         children: [
           Container(
-            alignment: Alignment.center,
-            decoration: BoxDecoration(
-              color: isTransparentBackground ? null : Colors.black,
-              borderRadius: BorderRadius.circular(7),
-            ),
-            child: Image.asset(
-              height: 60,
-              width: 60,
-              image,
-              fit: BoxFit.fill,
-            ),
-          ),
+              alignment: Alignment.center,
+              decoration: BoxDecoration(
+                color: isTransparentBackground ? null : Colors.black,
+                borderRadius: BorderRadius.circular(7),
+              ),
+              child: is_interactive
+                  ? is_more
+                      ? Image.asset(
+                          height: 60,
+                          width: 60,
+                          image,
+                          fit: BoxFit.fill,
+                        )
+                      : Image.network(
+                          height: 60,
+                          width: 60,
+                          image,
+                          fit: BoxFit.fill,
+                        )
+                  : null),
           Text(
             name,
             style: GoogleFonts.openSans(

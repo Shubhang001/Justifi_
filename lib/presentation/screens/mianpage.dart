@@ -5,16 +5,15 @@ import 'package:jusitfi_admin/presentation/screens/message_page.dart';
 import 'package:jusitfi_admin/presentation/screens/status_page.dart';
 import 'package:jusitfi_admin/presentation/screens/wallet_page.dart';
 import 'package:jusitfi_admin/utils/constants/textstyles.dart';
+import 'package:jusitfi_admin/presentation/screens/noservice.dart';
 
 class MainPage extends StatefulWidget {
   const MainPage({super.key, this.index = 0});
-  
 
   @override
   // ignore: library_private_types_in_public_api
   _MainPageState createState() => _MainPageState();
   final int index;
-  
 }
 
 class _MainPageState extends State<MainPage> {
@@ -24,20 +23,17 @@ class _MainPageState extends State<MainPage> {
     super.initState();
     _selectedIndex = widget.index;
   }
-  
 
   final List<Widget> _widgetOptions = <Widget>[
     const HomePage(),
-    const FloatCases(),
+    const NoService(title: "Cases"),
     const StatusPage(),
     const WalletPage(
         userName: "Sangeeta Rai",
         userImage: "assets/images/user_image.png",
         userLocation: "Mumbai"),
-    const MessageScreen(),
+    const NoService(title: "Messsage"),
   ];
-  
-  
 
   void _onItemTapped(int index) {
     setState(() {

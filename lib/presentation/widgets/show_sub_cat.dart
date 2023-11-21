@@ -43,7 +43,7 @@ Future<Object?> ShowSubCat(BuildContext context, List<dynamic> subCatItems) {
           child: Column(
             children: [
               SizedBox(
-                height: 200,
+                height: 400,
                 child: GridView.builder(
                     itemCount: selectedCats.length,
                     gridDelegate:
@@ -57,11 +57,11 @@ Future<Object?> ShowSubCat(BuildContext context, List<dynamic> subCatItems) {
                       return InkWell(
                         onTap: () {
                           setState(() {
-                            /* if (selectedCats.contains(index)) {
-                                    selectedCats.remove(index);
-                                  } else {
-                                    selectedCats.add(index);
-                                  }*/
+                            if (selectedCats.contains(index)) {
+                              selectedCats.remove(index);
+                            } else {
+                              selectedCats.add(index);
+                            }
                           });
                         },
                         child: Container(

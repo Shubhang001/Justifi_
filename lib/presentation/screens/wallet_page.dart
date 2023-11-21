@@ -134,39 +134,40 @@ class _WalletPageState extends State<WalletPage> {
               height: 15,
             ),
             Padding(
-              padding: const EdgeInsets.only(top: 15, left: 15, right: 15),
+              padding: const EdgeInsets.only(top: 15, left: 23, right: 20),
               child: Row(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
-                  Column(children: [
-                    GestureDetector(
-                        onTap: () {
-                          Navigator.of(context).push(MaterialPageRoute(
-                              builder: (context) => const HiringCreditsPage()));
-                        },
-                        child: Container(
-                          padding: const EdgeInsets.all(4),
-                          height: 54,
-                          width: 48,
-                          decoration: BoxDecoration(
-                              borderRadius: BorderRadius.circular(16),
-                              color: Colors.black),
-                          child: Center(
-                              child: Image.asset(
-                            "assets/icons/hiring_package_u.png",
-                            fit: BoxFit.cover,
+                  /*Column(children: [
+                      GestureDetector(
+                          onTap: () {
+                            Navigator.of(context).push(MaterialPageRoute(
+                                builder: (context) =>
+                                    const HiringCreditsPage()));
+                          },
+                          child: Container(
+                            padding: const EdgeInsets.all(4),
+                            height: 54,
+                            width: 48,
+                            decoration: BoxDecoration(
+                                borderRadius: BorderRadius.circular(16),
+                                color: Colors.black),
+                            child: Center(
+                                child: Image.asset(
+                              "assets/icons/hiring_package_u.png",
+                              fit: BoxFit.cover,
+                            )),
                           )),
-                        )),
-                    Text(
-                      "Hiring",
-                      style: poppinsW500S12Black,
-                    ),
-                    Text(
-                      "Credits",
-                      style: poppinsW500S12Black,
-                    )
-                  ]),
+                      Text(
+                        "Hiring",
+                        style: poppinsW500S12Black,
+                      ),
+                      Text(
+                        "Credits",
+                        style: poppinsW500S12Black,
+                      )
+                    ]),*/
                   Column(children: [
                     GestureDetector(
                       onTap: () {
@@ -574,3 +575,4 @@ class FrozenCard extends StatelessWidget {
         ));
   }
 }
+
