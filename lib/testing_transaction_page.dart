@@ -27,9 +27,9 @@ class _WalletTransactionPageState extends State<WalletTransactionPage>
   void initState() {
     super.initState();
     _tabController = TabController(
-      initialIndex: 1,
+      initialIndex: 0,
       vsync: this,
-      length: 3,
+      length: 2,
     );
   }
 
@@ -49,85 +49,52 @@ class _WalletTransactionPageState extends State<WalletTransactionPage>
         child: Column(
           children: [
             Container(
+              padding: EdgeInsets.all(2),
+              decoration: BoxDecoration(
+                borderRadius: BorderRadius.circular(10),
+                border: Border.all(width: 1, color: Colors.black),
+              ),
               margin: const EdgeInsets.symmetric(vertical: 10, horizontal: 5),
               child: TabBar(
                 indicator: const BoxDecoration(
-                    color: Colors.black,
-                    borderRadius: BorderRadius.all(
-                      Radius.circular(10),
-                    )),
+                  color: Colors.black,
+                  borderRadius: BorderRadius.all(
+                    Radius.circular(10),
+                  ),
+                ),
                 labelColor: Colors.white,
                 labelStyle: tabBarFont,
                 unselectedLabelStyle: tabBarFont,
                 unselectedLabelColor: Colors.black,
-                tabs: [
+                tabs: const [
+                  // Tab(
+                  //   child: Container(
+                  //     padding: const EdgeInsets.symmetric(
+                  //       horizontal: 2,
+                  //       vertical: 3,
+                  //     ),
+                  //     decoration: BoxDecoration(
+                  //       border: Border.all(
+                  //         width: 2,
+                  //         color: Colors.black,
+                  //       ),
+                  //     ),
+                  //     child: const Text(
+                  //       "Hiring Credit",
+                  //       style: TextStyle(fontWeight: FontWeight.bold),
+                  //     ),
+                  //   ),
+                  // ),
                   Tab(
-                    child: Container(
-                      padding: const EdgeInsets.symmetric(
-                        horizontal: 2,
-                        vertical: 3,
-                      ),
-                      decoration: BoxDecoration(
-                        border: Border.all(
-                          width: 2,
-                          color: Colors.black,
-                        ),
-                      ),
-                      child: const Text(
-                        "Hiring Credit",
-                        style: TextStyle(fontWeight: FontWeight.bold),
-                      ),
+                    child: Text(
+                      "Coin Add",
+                      style: TextStyle(fontWeight: FontWeight.bold),
                     ),
                   ),
                   Tab(
-                    child: Container(
-                      decoration: BoxDecoration(
-                        border: Border.all(
-                          width: 2,
-                          color: Colors.black,
-                        ),
-                      ),
-                      child: Row(
-                        children: [
-                          Container(
-                            padding: const EdgeInsets.symmetric(
-                              horizontal: 4,
-                              vertical: 3,
-                            ),
-                            child: Row(
-                              children: [
-                                Image.asset(
-                                  color: Colors.black,
-                                  "assets/images/coin_solo.jpg",
-                                  height: 15,
-                                ),
-                              ],
-                            ),
-                          ),
-                          const Text(
-                            "Coin Add",
-                            style: TextStyle(fontWeight: FontWeight.bold),
-                          ),
-                        ],
-                      ),
-                    ),
-                  ),
-                  Tab(
-                    child: Container(
-                      padding: const EdgeInsets.symmetric(
-                        horizontal: 4,
-                        vertical: 3,
-                      ),
-                      decoration: BoxDecoration(
-                        border: Border.all(
-                          width: 2,
-                          color: Colors.black,
-                        ),
-                      ),
-                      child: const Text(
-                        "Internal",
-                        style: TextStyle(fontWeight: FontWeight.bold),
-                      ),
+                    child: Text(
+                      "Coin Paid",
+                      style: TextStyle(fontWeight: FontWeight.bold),
                     ),
                   ),
                 ],
@@ -139,18 +106,22 @@ class _WalletTransactionPageState extends State<WalletTransactionPage>
               thickness: 3,
             ),
             Expanded(
-              child: TabBarView(controller: _tabController, children: const [
-                // Hiring Credit Section
-                HiringCreditSection(),
+              child: TabBarView(
+                controller: _tabController,
+                children: const [
+                  // Hiring Credit Section
+                  //HiringCreditSection(),
 
-                // Coin add Section (Exactly Same as the previous Section except the first column)
+                  // Coin add Section (Exactly Same as the previous Section except the first column)
 
-                CoinAddSection(),
+                  CoinAddSection(),
 
-                // Internal Section
-                InternalSection(),
-              ]),
-            )
+                  // Internal Section
+                  QuickConnect(),
+                  //InternalSection(),
+                ],
+              ),
+            ),
           ],
         ),
       ),
@@ -303,7 +274,7 @@ class _InternalSectionState extends State<InternalSection>
                     ),
                   ),
                   child: const Text(
-                    "Quick Connect",
+                    "Internal Coin Paid",
                     style: TextStyle(fontWeight: FontWeight.bold),
                   ),
                 ),

@@ -6,7 +6,7 @@ import '../../utils/constants/colors.dart';
 import '../../utils/constants/textstyles.dart';
 
 Future<Object?> ShowSubCat(BuildContext context, List<dynamic> subCatItems) {
-  List<dynamic> selectedCats = subCatItems;
+  List<dynamic> selectedCats = [];
   return showGeneralDialog(
     barrierDismissible: false,
     barrierLabel: '',
@@ -45,7 +45,7 @@ Future<Object?> ShowSubCat(BuildContext context, List<dynamic> subCatItems) {
               SizedBox(
                 height: 400,
                 child: GridView.builder(
-                    itemCount: selectedCats.length,
+                    itemCount: subCatItems.length,
                     gridDelegate:
                         const SliverGridDelegateWithFixedCrossAxisCount(
                       childAspectRatio: (110 / 40),
@@ -72,7 +72,7 @@ Future<Object?> ShowSubCat(BuildContext context, List<dynamic> subCatItems) {
                               borderRadius: BorderRadius.circular(4)),
                           child: Center(
                             child: Text(
-                              selectedCats[index]['name'],
+                              subCatItems[index]['name'],
                               textAlign: TextAlign.center,
                               style: ksubCatText,
                             ),
