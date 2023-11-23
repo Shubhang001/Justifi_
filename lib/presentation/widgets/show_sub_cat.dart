@@ -2,6 +2,7 @@ import 'dart:ui';
 //import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:jusitfi_admin/presentation/screens/homepage.dart';
+import 'package:jusitfi_admin/presentation/screens/view_all.dart';
 import '../../utils/constants/colors.dart';
 import '../../utils/constants/textstyles.dart';
 
@@ -74,7 +75,9 @@ Future<Object?> ShowSubCat(BuildContext context, List<dynamic> subCatItems) {
                             child: Text(
                               subCatItems[index]['name'],
                               textAlign: TextAlign.center,
-                              style: ksubCatText,
+                              style: selectedCats.contains(index)
+                                  ? ksubCatText1
+                                  : ksubCatText,
                             ),
                           ),
                         ),
@@ -86,8 +89,12 @@ Future<Object?> ShowSubCat(BuildContext context, List<dynamic> subCatItems) {
               ),
               InkWell(
                 onTap: () {
-                  Navigator.pushReplacement(context,
-                      MaterialPageRoute(builder: (_) => const HomePage()));
+                  Navigator.pushReplacement(
+                      context,
+                      MaterialPageRoute(
+                          builder: (_) => const ViewAllPage(
+                                title: 'Selected Lawyer',
+                              )));
                 },
                 child: Container(
                     width: MediaQuery.of(context).size.width / 2,

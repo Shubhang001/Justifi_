@@ -221,6 +221,12 @@ TextStyle ksubCatText = GoogleFonts.inter(
   fontSize: 12,
 );
 
+TextStyle ksubCatText1 = GoogleFonts.inter(
+  color: Colors.black,
+  fontWeight: FontWeight.w400,
+  fontSize: 12,
+);
+
 TextStyle kNavLabel = GoogleFonts.inter(
   color: Colors.white,
   fontWeight: FontWeight.w400,
