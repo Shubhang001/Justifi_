@@ -4,6 +4,7 @@ import 'package:flutter/material.dart';
 import 'package:jusitfi_admin/presentation/widgets/advocate_card_extended.dart';
 import 'package:jusitfi_admin/presentation/widgets/filter_sort.dart';
 import 'package:jusitfi_admin/presentation/widgets/searchbar.dart';
+import 'package:jusitfi_admin/presentation/widgets/searchbar1.dart';
 import 'package:jusitfi_admin/utils/constants/textstyles.dart';
 import 'package:http/http.dart' as http;
 
@@ -49,7 +50,7 @@ class _ViewAllPageState extends State<ViewAllPage> {
                 ),
                 const Row(
                   children: [
-                    SearchBarUpdated(
+                    SearchBarUpdatedViewAll(
                       backgroundColor: Colors.white,
                       color: Colors.black,
                     ),

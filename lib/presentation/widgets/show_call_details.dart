@@ -70,7 +70,7 @@ Future<Object?> showCallDetails(BuildContext context, String mode, int i) {
                 child: InkWell(
                   onTap: () {
                     Navigator.pop(context);
-                    onCreateButtonPressed(context, mode);
+                    //onCreateButtonPressed(context, mode);
                   },
                   child: Container(
                     decoration: BoxDecoration(

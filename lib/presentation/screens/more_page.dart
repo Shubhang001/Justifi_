@@ -94,7 +94,7 @@ class _MorePageState extends State<MorePage> {
                         children: [
                           Image.network(
                             result[index]['logo'],
-                            height: 50,
+                            height: 100,
                             width: 100,
                             fit: BoxFit.fill,
                           ),

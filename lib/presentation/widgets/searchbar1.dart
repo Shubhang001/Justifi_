@@ -7,17 +7,17 @@ import '../../utils/constants/colors.dart';
 import 'package:dropdown_search/dropdown_search.dart';
 //import 'package:searchfield/searchfield.dart';
 
-class SearchBarUpdated extends StatefulWidget {
-  const SearchBarUpdated(
+class SearchBarUpdatedViewAll extends StatefulWidget {
+  const SearchBarUpdatedViewAll(
       {super.key, required this.backgroundColor, required this.color});
   final Color backgroundColor;
   final Color color;
 
   @override
-  State<SearchBarUpdated> createState() => _SearchBarUpdatedState();
+  State<SearchBarUpdatedViewAll> createState() => _SearchBarUpdatedState();
 }
 
-class _SearchBarUpdatedState extends State<SearchBarUpdated> {
+class _SearchBarUpdatedState extends State<SearchBarUpdatedViewAll> {
   TextEditingController searchTextController1 = TextEditingController();
   List<String> suggestions = [];
   List<String> name = [
@@ -120,12 +120,12 @@ class _SearchBarUpdatedState extends State<SearchBarUpdated> {
                   style: const TextStyle(
                       fontSize: 24,
                       fontWeight: FontWeight.w400,
-                      color: Colors.white),
+                      color: Colors.black),
                   decoration: const InputDecoration(
                     focusColor: Colors.white,
                     hintText: "Search...",
                     hintStyle: TextStyle(
-                        color: Colors.white,
+                        color: Colors.black,
                         fontWeight: FontWeight.w400,
                         fontSize: 20),
                     enabledBorder: InputBorder.none,
