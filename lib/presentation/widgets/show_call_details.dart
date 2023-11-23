@@ -1,37 +1,39 @@
 import 'dart:ui';
 import 'package:flutter/material.dart';
+import 'package:flutter_styled_toast/flutter_styled_toast.dart';
 import 'package:jusitfi_admin/presentation/screens/meeting_screen.dart';
 import 'package:jusitfi_admin/presentation/screens/meeting_screen_audio.dart';
+//import 'package:jusitfi_admin/presentation/screens/video_call.dart';
 import 'package:jusitfi_admin/utils/services/api_call.dart';
+import 'package:zego_uikit_prebuilt_call/zego_uikit_prebuilt_call.dart';
 import '../../utils/constants/colors.dart';
 import '../../utils/constants/textstyles.dart';
 
-void onCreateButtonPressed(BuildContext context, String mode) async {
+final TextEditingController singleInviteeUserIDTextCtrl =
+    TextEditingController();
+
+void onCreateButtonPressed(
+    BuildContext context, String mode, int userid) async {
+  final user = userid.toString();
+  singleInviteeUserIDTextCtrl.text = user;
   // call api to create meeting and then navigate to MeetingScreen with meetingId,token
   await createMeeting().then((meetingId) {
     if (!context.mounted) return;
     mode == "Audio Call"
-        ? Navigator.of(context).push(
-            MaterialPageRoute(
-              builder: (context) => MeetingScreenAudio(
-                meetingId: meetingId,
-                token: token,
-              ),
-            ),
+        ? sendCallButton(
+            isVideoCall: false,
+            inviteeUsersIDTextCtrl: singleInviteeUserIDTextCtrl,
+            onCallFinished: onSendCallInvitationFinished,
           )
-        : Navigator.of(context).push(
-            MaterialPageRoute(
-              builder: (context) => MeetingScreen(
-                meetingId: meetingId,
-                token: token,
-                mode: mode,
-              ),
-            ),
+        : sendCallButton(
+            isVideoCall: true,
+            inviteeUsersIDTextCtrl: singleInviteeUserIDTextCtrl,
+            onCallFinished: onSendCallInvitationFinished,
           );
   });
 }
 
-Future<Object?> showCallDetails(BuildContext context, String mode, int i) {
+Future<Object?> showCallDetails(BuildContext context, String mode, int userid) {
   return showGeneralDialog(
     barrierDismissible: true,
     barrierLabel: '',
@@ -70,7 +72,7 @@ Future<Object?> showCallDetails(BuildContext context, String mode, int i) {
                 child: InkWell(
                   onTap: () {
                     Navigator.pop(context);
-                    //onCreateButtonPressed(context, mode);
+                    onCreateButtonPressed(context, mode, userid);
                   },
                   child: Container(
                     decoration: BoxDecoration(
@@ -266,4 +268,80 @@ Future<Object?> showCallDetails(BuildContext context, String mode, int i) {
     ),
     context: context,
   );
+}
+
+Widget sendCallButton({
+  required bool isVideoCall,
+  required TextEditingController inviteeUsersIDTextCtrl,
+  void Function(String code, String message, List<String>)? onCallFinished,
+}) {
+  return ValueListenableBuilder<TextEditingValue>(
+    valueListenable: inviteeUsersIDTextCtrl,
+    builder: (context, inviteeUserID, _) {
+      var invitees = getInvitesFromTextCtrl(inviteeUsersIDTextCtrl.text.trim());
+
+      return ZegoSendCallInvitationButton(
+        isVideoCall: isVideoCall,
+        invitees: invitees,
+        resourceID: "zego_data",
+        iconSize: const Size(40, 40),
+        buttonSize: const Size(50, 50),
+        onPressed: onCallFinished,
+      );
+    },
+  );
+}
+
+List<ZegoUIKitUser> getInvitesFromTextCtrl(String textCtrlText) {
+  List<ZegoUIKitUser> invitees = [];
+
+  var inviteeIDs = textCtrlText.trim().replaceAll('，', '');
+  inviteeIDs.split(",").forEach((inviteeUserID) {
+    if (inviteeUserID.isEmpty) {
+      return;
+    }
+
+    invitees.add(ZegoUIKitUser(
+      id: inviteeUserID,
+      name: 'user_$inviteeUserID',
+    ));
+  });
+
+  return invitees;
+}
+
+void onSendCallInvitationFinished(
+  String code,
+  String message,
+  List<String> errorInvitees,
+) {
+  if (errorInvitees.isNotEmpty) {
+    String userIDs = "";
+    for (int index = 0; index < errorInvitees.length; index++) {
+      if (index >= 5) {
+        userIDs += '... ';
+        break;
+      }
+
+      var userID = errorInvitees.elementAt(index);
+      userIDs += userID + ' ';
+    }
+    if (userIDs.isNotEmpty) {
+      userIDs = userIDs.substring(0, userIDs.length - 1);
+    }
+
+    var message = 'User doesn\'t exist or is offline: $userIDs';
+    if (code.isNotEmpty) {
+      message += ', code: $code, message:$message';
+    }
+    showToast(
+      message,
+      position: StyledToastPosition.top,
+    );
+  } else if (code.isNotEmpty) {
+    showToast(
+      'code: $code, message:$message',
+      position: StyledToastPosition.top,
+    );
+  }
 }
