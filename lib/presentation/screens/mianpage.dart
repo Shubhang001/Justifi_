@@ -74,7 +74,7 @@ class _MainPageState extends State<MainPage> {
               width: 40,
               height: 40,
             ),
-            label: 'Post Case',
+            label: 'Cases',
           ),
           BottomNavigationBarItem(
             icon: Image.asset(

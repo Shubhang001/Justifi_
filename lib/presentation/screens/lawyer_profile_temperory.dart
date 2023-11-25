@@ -1721,7 +1721,7 @@ class CallToAction extends StatelessWidget {
                       builder: (BuildContext context2) {
                         return CustomDialog(
                           onCallNowPressed: () {
-                            showCallDetails(context, 'Audio Call', 12345);
+                           // showCallDetails(context, 'Audio Call', 12345);
                           },
                           onScheduleNowPressed: () {
                             /*Navigator.pop(context);
@@ -1752,7 +1752,7 @@ class CallToAction extends StatelessWidget {
                       builder: (BuildContext context2) {
                         return CustomDialog(
                           onCallNowPressed: () {
-                            showCallDetails(context, 'Video Call', 12345);
+                            //showCallDetails(context, 'Video Call', 12345);
                           },
                           onScheduleNowPressed: () {
                             /*Navigator.pop(context);
